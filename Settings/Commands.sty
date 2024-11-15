@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%% CUSTOM COMMANDS %%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\vv}[1]{\ensuremath\textbf{#1}} % displaying vectors as bold upright quantities
+
+\newcommand{\epiquote}[2]{\epigraph{\small\itshape \say{#1}}{\scshape --- #2}} % for quotes at the beginning of chapters/sections
+
+\renewcommand*{\thefootnote}{[\arabic{footnote}]}
+
+\renewcommand{\CancelColor}{\color{black}}
+
+\LetLtxMacro{\originalsubref}{\subref}
+\renewcommand{\subref}[1]{\textbf{\textsc{\originalsubref{#1}}}}
+
+\LetLtxMacro{\originaleqref}{\eqref}
+\renewcommand{\eqref}{Eq.~\originaleqref} % for redefining eqref
+\newcommand{\figref}[1]{Fig.~\ref{#1}} % for a figure reference
+\newcommand{\secref}[1]{Sec.~\ref{#1}} % for a section reference
+
+\newcommand{\equalhat}{\ensuremath\mathrel{\stackon[1.5pt]{=}{\stretchto{\scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}} % for the "corresponds to" symbol
+
+\newcommand{\integral}[3]{\ensuremath\int_{#1}^{#2}\mathrm{d}#3\,}
+\newcommand{\dpd}[2]{\ensuremath\frac{\partial #1}{\partial #2}}
+\newcommand{\dtd}[2]{\ensuremath\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+
+%\newcommand{\trace}[1]{\ensuremath \mathrm{Tr} \left\{ #1\right\}}
+\newcommand{\mean}[1]{\ensuremath \left\langle #1\right\rangle}
+
+\newcommand{\trace}[1]{\ensuremath\mathrm{Tr}\, \{ #1\}}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % to get numbers on equation* or align* environments
+
+\newcommand{\unity}{\ensuremath\mathds{1}} % unity matrix
+\newcommand{\transposed}{\ensuremath^{\mathrm{T}}}
+
+\newcommand{\sandwich}[3]{\ensuremath\bra{#1} #2 \ket{#3}}
+\renewcommand{\braket}[2]{\ensuremath\langle #1|#2 \rangle}
+\newcommand{\ketbra}[2]{\ensuremath \ket{#1}\bra{#2}}
+\newcommand{\comm}[2]{\ensuremath\left[#1,#2\right]}
+\newcommand{\anticomm}[2]{\ensuremath\left\{#1,#2\right\}}

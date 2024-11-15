@@ -1,0 +1,80 @@
+% default header style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\scshape\thepage}
+\fancyhead[RE,LO]{
+\scshape
+\ifnum\value{chapter}>0 \fi\leftmark}
+\renewcommand{\headrulewidth}{.5pt}
+\setlength{\headheight}{15pt}
+
+% overridden style for chapter pages
+\fancypagestyle{plain}{
+\fancyhf{} 
+\fancyhead[LE,RO]{\thepage}
+\setlength{\headheight}{15pt}}
+
+% overridden style for empty pages
+\fancypagestyle{empty}{
+\fancyhf{} 
+\fancyhead[LE,RO]{\thepage}
+\setlength{\headheight}{15pt}}
+
+% additional setup
+\hypersetup{pdfdisplaydoctitle = true, colorlinks = false}
+\captionsetup{width=.75\textwidth}
+
+\definecolor{shadecolor}{gray}{.95}
+\graphicspath{ {./Graphics/} }
+
+\numberwithin{equation}{chapter}
+
+\setlength\parindent{0pt}
+\allowdisplaybreaks
+
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+
+%\makeatletter
+%\renewcommand{\operator@font}{\mathgroup\symletters}
+%\makeatother
+
+\setmainfont{MinionPro}
+
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad
+        \scshape {\Large{\@chapapp{} \thechapter}}
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \Huge \bfseries\scshape #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    %\vskip 40\p@
+    \vskip 50\p@
+  }}
+  
+\def\@makeschapterhead#1{%
+  {\parindent \z@ \centering \reset@font
+		\thickhrulefill\quad
+        \scshape {\Large Preamble}
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M        
+        \hrule
+        \vspace*{10\p@}%
+        \Huge \bfseries\scshape #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    %\vskip 40\p@
+    \vskip 50\p@
+  }}

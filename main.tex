@@ -1,0 +1,57 @@
+\documentclass[12pt]{book}
+\input{Settings/Packages.sty}
+\input{Settings/Commands.sty}
+\input{Settings/Preamble}
+
+%\ChNameVar{\Large\scshape\centering} 
+%\ChNumVar{\Large\scshape\centering} 
+%\ChTitleVar{\Huge\scshape\centering}
+%\ChRuleWidth{0.5pt}
+%\ChNameAsIs
+%\ChTitleAsIs
+
+\begin{document}
+\pagenumbering{gobble}
+% insert titlepage
+\cleardoublepage
+
+\subfile{Chapters/Abstract/Abstract}
+\subfile{Chapters/Introduction/Introduction}
+
+\pagenumbering{Roman}
+
+\tableofcontents
+\cleardoublepage
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+
+
+\subfile{Chapters/Foundations_Models/Foundations_Models}
+\subfile{Chapters/Quantum_Many_Body_Framework/Quantum_Many_Body_Framework}
+
+
+\chapter{Quantum many-body methods}
+
+\chapter{Application and Calculation}
+
+\chapter{Results}
+
+\chapter{Outlook}
+
+\section{Hubbard Model}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dolor eu arcu ultricies vulputate in in quam. Mauris vel tellus quis velit feugiat laoreet non nec tortor. Proin justo nunc, vulputate eu massa id, ornare sagittis ante. Nunc pellentesque commodo dolor, vitae vehicula lectus lobortis in. Morbi ultricies eros pellentesque interdum malesuada. Donec a finibus libero. Donec quis feugiat mi. Nunc bibendum, ex vitae porttitor tempus, arcu justo ullamcorper ligula, eu viverra arcu sapien ac ante. Nam feugiat arcu pharetra efficitur accumsan. Quisque id dui in tortor vulputate tincidunt. Morbi sit amet sapien in tortor finibus tristique. Curabitur in eros orci. Curabitur eget commodo dui.
+
+\begin{align}
+	\mathcal{C}=\mathcal{M}=C=\integral{\mathbb{R}}{\infty}{x} e^{i\vv{kx}}\mathfrak{1234}\;\mathcal{U}(\vv{R}_1, \vv{R}_2).
+\end{align}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=.3\textwidth]{Graphics/La3_Ni2_O7.png}
+	\caption{Test}
+	\label{fig:test}
+\end{figure}
+
+\end{document}
