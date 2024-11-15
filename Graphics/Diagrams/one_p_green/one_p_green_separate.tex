@@ -13,12 +13,12 @@
     \node {$G_{\mathfrak{12}}=$};
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.base)]
-	\begin{feynman}%[inline=(a.base)]
+	\begin{feynman}[small]
 		\vertex[dot] (a) {};
 		\vertex[dot, right=3cm of a] (b) {};
 		
-		\node [below=0.25cm of a] {$\mathfrak{1}$};
-		\node [below=0.25cm of b] {$\mathfrak{2}$};
+		\node [above=0.25cm of a] {$\mathfrak{1}$};
+		\node [above=0.25cm of b] {$\mathfrak{2}$};
 		
 		\diagram* {
 			(a) -- [fermion] (b)
