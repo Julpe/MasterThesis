@@ -1,0 +1,41 @@
+\documentclass[tikz=true]{standalone}
+\usepackage{graphicx, standalone}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\usepackage{euler}
+\usepackage{fontspec}
+\setmainfont{MinionPro}
+
+\renewcommand{\k}{\ensuremath\text{k}}
+\newcommand{\kp}{\ensuremath\text{k}'}
+\newcommand{\q}{\ensuremath\text{q}}
+
+\begin{document}
+
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node {$G_{\text{pp};\mathfrak{1234}}^{\q\k\kp}=$};
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}
+		\vertex (a1);
+		\vertex[below=of a1] (a2);
+		\vertex[right=of a1] (b1);
+		\vertex[below=of b1] (b2);
+		\vertex[right=of b1] (c1);
+		\vertex[below=of c1] (c2);
+		\vertex[right=of c1] (d1);
+		\vertex[below=of d1] (d2);
+		
+		\node (content) at ($(b1)!0.5!(c2)$) {$G_{\text{pp};\mathfrak{1234}}^{\q\k\kp}$};
+		
+		\diagram* {
+			(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$, text=black] (b1) -- (c1) -- [fermion, gray, edge label'=$\k';\mathfrak{4}$, text=black] (d1),
+			(d2) -- [fermion, gray, edge label'=$q-\k;\mathfrak{3}$, text=black] (c2) -- (b2) -- [fermion, gray, edge label'=$\q-\kp;\mathfrak{2}$, text=black] (a2),
+			(b1) -- (b2),
+			(c1) -- (c2)
+		};	
+	\end{feynman}
+\end{tikzpicture}
+
+\end{document}
