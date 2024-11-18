@@ -39,11 +39,11 @@ In homogeneous systems, e.g., infinite or translationally invariant systems, the
 \end{subequations}
 This anti-periodicity in time leads to the Fourier transform to be defined over a discrete set of imaginary frequencies, the the so-called Matsubara frequencies, which for fermionic quantities are given by $\nu_n=(2n+1)\frac\pi\beta$. In contrast, \textit{bosonic} Green's functions are periodic in imaginary time with period $\beta$ and therefore the Fourier transform includes the set of bosonic Matsubara frequencies $\omega_n=(2n)\frac\pi\beta$. In the following, we will always denote fermionic Matsubara frequencies with $\nu_n$ and bosonic ones with $\omega_n$. The fermionic- and bosonic-like Fourier transforms of $G_{\mathfrak{12}}(\tau)$ become, respectively,
 \begin{align}
-	G_{\mathfrak{12}}(i\nu_n)=\integral{0}{\beta}{\tau}G_{\mathfrak{12}}(\tau) e^{i\nu_n\tau} \quad\text{and}\quad G_{\mathfrak{12}}(i\omega_n)=\integral{0}{\beta}{\tau}G_{\mathfrak{12}}(\tau) e^{i\omega_n\tau}
+	G_{\mathfrak{12}}(i\nu_n)=\integral{0}{\beta}{\tau}G_{\mathfrak{12}}(\tau) e^{i\nu_n\tau} \qquad\text{and}\quad G_{\mathfrak{12}}(i\omega_n)=\integral{0}{\beta}{\tau}G_{\mathfrak{12}}(\tau) e^{i\omega_n\tau}
 \end{align}
 and only require the knowledge of Green's functions for positive imaginary times $\tau$. The inverse Fourier transforms are given by
 \begin{align}
-	G_{\mathfrak{12}}(\tau)=\frac1\beta \sum_n G_{\mathfrak{12}}(i\nu_n) e^{-i\nu_n\tau} \quad\text{and}\quad G_{\mathfrak{12}}(\tau)=\frac1\beta \sum_n G_{\mathfrak{12}}(i\omega_n) e^{-i\omega_n\tau}.
+	G_{\mathfrak{12}}(\tau)=\frac1\beta \sum_n G_{\mathfrak{12}}(i\nu_n) e^{-i\nu_n\tau} \qquad\text{and}\quad G_{\mathfrak{12}}(\tau)=\frac1\beta \sum_n G_{\mathfrak{12}}(i\omega_n) e^{-i\omega_n\tau}.
 \end{align}
 If we perform a spectral representation of the fermionic Green's function in \eqref{eq:one_p_green_expectation_val} and calculate the discrete Fourier transform, we find that
 \begin{align}
@@ -140,29 +140,79 @@ In analogy to the one-particle Green's function, the two-particle Green's functi
 \begin{align}
 	G_{\mathfrak{1234}}^{\q\k\kp}=-\mean{\mathcal{T}\left [\hat{c}_{\vv{k};\mathfrak{1}}\hat{c}^{\dagger}_{\vv{k}-\vv{q};\mathfrak{2}}\hat{c}_{\vv{k}'-\vv{q};\mathfrak{3}}\hat{c}^{\dagger}_{\vv{k}';\mathfrak{4}}\right ]}.
 \end{align}
-It describes two particles, two holes or a particle and a hole being inserted in the system at times $\tau_2$ and $\tau_4$, propagating in the system until they are removed again at $\tau_1$ and $\tau_3$, respectively. Assuming a stationary Hamiltonian that satisfies time-translation invariance, it is possible to eliminate one imaginary time variable by setting it zero. Then, the Green's function only depends on three time variables and through Fourier transform, also only depends on three frequency and momentum variables. There are three equivalent choices of independent frequencies (with $\nu$, $\nu'$ being a fermionic and $\omega$ a bosonic Matsubara frequency) 
-\begin{subequations}
-\begin{align}
-	\text{ph-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\nu-\omega,&&\nu_3=\nu'-\omega,&&\nu_4=\nu'\},\label{eq:ph_freq}\\
-	\overline{\text{ph}}\text{-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\nu',&&\nu_3=\nu'-\omega,&&\nu_4=\nu-\omega\}\quad\text{and}\label{eq:ph_bar_freq}\\
-	\text{pp-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\omega-\nu',&&\nu_3=\omega-\nu,&&\nu_4=\nu'\}.\label{eq:pp_freq}
-\end{align}
-\end{subequations}
+It describes two particles, two holes or a particle and a hole being inserted in the system at times $\tau_2$ and $\tau_4$, propagating in the system until they are removed again at $\tau_1$ and $\tau_3$, respectively. Assuming a stationary Hamiltonian that satisfies time-translation invariance, it is possible to eliminate one imaginary time variable by setting it zero. Then, the Green's function only depends on three time variables and through Fourier transform, also only depends on three frequency and momentum variables. 
 Furthermore, similar to the case for the one-particle Green's function, the absence of spin-orbit coupling reduces the number of spin degrees of freedom 
 \begin{subequations}
 \begin{align}
-	G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}&=G_{\sigma\sigma\sigma'\sigma';\mathfrak{1234}}^{\q\k\kp} \quad\text{and}\\
+	G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}&=G_{\sigma\sigma\sigma'\sigma';\mathfrak{1234}}^{\q\k\kp} \qquad\text{and}\\
 	G_{\overline{\sigma\sigma'};\mathfrak{1234}}^{\q\k\kp}&=G_{\sigma\sigma'\sigma'\sigma;\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
 \end{subequations}
-Diagrammatically, the two-particle Green's function in the three notations given in \eqref{eq:ph_freq} - \eqref{eq:pp_freq} are given in \figref{fig:two_particle_green_channels} below.
+In this case, the total incoming and outgoing spin must be equal and this puts a heavy constraint on the possible spin combinations,
+\begin{align}
+	\sigma_1=\sigma_2=\sigma_3=\sigma_4, \qquad (\sigma_1=\sigma_2) \neq (\sigma_3=\sigma_4)\qquad\text{and}\quad (\sigma_1=\sigma_4)\neq(\sigma_2=\sigma_3),
+\end{align}
+totaling to only six unique spin combinations, each of which can be seen in \figref{fig:two_particle_green_spins}.
+\begin{figure}[h]
+  \centering
+  \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_spins/two_particle_green_spins_row1}}\vspace{0.5cm}\\
+  \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_spins/two_particle_green_spins_row2}}
+  \caption{In the case of absent spin-orbit coupling, these are the only non-vanishing spin combinations of the two-particle Green's function.}
+  \label{fig:two_particle_green_spins}
+\end{figure}
+Furthermore, if one describes quantities in the paramagnetic phase, where the system is SU(2)-symmetric, there are only two independent spin configurations,
+\begin{subequations}
+\begin{align}
+	G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}&=G_{(-\sigma)(-\sigma');\mathfrak{1234}}^{\q\k\kp}=G_{\sigma'\sigma;\mathfrak{1234}}^{\q\k\kp}\qquad\text{and}\\
+	G_{\sigma\sigma;\mathfrak{1234}}^{\q\k\kp}&=G_{\sigma(-\sigma);\mathfrak{1234}}^{\q\k\kp}+G_{\overline{\sigma(-\sigma)};\mathfrak{1234}}^{\q\k\kp}.
+\end{align}
+\end{subequations}
+For these two spin combinations, the density and magnetic channel specified as follows is a particularly helpful choice, as we shall see in the upcoming sections: 
+\begin{subequations}
+\begin{align}
+	G_{\text{d};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}+G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}\qquad\text{and}\\
+	G_{\text{m};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}-G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}=G_{\overline{\uparrow\downarrow};\mathfrak{1234}}^{\q\k\kp}.
+\end{align}
+\end{subequations}
+Besides the spin-symmetries discussed above, the Green's function also inherits other properties of the system, such as time-reversal symmetry, which manifests itself by
+\begin{align}
+	G_{\mathfrak{1234}}^{\q\k\kp}=G_{\mathfrak{3421}}^{\bar\q\bar{\text{k}}'\bar\k},
+\end{align} 
+where $\overline\k=\{\nu,-\vv{k}\}$ is the time-reversed compound momentum variable. Furthermore, the two-particle Green's function satisfies the crossing symmetry, which is a direct manifestation of Pauli's principle. Crossing symmetry refers to the antisymmetric property of the Green's function with respect to the exchange of the incoming and outgoing fermions
+\begin{subequations}
+\begin{align}
+	G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}&= -G_{\overline{\sigma'\sigma};\mathfrak{3214}}^{(\kp-\k)(\kp-\q)\kp},\label{eq:crossing_sym_1}\\
+	&= -G_{\overline{\sigma\sigma'};\mathfrak{1432}}^{(\k-\kp)\k(\k-\q)},\label{eq:crossing_sym_2}\\
+	&= G_{\sigma'\sigma;\mathfrak{3412}}^{(-\q)(\kp-\q)(\k-\q)}.\label{eq:crossing_sym_3}
+\end{align}
+\end{subequations}
+The symmetries \eqref{eq:crossing_sym_1} - \eqref{eq:crossing_sym_3} describe the frequency changes that occur by exchanging the positions of the gray fermion lines, leaving the vertex unchanged.
+
+At the beginning of the section it was stated that the (four-point) two-particle Green's function only requires three frequency arguments to be fixed as the last one is automatically given by employing momentum conservation at each vertex. There are three equivalent choices of independent frequencies (with $\nu$, $\nu'$ being a fermionic and $\omega$ a bosonic Matsubara frequency) 
+\begin{subequations}
+\begin{align}
+	\text{ph-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\nu-\omega,&&\nu_3=\nu'-\omega,&&\nu_4=\nu'\},\label{eq:ph_freq}\\
+	\overline{\text{ph}}\text{-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\nu',&&\nu_3=\nu'-\omega,&&\nu_4=\nu-\omega\}\qquad\text{and}\label{eq:ph_bar_freq}\\
+	\text{pp-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\omega-\nu',&&\nu_3=\omega-\nu,&&\nu_4=\nu'\}.\label{eq:pp_freq}
+\end{align}
+\end{subequations}
+To show the effects of this frequency shift and how they affect the labels of the diagrams, we show the two-particle Green's function in the three notations of \eqref{eq:ph_freq} - \eqref{eq:pp_freq} in \figref{fig:two_particle_green_channels} below.
 \begin{figure}[h]
   \centering
   \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_channels/two_particle_green_channels_ph}}\vspace{0.5cm}\\
   \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_channels/two_particle_green_channels_ph_bar}}\vspace{0.5cm}\\
   \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_channels/two_particle_green_channels_pp}}
   \caption{Two-particle Green's functions in the different frequency notations of \eqref{eq:ph_freq} - \eqref{eq:pp_freq} expressed in Feynman diagrams. The frequency notation is encoded in an additional subscript, $\{\text{ph}, \overline{\text{ph}},\text{pp}\}$.}
+  \label{fig:two_particle_green_channels}
 \end{figure}
-
+Obviously, the choice of frequency convention should not have any impact on the physical content of the Green's function. Hence it is possible to transform between these channels by applying specific frequency shifts,
+\begin{subequations}
+\begin{align}
+	G_{\text{ph};1234}^{\q\k\kp}&=G_{\overline{\text{ph}};1234}^{(\k-\kp)\k(\k-\q)},\\
+	G_{\overline{\text{ph}};1234}^{\q\k\kp}&=G_{\text{ph};1234}^{(\k-\kp)\k(\k-\q)},\\
+	G_{\text{ph};1234}^{\q\k\kp}&=G_{\text{pp};1234}^{(\k+\kp-\q)\k\kp}\qquad\text{and}\\
+	G_{\text{pp};1234}^{\q\k\kp}&=G_{\text{ph};1234}^{(\k+\kp-\q)\k\kp}.
+\end{align}
+\end{subequations}
 
 \end{document}
