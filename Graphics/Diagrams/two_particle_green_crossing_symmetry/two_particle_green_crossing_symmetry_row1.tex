@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\usepackage{graphicx, standalone}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\usepackage{euler}
+\usepackage{fontspec}
+\setmainfont{MinionPro}
+\usepackage{graphicx}
+
+\renewcommand{\k}{\ensuremath\text{k}}
+\newcommand{\kp}{\ensuremath\text{k}'}
+\newcommand{\q}{\ensuremath\text{q}}
+
+\newcommand{\drawgtwo}[5]{
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}
+		\def\sc{0.8};
+		
+		\vertex (a1);
+		\vertex[below=of a1] (a2);
+		\vertex[right=of a1] (b1);
+		\vertex[below=of b1] (b2);
+		\vertex[right=of b1] (c1);
+		\vertex[below=of c1] (c2);
+		\vertex[right=of c1] (d1);
+		\vertex[below=of d1] (d2);
+		
+		\node (content) at ($(b1)!0.5!(c2)$) {\scalebox{0.6}{#1}};
+		
+		\diagram* {
+			(a1) -- [fermion, gray, edge label'={\scalebox{\sc}{#2}}, text=black] (b1) -- (c1) -- [fermion, gray, edge label'={\scalebox{\sc}{#5}}, text=black] (d1),
+			(d2) -- [fermion, gray, edge label'={\scalebox{\sc}{#4}}, text=black] (c2) -- (b2) -- [fermion, gray, edge label'={\scalebox{\sc}{#3}}, text=black] (a2),
+			(b1) -- (b2),
+			(c1) -- (c2)
+		};
+	\end{feynman}
+\end{tikzpicture}
+}
+
+\begin{document}
+
+\includestandalone{two_particle_green_crossing_symmetry_separate_row1}
+
+\end{document}

@@ -150,7 +150,7 @@ Furthermore, similar to the case for the one-particle Green's function, the abse
 \end{subequations}
 In this case, the total incoming and outgoing spin must be equal and this puts a heavy constraint on the possible spin combinations,
 \begin{align}
-	\sigma_1=\sigma_2=\sigma_3=\sigma_4, \qquad (\sigma_1=\sigma_2) \neq (\sigma_3=\sigma_4)\qquad\text{and}\quad (\sigma_1=\sigma_4)\neq(\sigma_2=\sigma_3),
+	\sigma_1=\sigma_2=\sigma_3=\sigma_4, \qquad (\sigma_1=\sigma_2) \neq (\sigma_3=\sigma_4)\qquad\text{and}\qquad (\sigma_1=\sigma_4)\neq(\sigma_2=\sigma_3),
 \end{align}
 totaling to only six unique spin combinations, each of which can be seen in \figref{fig:two_particle_green_spins}.
 \begin{figure}[h]
@@ -186,9 +186,18 @@ where $\overline\k=\{\nu,-\vv{k}\}$ is the time-reversed compound momentum varia
 	&= G_{\sigma'\sigma;\mathfrak{3412}}^{(-\q)(\kp-\q)(\k-\q)}.\label{eq:crossing_sym_3}
 \end{align}
 \end{subequations}
-The symmetries \eqref{eq:crossing_sym_1} - \eqref{eq:crossing_sym_3} describe the frequency changes that occur by exchanging the positions of the gray fermion lines, leaving the vertex unchanged.
-
-At the beginning of the section it was stated that the (four-point) two-particle Green's function only requires three frequency arguments to be fixed as the last one is automatically given by employing momentum conservation at each vertex. There are three equivalent choices of independent frequencies (with $\nu$, $\nu'$ being a fermionic and $\omega$ a bosonic Matsubara frequency) 
+The symmetries \eqref{eq:crossing_sym_1} - \eqref{eq:crossing_sym_3} describe the frequency changes that occur by exchanging the positions of the gray fermion lines, leaving the vertex unchanged. The last line corresponds to a full swap of the incoming and outgoing particle labels. The crossing symmetry is visually shown in \figref{fig:two_particle_green_crossing_symmetry}. Lastly, the Green's function also possesses symmetry with respect to complex conjugation,
+\begin{align}
+	\left (G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}\right )^*=G_{\sigma'\sigma;\mathfrak{4321}}^{(-\q)(-\k)(-\kp)}.
+\end{align}
+\begin{figure}[h]
+  \centering
+  \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_crossing_symmetry/two_particle_green_crossing_symmetry_row1}}\vspace{0.5cm}\\
+  \subfloat{\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_crossing_symmetry/two_particle_green_crossing_symmetry_row2}}
+  \caption{Diagrammatic representation of the crossing symmetry relations in order of \eqref{eq:crossing_sym_1} - \eqref{eq:crossing_sym_3}.}
+  \label{fig:two_particle_green_crossing_symmetry}
+\end{figure}
+At the beginning of the section it was stated that the (four-point) two-particle Green's function only requires three frequency arguments to be fixed since the last one is automatically given by momentum conservation. There are three equivalent choices (coined channels) of independent frequencies (with $\nu$, $\nu'$ being a fermionic and $\omega$ a bosonic Matsubara frequency)
 \begin{subequations}
 \begin{align}
 	\text{ph-notation:}&\;\;\{\nu_1=\nu,&&\nu_2=\nu-\omega,&&\nu_3=\nu'-\omega,&&\nu_4=\nu'\},\label{eq:ph_freq}\\
@@ -214,5 +223,15 @@ Obviously, the choice of frequency convention should not have any impact on the 
 	G_{\text{pp};1234}^{\q\k\kp}&=G_{\text{ph};1234}^{(\k+\kp-\q)\k\kp}.
 \end{align}
 \end{subequations}
+Let us finally note that the two-particle Green's function represents all diagrams that are possible that involve two electrons, two holes or an electron and a hole. It can therefore be split into two parts: (i) a part, where the electrons do not interact with each other and propagate independently; and (ii) a part, where the electrons do interact with each other through an infinite number of processes. (ii) is commonly called the connected two-particle Green's function and can be mathematically formulated by
+\begin{align}
+	G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}=G_{\sigma\sigma';\mathfrak{1234}}^{\text{conn};\q\k\kp}+\delta_{\q0}G_{\sigma;\mathfrak{12}}^{\k}G_{\sigma';\mathfrak{34}}^{\kp}-\delta_{\sigma\sigma'}\delta_{\k\kp}G_{\sigma;\mathfrak{14}}^{\k}G_{\sigma;\mathfrak{32}}^{\k-\q}.
+\end{align}
+
+
+
+
+
+
 
 \end{document}

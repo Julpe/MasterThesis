@@ -1,0 +1,25 @@
+\documentclass[tikz=true]{standalone}
+\usepackage{graphicx, standalone}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\usepackage{euler}
+\usepackage{fontspec}
+\setmainfont{MinionPro}
+
+\begin{document}
+
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}
+		\node {$\phantom{=-}$};
+	\end{feynman}
+\end{tikzpicture}
+\drawgtwo{$G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}$}{$\k;\sigma;\mathfrak{1}$}{$\k-\q;\sigma;\mathfrak{2}$}{$\kp-\q;\sigma';\mathfrak{3}$}{$\kp;\sigma';\mathfrak{4}$}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}
+		\node {$=-$};
+	\end{feynman}
+\end{tikzpicture}
+\drawgtwo{$G_{\overline{\sigma'\sigma};\mathfrak{3214}}^{(\kp-\k)(\kp-\q)\kp}$}{$\kp-\q;\sigma';\mathfrak{3}$}{$\k-\q;\sigma;\mathfrak{2}$}{$\k;\sigma;\mathfrak{1}$}{$\kp;\sigma';\mathfrak{4}$}
+
+\end{document}
