@@ -224,12 +224,57 @@ Obviously, the choice of frequency convention should not have any impact on the 
 \end{align}
 \end{subequations}
 Let us finally note that the two-particle Green's function represents all diagrams that are possible that involve two electrons, two holes or an electron and a hole. It can therefore be split into two parts: (i) a part, where the electrons do not interact with each other and propagate independently; and (ii) a part, where the electrons do interact with each other through an infinite number of processes. (ii) is commonly called the connected two-particle Green's function and can be mathematically formulated by
-\begin{align}
+\begin{align}\label{eq:two_particle_green_connected}
 	G_{\sigma\sigma';\mathfrak{1234}}^{\q\k\kp}=G_{\sigma\sigma';\mathfrak{1234}}^{\text{conn};\q\k\kp}+\delta_{\q0}G_{\sigma;\mathfrak{12}}^{\k}G_{\sigma';\mathfrak{34}}^{\kp}-\delta_{\sigma\sigma'}\delta_{\k\kp}G_{\sigma;\mathfrak{14}}^{\k}G_{\sigma;\mathfrak{32}}^{\k-\q}.
 \end{align}
+Diagrammatically, the connected two-particle Green's function contains all diagrams, where two propagating electrons interact with each other. The first terms up to interaction order two are given in \figref{fig:two_particle_green_connected}.
+\begin{figure}[h]
+  \centering
+  \subfloat{\includestandalone[width=\textwidth]{../../Graphics/Diagrams/two_particle_green_connected/two_particle_green_connected_separate_row1}}\vspace{0.5cm}\\
+  \subfloat{\includestandalone[width=\textwidth]{../../Graphics/Diagrams/two_particle_green_connected/two_particle_green_connected_separate_row2}}\vspace{0.5cm}\\
+  \subfloat{\includestandalone[width=\textwidth]{../../Graphics/Diagrams/two_particle_green_connected/two_particle_green_connected_separate_row3}}
+  \caption{Diagrammatic representation of the two-particle connected Green's function up to order two. It includes the possible interaction processes that occur between two propagating electrons. The particle labels are only written down for the first diagram, the other diagrams are labeled analogously.}
+  \label{fig:two_particle_green_connected}
+\end{figure}
+The other terms in \eqref{eq:two_particle_green_connected} are not that interesting, they merely describe the electrons propagating in the system without ever interacting with the other. However, we will still show the diagrammatic content of the second and third term of \eqref{eq:two_particle_green_connected} in \figref{fig:two_particle_green_disconnected}.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=1.4]{../../Graphics/Diagrams/two_particle_green_disconnected/two_particle_green_disconnected}
+	\caption{Disconnected part (second and third term on the right hand side of \eqref{eq:two_particle_green_connected}) of the two-particle Green's function.}
+	\label{fig:two_particle_green_disconnected}
+\end{figure}
+The connected two-particle Green's function without the external legs is commonly called the full vertex $F$, where by convention an additional minus sign is introduced,
+\begin{align}
+	G_{\mathfrak{1234}}^{\text{conn};\q\k\kp} = -\frac1\beta \sum_{\mathfrak{abcd}} G_{\mathfrak{1a}}^{\k} G_{\mathfrak{b2}}^{\k-q} F_{\mathfrak{1234}}^{\q\k\kp} G_{\mathfrak{3c}}^{\kp-q} G_{\mathfrak{d4}}^{\kp}.
+\end{align}
+By the previous definition, the vertex function $F_{\mathfrak{1234}}^{\q\k\kp}$ contains all diagrams that connect two incoming and two outgoing lines. The diagrams contained in the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$ can be classified by their two-particle reducibility (2PR). A diagram is called two-particle reducible, if the diagram can be split into two parts by cutting two internal Green's function lines. Furthermore, this classification is described by three channels, $\{\text{ph},\overline{\text{ph}},\text{pp}\}$, depending on which incoming and outgoing lines are contained in the split-up diagrams. The $\text{ph}$-channel corresponds to those diagrams, where the sub-parts connect $\mathfrak{12}$ and $\mathfrak{34}$, the $\overline{\text{ph}}$-channel connects $\mathfrak{14}$ and $\mathfrak{23}$ and the $\text{pp}$-channel connects $\mathfrak{13}$ and $\mathfrak{24}$. These reducible diagrams are categorized in $\Phi_{\text{ph};\mathfrak{1234}}^{\q\k\kp}$, $\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}$ and $\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}$, respectively. All diagrams that are not two-particle reducible are grouped together in the quantity $\Lambda_{\mathfrak{1234}}^{\q\k\kp}$. This procedure is called the parquet-decomposition and reads mathematically
+\begin{align}
+	F_{\mathfrak{1234}}^{\q\k\kp}=\Lambda_{\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{ph};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}.
+\end{align}
+Another possibility is to split up the full vertex $F$ in reducible and irreducible diagrams in a specific channel $r\in\{\text{ph},\overline{\text{ph}},\text{pp}\}$,
+\begin{align}
+	F_{\mathfrak{1234}}^{\q\k\kp}=\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}+\Phi_{r;\mathfrak{1234}}^{\q\k\kp},
+\end{align}
+where $\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}$ is the irreducible vertex in channel $r$ and $\Phi_{r;\mathfrak{1234}}^{\q\k\kp}$ the corresponding reducible one. Note, that in channel $r$ irreducible diagrams might still be reducible in another channel $r'\neq r$. For example, $\Gamma_{\text{ph};\mathfrak{1234}}^{\q\k\kp}$ contains all fully irreducible diagrams, but also all diagrams which are reducible in channels $\overline{\text{ph}}$ and $\text{pp}$,
+\begin{align}
+	\Gamma_{\text{ph};\mathfrak{1234}}^{\q\k\kp}=\Lambda_{\mathfrak{1234}}^{\q\k\kp}+\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}.
+\end{align}
+This will be important later in \secref{sec:bethe_salpeter}, where we will discuss the Bethe-Salpeter equations. Before that, let us briefly introduce the concept of linear response and the central physical property describing the response of a system with respect to an external perturbation\footnote{For example an external electromagnetic field.}, the susceptibility.
 
+\section{Susceptibility}
 
+Experimentally, it is not possible to directly extract information (just by \say{looking}) about the interactions between electrons in a system. Instead, in spectroscopic experiments, a perturbation is applied to the system and one measures the system's response. In particular, one measures how expectation values $\mean{\cdot}$ of operators (take operator $\hat A$ as an example) changes when an external field $h$ is applied. In linear response theory, this response is taken to be linear in the perturbing field, requiring this field to be sufficiently small,
+\begin{align}
+	\mean{\hat A(\tau)}_{h}-\mean{\hat A(\tau)}_{h=0}=\integral{0}{\beta}{\tau'} \chi(\tau-\tau')h(\tau')+\mathcal{O}(h^2),
+\end{align}
+where $\chi(\tau-\tau')$ is coined physical susceptibility and does not depend on the field $h(\tau)$. $\chi(\tau-\tau')$ fulfills the Kramers-Kronig relations, is causal ($\chi(\tau-\tau')=\Theta(\tau-\tau')\chi(\tau-\tau')$) and is finite ($\forall\, \tau,\tau':\;\exists\, C\in\mathbb{R}:\; |\chi(\tau-\tau')|<C$).
 
+\section{Bethe-Salpeter equation}\label{sec:bethe_salpeter}
+
+Combining the in the previous section discussed equations and relations, it is possible to write the full vertex as a Dyson-like equation, reading
+\begin{align}
+	F_{\mathfrak{1234}}^{\q\k\kp}=\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}+\Phi_{r;\mathfrak{1234}}^{\q\k\kp}=\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}+\sum_{\text{k}'';\mathfrak{1234}}\Gamma_{r;\mathfrak{12ab}}^{\q\k\text{k}''}\chi_{0;\mathfrak{badc}}^{q\text{k}''\text{k}''} F_{\mathfrak{cd34}}^{\q\text{k}''\kp}.
+\end{align}
 
 
 

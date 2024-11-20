@@ -1,0 +1,139 @@
+\documentclass[tikz=true]{standalone}
+\usepackage{graphicx, standalone}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\usepackage{euler}
+\usepackage{fontspec}
+\setmainfont{MinionPro}
+
+\renewcommand{\k}{\ensuremath\text{k}}
+\newcommand{\kp}{\ensuremath\text{k}'}
+\newcommand{\q}{\ensuremath\text{q}}
+
+\begin{document}
+
+% LEFT HAND SIDE
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\node {$G_{\sigma\sigma';\mathfrak{1234}}^{\text{conn};\q\k\kp}=$};
+\end{tikzpicture}
+
+% DIAGRAM 1
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node {$-$};
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}[small]
+		\vertex (a1);
+		\vertex[right=of a1] (b1);
+		\vertex[below=of b1] (b3);
+		\vertex[left=of b3] (a2);
+		
+		\path (b1) -- (b3) coordinate[midway] (b2);	
+						
+		\vertex[right=of b1] (c1);
+		\vertex[below=of c1] (c3);
+		\vertex[right=of c1] (d1);
+		\vertex[right=of c3] (d2);
+		
+		\path (c1) -- (c3) coordinate[midway] (c2);
+		
+		\def\sc{0.8};
+		\node[above right=-0.1em and -0.3em of b2] {\scalebox{\sc}{$\mathfrak{a}$}};
+		\node[below right=-0.1em and -0.3em of b2]{ \scalebox{\sc}{$\mathfrak{b}$}};
+		\node[above left=-0.1em and -0.3em of c2] {\scalebox{\sc}{$\mathfrak{d}$}};
+		\node[below left=-0.1em and -0.3em of c2] {\scalebox{\sc}{$\mathfrak{c}$}};
+	
+		
+		\diagram* {
+			(a1) -- [fermion, gray, edge label'={\scalebox{\sc}{$\mathfrak{1}$}}, text=black] (b1) -- [gray] (b3) -- [fermion, gray, edge label'={\scalebox{\sc}{$\mathfrak{2}$}}, text=black] (a2),
+			(b2) -- [photon] (c2),
+			(d2) -- [fermion, gray, edge label'={\scalebox{\sc}{$\mathfrak{3}$}}, text=black] (c3) -- [gray] (c1) -- [fermion, gray, edge label'={\scalebox{\sc}{$\mathfrak{4}$}}, text=black] (d1)
+		};	
+	\end{feynman}
+\end{tikzpicture}
+
+% DIAGRAM 2
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node {$+$};
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}[small]
+		\vertex (a1);
+		\vertex[below=of a1] (a2);
+		\vertex[right=1.5cm of a1] (b1);
+		\vertex[below=of b1] (b2);
+		\vertex[right=1.5cm of b1] (c1);
+		\vertex[below=of c1] (c2);
+		
+		\diagram* {
+			(a1) -- [fermion, gray] (b1) -- [fermion, gray] (c1),
+			(b1) -- [photon] (b2),
+			(c2) -- [fermion, gray] (b2) -- [fermion, gray] (a2)
+		};	
+	\end{feynman}
+\end{tikzpicture}
+
+% DIAGRAM 3
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node {$-$};
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}[small]
+		\vertex (a1);
+		\vertex[right=0.625cm of a1] (b1);
+		\vertex[below=of b1] (b3);
+		\vertex[below=of a1] (a3);		
+		\path (b1) -- (b3) coordinate[midway] (b2);	
+		
+		
+		\vertex[right=0.5cm of b2] (c2);
+		\vertex[right=0.75cm of c2] (d2);
+		\vertex[right=0.5cm of d2] (e2);
+		\vertex[right=1.75cm of b1] (e1);
+		\vertex[below=of e1] (e3);
+		\vertex[right=0.625cm of e1] (f1);
+		\vertex[below=of f1] (f3);
+		
+		\path (e1) -- (e3) coordinate[midway] (e2);	
+		
+		\def\r{0.375}
+		
+		\path (c2) -- (d2) coordinate[midway] (A);
+		\draw[fermion, arrow size=1pt, transform canvas={rotate around={-90:(A)}}] 
+        (A) circle (\r);
+		
+		\diagram* {
+			(a1) -- [fermion, gray] (b1) -- [gray] (b3) -- [fermion, gray] (a3),
+			(b2) -- [photon] (c2),
+			(d2) -- [photon] (e2),
+			(f3) -- [fermion, gray] (e3) -- [gray] (e1) -- [fermion, gray] (f1)
+		};	
+	\end{feynman}
+\end{tikzpicture}
+
+% DIAGRAM 4
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node {$-$};
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+	\begin{feynman}[small]
+		\vertex (a1);
+		\vertex[below=of a1] (a2);
+		\vertex[right=of a1] (b1);
+		\vertex[below=of b1] (b2);
+		\vertex[right=of b1] (c1);
+		\vertex[right=of b2] (c2);
+		\vertex[right=of c1] (d1);
+		\vertex[right=of c2] (d2);
+		
+		\diagram* {
+			(a1) -- [fermion, gray] (b1) -- [fermion] (c1) -- [fermion, gray] (d1),
+			(b1) -- [photon] (b2),
+			(d2) -- [fermion, gray] (c2) -- [fermion] (b2) -- [fermion, gray] (a2),
+			(c1) -- [photon] (c2),
+		};	
+	\end{feynman}
+\end{tikzpicture}
+
+\end{document}
