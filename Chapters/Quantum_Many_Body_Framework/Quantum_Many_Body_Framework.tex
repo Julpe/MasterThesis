@@ -170,8 +170,8 @@ Furthermore, if one describes quantities in the paramagnetic phase, where the sy
 For these two spin combinations, the density and magnetic channel specified as follows is a particularly helpful choice, as we shall see in the upcoming sections: 
 \begin{subequations}
 \begin{align}
-	G_{\text{d};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}+G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}\qquad\text{and}\\
-	G_{\text{m};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}-G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}=G_{\overline{\uparrow\downarrow};\mathfrak{1234}}^{\q\k\kp}.
+	G_{\text{d};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}+G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}\qquad\text{and}\label{eq:two_particle_green_density}\\
+	G_{\text{m};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}-G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}=G_{\overline{\uparrow\downarrow};\mathfrak{1234}}^{\q\k\kp}.\label{eq:two_particle_green_magnetic}
 \end{align}
 \end{subequations}
 Besides the spin-symmetries discussed above, the Green's function also inherits other properties of the system, such as time-reversal symmetry, which manifests itself by
@@ -251,11 +251,11 @@ By the previous definition, the vertex function $F_{\mathfrak{1234}}^{\q\k\kp}$ 
 \begin{align}
 	F_{\mathfrak{1234}}^{\q\k\kp}=\Lambda_{\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{ph};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
-Another possibility is to split up the full vertex $F$ in reducible and irreducible diagrams in a specific channel $r\in\{\text{ph},\overline{\text{ph}},\text{pp}\}$,
-\begin{align}
-	F_{\mathfrak{1234}}^{\q\k\kp}=\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}+\Phi_{r;\mathfrak{1234}}^{\q\k\kp},
+Another possibility is to split up the full vertex $F$ in reducible and irreducible diagrams in a specific channel $\text{r}\in\{\text{ph},\overline{\text{ph}},\text{pp}\}$,
+\begin{align}\label{eq:full_vertex_gamma_phi}
+	F_{\mathfrak{1234}}^{\q\k\kp}=\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp},
 \end{align}
-where $\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}$ is the irreducible vertex in channel $r$ and $\Phi_{r;\mathfrak{1234}}^{\q\k\kp}$ the corresponding reducible one. Note, that in channel $r$ irreducible diagrams might still be reducible in another channel $r'\neq r$. For example, $\Gamma_{\text{ph};\mathfrak{1234}}^{\q\k\kp}$ contains all fully irreducible diagrams, but also all diagrams which are reducible in channels $\overline{\text{ph}}$ and $\text{pp}$,
+where $\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ is the irreducible vertex in channel $\text{r}$ and $\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ the corresponding reducible one. Note, that in channel $\text{r}$ irreducible diagrams might still be reducible in another channel $\text{r}'\neq \text{r}$. For example, $\Gamma_{\text{ph};\mathfrak{1234}}^{\q\k\kp}$ contains all fully irreducible diagrams, but also all diagrams which are reducible in channels $\overline{\text{ph}}$ and $\text{pp}$,
 \begin{align}
 	\Gamma_{\text{ph};\mathfrak{1234}}^{\q\k\kp}=\Lambda_{\mathfrak{1234}}^{\q\k\kp}+\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
@@ -271,18 +271,18 @@ where $\chi_{ij}(\tau-\tau')$ is coined physical susceptibility and does not dep
 \begin{align}
 	\chi_{ij}(\tau-\tau')=\ddd{\mean{\hat O_{i}(\tau')}}{h_{j}(\tau)}\bigg|_{\vv{h}=0}=\mean{\mathcal{T}\hat O_{i}(\tau)\hat O_{j}(\tau')}-\mean{\hat O_{i}}\mean{\hat O_{j}}.
 \end{align}
-On the two-particle level, only the density's response to variations in the one-particle energy, $\chi_{d}$, and the magnetization's response to variation in the electromagnetic field in the same direction, $\chi_{m}$, are non-zero
+On the two-particle level, only the density's response to variations in the one-particle energy, $\chi_{\text{d}}$, and the magnetization's response to variation in the electromagnetic field in the same direction, $\chi_{\text{m}}$, are non-zero
 \begin{subequations}
 \begin{align}
-	\chi_{d}(\tau)&=\chi_{nn}(\tau)=-\ddd{\mean{\hat n}}{\mu(\tau)}\bigg|_{\mu=0}\qquad\text{and}\\
-	\chi_{m}(\tau)&=\chi_{ii}(\tau)=\ddd{\mean{\hat\sigma_{i}}}{h_{i}(\tau)}\bigg|_{\vv{h}=0},
+	\chi_{\text{d}}(\tau)&=\chi_{nn}(\tau)=-\ddd{\mean{\hat n}}{\mu(\tau)}\bigg|_{\mu=0}\qquad\text{and}\label{eq:chi_dens_derivative}\\
+	\chi_{\text{m}}(\tau)&=\chi_{ii}(\tau)=\ddd{\mean{\hat\sigma_{i}}}{h_{i}(\tau)}\bigg|_{\vv{h}=0},\label{eq:chi_magn_derivative}
 \end{align}
 \end{subequations}
 where $i\in\{x,y,z\}$. The physical susceptibilities are included in the two-particle Green's function, as we will see shortly. In fact, the sum of terms corresponding to the two disconnected, horizontal Green's function lines and the vertex part is denoted as the general susceptibility and can be expressed as
-\begin{align*}
+\begin{align*}\label{eq:generalized susceptibility}
 	\chi_{\mathfrak{1234}}^{\q\k\kp}&=\beta\left (G_{\mathfrak{1234}}^{\q\k\kp}-\delta_{q0}G_{\mathfrak{12}}^{\k} G_{\mathfrak{34}}^{\kp}\right )\\
-	&=-\beta\delta_{\k\kp}G_{\mathfrak{14}}^{\k}G_{\mathfrak{32}}^{\k-\q}-\sum_{\mathfrak{abcd}} G_{\mathfrak{1a}}^{\k} G_{\mathfrak{b2}}^{\k-q} F_{\mathfrak{1234}}^{\q\k\kp} G_{\mathfrak{3c}}^{\kp-q} G_{\mathfrak{d4}}^{\kp}\\
-	&=\chi_{0;\mathfrak{1234}}^{\q\k\k}-\frac{1}{\beta^2}\sum_{\mathfrak{abcd}}\chi_{0;\mathfrak{12ba}}^{\q\k\k} F_{\mathfrak{1234}}^{\q\k\kp} \chi_{0;\mathfrak{dc34}}^{\q\kp\kp},\numberthis
+	&=-\beta\delta_{\k\kp}G_{\mathfrak{14}}^{\k}G_{\mathfrak{32}}^{\k-\q}-\sum_{\mathfrak{abcd}} G_{\mathfrak{1a}}^{\k} G_{\mathfrak{b2}}^{\k-q} F_{\mathfrak{abcd}}^{\q\k\kp} G_{\mathfrak{3c}}^{\kp-q} G_{\mathfrak{d4}}^{\kp}\\
+	&=\chi_{0;\mathfrak{1234}}^{\q\k\k}-\frac{1}{\beta^2}\sum_{\mathfrak{abcd}}\chi_{0;\mathfrak{12ba}}^{\q\k\k} F_{\mathfrak{abcd}}^{\q\k\kp} \chi_{0;\mathfrak{dc34}}^{\q\kp\kp},\numberthis
 \end{align*}
 where
 \begin{align}
@@ -299,16 +299,40 @@ The diagrammatic content of the physical susceptibility is shown in \figref{fig:
 	\caption{The physical susceptibility is equal to the generalized susceptibility with contracted legs, see \eqref{eq:phys_susc_contracted_legs}.}
 	\label{fig:physical_susceptibility}
 \end{figure}
-
+Similarly, the contracted bubble susceptibility can be written as
+\begin{align}
+	\chi_{0;\mathfrak{14}}^{\q}=\sum_{\k\kp;\mathfrak{23}}\chi_{0;\mathfrak{1234}}^{\q\k\kp}.
+\end{align}
+Similarly to \eqref{eq:two_particle_green_density} and \eqref{eq:two_particle_green_magnetic}, one can write down density and magnetic spin combinations,
+\begin{subequations}
+\begin{align}
+	\chi_{\text{d}}^{\q}&=\chi_{\uparrow\uparrow}^{\q}+\chi_{\uparrow\downarrow}^{\q}=\chi_{\overline{\uparrow\downarrow}}^{\q}\qquad\text{and}\label{eq:chi_dens}\\
+	\chi_{\text{m}}^{\q}&=\chi_{\uparrow\uparrow}^{\q}+\chi_{\uparrow\downarrow}^{\q}.\label{eq:chi_magn}
+\end{align}
+\end{subequations}
+Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing more than the Fourier transformed versions in \eqref{eq:chi_dens_derivative} and \eqref{eq:chi_magn_derivative}, respectively.
 
 \section{Bethe-Salpeter equation}\label{sec:bethe_salpeter}
 
-Combining the in the previous section discussed equations and relations, it is possible to write the full vertex as a Dyson-like equation, reading
-\begin{align}
-	F_{\mathfrak{1234}}^{\q\k\kp}=\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}+\Phi_{r;\mathfrak{1234}}^{\q\k\kp}=\Gamma_{r;\mathfrak{1234}}^{\q\k\kp}+\sum_{\text{k}'';\mathfrak{1234}}\Gamma_{r;\mathfrak{12ab}}^{\q\k\text{k}''}\chi_{0;\mathfrak{badc}}^{q\text{k}''\text{k}''} F_{\mathfrak{cd34}}^{\q\text{k}''\kp}.
+In the section above we have specified $\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ as the fully irreducible vertex in channel $\text{r}$ and $\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp}$	as the reducible diagrams in channel $\text{r}$. We can now construct the full set of $\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ from the irreducible vertex by chaining them together with two green's function lines connecting two irreducible vertices. This results in so-called ladders, 
+\begin{align}\label{eq:ladder_phi_gamma}
+	\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp}&=\sum_{\text{k}_1;\mathfrak{abcd}} \Gamma_{\text{r};\mathfrak{12ab}}^{\q\k\text{k}_1} G_{\mathfrak{bc}}^{\text{k}_1} G_{\mathfrak{da}}^{\text{k}_1-\q} \Gamma_{\text{r};\mathfrak{cd34}}^{\q\text{k}_1\kp}\\
+	&\quad+\sum_{\substack{\text{k}_1\text{k}_2;\mathfrak{abcd}\\\mathfrak{efgh}}} \Gamma_{\text{r};\mathfrak{12ab}}^{\q\k\text{k}_1} G_{\mathfrak{bc}}^{\text{k}_1} G_{\mathfrak{da}}^{\text{k}_1-\q} \Gamma_{\text{r};\mathfrak{cdef}}^{\q\text{k}_1\text{k}_2} G_{\mathfrak{fg}}^{\text{k}_2} G_{\mathfrak{he}}^{\text{k}_2-\q} \Gamma_{\text{r};\mathfrak{gh34}}^{\q\text{k}_2\kp} + \dots.
 \end{align}
+By combining \eqref{eq:full_vertex_gamma_phi} and \eqref{eq:ladder_phi_gamma}, one can obtain the Bethe-Salpeter equation in channel $\text{r}$,
+\begin{align*}\label{eq:bethe_salpeter_vertex_channel}
+	F_{\text{r};\mathfrak{1234}}^{\q\k\kp}=\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}-\frac1\beta\sum_{\text{k}_1;\mathfrak{abcd}} \Gamma_{\text{r};\mathfrak{12ba}}^{\q\k\text{k}_1} \chi_{0;\mathfrak{abcd}}^{\q\text{k}_1\text{k}_1} F_{\text{r};\mathfrak{dc34}}^{\q\text{k}_1\kp}.\numberthis
+\end{align*}
+where we have expressed the full vertex $F_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ in terms of the irreducible vertex $\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ and the bare (bubble) susceptibility. This
 
 
+
+
+Combining in the previous section derived equation \eqref{eq:generalized susceptibility} and \eqref{eq:bethe_salpeter_vertex_channel}, it is possible to write the full vertex as a Dyson-like equation with the generalized susceptibility, reading
+\begin{align}
+	F_{\text{r};\mathfrak{1234}}^{\q\k\kp}=\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp}=\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}+\sum_{\text{k}'';\mathfrak{abcd}}\Gamma_{\text{r};\mathfrak{12ba}}^{\q\k\text{k}''}\chi_{0;\mathfrak{abcd}}^{q\text{k}''\text{k}''} F_{\text{r};\mathfrak{dc34}}^{\q\text{k}''\kp},
+\end{align}
+where $\text{r}\in\{\text{d},\text{m}\}$ denotes the (m)agnetic or (d)ensity spin combination, which for the irreducible and full vertex, $\Gamma$ and $F$, respectively, is similar to that for $\chi$, see \eqref{eq:chi_magn} and \eqref{eq:chi_dens}.
 
 
 \end{document}
