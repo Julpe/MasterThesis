@@ -81,7 +81,7 @@ For the one-particle spectral function, we find in this case
 \end{align}
 corresponding to stable quasiparticles, due to zero width of the quasiparticle peak of $A_{\mathfrak{12}}(\varepsilon,\vv{k})$.
 
-The direct computation of the Green's function as expressed in \eqref{eq:one_p_green_expectation_val} generally incurs an exponential increase in cost with lattice size for interacting models. As a result, it is common practice to begin with the noninteracting case and construct a perturbative expansion in terms of the interaction around it. In this context, we will start with the non-interacting case described above. This perturbation expansion will not be derived in detail in this thesis, as there are many wonderful resources that explain it thoroughly \cite{something}, thus we will only sketch it here. In essence, the expansion is constructed using the $S$-matrix and employs strategies such as the Wick contraction \cite{wick contraction} and the linked cluster theorem \cite{linked cluster}. The expansion begins by identifying the most general interaction part of the Hamiltonian of \eqref{eq:general_hubbard_hamiltonian},
+The direct computation of the Green's function as expressed in \eqref{eq:one_p_green_expectation_val} generally incurs an exponential increase in cost with lattice size for interacting models. As a result, it is common practice to begin with the noninteracting case and construct a perturbative expansion in terms of the interaction around it. In this context, we will start with the non-interacting case described above. This perturbation expansion will not be derived in detail in this thesis, as there are many wonderful resources that explain it thoroughly \cite{something}, thus we will only sketch it here. In essence, the expansion is constructed using the so-called $S$-matrix and employs strategies such as the Wick contraction \cite{wick contraction} and the linked cluster theorem \cite{linked cluster}. The expansion begins by identifying the most general interaction part of the Hamiltonian of \eqref{eq:general_hubbard_hamiltonian},
 \begin{align}
 	\hat{\mathcal{H}}_{\text{I}} = \frac12 \sum_{\mathfrak{1234}}U_{\mathfrak{1234}}\hat c^{\dagger}_{\mathfrak{1}}\hat c^{\dagger}_{\mathfrak{3}}\hat c_{\mathfrak{4}}\hat c_{\mathfrak{2}}.
 \end{align}
@@ -132,7 +132,7 @@ The self-energy can be obtained by simply inverting \eqref{eq:dyson_eq},
 \end{align}
 Thus, perturbation theory can be done in two distinct ways: the simpler approach is to determine the Green's function directly, for example, up to order $n$, where the second method is to compute the self-energy up to order $n$ and insert its expression in the Dyson equation \eqref{eq:dyson_eq}. This gives an approximate Green's function containing each order of perturbation theory with only a subset of all possible diagrams. As a result, \eqref{eq:dyson_eq} represents a way to sum up perturbation theory and is actually more relevant from a physical standpoint. Indeed, many methods leverage the usefulness of this approach, for example the dynamical mean-field theory or the dynamical vertex approximation, as we will see later.
 
-Let us add some physical background to the self-energy in the following. $\Sigma$ represents the effects of the interaction on the single electron propagators. The real and imaginary part of the self-energy have significant impact on the physical properties of the system. The real part of the self-energy contributes to an energy shift of the electronic states of the single-particle energy levels $\epsilon(\vv{k})$ due to interactions. In contrast, the imaginary part of the self-energy is related to the decay or lifetime of quasiparticles and introduces a spectral broadening or damping of the electronic states, indicating how long an excitation or quasiparticle persists before interacting with other excitations or scattering events. A larger imaginary part implies a shorter lifetime and stronger interactions. The first order in frequency, $\dpd{\sigma^{\k}}{\nu}$, corresponds to an effective renormalization of the bare electron mass. It also leads to a redistribution of spectral weight in the one-particle spectral function, which provides information about the distribution of energy levels available for excitations. A broader spectral function, whose broadening is controlled by the imaginary part of the self-energy, typically indicates stronger interactions and a more correlated system.
+Let us add some physical background to the self-energy in the following. $\Sigma$ represents the effects of the interaction on the single electron propagators. The real and imaginary part of the self-energy have significant impact on the physical properties of the system. The real part of the self-energy contributes to an energy shift of the electronic states of the single-particle energy levels $\epsilon(\vv{k})$ due to interactions. In contrast, the imaginary part of the self-energy is related to the decay or lifetime of quasiparticles and introduces a spectral broadening or damping of the electronic states, indicating how long an excitation or quasiparticle persists before interacting with other excitations or scattering events. A larger imaginary part implies a shorter lifetime and stronger interactions. The first order derivative in frequency, $\dpd{\Sigma^{\k}}{\nu}$, contributes to an effective renormalization of the bare electron mass. It also leads to a redistribution of spectral weight in the one-particle spectral function, which provides information about the distribution of energy levels available for excitations. A broader spectral function, whose broadening is controlled by the imaginary part of the self-energy, typically indicates stronger interactions and a more correlated system.
 
 \section{Two-particle Green's functions}
 
@@ -167,7 +167,7 @@ Furthermore, if one describes quantities in the paramagnetic phase, where the sy
 	G_{\sigma\sigma;\mathfrak{1234}}^{\q\k\kp}&=G_{\sigma(-\sigma);\mathfrak{1234}}^{\q\k\kp}+G_{\overline{\sigma(-\sigma)};\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
 \end{subequations}
-For these two spin combinations, the density and magnetic channel specified as follows is a particularly helpful choice, as we shall see in the upcoming sections: 
+For these two spin combinations, the density and magnetic channel specified in the following are a particularly helpful choice of notation, as we shall see in the upcoming sections: 
 \begin{subequations}
 \begin{align}
 	G_{\text{d};\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}+G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}\qquad\text{and}\label{eq:two_particle_green_density}\\
@@ -214,7 +214,7 @@ To show the effects of this frequency shift and how they affect the labels of th
   \caption{Two-particle Green's functions in the different frequency notations of \eqref{eq:ph_freq} - \eqref{eq:pp_freq} expressed in Feynman diagrams. The frequency notation is encoded in an additional subscript, $\{\text{ph}, \overline{\text{ph}},\text{pp}\}$.}
   \label{fig:two_particle_green_channels}
 \end{figure}
-Obviously, the choice of frequency convention should not have any impact on the physical content of the Green's function. Hence it is possible to transform between these channels by applying specific frequency shifts,
+Obviously, the choice of frequency convention should not have any impact on the physical content of the Green's function, hence it is possible to switch between these channels by applying channel-specific frequency shifts,
 \begin{subequations}
 \begin{align}
 	G_{\text{ph};1234}^{\q\k\kp}&=G_{\overline{\text{ph}};1234}^{(\k-\kp)\k(\k-\q)},\\
@@ -247,8 +247,8 @@ The connected two-particle Green's function without the external legs is commonl
 \begin{align}
 	G_{\mathfrak{1234}}^{\text{conn};\q\k\kp} = -\frac1\beta \sum_{\mathfrak{abcd}} G_{\mathfrak{1a}}^{\k} G_{\mathfrak{b2}}^{\k-q} F_{\mathfrak{1234}}^{\q\k\kp} G_{\mathfrak{3c}}^{\kp-q} G_{\mathfrak{d4}}^{\kp}.
 \end{align}
-By the previous definition, the vertex function $F_{\mathfrak{1234}}^{\q\k\kp}$ contains all diagrams that connect two incoming and two outgoing lines. The diagrams contained in the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$ can be classified by their two-particle reducibility (2PR). A diagram is called two-particle reducible, if the diagram can be split into two parts by cutting two internal Green's function lines. Furthermore, this classification is described by three channels, $\{\text{ph},\overline{\text{ph}},\text{pp}\}$, depending on which incoming and outgoing lines are contained in the split-up diagrams. The $\text{ph}$-channel corresponds to those diagrams, where the sub-parts connect $\mathfrak{12}$ and $\mathfrak{34}$, the $\overline{\text{ph}}$-channel connects $\mathfrak{14}$ and $\mathfrak{23}$ and the $\text{pp}$-channel connects $\mathfrak{13}$ and $\mathfrak{24}$. These reducible diagrams are categorized in $\Phi_{\text{ph};\mathfrak{1234}}^{\q\k\kp}$, $\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}$ and $\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}$, respectively. All diagrams that are not two-particle reducible are grouped together in the quantity $\Lambda_{\mathfrak{1234}}^{\q\k\kp}$. This procedure is called the parquet-decomposition and reads mathematically
-\begin{align}
+By the previous definition, the vertex function $F_{\mathfrak{1234}}^{\q\k\kp}$ contains all diagrams that connect two incoming and two outgoing lines. All diagrams contained in the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$ can be classified by their two-particle reducibility (2PR). A diagram is called two-particle reducible, if it can be split into two separate parts by cutting two internal Green's function lines. Furthermore, this classification is described by three channels, $\{\text{ph},\overline{\text{ph}},\text{pp}\}$, depending on which incoming and outgoing lines are being separated by the \say{cutting}-process. The $\text{ph}$-channel corresponds to those diagrams, where the sub-parts connect $\mathfrak{12}$ and $\mathfrak{34}$, for the $\overline{\text{ph}}$-channel $\mathfrak{14}$ and $\mathfrak{23}$ and for the $\text{pp}$-channel $\mathfrak{13}$ and $\mathfrak{24}$ are connected. These reducible diagrams are categorized in $\Phi_{\text{ph};\mathfrak{1234}}^{\q\k\kp}$, $\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}$ and $\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}$, respectively. All diagrams that are not two-particle reducible are grouped together in the quantity $\Lambda_{\mathfrak{1234}}^{\q\k\kp}$. This procedure is called the Parquet-decomposition and reads mathematically
+\begin{align}\label{eq:parquet_decomposition}
 	F_{\mathfrak{1234}}^{\q\k\kp}=\Lambda_{\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{ph};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
 Another possibility is to split up the full vertex $F$ in reducible and irreducible diagrams in a specific channel $\text{r}\in\{\text{ph},\overline{\text{ph}},\text{pp}\}$,
@@ -259,13 +259,95 @@ where $\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}$ is the irreducible vertex in
 \begin{align}
 	\Gamma_{\text{ph};\mathfrak{1234}}^{\q\k\kp}=\Lambda_{\mathfrak{1234}}^{\q\k\kp}+\Phi_{\overline{\text{ph}};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{pp};\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
-This will be important later in \secref{sec:bethe_salpeter}, where we will discuss the Bethe-Salpeter equations. Before that, let us briefly introduce the concept of linear response and the central physical property describing the response of a system with respect to an external perturbation\footnote{For example an external electromagnetic field.}, the susceptibility.
+This will be important later in \secref{sec:bethe_salpeter}, where we will discuss the Bethe-Salpeter equations. Before that, let us take a look at how one can ease calculations for high frequencies by employing an efficient construction of vertex asymptotics.
+
+\section{Vertex asymptotics}
+
+A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. We will see that the vertex - in the high-frequency regime - which originally depended on three independent frequency parameters can be treated as an object with only two frequency dimensions, thus drastically reducing the storage capacity of and ease of calculations including the vertex.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\linewidth]{../../Graphics/vertex_asymptotics_paper.png}
+	\caption{Numerical SIAM results for all local vertices contained in the Parquet equation \eqref{eq:parquet_decomposition} for vanishing transfer frequency $\Omega=0$, taken from Ref. \cite{high-freq asympt}. In our convention, $\Omega$ should be replaced by $\omega$.}
+	\label{fig:full_vertex_siam_results_paper}
+\end{figure}
+In \figref{fig:full_vertex_siam_results_paper}, the frequency dependence of local vertex functions $F^{\omega\nu\nu'}_{\text{pp};\uparrow\downarrow}$, $\Lambda^{\omega\nu\nu'}_{\text{pp};\uparrow\downarrow}$ and $\Phi^{\omega\nu\nu'}_{\text{r};\uparrow\downarrow}$ calculated for the SIAM model are shown for vanishing transfer frequency $\omega$ \cite{high-freq asympt}. From this, one can see three very prominent and distinct features of the full vertex $F$: (i) a constant background that differs from the (local and constant) Hubbard interaction $U$; (ii) two diagonal structures, the main ($\nu=\nu'$) and secondary ($\nu=-\nu'$) diagonal and; (iii) a \say{cross}-like structure along $\nu=\pm\frac\pi\beta$ and $\nu'=\pm\frac\pi\beta$. While only shown for the antiparallel spin combination $\uparrow\downarrow$ and vanishing transfer frequency $\omega=0$, the features are analogous for the parallel spin combination $\uparrow\uparrow$ and for finite $\omega$. These three attributes do \textit{not} decay for high Matsubara frequencies $\nu$ and $\nu'$ and therefore indicate complex asymptotic behaviour. The individual asymptotic contributions of the fully irreducible vertex $\Lambda$ and the reducible vertex in channel r to the full vertex $F$ are written in detail in Ref. \cite{high-freq asympt}. Summarized, $\Lambda$ adds a constant background of size $U$, $\Phi_{\text{ph}}$ adds a secondary diagonal structure, $\Phi_{\overline{\text{ph}}}$ adds a diagonal structure and $\Phi_{\text{pp}}$ adds a constant background and a \say{cross}-like structure. Notice that this description only refers to the SIAM model and considers solely the one-band case with local quantities and a constant local interaction $U$. An extension to a multi-orbital formalism and momentum-dependent vertices and interaction $U$ follows naturally and will be discussed in the following.
+
+The asymptotic behaviour for large frequencies of the irreducible vertex $\Gamma^{\text{asympt};\textbf{qkk}}_{\text{r};\mathfrak{1234};\sigma\sigma'}$ follows from the arguments above and reads
+\begin{align}
+	\Gamma^{\text{asympt};\textbf{qkk}'}_{\text{ph};\mathfrak{1234};\sigma\sigma'}=\mathcal{U}^{\textbf{qkk}'}_{\mathfrak{1234};\sigma\sigma'},
+\end{align}
+where $\mathcal{U}$ is the non-local Coulomb interaction, written in crossing-symmetric notation
+\begin{align}
+	 \mathcal{U}^{\textbf{qkk}'}_{\mathfrak{1234};\sigma\sigma'}= \frac{1}{\beta^2}\Big [ \underbrace{U_{\mathfrak{1324}}+V^{\textbf{q}}_{\mathfrak{1324}}}_{\beta^2\mathcal{U}^{\textbf{q}}_{\mathfrak{1324}}}-\delta_{\sigma\sigma'}\big (\underbrace{U_{\mathfrak{3124}}+V^{\textbf{k}-\textbf{k}'}_{\mathfrak{3124}}}_{\beta^2\mathcal{U}^{\textbf{k}-\textbf{k}'}_{\mathfrak{3124}}}\big )\Big ],
+\end{align}
+containing the purely local interaction $U$ and the purely non-local interaction $V$. From this follows for the irreducible vertex in the density and magnetic channel (in ph-notation)
+\begin{subequations}
+\begin{align}
+	\Gamma^{\text{asympt};\textbf{qkk}'}_{d;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [2\,\mathcal{U}^{\textbf{q}}_{\mathfrak{1324}} - \mathcal{U}^{\textbf{k}-\textbf{k}'}_{\mathfrak{3124}}\right ]\quad\text{and}\\
+	\Gamma^{\text{asympt};\textbf{kk}'}_{m;\mathfrak{1234}}&=-\frac{1}{\beta^2}\mathcal{U}^{\textbf{k}-\textbf{k}'}_{\mathfrak{3124}}.
+\end{align}
+\end{subequations}
+The procedure for the diagrams reducible in channel r is a bit more involved. A smart choice introduced in Ref. \cite{high-freq asympt} is to classify these diagrams further into three subdivisions, outlined here only briefly
+\begin{itemize}
+	\item Class 1: These are diagrams which connect incoming and outgoing particles only by a single interaction vertex. These diagrams are bubble diagrams and hence only depend on a single bosonic frequency and momentum. The sum of all these diagrams will be encoded in the variable $\mathcal{K}^{(1);\q}_{\text{r};\mathfrak{1234};\sigma\sigma'}$.
+	\item Class 2: Diagrams corresponding to class 2 are identified by them having either the incoming \textit{or} outgoing particles connected to the same interaction vertex. These diagrams depend on the bosonic transfer frequency and momentum and one fermionic frequency and momentum. The sum of all these diagrams will be encoded in the variables $\mathcal{K}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}$ and $\overline{\mathcal{K}}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}$, depending on whether the outgoing particles ($\mathcal{K}$) or the incoming particles ($\overline{\mathcal{K}}$) are connected to the interaction vertex. $\mathcal{K}$ and $\overline{\mathcal{K}}$ are connected to each other via time-reversal symmetry, where in the case of additional SU(2)-symmetry corresponds to \cite{rohringer thesis} $\mathcal{K}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}=\overline{\mathcal{K}}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}$.
+	\item Class 3: These are diagrams where each external Green's function is connected to a different interaction vertex. These diagrams are parametrized by three independent frequency and momentum arguments and are encoded in the \say{rest} function $\mathcal{R}^{\q\k\kp}_{\text{r};\mathfrak{1234};\sigma\sigma'}$.
+\end{itemize}
+In the following, we will refer to $\mathcal{K}^{(1)}$, $\mathcal{K}^{(2)}$ and $\overline{\mathcal{K}}^{(2)}$ as kernel functions. One now can - with the help of these classifications - write the reducible $\Phi_{\text{r}}$-vertices as a decomposition of the different kernel functions and the \say{rest}-function
+\begin{align}
+	\Phi_{\text{r};\mathfrak{1234};\sigma\sigma'}^{\q\k\kp}=\mathcal{K}^{(1);\q}_{\text{r};\mathfrak{1234};\sigma\sigma'}+\mathcal{K}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}+\mathcal{K}^{(2);\q\k'}_{\text{r};\mathfrak{1234};\sigma\sigma'}+\mathcal{R}^{\q\k\kp}_{\text{r};\mathfrak{1234};\sigma\sigma'}.
+\end{align}
+This composition is \textit{per se} exact. However, to take advantage of this formalism for numerical calculations, one discards the \say{rest}-function due to its additional frequency dependence entering the inner propagators, resulting in a quicker drop-off in all frequency directions. Thus, the approximation
+\begin{align}\label{eq:asympt_phi_r}
+	\Phi_{\text{r};\mathfrak{1234};\sigma\sigma'}^{\text{asympt};\q\k\kp}\approx\mathcal{K}^{(1);\q}_{\text{r};\mathfrak{1234};\sigma\sigma'}+\mathcal{K}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}+\mathcal{K}^{(2);\q\k'}_{\text{r};\mathfrak{1234};\sigma\sigma'}
+\end{align}
+serves as a valid approximation for the high-frequency regime and, in fact, becomes exact for $\nu,\nu'\to\infty$ \cite{high-freq asympt}. As we can see above, the quantities on the right hand side of \eqref{eq:asympt_phi_r} only depend on two Matsubara frequencies instead of three, reducing the numerical complexity and memory usage for $\Phi_{\text{r}}$ significantly. This results in a tremendous improvement over a simple truncation in $\Phi_{\text{r}}$ for high frequencies. The kernel functions needed to calculate the reducible diagrams can be obtained by \cite{towards ab initio dga}
+\\
+\textbf{WAIT, how do i incorporate the non-locality in the following equations? I guess how I have done it here}
+\\
+\begin{align}
+	\mathcal{K}^{(1);\q}_{\text{r};\mathfrak{1234};\sigma\sigma'}&=-\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2;\sigma_1\sigma_2}} \mathcal{U}^{\textbf{qkk}_1}_{\mathfrak{12ab};\sigma\sigma_1}\chi^{\q\k_1\k_2}_{\text{r};\mathfrak{badc};\sigma_1\sigma_2}\mathcal{U}^{\textbf{qk}_2\textbf{k}}_{\mathfrak{cd34};\sigma_2\sigma'}\quad\text{and}\\
+	\mathcal{K}^{(2);\q\k}_{\text{r};\mathfrak{1234};\sigma\sigma'}&=-\sum_{\substack{\mathfrak{ab}\\\k_1\k_2;\sigma_1\sigma_2}} F^{\q\k\k_1}_{\text{r};\mathfrak{12ab}}\,\chi^{\q\k_1\k_2}_{0;\mathfrak{baab}}\,\mathcal{U}^{\textbf{qk}_2\textbf{k}}_{\mathfrak{ba34};\sigma\sigma'}-\mathcal{K}^{(1);\q}_{\text{r};\mathfrak{1234};\sigma\sigma'},
+\end{align}
+where $\mathcal{K}^{(1)}$ is subtracted to account for double-counting of diagrams. The density and magnetic contributions of the kernel functions read
+\begin{align}
+	\mathcal{K}^{(1);\q}_{\text{d};\mathfrak{1234}}\\
+	\mathcal{K}^{(1);\q}_{\text{m};\mathfrak{1234}}\\
+	\mathcal{K}^{(2);\q\k}_{\text{d};\mathfrak{1234}}\\
+	\mathcal{K}^{(2);\q\k}_{\text{m};\mathfrak{1234}}
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textbf{PUT AT END OF SECTION}
+Before that, let us briefly introduce the concept of linear response and the central physical property describing the response of a system with respect to an external perturbation\footnote{For example an external electromagnetic field.}, the susceptibility.
 
 \section{Susceptibility}
 
 Experimentally, it is not possible to directly extract information (just by \say{looking}) about the interactions between electrons in a system. Instead, in spectroscopic experiments, a perturbation is applied to the system and one measures the system's response. In particular, one measures how expectation values $\mean{\cdot}$ of operators (take the multi-dimensional operator $\hat O_{i}(\tau)$ as an example) changes when an external field $h_{j}(\tau)$ is applied. In linear response theory, this response is - as the name suggests - taken to be linear in the perturbing field, requiring this field to be sufficiently small in order for this description to be a good approximation,
 \begin{align}
-	\mean{\hat O_{i}(\tau)}_{h}-\mean{\hat O_{i}(\tau)}_{\vv{h}=0}=\integral{0}{\beta}{\tau'} \chi_{ij}(\tau-\tau')h_{j}(\tau')+\mathcal{O}(\vv{h}^2),
+	\mean{\hat O_{i}(\tau)}_{\vv{h}}-\mean{\hat O_{i}(\tau)}_{\vv{h}=0}=\integral{0}{\beta}{\tau'} \chi_{ij}(\tau-\tau')h_{j}(\tau')+\mathcal{O}(\vv{h}^2),
 \end{align}
 where $\chi_{ij}(\tau-\tau')$ is coined physical susceptibility and does not depend on the field $h_{j}(\tau)$. $\chi(\tau-\tau')$ fulfills the Kramers-Kronig relations, is causal ($\chi_{ij}(\tau-\tau')=\Theta(\tau-\tau')\chi_{ij}(\tau-\tau')$) and is finite ($\forall\, \tau,\tau':\;\exists\, C\in\mathbb{R}:\; |\chi_{ij}(\tau-\tau')|<C$). The susceptibility can be computed straightforwardly by taking the functional derivative of $\hat O_{i}(\tau)$ with respect to the field $h_{j}(\tau)$,
 \begin{align}
@@ -310,7 +392,7 @@ Similarly to \eqref{eq:two_particle_green_density} and \eqref{eq:two_particle_gr
 	\chi_{\text{m}}^{\q}&=\chi_{\uparrow\uparrow}^{\q}+\chi_{\uparrow\downarrow}^{\q}.\label{eq:chi_magn}
 \end{align}
 \end{subequations}
-Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing more than the Fourier transformed versions in \eqref{eq:chi_dens_derivative} and \eqref{eq:chi_magn_derivative}, respectively.
+Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing more than the Fourier transformed versions of \eqref{eq:chi_dens_derivative} and \eqref{eq:chi_magn_derivative}, respectively.
 
 \section{Bethe-Salpeter equation}\label{sec:bethe_salpeter}
 
@@ -328,11 +410,11 @@ where we have expressed the full vertex $F_{\text{r};\mathfrak{1234}}^{\q\k\kp}$
 
 
 
-Combining in the previous section derived equation \eqref{eq:generalized susceptibility} and \eqref{eq:bethe_salpeter_vertex_channel}, it is possible to write the full vertex as a Dyson-like equation with the generalized susceptibility, reading
+Combining in the previous section derived equations \eqref{eq:generalized susceptibility} and \eqref{eq:bethe_salpeter_vertex_channel}, it is possible to write the full vertex as a Dyson-like equation with the generalized susceptibility, reading
 \begin{align}
 	F_{\text{r};\mathfrak{1234}}^{\q\k\kp}=\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}+\Phi_{\text{r};\mathfrak{1234}}^{\q\k\kp}=\Gamma_{\text{r};\mathfrak{1234}}^{\q\k\kp}+\sum_{\text{k}'';\mathfrak{abcd}}\Gamma_{\text{r};\mathfrak{12ba}}^{\q\k\text{k}''}\chi_{0;\mathfrak{abcd}}^{q\text{k}''\text{k}''} F_{\text{r};\mathfrak{dc34}}^{\q\text{k}''\kp},
 \end{align}
-where $\text{r}\in\{\text{d},\text{m}\}$ denotes the (m)agnetic or (d)ensity spin combination, which for the irreducible and full vertex, $\Gamma$ and $F$, respectively, is similar to that for $\chi$, see \eqref{eq:chi_magn} and \eqref{eq:chi_dens}.
+where $\text{r}\in\{\text{d},\text{m}\}$ denotes the (d)ensity or (m)agnetic spin combination, which for the irreducible and full vertex, $\Gamma$ and $F$, respectively, is similar to that for $\chi$, see \eqref{eq:chi_dens} and \eqref{eq:chi_magn}.
 
 
 \end{document}

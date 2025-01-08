@@ -3,22 +3,19 @@
 \fancyhf{}
 \fancyhead[LE,RO]{\scshape\thepage}
 \fancyhead[RE,LO]{
-\scshape
-\ifnum\value{chapter}>0 \fi\leftmark}
+\scshape\ifnum\value{chapter}>0 \fi\leftmark}
 \renewcommand{\headrulewidth}{.5pt}
 \setlength{\headheight}{15pt}
 
 % overridden style for chapter pages
 \fancypagestyle{plain}{
 \fancyhf{} 
-\fancyhead[LE,RO]{\thepage}
-\setlength{\headheight}{15pt}}
+\fancyhead[LE,RO]{\scshape\thepage}}
 
 % overridden style for empty pages
 \fancypagestyle{empty}{
 \fancyhf{} 
-\fancyhead[LE,RO]{\thepage}
-\setlength{\headheight}{15pt}}
+\fancyhead[LE,RO]{\scshape\thepage}}
 
 % additional setup
 \hypersetup{pdfdisplaydoctitle = true, colorlinks = false}
