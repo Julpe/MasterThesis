@@ -330,7 +330,7 @@ The simplest quantity to describe in terms of their asymptotics is the fully irr
 	\Lambda^{\text{asympt};\q\k\kp}_{\text{ph};\mathfrak{1234};\sigma\sigma'}\approx\mathcal{U}^{\textbf{qkk}'}_{\text{ph};\mathfrak{1234};\sigma\sigma'},
 \end{align}
 where $\mathcal{U}^{\textbf{qkk}'}_{\mathfrak{1234};\sigma\sigma'}$ is the non-local Coulomb interaction, written in crossing-symmetric notation
-\begin{align}
+\begin{align}\label{eq:crossing_symmetric_uq}
 	 \mathcal{U}^{\textbf{qkk}'}_{\text{ph};\mathfrak{1234};\sigma\sigma'}= \frac{1}{\beta^2}\Big [ \underbrace{U_{\mathfrak{1324}}+V^{\textbf{q}}_{\mathfrak{1324}}}_{\mathcal{U}^{\textbf{q}}_{\text{ph};\mathfrak{1234}}}-\delta_{\sigma\sigma'}\big (\underbrace{U_{\mathfrak{3124}}+V^{\textbf{k}-\textbf{k}'}_{\mathfrak{3124}}}_{\mathcal{U}^{\textbf{k}-\textbf{k}'}_{\text{ph};\mathfrak{1234}}}\big )\Big ],
 \end{align}
 containing the purely local interaction $U$ and the purely non-local interaction $V$. Next, we begin examining the diagrams contributing to $\Phi_{\text{r}}$. A smart choice introduced in Ref. \cite{high-freq asympt} is to classify these diagrams in each channel further into three categories:
@@ -352,12 +352,12 @@ serves as a valid expression for the high-frequency regime of $\Phi_{\text{r}}$ 
 	\mathcal{K}^{(1);\q}_{\text{ph};\mathfrak{1234};\sigma\sigma'}&=-\sum_{\substack{\mathfrak{abcd}\\\sigma_1\sigma_2}} \mathcal{U}^{\textbf{q}}_{\text{ph};\mathfrak{12ab};\sigma\sigma_1}\chi^{\q}_{\text{ph};\mathfrak{badc};\sigma_1\sigma_2}\mathcal{U}^{\textbf{q}}_{\text{ph};\mathfrak{cd34};\sigma_2\sigma'}\quad\text{and}\label{eq:kernel_1}\\
 	\mathcal{K}^{(2);\q\k}_{\text{ph};\mathfrak{1234};\sigma\sigma'}&=-\sum_{\substack{\mathfrak{ab}\\\k_1;\sigma_1}} F^{\q\k\k_1}_{\text{ph};\mathfrak{12ab};\sigma\sigma_1}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\textbf{q}}_{\text{ph};\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\text{ph};\mathfrak{1234};\sigma\sigma'},\label{eq:kernel_2}
 \end{align}
-where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to account for double-counting of diagrams. They are displayed diagrammatically for the ph-channel in \figref{fig:kernel_functions}
+where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to account for double-counting of diagrams. Both kernel functions are displayed diagrammatically for the ph-channel in \figref{fig:kernel_functions}.
 \begin{figure}[h]
   \centering
   \subfloat{\includestandalone[scale=1]{../../Graphics/Diagrams/kernel_functions/kernel_1_ph}}\vspace{0.5cm}\\
   \subfloat{\includestandalone[scale=1]{../../Graphics/Diagrams/kernel_functions/kernel_2_ph}}
-  \caption{Diagrammatic version of the kernel-1 and kernel-2 functions of \eqref{eq:kernel_1} and \eqref{eq:kernel_2}.}
+  \caption{Diagrammatic version of the kernel-1 and kernel-2 functions of \eqref{eq:kernel_1} and \eqref{eq:kernel_2}. Notice that $\mathcal{U}^{\textbf{q}}_{\text{ph};\mathfrak{1234};\sigma\sigma'}$ is obtained from \eqref{eq:crossing_symmetric_uq} by setting $\vv{k}=\vv{k}'=\vv{0}.$}
   \label{fig:kernel_functions}
 \end{figure}
 The density and magnetic contributions of the kernel functions (in ph-notation) read
