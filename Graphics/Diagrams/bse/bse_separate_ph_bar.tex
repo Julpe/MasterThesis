@@ -11,125 +11,100 @@
 \newcommand{\kp}{\ensuremath\text{k}'}
 \newcommand{\q}{\ensuremath\text{q}}
 
+\renewcommand{\r}{\ensuremath\text{r}}
+
+\newcommand{\ph}{\ensuremath\text{ph}}
+\newcommand{\phbar}{\ensuremath\overline{\text{ph}}}
+\newcommand{\pp}{\ensuremath\text{pp}}
+
+\newcommand{\dens}{\ensuremath\text{d}}
+\newcommand{\magn}{\ensuremath\text{m}}
+\newcommand{\sing}{\ensuremath\text{s}}
+\newcommand{\trip}{\ensuremath\text{t}}
+
+\renewcommand{\ss}{\ensuremath\sigma\sigma}
+
 \begin{document}
 
-% LEFT HAND SIDE
-\begin{tikzpicture}[baseline=(current bounding box.center), color=white]
-	\node {$G_{\sigma\sigma';\mathfrak{1234}}^{\text{conn};\q\k\kp}=$};
-\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+\begin{feynman}
+	\vertex (a1);
+	\vertex[below=of a1] (a2);
+	\vertex[right=of a1] (b1);
+	\vertex[below=of b1] (b2);
+	\vertex[right=of b1] (c1);
+	\vertex[below=of c1] (c2);
+	\vertex[right=of c1] (d1);
+	\vertex[below=of d1] (d2);
 
-% DIAGRAM 5
-\begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node {$+$};
+	\node (content) at ($(b1)!0.5!(c2)$) {$F^{\q\k\kp}_{\phbar;\mathfrak{1234}}$};	
+	
+	\diagram* {
+		(b1) -- (c1) -- (c2) -- (b2) -- (b1),
+		(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b1),
+		(b2) -- [fermion, gray, edge label'=$\kp;\mathfrak{2}$] (a2),
+		(d2) -- [fermion, gray, edge label'=$\kp-\q;\mathfrak{3}$] (c2),
+		(c1) -- [fermion, gray, edge label'=$\k-\q;\mathfrak{4}$] (d1),
+	};
+\end{feynman}
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.center)]
-	\begin{feynman}[small]
-		\vertex (a1);
-		\vertex[right=of a1] (b1);
-		\vertex[below=of b1] (b3);
-		\vertex[left=of b3] (a3);
-		
-		\path (b1) -- (b3) coordinate[midway] (b2);
-		\path (a1) -- (b1) coordinate[midway] (i1);	
-		\path (a3) -- (b3) coordinate[midway] (i3);	
-						
-		\vertex[right=of b1] (c1);
-		\vertex[below=of c1] (c3);
-		\vertex[right=of c1] (d1);
-		\vertex[right=of c3] (d3);
-		
-		\path (c1) -- (c3) coordinate[midway] (c2);	
-		\path (c1) -- (d1) coordinate[midway] (j1);	
-		\path (c3) -- (d3) coordinate[midway] (j3);
-		
-		\diagram* {
-			(a1) -- [fermion, gray] (i1) -- [fermion] (b1) -- (b3) -- [fermion] (i3) -- [fermion, gray] (a3),
-			(b2) -- [photon] (c2),
-			(i1) -- [photon] (i3),
-			(d3) -- [fermion, gray] (c3) -- [gray] (c1) -- [fermion, gray] (d1)
-		};	
-	\end{feynman}
+	\node {$=$};
 \end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+\begin{feynman}
+	\vertex (a1);
+	\vertex[below=of a1] (a2);
+	\vertex[right=of a1] (b1);
+	\vertex[below=of b1] (b2);
+	\vertex[right=of b1] (c1);
+	\vertex[below=of c1] (c2);
+	\vertex[right=of c1] (d1);
+	\vertex[below=of d1] (d2);
 
-% DIAGRAM 6
-\begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node {$+$};
+	\node (content) at ($(b1)!0.5!(c2)$) {$\Gamma^{\q\k\kp}_{\phbar;\mathfrak{1234}}$};	
+	
+	\diagram* {
+		(b1) -- (c1) -- (c2) -- (b2) -- (b1),
+		(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b1),
+		(b2) -- [fermion, gray, edge label'=$\kp;\mathfrak{2}$] (a2),
+		(d2) -- [fermion, gray, edge label'=$\kp-\q;\mathfrak{3}$] (c2),
+		(c1) -- [fermion, gray, edge label'=$\k-\q;\mathfrak{4}$] (d1),
+	};
+\end{feynman}
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.center)]
-	\begin{feynman}[small]
-		\vertex (a1);
-		\vertex[right=of a1] (b1);
-		\vertex[below=of b1] (b3);
-		\vertex[left=of b3] (a3);
-		
-		\path (b1) -- (b3) coordinate[midway] (b2);
-		\path (a1) -- (b1) coordinate[midway] (i1);	
-		\path (a3) -- (b3) coordinate[midway] (i3);	
-						
-		\vertex[right=of b1] (c1);
-		\vertex[below=of c1] (c3);
-		\vertex[right=of c1] (d1);
-		\vertex[right=of c3] (d3);
-		
-		\path (c1) -- (c3) coordinate[midway] (c2);	
-		\path (c1) -- (d1) coordinate[midway] (j1);	
-		\path (c3) -- (d3) coordinate[midway] (j3);
-		
-		\diagram* {
-			(a1) -- [fermion, gray] (b1) -- [gray] (b3) -- [fermion, gray] (a3),
-			(b2) -- [photon] (c2),
-			(j1) -- [photon] (j3),
-			(d3) -- [fermion, gray] (j3) -- [fermion] (c3) -- (c1) -- [fermion] (j1) -- [fermion, gray] (d1)
-		};	
-	\end{feynman}
+	\node {$-$};
 \end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+\begin{feynman}
+	\vertex (a1);
+	\vertex[right=of a1] (b1);
+	\vertex[below=of b1] (b2);
+	\vertex[below=1cm of b2] (b3);
+	\vertex[below=of b3] (b4);
+	\vertex[left=of b4] (a4);
+	\vertex[right=of b1] (c1);
+	\vertex[right=of b2] (c2);
+	\vertex[right=of b3] (c3);
+	\vertex[right=of b4] (c4);
+	\vertex[right=of c1] (d1);
+	\vertex[right=of c4] (d4);
 
-% DIAGRAM 7
-\begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node {$+$};
-\end{tikzpicture}
-\begin{tikzpicture}[baseline=(current bounding box.center)]
-	\begin{feynman}[small]
-		\vertex (a1);
-		\vertex[below=of a1] (a2);
-		\vertex[right=of a1] (b1);
-		\vertex[below=of b1] (b2);
-		\vertex[right=of b1] (c1);
-		\vertex[right=of b2] (c2);
-		\vertex[right=of c1] (d1);
-		\vertex[right=of c2] (d2);
-		
-		\diagram* {
-			(a1) -- [fermion, gray] (b1) -- [fermion] (b2) -- [fermion, gray] (a2),
-			(b1) -- [photon] (c1),
-			(d2) -- [fermion, gray] (c2) -- [fermion] (c1) -- [fermion, gray] (d1),
-			(b2) -- [photon] (c2),
-		};	
-	\end{feynman}
-\end{tikzpicture}
-
-% DIAGRAM 8
-\begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node {$+$};
-\end{tikzpicture}
-\begin{tikzpicture}[baseline=(current bounding box.center)]
-	\begin{feynman}[small]
-		\vertex (a1);
-		\vertex[below=of a1] (a2);
-		\vertex[right=of a1] (b1);
-		\vertex[below=of b1] (b2);
-		\vertex[right=of b1] (c1);
-		\vertex[right=of b2] (c2);
-		\vertex[right=of c1] (d1);
-		\vertex[right=of c2] (d2);
-		
-		\diagram* {
-			(a1) -- [fermion, gray] (b1) -- [fermion] (b2) -- [fermion, gray] (a2),
-			(b1) -- [photon] (c2),
-			(d2) -- [fermion, gray] (c2) -- [fermion] (c1) -- [fermion, gray] (d1),
-			(b2) -- [photon] (c1),
-		};	
-	\end{feynman}
+	\node (content) at ($(b1)!0.5!(c2)$) {$\Gamma^{\q\k\k_1}_{\phbar;\mathfrak{12ba}}$};
+	\node (content) at ($(b3)!0.5!(c4)$) {$F^{\q\k_1\kp}_{\phbar;\mathfrak{dc34}}$};	
+	
+	\diagram* {
+		(a1) -- [gray, fermion, edge label'=$\k;\mathfrak{1}$] (b1),
+		(c1) -- [gray, fermion, edge label'=$\k-\q;\mathfrak{4}$] (d1),
+		(b1) -- (c1) -- (c2) -- (b2) -- (b1),
+		(b3) -- (c3) -- (c4) -- (b4) -- (b3),
+		(b2) -- [fermion] (b3),
+		(c3) -- [fermion] (c2),
+		(d4) -- [gray, fermion, edge label'=$\kp-q;\mathfrak{3}$] (c4),
+		(b4) -- [gray, fermion, edge label'=$\kp;\mathfrak{2}$] (a4),
+	};
+\end{feynman}
 \end{tikzpicture}
 
 \end{document}
