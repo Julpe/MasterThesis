@@ -330,7 +330,7 @@ Similarly to \eqref{eq:two_particle_green_density} and \eqref{eq:two_particle_gr
 \end{subequations}
 Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing more than the Fourier transformed versions of \eqref{eq:chi_dens_derivative} and \eqref{eq:chi_magn_derivative}, respectively.
 
-\section{Vertex asymptotics}
+\section{Vertex asymptotics}\label{sec:vertex_asymptotics}
 
 A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. We will see that the vertex - in the high-frequency regime - which originally depended on three independent frequency parameters can be treated as an object with only two frequency dimensions, thus drastically reducing the storage capacity of and ease of calculations including the vertex.
 \begin{figure}[ht!]
@@ -463,10 +463,10 @@ By combining \eqref{eq:full_vertex_gamma_phi} and \eqref{eq:ladder_phi_gamma}, o
 	&=\Gamma_{\pp;\mathfrak{1234}}^{\q\k\kp}-\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\mathfrak{dc34}}^{\q\k_2\kp},
 \end{align}
 \end{subequations}
-where we have expressed the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$ in terms of the irreducible vertex $\Gamma_{\r;\mathfrak{1234}}^{\q\k\kp}$ and the generalized (bubble) susceptibility as a Dyson-like equation. Note that for \eqref{eq:bethe_salpeter_vertex_three_channels} we used the same channel reducibility and frequency notation for each separate line. This results in a key property of the BSE: the equation becomes diagonal in the bosonic transfer momentum and frequency $\q$. This can be taken advantage of in numerical computations as it makes it especially easy to parallelize over $\q$ as it is an independent quantity. If we had not chosen the channel reducibility equal to the frequency notation, then the new $\q'$ would depend on the fermionic frequencies (the precise dependency is channel-specific, but in general $\q'=f(\q,\k,\kp)$) and the transformed BSE would not be diagonal in $\q'$. 
+where we have expressed the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$ in terms of the irreducible vertex $\Gamma_{\r;\mathfrak{1234}}^{\q\k\kp}$ and the generalized (bubble) susceptibility as a Dyson-like equation. Note that for \eqref{eq:bethe_salpeter_vertex_three_channels} we used the same channel reducibility and frequency notation for each separate line. This results in a key property of the BSE: the equation becomes diagonal in the bosonic transfer momentum and frequency $\q$. This can be taken advantage of in numerical computations as it makes it especially easy to parallelize over $\q$ as it is independent of all other quantum numbers. If we had not chosen the channel reducibility equal to the frequency notation, then the new $\q'$ would depend on the fermionic frequencies (the precise dependency is channel-specific, but in general $\q'=f(\q,\k,\kp)$) and the transformed BSE would not be diagonal in $\q'$. 
 
 \eqref{eq:bethe_salpeter_vertex_three_channels} can be rewritten in terms of susceptibilities with the help of \eqref{eq:generalized_susceptibility},
-\begin{subequations}
+\begin{subequations}\label{eq:bethe_salpeter_susc}
 \begin{align}
 	\chi^{\q\k\kp}_{\mathfrak{1234}}&=\chi^{\q\k\kp}_{0;\mathfrak{1234}}-\frac{1}{\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{0;\mathfrak{12ba}} \Gamma^{\q\k_1\k_2}_{\ph;\mathfrak{abcd}} \chi^{\q\k_2\kp}_{\mathfrak{dc34}}\\
 	&=\chi^{\q\k\kp}_{0;\mathfrak{1234}}-\frac{1}{\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{0;\mathfrak{12ba}} \Gamma^{\q\k_1\k_2}_{\phbar;\mathfrak{abcd}} \chi^{\q\k_2\kp}_{\mathfrak{dc34}}\\
@@ -477,7 +477,7 @@ This is the most general form of the Bethe-Salpeter equations, where energy and 
 \begin{subequations}
 \begin{align}
 	F_{\dens/\magn;\ph;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\dens/\magn;\ph;\mathfrak{1234}}^{\q\k\kp}-\frac1\beta\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\dens/\magn;\ph;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\dens/\magn;\ph;\mathfrak{dc34}}^{\q\k_2\kp}\\
-	F_{\dens/\magn;\phbar;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\dens/\magn;\phbar;\mathfrak{1234}}^{\q\k\kp}-\frac1\beta\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\dens/\magn;\phbar;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\dens/\magn;\ph;\mathfrak{dc34}}^{\q\k_2\kp}.
+	F_{\dens/\magn;\phbar;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\dens/\magn;\phbar;\mathfrak{1234}}^{\q\k\kp}-\frac1\beta\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\dens/\magn;\phbar;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\dens/\magn;\phbar;\mathfrak{dc34}}^{\q\k_2\kp}.
 \end{align}
 \end{subequations}
 Likewise, the BSE decouples for other spin-symmetric combinations in for the pp-channel. These combinations are coined (s)inglet and (t)riplet\footnote{
@@ -489,8 +489,8 @@ For any channel r we have
 \end{align}
 \end{subequations}.}, where
 \begin{align}
-	F_{\sing;\pp;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\sing;\pp;\mathfrak{1234}}^{\q\k\kp}-\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\sing;\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\sing;\pp;\mathfrak{dc34}}^{\q\k_2\kp}\\
-	F_{\trip;\pp;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\trip;\pp;\mathfrak{1234}}^{\q\k\kp}+\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\trip;\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\trip;\pp;\mathfrak{dc34}}^{\q\k_2\kp}.
+	F_{\sing;\pp;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\sing;\pp;\mathfrak{1234}}^{\q\k\kp}+\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\sing;\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\sing;\pp;\mathfrak{dc34}}^{\q\k_2\kp}\\
+	F_{\trip;\pp;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\trip;\pp;\mathfrak{1234}}^{\q\k\kp}-\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\trip;\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\trip;\pp;\mathfrak{dc34}}^{\q\k_2\kp}.
 \end{align}
 For a visual representation of the Bethe-Salpeter equation (\ref{eq:bethe_salpeter_vertex_three_channels}), see \figref{fig:bethe_salpeter_diagrammatic}.
 \begin{figure}[ht!]
@@ -504,10 +504,10 @@ For a visual representation of the Bethe-Salpeter equation (\ref{eq:bethe_salpet
   \parbox{\textwidth}{
     \subfloat{\includestandalone[scale=0.94]{../../Graphics/Diagrams/bse/bse_separate_pp}}
   }
-  \caption{Diagrammatic version of the BSE in all three channels for arbitrary spin components, see \eqref{eq:bethe_salpeter_vertex_three_channels}. The lower legs are exchanged in pp notation, hence their direction is reversed.}
+  \caption{Diagrammatic version of the BSE in all three channels for arbitrary spin components, see \eqref{eq:bethe_salpeter_vertex_three_channels}. The lower legs are exchanged in pp-notation, hence their direction is reversed.}
   \label{fig:bethe_salpeter_diagrammatic}
 \end{figure}
-The BSE of \eqref{eq:bethe_salpeter_vertex_three_channels} needs to be inverted in order to be able to yield the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$. This can be done in a smart way by viewing the multiplications of the vertex functions in the BSE as matrix multiplications written down in grouped indices. This means that for each transfer momentum $\q$, we can generate a matrix from a vertex by grouping the left (right) two orbital indices and fermionic frequency into a new grouped index $n=\{n_1, n_2, \k\}$, such that, e.g., \cite{ab initio dyn} 
+The BSE of \eqref{eq:bethe_salpeter_vertex_three_channels} needs to be inverted in order to be able to yield the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$. This can be done in a smart way by viewing the multiplications of the vertex functions in the BSE as matrix multiplications written down in grouped indices. This means that for each transfer momentum $\q$, we can generate a matrix from a vertex by grouping the left (right) two orbital indices and fermionic frequencies into a new grouped index $n=\{n_1, n_2, \k\}$ ($m=\{n_3, n_4, \kp\}$), such that \cite{ab initio dyn} 
 \begin{align}
 	\bm{F}^{\q}_{\text{nm}}=F^{\q\k\kp}_{\mathfrak{1234}}.
 \end{align}
@@ -518,10 +518,50 @@ This allows for a straightforward numerical implementation of vertex products an
 
 \subsection{High-frequency Bethe-Salpeter equation with vertex asymptotics}
 
+Sometimes it is convenient to separate low- and high-frequency components of a quantity to simplify calculations. Some DMFT solvers \cite{parragh} employ such a frequency separation to calculate the self-energy: a high-frequency asymptotic expansion derived from the spectral function's lowest moments is encorporated in the numerical solution of the Dyson equation at low frequencies. Inspired by this idea, we can proceed similarly for the irreducible vertex $\Gamma$, working with the framework of the Bethe-Salpeter equation instead of the Dyson equation. By explicitly using with the spin-symmetric combinations $\dens, \magn$, in which the BSE for the $ph$-channel becomes diagonal\footnote{The same can be done for the $\sing, \trip$ combinations in the $\pp$-channel, however only the $\ph$-channel will be shown.}, we aim to reduce the computational effort by using a high-frequency expansion of the vertex functions. Following \cite{kunes asympt, hummel DA, efficient BSE}, the vertex in the low-frequency regime can be obtained by the regular BSE, where an additional high-frequency correction term is added. In the spirit of the end of last section, the BSE of \eqref{eq:bethe_salpeter_susc} can be written as a matrix equation (in grouped indices $\text{nm}$) for channels $\dens, \magn$ in the following fashion
+\begin{align}\label{eq:bse_matrix}
+	\bm{\chi}^{\q}=\bm{\chi}_{0}^{\q}-\frac{1}{\beta^2} \bm{\chi}_{0}^{\q}\bm{\Gamma}^{\q}\bm{\chi}^{\q}.
+\end{align}
+Similar to Refs. \cite{kunes, hummel DA, efficient BSE}, we will now split the matrices $\bm{F}, \bm{\Gamma}$ and $\bm{\chi}$ in segments of low and high frequencies. We will denote this by an additional superscript $(L/H, L/H)$, where $(L,L)$ denotes the segment, where $\nu$ and $\nu'$ are in the low frequency region and, e.g., $(L,H)$ denotes the segment, where $\nu$ is in the low- and $\nu'$ in the high-frequency region. We will therefore construct a set of low frequencies $\mathcal{I}_{\l}$ and a set of high frequencies $\mathcal{I}_{\h}$. This means, that for $\bm\Gamma^{\l\h}$, $\nu\in\mathcal{I}_{\l}$ and $\nu'\in\mathcal{I}_{\h}$. In the $\l\h$, $\h\l$ and $\h\h$ blocks, where atleast one frequency is considered large, we will employ explicit asymptotics for the vertex functions, as already discussed in \secref{sec:vertex_asymptotics}. The goal is to calculate the vertex function with the BSE for the low-frequency region where we will expect a correction term arising from the low-frequency cutoff which employs the use of high-frequency blocks of the BSE components. The size of $\mathcal{I}_{\l}$ has to be atleast the number of bosonic Matsubara frequencies $\omega$ \cite{efficient BSE} and might differ if nonlocal correlations are included \cite{kinza two-particle corr}. Regarding $\mathcal{I}_{\h}$, there is no minimum size, however the maximum size of the high-frequency region is only bounded by the availability of computational resources and memory. 
 
+Using this idea, we will solve \eqref{eq:bse_matrix} for $\bm\Gamma$ as
+\begin{align}
+	\begin{pmatrix}
+		\bm\Gamma^{\l\l} & \bm\Gamma^{\l\h} \\ \bm\Gamma^{\h\l} & \bm\Gamma^{\h\h}
+	\end{pmatrix}=\beta^2\left [
+	\begin{pmatrix}
+		\bm\chi^{\l\l} & \bm\chi^{\l\h} \\ \bm\chi^{\h\l} & \bm\chi^{\h\h}
+	\end{pmatrix}^{-1}-
+	\begin{pmatrix}
+		\bm\chi_{0}^{\l\l} & 0 \\ 0 & \bm\chi_{0}^{\h\h}
+	\end{pmatrix}^{-1}\right ]
+\end{align}
+where we omitted frequency labels for brevity. Multiplying on the left by $\bm\chi$ and solving this matrix-like equation for $\bm\Gamma^{\l\l}$, we find
+\begin{align}\label{eq:gamma_ll_with_correction_but_generalized_susc}
+	\bm\Gamma^{\l\l}=\beta^2\left[\left (\bm\chi^{\l\l}\right )^{-1}-\left (\bm\chi_{0}^{\l\l}\right )^{-1}\right ]-\left (\bm\chi^{\l\l}\right )^{-1}\bm\chi^{\l\h}\bm\Gamma^{\h\l},
+\end{align}
+with
+\begin{align}
+	\bm\chi^{\l\h}=-\bm\chi^{\l\l}\bm\Gamma^{\l\h}\left [\bm\Gamma^{\h\h}+\beta^2 \left (\bm\chi_{0}^{\h\h}\right )^{-1}\right ]^{-1}.
+\end{align}
+Combining these two equations yields for $\bm\Gamma^{\l\l}$
+\begin{align}\label{eq:gamma_ll_with_correction}
+	\bm\Gamma^{\l\l}=\beta^2\left[\left (\bm\chi^{\l\l}\right )^{-1}-\left (\bm\chi_{0}^{\l\l}\right )^{-1}\right ]+\bm\Gamma^{\l\h}\left [\bm\Gamma^{\h\h}+\beta^2 \left (\bm\chi_{0}^{\h\h}\right )^{-1}\right ]^{-1}\bm\Gamma^{\h\l}.
+\end{align}
+The last term in the sum of \eqref{eq:gamma_ll_with_correction} can be thought of as a correction to the inversion of the BSE in the low-frequency subspace, which otherwise reads
+\begin{align}
+	\bm\Gamma^{\l\l}=\beta^2\left[\left (\bm\chi^{\l\l}\right )^{-1}-\left (\bm\chi_{0}^{\l\l}\right )^{-1}\right ].
+\end{align}
+The correction term can be obtained at a significantly lower cost compared to the full vertex --- since for the high-frequency regimes of $\bm\Gamma$ we use kernel-1 and kernel-2 functions, which depend on either one or two momentum and frequency dimension less (see \secref{sec:vertex_asymptotics}) --- and is therefore easily available for much larger frequency ranges. Other sets of equations for $\bm\Gamma^{\l\l}$\footnote{One can already use \eqref{eq:gamma_ll_with_correction_but_generalized_susc} instead of \eqref{eq:gamma_ll_with_correction}, cf. \say{Method 2} in Ref. \cite{efficient bse}.} can be acquired easily by manipulating the original BSE (\ref{eq:bse_matrix}). These methods would require the calculation (or knowledge) of the Fermi-Bose vertex and the generalized susceptibility (i.e. the full vertex) for a large frequency range\footnote{Retrieving the vertex functions in a high-frequency regime is \textit{per se} not difficult; they can be obtained for arbitrary frequency ranges from the impurity solver of choice. However, the computing time increases drastically the larger the frequency box and thus this method is not preferred over the one mentioned in this thesis.}, which is more storage-heavy than the use of kernel-1 and kernel-2 functions. Thus, the approach outlined in this thesis is more efficient and is going to be the most practical one to use for multi-orbital calculations.
 
-
-
+Some remarks for the calculation of the irreducible vertex $\bm\Gamma^{\l\l}$ in the low-frequency region $\mathcal{I}_{\l}=[\nmin,\nmax]$: Ref. \cite{efficient bse} suggests to consider frequency ranges for $\nu,\nu'$ where the main structures of $\bm\chi$ are centered, see also Ref. \cite{local corr at the two-particle level}. This means, that for the $\ph$-channel we have $\nmax+1=-\nmin-2m$, where $m$ denotes the index of the bosonic Matsubara frequency $\omega_{m}$. An illustration of the \say{core} and \say{asymptotic} frequency region is depicted in \figref{fig:frequency_boxes} below.
+\begin{figure}[ht!]
+	\centering
+  	\includestandalone[width=.7\textwidth]{../../Graphics/Diagrams/frequency_boxes/frequency_boxes}
+  	\caption{This graphic has been taken from Ref. \cite{efficient BSE}, including some adaptations to fit the style of this thesis.}
+  	\label{fig:frequency_boxes}
+\end{figure}
+The correction terms are taken in the (much) larger frequency range $\mathcal{I}_{\h}=[\mmin, mmax]$, which is chosen to be of appropriate size such that the equations converge.
 
 
 
