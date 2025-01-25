@@ -11,44 +11,22 @@
 \begin{document}
 
 \begin{tikzpicture}[baseline=(current bounding box.center)]
-	\node{$\Gamma^{0;\textbf{qkk}'}_{\mathfrak{1234}}=\mathcal{U}^{\textbf{qkk}'}_{\mathfrak{1234};\uparrow\uparrow}\equiv$};
+	\node{$\mathcal{U}^{\textbf{qkk}'}_{\mathfrak{1234};\sigma\sigma'}\equiv$};
 \end{tikzpicture}
-%\begin{tikzpicture}[baseline=(current bounding box.center)]
-%	\begin{feynman}
-%		\vertex (a1);
-%		\vertex[right=of a1] (b1);
-%		\vertex[below=of a1] (a2);
-%		\vertex[right=of a2] (b2);
-		
-%		\vertex[below left=-0.2em of a1] (n1) {$\mathfrak{1}$};
-%		\vertex[above left=-0.2em of a2] (n2) {$\mathfrak{2}$};
-%		\vertex[above right=-0.2em of b2] (n3) {$\mathfrak{3}$};
-%		\vertex[below right=-0.2em of b1] (n4) {$\mathfrak{4}$};		
-
-%		\node at ($(a1)!0.5!(b2)$) {$\Gamma^{0;\textbf{qkk}'}_{\mathfrak{1234}}$};	
-		
-%		\diagram* {
-%			(a1) -- (b1) -- (b2) -- (a2) -- (a1),		
-%		};
-%	\end{feynman}
-%\end{tikzpicture}
-%\begin{tikzpicture}[baseline=(current bounding box.center)]
-%	\node{$\equiv$};
-%\end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.center)]
-	\coordinate (a1) at (0,0);
-	\coordinate (b1) at (0.5,0.5);
-	\coordinate (b2) at (0.5,-0.5);
-	\coordinate (c1) at (1,0);
+	\coordinate (a) at (0,0);
+	\coordinate (b) at (1.25,0);
 	
-	\node[above=0em of a1] (n1) {$\mathfrak{1}$};
-	\node[below=0em of a1] (n2) {$\mathfrak{2}$};
-	\node[below=0em of c1] (n3) {$\mathfrak{3}$};
-	\node[above=0em of c1] (n4) {$\mathfrak{4}$};
+	\node[above left=-0.1em of a] (n1) {$\mathfrak{1}$};
+	\node[below left=-0.1em of a] (n2) {$\mathfrak{2}$};
+	\node[below right=-0.1em of b] (n3) {$\mathfrak{3}$};
+	\node[above right=-0.1em of b] (n4) {$\mathfrak{4}$};
+	\node[left=0.2cm of a] (s1) {$\sigma$};
+	\node (s2) at ($(b)+(0.5,0.05)$) {$\sigma'$};
 	
-	\node at ($(a1)!0.5!(c1)$) {$\Gamma^{0}$};
+	\node (centre) at ($(a)!0.5!(b)$) {$\mathcal{U}^{\textbf{qkk}'}_{\substack{\mathfrak{1234}\\\sigma\sigma'}}$};
 	
-	\draw (a1) -- (b1) -- (c1) -- (b2) -- (a1);
+	\draw (centre) circle (0.625);
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.center)]
 	\node{$=$};
@@ -86,6 +64,7 @@
 		\vertex[right=-0.1em of c] (n3) {$\mathfrak{3}$};
 		\vertex[right=-0.1em of a] (n4) {$\mathfrak{2}$};
 		
+		\vertex[left=0.1em of b] (u) {$\delta_{\sigma\sigma'}$};
 		\vertex[right=0.1em of b] (u) {$\tilde{\mathcal{U}}^{\textbf{k}-\textbf{k}'}_{\mathfrak{1234}}$};
 		
 		\diagram* {

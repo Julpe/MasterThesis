@@ -23,10 +23,10 @@
 		\vertex[right=1.5cm of e1] (f1);
 		\vertex[right=1.5cm of e2] (f2);
 		
-		\vertex[below right=of f1] (g);
-		\vertex[right=of g] (h);
-		\vertex[above right=of h] (i1);
-		\vertex[below right=of h] (i2);
+		\vertex (g) at ($(f1)+(0.75,-0.75)$);
+		\vertex[right=1.5cm of g] (h);
+		\vertex (i1) at ($(h)+(0.75,0.75)$);
+		\vertex[below=1.5cm of i1] (i2);
 		\vertex[right=of i1] (j1);
 		\vertex[right=of i2] (j2);
 		
@@ -34,12 +34,14 @@
 		\vertex[left=of e2] (d2); 
 		
 		\node at ($(e1)!0.5!(f2)$) {$F^{\q\k\k_1}_{\substack{\text{ph};\mathfrak{12ab}\\\sigma\sigma_1}}$};
+		\node (u1) at ($(g)!0.5!(h)$) {$\mathcal{U}^{\textbf{q}\textbf{k}_1}_{\substack{\text{ph};\mathfrak{ba34}\\\sigma_1\sigma'}}$};
+		
+		\draw (u1) circle (0.75);		
 		
 		\diagram* {
 			(e1) -- (f1) -- (f2) -- (e2) -- (e1),
 			(f1) -- [fermion, bend left=30] (g) -- [fermion, bend left=30] (f2),
-			(g) -- [photon, edge label=$\mathcal{U}^{\textbf{q}}_{\substack{\text{ph};\mathfrak{ba34}\\\sigma_1\sigma'}}$] (h),
-			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$] (i2) -- [fermion] (h) -- [fermion] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$] (j1),
+			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$] (i2) -- [fermion, gray] (h) -- [fermion, gray] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$] (j1),
 			(d1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$] (e1),
 			(e2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$] (d2),
 		};
@@ -48,5 +50,6 @@
 \begin{tikzpicture}[baseline=(current bounding box.center)]
 	\node {$-\:\mathcal{K}^{(1);\q}_{\text{ph};\mathfrak{1234};\sigma\sigma'}$};
 \end{tikzpicture}
+
 
 \end{document}

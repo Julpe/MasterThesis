@@ -169,16 +169,19 @@ Furthermore, if one describes quantities in the paramagnetic phase, where the sy
 	G_{\ss;\mathfrak{1234}}^{\q\k\kp}&=G_{\sigma(-\sigma);\mathfrak{1234}}^{\q\k\kp}+G_{\overline{\sigma(-\sigma)};\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
 \end{subequations}
-For these two spin combinations, the density and magnetic channel specified in the following are a particularly helpful choice of notation, as we shall see in the upcoming sections: 
+For these two spin combinations, the (d)ensity, (m)agnetic, (s)inglet and (t)riplet channel\footnote{As we will see later, in ph-notation, the BSE will become diagonal for the $\dens/\magn$ spin combination as well as for pp-notation in the $\sing/\trip$ spin combination.} specified in the following are a particularly helpful choice of notation, as we shall see in the upcoming sections: 
 \begin{subequations}
 \begin{align}
-	G_{\dens;\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}+G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}\qquad\text{and}\label{eq:two_particle_green_density}\\
-	G_{\magn;\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}-G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}=G_{\overline{\uparrow\downarrow};\mathfrak{1234}}^{\q\k\kp}.\label{eq:two_particle_green_magnetic}
+	G_{\dens;\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}+G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp},\label{eq:two_particle_green_density}\\
+	G_{\magn;\mathfrak{1234}}^{\q\k\kp}&=G_{\uparrow\uparrow;\mathfrak{1234}}^{\q\k\kp}-G_{\uparrow\downarrow;\mathfrak{1234}}^{\q\k\kp}=G_{\overline{\uparrow\downarrow};\mathfrak{1234}}^{\q\k\kp},\\
+	G_{\sing;\mathfrak{1234}}^{\q\k\kp}&=G^{\q\k\kp}_{\uparrow\downarrow;\mathfrak{1234}}-G^{\q\k\kp}_{\overline{\uparrow\downarrow};\mathfrak{1234}}\quad\text{and}\\
+	G_{\trip;\mathfrak{1234}}^{\q\k\kp}&=G^{\q\k\kp}_{\uparrow\downarrow;\mathfrak{1234}}+G^{\q\k\kp}_{\overline{\uparrow\downarrow};\mathfrak{1234}}.
+\label{eq:two_particle_green_magnetic}
 \end{align}
 \end{subequations}
 Besides the spin-symmetries discussed above, the Green's function also inherits other properties of the system, such as time-reversal symmetry, which manifests itself by
 \begin{align}
-	G_{\mathfrak{1234}}^{\q\k\kp}=G_{\mathfrak{3421}}^{\bar\q\bar{\k}'\bar\k},
+	G_{\mathfrak{1234}}^{\q\k\kp}=G_{\mathfrak{4321}}^{\bar\q\bar{\k}'\bar\k},
 \end{align} 
 where $\overline\k=\{\nu,-\vv{k}\}$ is the time-reversed compound momentum variable. Furthermore, the two-particle Green's function satisfies the crossing symmetry, which is a direct manifestation of Pauli's principle. Crossing symmetry refers to the antisymmetric property of the Green's function with respect to the exchange of the incoming and outgoing fermions
 \begin{subequations}
@@ -216,7 +219,7 @@ To show the effects of this frequency shift and how they affect the labels of th
   \caption{Two-particle Green's functions in the different frequency notations of \eqref{eq:ph_freq} - \eqref{eq:pp_freq} expressed in Feynman diagrams. The frequency notation is encoded in an additional subscript, $\{\ph, \phbar,\pp\}$.}
   \label{fig:two_particle_green_channels}
 \end{figure}
-Obviously, the choice of frequency convention should not have any impact on the physical content of the Green's function, hence it is possible to switch between these channels by applying channel-specific frequency shifts,
+Obviously, the choice of frequency convention should not have any impact on the physical content of the Green's function, hence it is possible to switch between these channels by applying channel-specific frequency shifts \cite[continuous qmc asympt],
 \begin{subequations}
 \begin{align}
 	G_{\ph;\mathfrak{1234}}^{\q\k\kp}&=G_{\phbar;\mathfrak{1234}}^{(\k-\kp)\k(\k-\q)},\\
@@ -268,7 +271,7 @@ This will be important later in \secref{sec:bethe_salpeter}, where we will discu
 	&=-\Phi_{\ph;\mathfrak{1432};\overline{\sigma'\sigma}}^{(\k-\kp)\k(\k-\q)}.
 \end{align}
 \end{subequations}
-From this one can construct the density and magnetic contributions for $\Phi_{\phbar;\mathfrak{1234};\ss'}^{\q\k\kp}$ in terms of $\Phi_{\ph;\mathfrak{1234};\ss'}^{\q\k\kp}$
+From this one can construct the density and magnetic contributions to $\Phi_{\phbar;\mathfrak{1234};\ss'}^{\q\k\kp}$ in terms of $\Phi_{\ph;\mathfrak{1234};\ss'}^{\q\k\kp}$
 \begin{subequations}\label{eq:phi_ph_bar_dens_magn}
 \begin{align}
 	\Phi_{\dens;\phbar;\mathfrak{1234}}^{\q\k\kp}&=-\frac12\Phi_{\dens;\ph;\mathfrak{3214}}^{(\kp-\k)(\kp-\q)\kp}-\frac32\Phi_{\magn;\ph;\mathfrak{3214}}^{(\kp-\k)(\kp-\q)\kp}\\
@@ -281,7 +284,7 @@ As the next step, let us briefly introduce the concept of linear response and th
 
 \section{Susceptibility}
 
-Experimentally, it is not possible to directly extract information (just by \say{looking}) about the interactions between electrons in a system. Instead, in spectroscopic experiments, a perturbation is applied to the system and one measures the system's response. In particular, one measures how expectation values $\mean{\cdot}$ of operators (take the multi-dimensional operator $\hat O_{i}(\tau)$ as an example) changes when an external field $h_{j}(\tau)$ is applied. In linear response theory, this response is - as the name suggests - taken to be linear in the perturbing field, requiring this field to be sufficiently small in order for this description to be a good approximation,
+Experimentally, it is not possible to directly extract information (just by \say{looking}) about the interactions between electrons in a system. Instead, in spectroscopic experiments, a perturbation is applied to the system and one measures the system's response. In particular, one measures how expectation values $\mean{\cdot}$ of operators (take the multi-dimensional operator $\hat O_{i}(\tau)$ as an example) changes when an external field $h_{j}(\tau)$ is applied. In linear response theory, this response is --- as the name suggests --- taken to be linear in the perturbing field, requiring this field to be sufficiently small in order for this description to be a good approximation \cite{kappl susc},
 \begin{align}
 	\mean{\hat O_{i}(\tau)}_{\vv{h}}-\mean{\hat O_{i}(\tau)}_{\vv{h}=0}=\integral{0}{\beta}{\tau'} \chi_{ij}(\tau-\tau')h_{j}(\tau')+\mathcal{O}(\vv{h}^2),
 \end{align}
@@ -289,12 +292,12 @@ where $\chi_{ij}(\tau-\tau')$ is coined physical susceptibility and does not dep
 \begin{align}
 	\chi_{ij}(\tau-\tau')=\ddd{\mean{\hat O_{i}(\tau')}}{h_{j}(\tau)}\bigg|_{\vv{h}=0}=\mean{\mathcal{T}\hat O_{i}(\tau)\hat O_{j}(\tau')}-\mean{\hat O_{i}}\mean{\hat O_{j}}.
 \end{align}
-On the two-particle level, only the density's response to variations in the one-particle energy, $\chi_{\dens}$, and the magnetization's response to variation in the electromagnetic field in the same direction, $\chi_{\magn}$, are non-zero
+On the two-particle level, only the density's response to variations in the one-particle energy, $\chi_{\dens}$, and the magnetization's response to variation in the electromagnetic field in the same direction, $\chi_{\magn}$, are non-zero \cite{kappl susc},
 \begin{subequations}
-\begin{align}
-	\chi_{\dens}(\tau)&=\chi_{nn}(\tau)=-\ddd{\mean{\hat n}}{\mu(\tau)}\bigg|_{\mu=0}\qquad\text{and}\label{eq:chi_dens_derivative}\\
-	\chi_{\magn}(\tau)&=\chi_{ii}(\tau)=\ddd{\mean{\hat\sigma_{i}}}{h_{i}(\tau)}\bigg|_{\vv{h}=0},\label{eq:chi_magn_derivative}
-\end{align}
+\begin{alignat}{3}
+	\chi_{\dens}(\tau)&=\chi_{nn}(\tau)&&=-&&\ddd{\mean{\hat n}}{\mu(\tau)}\bigg|_{\mu=0}\qquad\text{and}\label{eq:chi_dens_derivative}\\
+	\chi_{\magn}(\tau)&=\chi_{ii}(\tau)&&=&&\ddd{\mean{\hat\sigma_{i}}}{h_{i}(\tau)}\bigg|_{\vv{h}=0},\label{eq:chi_magn_derivative}
+\end{alignat}
 \end{subequations}
 where $i\in\{x,y,z\}$. The physical susceptibilities are included in the two-particle Green's function, as we will see shortly. In fact, the sum of terms corresponding to the two disconnected, horizontal Green's function lines and the vertex part is denoted as the general susceptibility and can be expressed as
 \begin{align*}\label{eq:generalized_susceptibility}
@@ -321,38 +324,55 @@ Similarly, the contracted bubble susceptibility can be written as
 \begin{align}
 	\chi_{0;\mathfrak{14}}^{\q}=\sum_{\k\kp;\mathfrak{23}}\chi_{0;\mathfrak{1234}}^{\q\k\kp}.
 \end{align}
-Similarly to \eqref{eq:two_particle_green_density} and \eqref{eq:two_particle_green_magnetic}, one can write down density and magnetic spin combinations,
+Analogously to \eqref{eq:two_particle_green_density} and \eqref{eq:two_particle_green_magnetic}, one can write down density and magnetic spin combinations,
 \begin{subequations}
 \begin{align}
 	\chi_{\dens}^{\q}&=\chi_{\uparrow\uparrow}^{\q}+\chi_{\uparrow\downarrow}^{\q}=\chi_{\overline{\uparrow\downarrow}}^{\q}\qquad\text{and}\label{eq:chi_dens}\\
 	\chi_{\magn}^{\q}&=\chi_{\uparrow\uparrow}^{\q}+\chi_{\uparrow\downarrow}^{\q}.\label{eq:chi_magn}
 \end{align}
 \end{subequations}
-Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing more than the Fourier transformed versions of \eqref{eq:chi_dens_derivative} and \eqref{eq:chi_magn_derivative}, respectively.
+Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing more than the Fourier-transformed versions of \eqref{eq:chi_dens_derivative} and \eqref{eq:chi_magn_derivative}, respectively.
 
 \section{Vertex asymptotics}\label{sec:vertex_asymptotics}
 
-A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. We will see that the vertex - in the high-frequency regime - which originally depended on three independent frequency parameters can be treated as an object with only two frequency dimensions, thus drastically reducing the storage capacity of and ease of calculations including the vertex.
+A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. We will see that the vertex - in the high-frequency regime - which originally depended on three independent frequency parameters can be treated as an object with only two frequency dimensions, thus drastically reducing the storage capacity of and ease of calculations including the vertex. But first, let us sketch the basic idea on how to tackle explicit asymptotic behaviour in vertex functions.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=\linewidth]{../../Graphics/vertex_asymptotics_paper.png}
 	\caption{Numerical SIAM results for all local vertices contained in the parquet equation \eqref{eq:parquet_decomposition} for vanishing transfer frequency $\Omega=0$, taken from Ref. \cite{high-freq asympt}. In our convention, $\Omega$ should be replaced by $\omega$.}
 	\label{fig:full_vertex_siam_results_paper}
 \end{figure}
+
 In \figref{fig:full_vertex_siam_results_paper}, the frequency dependence of local vertex functions $F^{\omega\nu\nu'}_{\pp;\uparrow\downarrow}$, $\Lambda^{\omega\nu\nu'}_{\pp;\uparrow\downarrow}$ and $\Phi^{\omega\nu\nu'}_{\r;\uparrow\downarrow}$ calculated for the Single-Impurity Anderson Model (SIAM) are shown for vanishing transfer frequency $\omega$ \cite{high-freq asympt}. From this, one can see three very prominent and distinct features of the full vertex $F$: (i) a constant background that differs from the (local and constant) Hubbard interaction $U$; (ii) two diagonal structures, the main ($\nu=\nu'$) and secondary ($\nu=-\nu'$) diagonal; and (iii) a \say{cross}-like structure along $\nu=\pm\frac\pi\beta$ and $\nu'=\pm\frac\pi\beta$. While only shown for the antiparallel spin combination $\uparrow\downarrow$ and vanishing transfer frequency $\omega=0$, the features are analogous for the parallel spin combination $\uparrow\uparrow$ and for finite $\omega$. These three attributes do \textit{not} decay for high Matsubara frequencies $\nu$ and $\nu'$ and therefore indicate complex asymptotic behaviour. The individual asymptotic contributions of the fully irreducible vertex $\Lambda$ and the reducible vertex in channel r to the full vertex $F$ are written in detail in Ref. \cite{high-freq asympt}. Summarized, $\Lambda$ adds a constant background of size $U$, $\Phi_{\ph}$ adds a secondary diagonal structure, $\Phi_{\phbar}$ adds a diagonal structure and $\Phi_{\pp}$ adds a constant background and a \say{cross}-like structure. Notice that the description in Ref. \cite{high-freq asympt} only refers to the SIAM model and considers solely the one-band case with local quantities and a constant local interaction $U$. An extension to a multi-orbital formalism and momentum-dependent vertices and interaction $U$ follows naturally and will be discussed shortly.
 
 The simplest quantity to describe in terms of their asymptotics is the fully irreducible vertex $\Lambda^{\q\k\kp}_{\mathfrak{1234}}$, for which
 \begin{align}
-	\Lambda^{\text{asympt};\q\k\kp}_{\ph;\mathfrak{1234};\ss'}\approx\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'},
+	\Lambda^{\asympt;\q\k\kp}_{\ph;\mathfrak{1234};\ss'}\approx\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'},
 \end{align}
 where $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ is the non-local Coulomb interaction, written in crossing-symmetric notation
 \begin{align}\label{eq:crossing_symmetric_uq}
-	 \mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}= \frac{1}{\beta^2}\Big [ \underbrace{U_{\mathfrak{1324}}+V^{\vv{q}}_{\ph;\mathfrak{1324}}}_{\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{1234}}}-\delta_{\ss'}\big (\underbrace{U_{\mathfrak{3124}}+V^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{3124}}}_{\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}}}\big )\Big ],
+	 \mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}= \frac{1}{\beta^2}\Big [ \underbrace{U_{\mathfrak{1234}}+V^{\vv{q}}_{\ph;\mathfrak{1234}}}_{\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{1234}}}-\delta_{\ss'}\big (\underbrace{U_{\mathfrak{1432}}+V^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1432}}}_{\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}}}\big )\Big ],
 \end{align}
-containing the purely local interaction $U$ and the purely non-local interaction $V$. Next, we begin examining the diagrams contributing to $\Phi_{\r}$. A smart choice introduced in Ref. \cite{high-freq asympt} is to classify these diagrams in each channel further into three categories:
+containing the purely local interaction $U$ and the purely non-local interaction $V$. \eqref{eq:crossing_symmetric_uq} is diagrammatically displayed in \figref{fig:bare_vertex_crossing_symmetric}.
+\begin{figure}[ht!]
+	\centering
+	\includestandalone[scale=1]{../../Graphics/Diagrams/bare_vertex_crossing_symmetric/bare_vertex_crossing_symmetric}
+	\caption{Crossing-symmetric interaction, see \eqref{eq:crossing_symmetric_uq}.}
+	\label{fig:bare_vertex_crossing_symmetric}
+\end{figure}
+Constructing $\dens,\magn,\sing$ and $\trip$ combinations (in ph-notation) of \eqref{eq:crossing_symmetric_uq} is useful for future calculations,
+\begin{subequations}
+\begin{align}
+	\mathcal{U}^{\vv{qkk}'}_{\dens;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [2\,\mathcal{U}^{\vv{q}}_{\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\right ],\\
+	\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}}&=-\frac{1}{\beta^2}\,\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}},\\
+	\mathcal{U}^{\vv{qkk}'}_{\sing;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}+\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\right ]\quad\text{and}\\
+	\mathcal{U}^{\vv{qkk}'}_{\trip;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}-\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\right ].
+\end{align}
+\end{subequations}
+Next, we begin examining the diagrams contributing to $\Phi_{\r}$. A smart choice introduced in Ref. \cite{high-freq asympt} is to classify these diagrams in each channel further into three categories:
 \begin{itemize}
-	\item Class 1: These are diagrams which connect incoming and outgoing particles only by a single interaction vertex. These diagrams are bubble diagrams and hence only depend on a single bosonic frequency and momentum. The sum of all these diagrams will be encoded in the variable $\mathcal{K}^{(1);\q}_{\r;\mathfrak{1234};\ss'}$.
-	\item Class 2: Diagrams corresponding to class 2 are identified by them having either the incoming \textit{or} outgoing particles connected to the same interaction vertex. These diagrams depend on the bosonic transfer frequency and momentum and one fermionic frequency and momentum. The sum of all these diagrams will be encoded in the variables $\mathcal{K}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}$ and $\overline{\mathcal{K}}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}$, depending on whether the outgoing particles ($\mathcal{K}$) or the incoming particles ($\overline{\mathcal{K}}$) are connected to the interaction vertex. $\mathcal{K}$ and $\overline{\mathcal{K}}$ are related to each other via time-reversal symmetry, where in the case of a system with additional SU(2)-symmetry corresponds to \cite{rohringer thesis} $\mathcal{K}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}=\overline{\mathcal{K}}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}$.
+	\item Class 1: These are diagrams which connect incoming and outgoing particles only by a single interaction vertex. These diagrams are bubble diagrams and hence only depend on a single bosonic frequency and momentum. The sum of all these diagrams will be encoded in the variable $\mathcal{K}^{(1);\q}_{\r;\mathfrak{1234};\ss'}$, see the first line in \figref{fig:kernel_functions}.
+	\item Class 2: Diagrams corresponding to class 2 are identified by them having either the incoming \textit{or} outgoing particles connected to the same interaction vertex. These diagrams depend on the bosonic transfer frequency and momentum and one fermionic frequency and momentum. The sum of all these diagrams will be encoded in the variables $\mathcal{K}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}$ and $\overline{\mathcal{K}}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}$, depending on whether the outgoing particles ($\mathcal{K}$) or the incoming particles ($\overline{\mathcal{K}}$) are connected to the interaction vertex, see the second line in \figref{fig:kernel_functions}. $\mathcal{K}$ and $\overline{\mathcal{K}}$ are related to each other via time-reversal symmetry, where in the case of a system with additional SU(2)-symmetry corresponds to \cite{rohringer thesis} $\mathcal{K}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}=\overline{\mathcal{K}}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}$.
 	\item Class 3: These are diagrams where each external Green's function is connected to a different interaction vertex. These diagrams are parametrized by three independent frequency and momentum arguments and are encoded in the \say{rest} function $\mathcal{R}^{\q\k\kp}_{\r;\mathfrak{1234};\ss'}$.
 \end{itemize}
 In the following, we will refer to $\mathcal{K}^{(1)}$, $\mathcal{K}^{(2)}$ and $\overline{\mathcal{K}}^{(2)}$ as kernel functions. One now can - with the help of these classifications - write the reducible $\Phi_{\r}$-vertices as a decomposition of the different kernel functions and the \say{rest}-function
@@ -361,90 +381,80 @@ In the following, we will refer to $\mathcal{K}^{(1)}$, $\mathcal{K}^{(2)}$ and 
 \end{align}
 This composition is \textit{per se} exact. However, to take advantage of this formalism for numerical calculations, one discards the \say{rest}-function due to its additional frequency dependence entering the inner propagators, resulting in a quicker drop-off in all frequency directions. Thus, the approximation
 \begin{align}\label{eq:asympt_phi_r}
-	\Phi_{\r;\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}\approx\mathcal{K}^{(1);\q}_{\r;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\r;\mathfrak{1234};\ss'}
+	\Phi_{\r;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}\approx\mathcal{K}^{(1);\q}_{\r;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k}_{\r;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\r;\mathfrak{1234};\ss'}
 \end{align}
-serves as a valid expression for the high-frequency regime of $\Phi_{\r}$ and becomes exact for $\nu,\nu'\to\infty$ \cite{high-freq asympt}. As we can see above, the quantities on the right hand side of \eqref{eq:asympt_phi_r} only depend on two Matsubara frequencies instead of three, reducing the numerical complexity and memory usage for $\Phi_{\r}$ significantly. This results in a tremendous improvement of numerical results over a simple truncation in $\Phi_{\r}$ for high frequencies. The kernel functions needed to calculate the reducible diagrams can be obtained by \cite{towards ab initio dga}
+serves as a valid expression for the high-frequency regime of $\Phi_{\r}$ and becomes exact for $\nu,\nu'\to\infty$ \cite{high-freq asympt}. As we can see above, the quantities on the right hand side of \eqref{eq:asympt_phi_r} only depend on two Matsubara frequencies instead of three, reducing the numerical complexity and memory usage for $\Phi_{\r}$ significantly. Using these explicit asymptotics results in a tremendous improvement of numerical results over a simple truncation in $\Phi_{\r}$ for high frequencies \cite{high-freq asympt}. The kernel functions needed to calculate the reducible diagrams can be obtained by \cite{towards ab initio dga}
 \begin{align}
-	\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}&=-\sum_{\substack{\mathfrak{abcd}\\\sigma_1\sigma_2}} \mathcal{U}^{\vv{q}}_{\ph;\mathfrak{12ab};\ss_1}\chi^{\q}_{\ph;\mathfrak{badc};\sigma_1\sigma_2}\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{cd34};\sigma_2\sigma'}\quad\text{and}\label{eq:kernel_1}\\
-	\mathcal{K}^{(2);\q\k}_{\ph;\mathfrak{1234};\ss'}&=-\sum_{\substack{\mathfrak{ab}\\\k_1;\sigma_1}} F^{\q\k\k_1}_{\ph;\mathfrak{12ab};\ss_1}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'},\label{eq:kernel_2}
+ 	\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}&=\!\!\!\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2;\sigma_1\sigma_2}} \!\!\!\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\ph;\mathfrak{12ab};\ss_1}\chi^{\q\k_1\k_2}_{\ph;\mathfrak{badc};\sigma_1\sigma_2}\mathcal{U}^{\vv{q}\vv{k}_2}_{\ph;\mathfrak{cd34};\sigma_2\sigma'}\quad\text{and}\label{eq:kernel_1}\\
+\begin{split}\label{eq:kernel_2}
+	\mathcal{K}^{(2);\q\k}_{\ph;\mathfrak{1234};\ss'}&=\sum_{\substack{\mathfrak{ab}\\\k_1;\sigma_1}} F^{\q\k\k_1}_{\ph;\mathfrak{12ab};\ss_1}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\ph;\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}\\
+	&=-\sum_{\substack{\mathfrak{ab}\\\k_1;\sigma_1}} \frac{\chi^{\q\k\k_1}_{\ph;\mathfrak{cdab};\ss_1}}{G^{\k}_{\mathfrak{c1}}G^{\k-\q}_{\mathfrak{2d}}}\,\mathcal{U}^{\vv{qk}_1}_{\ph;\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}
+\end{split}
 \end{align}
-where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to account for double-counting of diagrams. Both kernel functions are displayed diagrammatically for the ph-channel in \figref{fig:kernel_functions}.
+where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to account for double-counting of diagrams. $\mathcal{U}^{\vv{qk}}_{\ph;\mathfrak{1234};\ss'}$ is obtained from \eqref{eq:crossing_symmetric_uq} by setting $\vv{k}'=\vv{0}$. Both kernel functions are displayed diagrammatically for the ph-channel in \figref{fig:kernel_functions}.
 \begin{figure}[ht!]
   \centering
-  \parbox{\textwidth}{
-    \hspace*{2.8cm}
-    \subfloat{\includestandalone[scale=1]{../../Graphics/Diagrams/kernel_functions/kernel_1_ph}}
-  }\\[0.5cm]
-  \parbox{\textwidth}{
-    \hspace*{2.8cm}
-    \subfloat{\includestandalone[scale=1]{../../Graphics/Diagrams/kernel_functions/kernel_2_ph}}
-  }
-  \caption{Diagrammatic version of the kernel-1 and kernel-2 functions of \eqref{eq:kernel_1} and \eqref{eq:kernel_2}. Notice that $\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{1234};\ss'}$ is obtained from \eqref{eq:crossing_symmetric_uq} by setting $\vv{k}=\vv{k}'=\vv{0}.$}
+  \subfloat{\includestandalone[scale=1]{../../Graphics/Diagrams/kernel_functions/kernel_1_ph}}\\[0.5cm]
+  \hspace{-0.25cm}\subfloat{\includestandalone[scale=1]{../../Graphics/Diagrams/kernel_functions/kernel_2_ph}}
+  \caption{Diagrammatic version of the kernel-1 and kernel-2 functions of \eqref{eq:kernel_1} and \eqref{eq:kernel_2}.}
   \label{fig:kernel_functions}
 \end{figure}
-The density and magnetic contributions of the kernel functions (in ph-notation) read
+The density and magnetic contributions to the kernel functions (in ph-notation) read
 \begin{subequations}
 \begin{align}
+	\mathcal{K}^{(1);\q}_{\dens;\mathfrak{1234}}&=\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\dens;\mathfrak{12ab}} \chi^{\q\k_1\k_2}_{\dens;\mathfrak{badc}} \mathcal{U}^{\vv{qk}_2}_{\dens;\mathfrak{cd34}},\\
+	\mathcal{K}^{(1);\q}_{\magn;\mathfrak{1234}}&=\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\magn;\mathfrak{12ab}} \chi^{\q\k_1\k_2}_{\magn;\mathfrak{badc}} \mathcal{U}^{\vv{qk}_2}_{\dens;\mathfrak{cd34}},\\
 \begin{split}
-	\mathcal{K}^{(1);\q}_{\dens;\mathfrak{1234}}&=-\sum_{\mathfrak{abcd}}\big [4\,\mathcal{U}^{\vv{q}}_{\mathfrak{12ab}} \chi^{\q}_{\dens;\mathfrak{badc}} \mathcal{U}^{\vv{q}}_{\mathfrak{cd34}} - 2 U_{\mathfrak{a12b}} \chi^{\q}_{\dens;\mathfrak{badc}} \mathcal{U}^{\vv{q}}_{\mathfrak{cd34}} \\
-	&\qquad\qquad\quad - 2 \,\mathcal{U}^{\vv{q}}_{\mathfrak{12ab}} \chi^{\q}_{\dens;\mathfrak{badc}} U_{\mathfrak{3cd4}} + U_{\mathfrak{a12b}} \chi^{\q}_{\dens;\mathfrak{badc}} U_{\mathfrak{3cd4}}\big ]
+	\mathcal{K}^{(2);\q\k}_{\dens;\mathfrak{1234}}&=\sum_{\mathfrak{ab};\k_1} F^{\q\k\k_1}_{\dens;\mathfrak{12ab}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\dens;\mathfrak{ba34}}-\mathcal{K}^{(1);\q}_{\dens;\mathfrak{1234}}\\
+	&=-\sum_{\mathfrak{abcd};\k_1} \frac{\chi^{\q\k\k_1}_{\dens;\mathfrak{cdab}}}{G^{\k}_{\mathfrak{c1}}G^{\k-\q}_{\mathfrak{2d}}}\,\mathcal{U}^{\vv{qk}_1}_{\dens;\mathfrak{ba34}}-\mathcal{K}^{(1);\q}_{\dens;\mathfrak{1234}}\qquad\text{and}
 \end{split}\\
-	\mathcal{K}^{(1);\q}_{\magn;\mathfrak{1234}}&=-\sum_{\mathfrak{abcd}} U_{\mathfrak{a12b}} \chi^{\q}_{\magn;\mathfrak{badc}} U_{\mathfrak{3cd4}},\\
-	\mathcal{K}^{(2);\q\k}_{\dens;\mathfrak{1234}}&=- \sum_{\mathfrak{abcd}} \left [2 F^{\q\k\k_1}_{\dens;\mathfrak{12ab}} \chi^{\q\k_1\k_1}_{0;\mathfrak{badc}} \mathcal{U}^{\vv{q}}_{\mathfrak{cd34}}  - F^{\q\k\k_1}_{\dens;\mathfrak{12ab}} \chi^{\q\k_1\k_1}_{0;\mathfrak{badc}} U_{\mathfrak{3cd4}}\right ] - \mathcal{K}^{(1);\q}_{\dens;\mathfrak{1234}}\quad\text{and}\\
-	\mathcal{K}^{(2);\q\k}_{\magn;\mathfrak{1234}}&=\phantom{-}\sum_{\mathfrak{abcd}} F^{\q\k\k_1}_{\magn;\mathfrak{12ab}} \chi^{\q\k_1\k_1}_{0;\mathfrak{badc}} U_{\mathfrak{3cd4}} - \mathcal{K}^{(1);\q}_{\magn;\mathfrak{1234}}.
+\begin{split}
+	\mathcal{K}^{(2);\q\k}_{\magn;\mathfrak{1234}}&=\sum_{\mathfrak{ab};\k_1} F^{\q\k\k_1}_{\magn;\mathfrak{12ab}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\magn;\mathfrak{ba34}}-\mathcal{K}^{(1);\q}_{\magn;\mathfrak{1234}}\\
+	&=-\sum_{\mathfrak{abcd};\k_1} \frac{\chi^{\q\k\k_1}_{\magn;\mathfrak{cdab}}}{G^{\k}_{\mathfrak{c1}}G^{\k-\q}_{\mathfrak{2d}}}\,\mathcal{U}^{\vv{qk}_1}_{\magn;\mathfrak{ba34}}-\mathcal{K}^{(1);\q}_{\magn;\mathfrak{1234}}.
+\end{split}
 \end{align}
 \end{subequations}
-Notice that the interaction term $V^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}}$ only contributes to the \say{rest}-function $\mathcal{R}^{\q\k\kp}_{\ph;\mathfrak{1234};\ss'}$ and does not appear in the definitions of the kernel-1 and kernel-2 functions. The asymptotic part of the full vertex $\left (F_{\r;\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}\right )$ can now be assembled using the asymptotic contributions of $\Lambda^{\text{asympt};\q\k\kp}_{\mathfrak{1234};\ss'}$ and $\Phi_{\r;\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}$ through the parquet decomposition of \eqref{eq:parquet_decomposition}. This results in
+The $\sing/\trip$ combinations can be constructed analogously for the pp-channel. Finally, the asymptotic part of the full vertex $\left (F_{\r;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}\right )$ can now be assembled using the asymptotic contributions of $\Lambda^{\asympt;\q\k\kp}_{\mathfrak{1234};\ss'}$ and $\Phi_{\r;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}$ through the parquet decomposition of \eqref{eq:parquet_decomposition}. This results in
 \begin{align}
 \begin{split}
-	F_{\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}-\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}&=\phantom{+}\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\q\k}_{\ph;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\ph;\mathfrak{1234};\ss'}\\
+	F_{\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}-\;\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}&=\Phi_{\ph;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}+\Phi_{\phbar;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}+\Phi_{\pp;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp},
+\end{split}
+\end{align}
+or explicitly with kernel-1 and kernel-2 functions,
+\begin{align}
+\begin{split}
+	F_{\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}-\;\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}&=\phantom{+}\,\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\q\k}_{\ph;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\ph;\mathfrak{1234};\ss'}\\
 	&\quad+\mathcal{K}^{(1);\q}_{\phbar;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\q\k}_{\phbar;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\phbar;\mathfrak{1234};\ss'}\\
 	&\quad+\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\q\k}_{\pp;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\pp;\mathfrak{1234};\ss'}.
 \end{split}
 \end{align}
 The asymptotic behaviour of the irreducible vertex in channel r follows from \eqref{eq:full_vertex_gamma_phi},
 \begin{align}
-	\Gamma_{\r;\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}&=F_{\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}-\Phi_{\r;\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}
+	\Gamma_{\r;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}&=F_{\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}-\Phi_{\r;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}
 \end{align}
 and reads for the ph-channel explicitly
+\begin{align}
+\begin{split}
+	\Gamma_{\ph;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}&=\;\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}+\Phi_{\phbar;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}+\Phi_{\pp;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}\\
+	&=\;\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}-\Phi_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}}^{\asympt;(\kp-\k)(\kp-\q)\kp}+\Phi_{\pp;\mathfrak{1234};\ss'}^{\asympt;\ph;(\k+\kp-\q)\k\kp}\\
+	&=\;\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}-\mathcal{K}^{(1);(\kp-\k)}_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}} - \mathcal{K}^{(2);(\kp-\k)(\kp-\q)}_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}}-\mathcal{K}^{(2);(\kp-\k)\kp}_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}}\\
+	&\qquad\qquad\quad\;\;\,+\mathcal{K}^{(1);\ph;(\k+\kp-\q)}_{\pp;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\ph;(\k+\kp-\q)\k}_{\pp;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\ph;(\k+\kp-\q)\kp}_{\pp;\mathfrak{1234};\ss'},
+\end{split}
+\end{align}
+where we used \eqref{eq:phi_conversion_ph_bar_to_ph} to transform the $\phbar$-channel reducible vertex to a ph-channel reducible one and changed the frequency notation to ph. From this follows the irreducible vertex in the density and magnetic channel (in ph frequency notation) \cite{efficient BSE}
 \begin{subequations}
 \begin{align}
 \begin{split}
-	\Gamma_{\ph;\mathfrak{1234};\ss'}^{\text{asympt};\q\k\kp}&=\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}+\mathcal{K}^{(1);\q}_{\phbar;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\q\k}_{\phbar;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\phbar;\mathfrak{1234};\ss'}\\
-	&\qquad\qquad\quad\;\,+\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\q\k}_{\pp;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\q\k'}_{\pp;\mathfrak{1234};\ss'}
+	\Gamma^{\asympt;\q\k\kp}_{\dens;\mathfrak{1234}}&=\;\mathcal{U}^{\vv{qkk}'}_{\dens;\mathfrak{1234}}-\frac12\Phi^{\asympt;(\kp-\k)(\kp-\q)\kp}_{\dens;\mathfrak{3214}}-\frac32\Phi^{\asympt;(\kp-\k)(\kp-\q)\kp}_{\magn;\mathfrak{3214}}\\
+	&\qquad\qquad\!\;+\frac12\Phi_{\sing;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp}+\frac32\Phi_{\trip;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp},
 \end{split}\\
 \begin{split}
-	&=\mathcal{U}^{\vv{qkk}'}_{\ph;\mathfrak{1234};\ss'}-\mathcal{K}^{(1);(\kp-\k)}_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}} - \mathcal{K}^{(2);(\kp-\k)(\kp-\q)}_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}}-\mathcal{K}^{(2);(\kp-\k)\kp}_{\ph;\mathfrak{3214};\overline{\sigma'\sigma}}\\
-	&\qquad\qquad\quad\;\,+\mathcal{K}^{(1);\ph;(\k+\kp-\q)}_{\pp;\mathfrak{1234};\ss'} + \mathcal{K}^{(2);\ph;(\k+\kp-\q)\k}_{\pp;\mathfrak{1234};\ss'}+\mathcal{K}^{(2);\ph;(\k+\kp-\q)\kp}_{\pp;\mathfrak{1234};\ss'}.
+	\Gamma^{\asympt;\q\k\kp}_{\magn;\ph;\mathfrak{1234}}&=\;\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}} -\frac12\Phi^{\asympt;(\kp-\k)(\kp-\q)\kp}_{\dens;\mathfrak{3214}}+\frac12\Phi^{\asympt;(\kp-\k)(\kp-\q)\kp}_{\magn;\mathfrak{3214}}\\
+	&\qquad\qquad\;-\frac12\Phi_{\sing;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp}+\frac12\Phi_{\trip;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp}.
 \end{split}
 \end{align}
 \end{subequations}
-From this follows for the irreducible vertex in the density and magnetic channel (in ph-notation)
-\begin{subequations}
-\begin{align}
-\begin{split}
-	\Gamma^{\text{asympt};\q\k\kp}_{\dens;\ph;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [2\,\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}}\right ] + \mathcal{K}^{(1);\q}_{\dens;\phbar;\mathfrak{1234}} + \mathcal{K}^{(2);\q\k}_{\dens;\phbar;\mathfrak{1234}}+\mathcal{K}^{(2);\q\kp}_{\dens;\phbar;\mathfrak{1234}}\\
-	&\qquad\qquad\qquad\qquad\qquad\quad\,+\mathcal{K}^{(1);\q}_{\dens;\pp;\mathfrak{1234}} + \mathcal{K}^{(2);\q\k}_{\dens;\pp;\mathfrak{1234}}+\mathcal{K}^{(2);\q\kp}_{\dens;\pp;\mathfrak{1234}}
-\end{split}\\
-\begin{split}
-	&=\frac{1}{\beta^2}\left [2\,\mathcal{U}^{\vv{q}}_{\ph;\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}}\right ]-\frac12\mathcal{K}^{(1);(\kp-\k)}_{\dens;\ph;\mathfrak{3214}}-\frac32\mathcal{K}^{(1);(\kp-\k)}_{\magn;\ph;\mathfrak{3214}}\\
-	&\qquad\qquad\qquad\qquad\qquad\quad\,-\frac12\mathcal{K}^{(2);(\kp-\k)(\kp-\q)}_{\dens;\ph;\mathfrak{3214}}-\frac32\mathcal{K}^{(2);(\kp-\k)(\kp-\q)}_{\magn;\ph;\mathfrak{3214}}\\
-	&\qquad\qquad\qquad\qquad\qquad\quad\,-\frac12\mathcal{K}^{(2);(\kp-\k)\kp}_{\dens;\ph;\mathfrak{3214}}-\frac32\mathcal{K}^{(2);(\kp-\k)\kp}_{\magn;\ph;\mathfrak{3214}}\\
-	&\qquad\qquad\qquad\qquad\qquad\quad\,+\mathcal{K}^{(1);\ph;(\k+\kp-\q)}_{\dens;\pp;\mathfrak{1234}} + \mathcal{K}^{(2);\ph;(\k+\kp-\q)\k}_{\dens;\pp;\mathfrak{1234}}+\mathcal{K}^{(2);\ph;(\k+\kp-\q)\kp}_{\dens;\pp;\mathfrak{1234}},
-\end{split}\\
-\begin{split}
-	\Gamma^{\text{asympt};\q\k\kp}_{\magn;\ph;\mathfrak{1234}}&=-\frac{1}{\beta^2}\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}} + \mathcal{K}^{(1);\q}_{\magn;\phbar;\mathfrak{1234}} + \mathcal{K}^{(2);\q\k}_{\magn;\phbar;\mathfrak{1234}}+\mathcal{K}^{(2);\q\kp}_{\magn;\phbar;\mathfrak{1234}}\\
-	&\qquad\qquad\qquad\:+\mathcal{K}^{(1);\q}_{\magn;\pp;\mathfrak{1234}} + \mathcal{K}^{(2);\q\k}_{\magn;\pp;\mathfrak{1234}}+\mathcal{K}^{(2);\q\kp}_{\magn;\pp;\mathfrak{1234}}
-\end{split}\\
-\begin{split}
-	&=-\frac{1}{\beta^2}\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\ph;\mathfrak{1234}}-\frac12\mathcal{K}^{(1);(\kp-\k)}_{\dens;\ph;\mathfrak{3214}}+\frac12\mathcal{K}^{(1);(\kp-\k)}_{\magn;\ph;\mathfrak{3214}}\\
-	&\qquad\qquad\qquad\:-\frac12\mathcal{K}^{(2);(\kp-\k)(\kp-\q)}_{\dens;\ph;\mathfrak{3214}}+\frac12\mathcal{K}^{(2);(\kp-\k)(\kp-\q)}_{\magn;\ph;\mathfrak{3214}}\\
-	&\qquad\qquad\qquad\:-\frac12\mathcal{K}^{(2);(\kp-\k)\kp}_{\dens;\ph;\mathfrak{3214}}+\frac12\mathcal{K}^{(2);(\kp-\k)\kp}_{\magn;\ph;\mathfrak{3214}}\\
-	&\qquad\qquad\qquad\:+\mathcal{K}^{(1);\ph;(\k+\kp-\q)}_{\magn;\pp;\mathfrak{1234}} + \mathcal{K}^{(2);\ph;(\k+\kp-\q)\k}_{\magn;\pp;\mathfrak{1234}}+\mathcal{K}^{(2);\ph;(\k+\kp-\q)\kp}_{\magn;\pp;\mathfrak{1234}}.
-\end{split}
-\end{align}
-\end{subequations}
-The irreducible vertices in (reducibility-) channels $\phbar$ and $\pp$ can be constructed analogously.
+The irreducible vertices in (reducibility-) channels $\phbar$ and $\pp$ and $\sing/\trip$ combinations can be constructed analogously.
 
 \section{Bethe-Salpeter equation}\label{sec:bethe_salpeter}
 
@@ -480,14 +490,7 @@ This is the most general form of the Bethe-Salpeter equations, where energy and 
 	F_{\dens/\magn;\phbar;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\dens/\magn;\phbar;\mathfrak{1234}}^{\q\k\kp}-\frac1\beta\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\dens/\magn;\phbar;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\dens/\magn;\phbar;\mathfrak{dc34}}^{\q\k_2\kp}.
 \end{align}
 \end{subequations}
-Likewise, the BSE decouples for other spin-symmetric combinations in for the pp-channel. These combinations are coined (s)inglet and (t)riplet\footnote{
-For any channel r we have
-\begin{subequations}
-\begin{align}
-	G^{\q\k\kp}_{\sing;\r;\mathfrak{1234}}&=G^{\q\k\kp}_{\r;\mathfrak{1234};\uparrow\downarrow}-G^{\q\k\kp}_{\r;\mathfrak{1234};\overline{\uparrow\downarrow}}\\
-	G^{\q\k\kp}_{\trip;\r;\mathfrak{1234}}&=G^{\q\k\kp}_{\r;\mathfrak{1234};\uparrow\downarrow}+G^{\q\k\kp}_{\r;\mathfrak{1234};\overline{\uparrow\downarrow}}
-\end{align}
-\end{subequations}.}, where
+Likewise, the BSE decouples for other spin-symmetric combinations in for the pp-channel. These are the (s)inglet and (t)riplet channel, where
 \begin{align}
 	F_{\sing;\pp;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\sing;\pp;\mathfrak{1234}}^{\q\k\kp}+\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\sing;\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\sing;\pp;\mathfrak{dc34}}^{\q\k_2\kp}\\
 	F_{\trip;\pp;\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\trip;\pp;\mathfrak{1234}}^{\q\k\kp}-\frac{1}{2\beta}\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\trip;\pp;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\trip;\pp;\mathfrak{dc34}}^{\q\k_2\kp}.
@@ -518,14 +521,14 @@ This allows for a straightforward numerical implementation of vertex products an
 
 \subsection{High-frequency Bethe-Salpeter equation with vertex asymptotics}
 
-Sometimes it is convenient to separate low- and high-frequency components of a quantity to simplify calculations. Some DMFT solvers \cite{parragh} employ such a frequency separation to calculate the self-energy: a high-frequency asymptotic expansion derived from the spectral function's lowest moments is encorporated in the numerical solution of the Dyson equation at low frequencies. Inspired by this idea, we can proceed similarly for the irreducible vertex $\Gamma$, working with the framework of the Bethe-Salpeter equation instead of the Dyson equation. By explicitly using with the spin-symmetric combinations $\dens, \magn$, in which the BSE for the $ph$-channel becomes diagonal\footnote{The same can be done for the $\sing, \trip$ combinations in the $\pp$-channel, however only the $\ph$-channel will be shown.}, we aim to reduce the computational effort by using a high-frequency expansion of the vertex functions. Following \cite{kunes asympt, hummel DA, efficient BSE}, the vertex in the low-frequency regime can be obtained by the regular BSE, where an additional high-frequency correction term is added. In the spirit of the end of last section, the BSE of \eqref{eq:bethe_salpeter_susc} can be written as a matrix equation (in grouped indices $\text{nm}$) for channels $\dens, \magn$ in the following fashion
+Sometimes it is convenient to separate low- and high-frequency components of a quantity to simplify calculations. Some DMFT solvers \cite{parragh} employ such a frequency separation to calculate the self-energy: a high-frequency asymptotic expansion derived from the spectral function's lowest moments is encorporated in the numerical solution of the Dyson equation at low frequencies. Inspired by this idea, we can proceed similarly for the irreducible vertex $\Gamma$, working with the framework of the Bethe-Salpeter equation instead of the Dyson equation. By explicitly using the SU(2)-symmetric combinations $\dens, \magn$ --- in which the BSE for the ph-channel becomes diagonal\footnote{The same can be done for the $\sing, \trip$ combinations in the $\pp$-channel, however only the $\ph$-channel will be shown.} --- we aim to reduce the computational effort by using a high-frequency expansion of the vertex functions. Following \cite{kunes asympt, hummel DA, efficient BSE}, the vertex in the low-frequency regime can be obtained by the regular BSE, where an additional high-frequency correction term is added. In the spirit of the end of last section, the BSE of \eqref{eq:bethe_salpeter_susc} can be written as a matrix equation (in grouped indices $\text{nm}$) for channels $\dens, \magn$ in the following fashion
 \begin{align}\label{eq:bse_matrix}
 	\bm{\chi}^{\q}=\bm{\chi}_{0}^{\q}-\frac{1}{\beta^2} \bm{\chi}_{0}^{\q}\bm{\Gamma}^{\q}\bm{\chi}^{\q}.
 \end{align}
 Similar to Refs. \cite{kunes, hummel DA, efficient BSE}, we will now split the matrices $\bm{F}, \bm{\Gamma}$ and $\bm{\chi}$ in segments of low and high frequencies. We will denote this by an additional superscript $(L/H, L/H)$, where $(L,L)$ denotes the segment, where $\nu$ and $\nu'$ are in the low frequency region and, e.g., $(L,H)$ denotes the segment, where $\nu$ is in the low- and $\nu'$ in the high-frequency region. We will therefore construct a set of low frequencies $\mathcal{I}_{\l}$ and a set of high frequencies $\mathcal{I}_{\h}$. This means, that for $\bm\Gamma^{\l\h}$, $\nu\in\mathcal{I}_{\l}$ and $\nu'\in\mathcal{I}_{\h}$. In the $\l\h$, $\h\l$ and $\h\h$ blocks, where atleast one frequency is considered large, we will employ explicit asymptotics for the vertex functions, as already discussed in \secref{sec:vertex_asymptotics}. The goal is to calculate the vertex function with the BSE for the low-frequency region where we will expect a correction term arising from the low-frequency cutoff which employs the use of high-frequency blocks of the BSE components. The size of $\mathcal{I}_{\l}$ has to be atleast the number of bosonic Matsubara frequencies $\omega$ \cite{efficient BSE} and might differ if nonlocal correlations are included \cite{kinza two-particle corr}. Regarding $\mathcal{I}_{\h}$, there is no minimum size, however the maximum size of the high-frequency region is only bounded by the availability of computational resources and memory. 
 
 Using this idea, we will solve \eqref{eq:bse_matrix} for $\bm\Gamma$ as
-\begin{align}
+\begin{align}\label{eq:bse_block}
 	\begin{pmatrix}
 		\bm\Gamma^{\l\l} & \bm\Gamma^{\l\h} \\ \bm\Gamma^{\h\l} & \bm\Gamma^{\h\h}
 	\end{pmatrix}=\beta^2\left [
@@ -554,14 +557,14 @@ The last term in the sum of \eqref{eq:gamma_ll_with_correction} can be thought o
 \end{align}
 The correction term can be obtained at a significantly lower cost compared to the full vertex --- since for the high-frequency regimes of $\bm\Gamma$ we use kernel-1 and kernel-2 functions, which depend on either one or two momentum and frequency dimension less (see \secref{sec:vertex_asymptotics}) --- and is therefore easily available for much larger frequency ranges. Other sets of equations for $\bm\Gamma^{\l\l}$\footnote{One can already use \eqref{eq:gamma_ll_with_correction_but_generalized_susc} instead of \eqref{eq:gamma_ll_with_correction}, cf. \say{Method 2} in Ref. \cite{efficient bse}.} can be acquired easily by manipulating the original BSE (\ref{eq:bse_matrix}). These methods would require the calculation (or knowledge) of the Fermi-Bose vertex and the generalized susceptibility (i.e. the full vertex) for a large frequency range\footnote{Retrieving the vertex functions in a high-frequency regime is \textit{per se} not difficult; they can be obtained for arbitrary frequency ranges from the impurity solver of choice. However, the computing time increases drastically the larger the frequency box and thus this method is not preferred over the one mentioned in this thesis.}, which is more storage-heavy than the use of kernel-1 and kernel-2 functions. Thus, the approach outlined in this thesis is more efficient and is going to be the most practical one to use for multi-orbital calculations.
 
-Some remarks for the calculation of the irreducible vertex $\bm\Gamma^{\l\l}$ in the low-frequency region $\mathcal{I}_{\l}=[\nmin,\nmax]$: Ref. \cite{efficient bse} suggests to consider frequency ranges for $\nu,\nu'$ where the main structures of $\bm\chi$ are centered, see also Ref. \cite{local corr at the two-particle level}. This means, that for the $\ph$-channel we have $\nmax+1=-\nmin-2m$, where $m$ denotes the index of the bosonic Matsubara frequency $\omega_{m}$. An illustration of the \say{core} and \say{asymptotic} frequency region is depicted in \figref{fig:frequency_boxes} below.
+Some remarks for the calculation of the irreducible vertex $\bm\Gamma^{\l\l}$ in the low-frequency region $\mathcal{I}_{\l}=[\nmin,\nmax]$: Ref. \cite{efficient bse} suggests to consider frequency ranges for $\nu,\nu'$ where the main structures of $\bm\chi$ are centered, see also Ref. \cite{local corr at the two-particle level}. This means, that for the $\ph$-channel we have $\nmax+1=-\nmin-2m$, where $m$ denotes the index of the bosonic Matsubara frequency $\omega_{m}=\frac{2m\pi}{\beta}$. An illustration of the \say{core} and \say{asymptotic} frequency region is depicted in \figref{fig:frequency_boxes} below.
 \begin{figure}[ht!]
 	\centering
   	\includestandalone[width=.7\textwidth]{../../Graphics/Diagrams/frequency_boxes/frequency_boxes}
-  	\caption{This graphic has been taken from Ref. \cite{efficient BSE}, including some adaptations to fit the style of this thesis.}
+  	\caption{Representation of the \say{block} construction used in \eqref{eq:bse_block}. To keep the frequencies centered as described in \cite{rohringer two particle level}, we choose $\nmin=-\frac{N}{2}-m$, $\nmax=\frac{N}{2}-m-1$, $\mmin=-\frac{M}{2}-m$ and $\mmax=\frac{M}{2}-m-1$, where $N$ is the size of the \say{core} and $M$ the size of the \say{asymptotic} frequency region, respectively. This graphic has been taken from Ref. \cite{efficient BSE} including some adaptations to fit the style of this thesis.}
   	\label{fig:frequency_boxes}
 \end{figure}
-The correction terms are taken in the (much) larger frequency range $\mathcal{I}_{\h}=[\mmin, mmax]$, which is chosen to be of appropriate size such that the equations converge.
+The correction terms are taken in the (much) larger frequency range $\mathcal{I}_{\h}=[\mmin, \mmax]$, which is chosen to be of appropriate size such that the equations converge with respect to the size of $\mathcal{I}_{\h}$.
 
 
 

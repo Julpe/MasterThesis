@@ -23,7 +23,7 @@
 		\vertex[below right=of b1] (c);
 		\vertex[below left=of c] (b2);
 		\vertex[left=of b2] (a2);
-		\vertex[right=of c] (d);
+		\vertex[right=1.5cm of c] (d);
 		
 		\vertex[above right=of d] (e1);
 		\vertex[below right=of d] (e2);
@@ -31,22 +31,26 @@
 		\vertex[right=1.5cm of e2] (f2);
 		
 		\vertex[below right=of f1] (g);
-		\vertex[right=of g] (h);
+		\vertex[right=1.5cm of g] (h);
 		\vertex[above right=of h] (i1);
 		\vertex[below right=of h] (i2);
 		\vertex[right=of i1] (j1);
 		\vertex[right=of i2] (j2);
 		
-		\node at ($(e1)!0.5!(f2)$) {$\chi^{\q}_{\substack{\text{ph};\mathfrak{badc}\\\sigma_1\sigma_2}}$};
+		\vertex (u1) at ($(c)!0.5!(d)$) {$\mathcal{U}^{\textbf{q}(-\textbf{k}_1)}_{\substack{\text{ph};\mathfrak{12ab}\\\sigma\sigma_1}}$};
+		\vertex (u2) at ($(g)!0.5!(h)$) {$\mathcal{U}^{\textbf{q}\textbf{k}_2}_{\substack{\text{ph};\mathfrak{cd34}\\\sigma_2\sigma'}}$};
+		
+		\draw (u1) circle (0.75);
+		\draw (u2) circle (0.75);
+		
+		\node at ($(e1)!0.5!(f2)$) {$\chi^{\q\k_1\k_2}_{\substack{\text{ph};\mathfrak{badc}\\\sigma_1\sigma_2}}$};
 		
 		\diagram* {
-			(a1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$] (b1) -- [fermion] (c) -- [fermion] (b2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$] (a2),
-			(c) -- [photon, edge label=$\mathcal{U}^{\textbf{q}}_{\substack{\text{ph};\mathfrak{12ab}\\\sigma\sigma_1}}$] (d),
+			(a1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$] (b1) -- [fermion, gray] (c) -- [fermion, gray] (b2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$] (a2),
 			(e2) -- [bend left=30] (d) -- [bend left=30] (e1),
 			(e1) -- (f1) -- (f2) -- (e2) -- (e1),
 			(f1) -- [bend left=30] (g) -- [bend left=30] (f2),
-			(g) -- [photon, edge label=$\mathcal{U}^{\textbf{q}}_{\substack{\text{ph};\mathfrak{cd34}\\\sigma_1\sigma'}}$] (h),
-			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$] (i2) -- [fermion] (h) -- [fermion] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$] (j1)
+			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$] (i2) -- [fermion, gray] (h) -- [fermion, gray] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$] (j1)
 		};	
 	\end{feynman}
 \end{tikzpicture}

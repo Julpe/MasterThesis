@@ -24,6 +24,9 @@
 		\vertex[right=of b] (c);
 		\vertex[above=of b] (b1);
 		
+		\vertex (u) at ($(b1)!0.5!(b)$);
+		\node[right=0.1em of u] {$\mathcal{U}^{\textbf{q}=0}_{\mathfrak{1234}}$};
+		
 		\def\r{0.3}
 		
 		\path (b1)--++(90:\r) coordinate (A);
@@ -44,6 +47,9 @@
 		\vertex[right=of a] (b);
 		\vertex[right=of b] (c);
 		\vertex[right=of c] (d);
+		\vertex (u) at ($(b)!0.5!(c)$);
+		
+		\node[above=0.45cm of u] {$\mathcal{U}^{\textbf{q}}_{\mathfrak{1432}}$};
 		
 		\diagram* {
 			(a) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b),
@@ -79,7 +85,7 @@
 			(c1) -- (d1) -- (d2) -- (c2) -- (c1),	
 			(c1) -- [fermion, bend right=30] (b3),
 			(b3) -- [fermion] (c2),
-			(b1) -- [fermion, in=135, out=90] (d1),
+			(b1) -- [fermion, in=150, out=75] (d1),
 		};
 	\end{feynman}
 \end{tikzpicture}
