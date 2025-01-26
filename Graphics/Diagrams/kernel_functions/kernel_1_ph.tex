@@ -37,20 +37,20 @@
 		\vertex[right=of i1] (j1);
 		\vertex[right=of i2] (j2);
 		
-		\vertex (u1) at ($(c)!0.5!(d)$) {$\mathcal{U}^{\textbf{q}(-\textbf{k}_1)}_{\substack{\text{ph};\mathfrak{12ab}\\\sigma\sigma_1}}$};
-		\vertex (u2) at ($(g)!0.5!(h)$) {$\mathcal{U}^{\textbf{q}\textbf{k}_2}_{\substack{\text{ph};\mathfrak{cd34}\\\sigma_2\sigma'}}$};
+		\vertex (u1) at ($(c)!0.5!(d)$) {$\mathcal{U}^{\textbf{q}(-\textbf{k}_1)}_{\substack{\mathfrak{12ab}\\\sigma\sigma_1}}$};
+		\vertex (u2) at ($(g)!0.5!(h)$) {$\mathcal{U}^{\textbf{q}\textbf{k}_2}_{\substack{\mathfrak{cd34}\\\sigma_2\sigma'}}$};
 		
 		\draw (u1) circle (0.75);
 		\draw (u2) circle (0.75);
 		
-		\node at ($(e1)!0.5!(f2)$) {$\chi^{\q\k_1\k_2}_{\substack{\text{ph};\mathfrak{badc}\\\sigma_1\sigma_2}}$};
+		\node at ($(e1)!0.5!(f2)$) {$\chi^{\q\k_1\k_2}_{\substack{\mathfrak{badc}\\\sigma_1\sigma_2}}$};
 		
 		\diagram* {
-			(a1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$] (b1) -- [fermion, gray] (c) -- [fermion, gray] (b2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$] (a2),
+			(a1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$, text=black] (b1) -- [fermion, gray] (c) -- [fermion, gray] (b2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$, text=black] (a2),
 			(e2) -- [bend left=30] (d) -- [bend left=30] (e1),
 			(e1) -- (f1) -- (f2) -- (e2) -- (e1),
 			(f1) -- [bend left=30] (g) -- [bend left=30] (f2),
-			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$] (i2) -- [fermion, gray] (h) -- [fermion, gray] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$] (j1)
+			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$, text=black] (i2) -- [fermion, gray] (h) -- [fermion, gray] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$, text=black] (j1)
 		};	
 	\end{feynman}
 \end{tikzpicture}

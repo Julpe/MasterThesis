@@ -33,17 +33,17 @@
 		\vertex[left=of e1] (d1);
 		\vertex[left=of e2] (d2); 
 		
-		\node at ($(e1)!0.5!(f2)$) {$F^{\q\k\k_1}_{\substack{\text{ph};\mathfrak{12ab}\\\sigma\sigma_1}}$};
-		\node (u1) at ($(g)!0.5!(h)$) {$\mathcal{U}^{\textbf{q}\textbf{k}_1}_{\substack{\text{ph};\mathfrak{ba34}\\\sigma_1\sigma'}}$};
+		\node at ($(e1)!0.5!(f2)$) {$F^{\q\k\k_1}_{\substack{\mathfrak{12ab}\\\sigma\sigma_1}}$};
+		\node (u1) at ($(g)!0.5!(h)$) {$\mathcal{U}^{\textbf{q}\textbf{k}_1}_{\substack{\mathfrak{ba34}\\\sigma_1\sigma'}}$};
 		
 		\draw (u1) circle (0.75);		
 		
 		\diagram* {
 			(e1) -- (f1) -- (f2) -- (e2) -- (e1),
 			(f1) -- [fermion, bend left=30] (g) -- [fermion, bend left=30] (f2),
-			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$] (i2) -- [fermion, gray] (h) -- [fermion, gray] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$] (j1),
-			(d1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$] (e1),
-			(e2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$] (d2),
+			(j2) -- [gray, fermion, edge label'=$\sigma';\mathfrak{3}$, text=black] (i2) -- [fermion, gray] (h) -- [fermion, gray] (i1) -- [gray, fermion,edge label'=$\sigma';\mathfrak{4}$, text=black] (j1),
+			(d1) -- [gray, fermion, edge label'=$\sigma;\mathfrak{1}$, text=black] (e1),
+			(e2) -- [gray, fermion, edge label'=$\sigma;\mathfrak{2}$, text=black] (d2),
 		};
 	\end{feynman}
 \end{tikzpicture}

@@ -41,10 +41,10 @@
 	
 	\diagram* {
 		(b1) -- (c1) -- (c2) -- (b2) -- (b1),
-		(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b1),
-		(b2) -- [fermion, gray, edge label'=$\kp;\mathfrak{2}$] (a2),
-		(d2) -- [fermion, gray, edge label'=$\kp-\q;\mathfrak{3}$] (c2),
-		(c1) -- [fermion, gray, edge label'=$\k-\q;\mathfrak{4}$] (d1),
+		(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$, text=black] (b1),
+		(b2) -- [fermion, gray, edge label'=$\kp;\mathfrak{2}$, text=black] (a2),
+		(d2) -- [fermion, gray, edge label'=$\kp-\q;\mathfrak{3}$, text=black] (c2),
+		(c1) -- [fermion, gray, edge label'=$\k-\q;\mathfrak{4}$, text=black] (d1),
 	};
 \end{feynman}
 \end{tikzpicture}
@@ -66,10 +66,10 @@
 	
 	\diagram* {
 		(b1) -- (c1) -- (c2) -- (b2) -- (b1),
-		(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b1),
-		(b2) -- [fermion, gray, edge label'=$\kp;\mathfrak{2}$] (a2),
-		(d2) -- [fermion, gray, edge label'=$\kp-\q;\mathfrak{3}$] (c2),
-		(c1) -- [fermion, gray, edge label'=$\k-\q;\mathfrak{4}$] (d1),
+		(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$, text=black] (b1),
+		(b2) -- [fermion, gray, edge label'=$\kp;\mathfrak{2}$, text=black] (a2),
+		(d2) -- [fermion, gray, edge label'=$\kp-\q;\mathfrak{3}$, text=black] (c2),
+		(c1) -- [fermion, gray, edge label'=$\k-\q;\mathfrak{4}$, text=black] (d1),
 	};
 \end{feynman}
 \end{tikzpicture}
@@ -95,14 +95,14 @@
 	\node (content) at ($(b3)!0.5!(c4)$) {$F^{\q\k_1\kp}_{\phbar;\mathfrak{dc34}}$};	
 	
 	\diagram* {
-		(a1) -- [gray, fermion, edge label'=$\k;\mathfrak{1}$] (b1),
-		(c1) -- [gray, fermion, edge label'=$\k-\q;\mathfrak{4}$] (d1),
+		(a1) -- [gray, fermion, edge label'=$\k;\mathfrak{1}$, text=black] (b1),
+		(c1) -- [gray, fermion, edge label'=$\k-\q;\mathfrak{4}$, text=black] (d1),
 		(b1) -- (c1) -- (c2) -- (b2) -- (b1),
 		(b3) -- (c3) -- (c4) -- (b4) -- (b3),
 		(b2) -- [fermion] (b3),
 		(c3) -- [fermion] (c2),
-		(d4) -- [gray, fermion, edge label'=$\kp-q;\mathfrak{3}$] (c4),
-		(b4) -- [gray, fermion, edge label'=$\kp;\mathfrak{2}$] (a4),
+		(d4) -- [gray, fermion, edge label'=$\kp-q;\mathfrak{3}$, text=black] (c4),
+		(b4) -- [gray, fermion, edge label'=$\kp;\mathfrak{2}$, text=black] (a4),
 	};
 \end{feynman}
 \end{tikzpicture}
