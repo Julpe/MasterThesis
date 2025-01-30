@@ -354,22 +354,22 @@ The simplest quantity to describe in terms of their asymptotics is the fully irr
 \end{align}
 where $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ is the non-local Coulomb interaction, written in crossing-symmetric notation
 \begin{align}\label{eq:crossing_symmetric_uq}
-	 \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}=\underbrace{U_{\mathfrak{1234}}+V^{\vv{q}}_{\mathfrak{1234}}}_{\mathcal{U}^{\vv{q}}_{\mathfrak{1234}}}-\delta_{\ss'}\big (\underbrace{U_{\mathfrak{1432}}+V^{\vv{k}-\vv{k}'}_{\mathfrak{1432}}}_{\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}}\big ),
+	 \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}=\frac{1}{\beta^2}\Big[\underbrace{U_{\mathfrak{1234}}+V^{\vv{q}}_{\mathfrak{1234}}}_{\mathcal{U}^{\vv{q}}_{\mathfrak{1234}}}-\delta_{\ss'}\big (\underbrace{U_{\mathfrak{1432}}+V^{\vv{k}-\vv{k}'}_{\mathfrak{1432}}}_{\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}}\big )\Big],
 \end{align}
 containing the purely local interaction $U$ and the purely non-local interaction $V$. \eqref{eq:crossing_symmetric_uq} is diagrammatically displayed in \figref{fig:bare_vertex_crossing_symmetric}.
 \begin{figure}[ht!]
 	\centering
 	\includestandalone[scale=1]{../../Graphics/Diagrams/bare_vertex_crossing_symmetric/bare_vertex_crossing_symmetric}
-	\caption{Crossing-symmetric interaction, see \eqref{eq:crossitng_symmetric_uq}.}
+	\caption{Crossing-symmetric interaction, modulo a factor $\frac{1}{\beta^2}$, see \eqref{eq:crossing_symmetric_uq}.}
 	\label{fig:bare_vertex_crossing_symmetric}
 \end{figure}
 Constructing $\dens,\magn,\sing$ and $\trip$ combinations of \eqref{eq:crossing_symmetric_uq} is useful for future calculations,
 \begin{subequations}
 \begin{align}
-	\mathcal{U}^{\vv{qkk}'}_{\dens;\mathfrak{1234}}&=2\,\mathcal{U}^{\vv{q}}_{\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}},\\
-	\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}}&=-\,\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}},\\
-	\mathcal{U}^{\vv{qkk}'}_{\sing;\mathfrak{1234}}&=\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}+\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\qquad\text{and}\\
-	\mathcal{U}^{\vv{qkk}'}_{\trip;\mathfrak{1234}}&=\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}-\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}.
+	\mathcal{U}^{\vv{qkk}'}_{\dens;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [2\,\mathcal{U}^{\vv{q}}_{\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\right ],\\
+	\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}}&=-\frac{1}{\beta^2}\,\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}},\\
+	\mathcal{U}^{\vv{qkk}'}_{\sing;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}+\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\right ]\qquad\text{and}\\
+	\mathcal{U}^{\vv{qkk}'}_{\trip;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}-\tilde{\mathcal{U}}^{\vv{k}-\vv{k}'}_{\mathfrak{1234}}\right ].
 \end{align}
 \end{subequations}
 Next, we begin examining the diagrams contributing to $\Phi_{\r}$. A smart choice introduced in Ref. \cite{high-freq asympt} is to classify these diagrams in each channel further into three categories:
@@ -388,11 +388,15 @@ This composition is \textit{per se} exact. However, to take advantage of this fo
 \end{align}
 serves as a valid expression for the high-frequency regime of $\Phi_{\r}$ and becomes exact for $\nu,\nu'\to\infty$ \cite{high-freq asympt}. As we can see above, the quantities on the right hand side of \eqref{eq:asympt_phi_r} only depend on two Matsubara frequencies instead of three, reducing the numerical complexity and memory usage for $\Phi_{\r}$ significantly. Using these explicit asymptotics results in a tremendous improvement of numerical results over a simple truncation in $\Phi_{\r}$ for high frequencies \cite{high-freq asympt}. The kernel functions needed to calculate the reducible diagrams can be obtained by \cite{towards ab initio dga, josef DA, pudleiner paper}
 \begin{align}
- 	\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}&=\!\!\!\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2;\sigma_1\sigma_2}} \!\!\!\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\mathfrak{12ab};\ss_1}\chi^{\q\k_1\k_2}_{\mathfrak{badc};\sigma_1\sigma_2}\mathcal{U}^{\vv{q}\vv{k}_2}_{\mathfrak{cd34};\sigma_2\sigma'},\label{eq:kernel_1}\\
- 	\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}&=\!\!\!\sum_{\substack{\mathfrak{abcd};\k_1\k_2\\\sigma_1\sigma_2\sigma_3\sigma_4}} \!\!\!\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\substack{\mathfrak{1b3a}\\\ss_2\sigma'\sigma_1}}\chi^{\q\k_1\k_2}_{\substack{\mathfrak{acbd}\\\sigma_1\sigma_3\sigma_2\sigma_4}}\mathcal{U}^{\vv{q}\vv{k}_2}_{\substack{\mathfrak{d2c4}\\\sigma_4\sigma\sigma_3\sigma'}},\label{eq:kernel_1_pp}\\
+ 	\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}&=\!\!\!\sum_{\substack{\mathfrak{abcd};\k_1\k_2\\\sigma_1\sigma_2}} \!\!\!\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\mathfrak{12ab};\ss_1}\chi^{\q\k_1\k_2}_{\mathfrak{badc};\sigma_1\sigma_2}\mathcal{U}^{\vv{q}\vv{k}_2}_{\mathfrak{cd34};\sigma_2\sigma'},\label{eq:kernel_1}\\
+ 	\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}&=\frac14\!\!\!\sum_{\substack{\mathfrak{abcd};\k_1\k_2\\\sigma_1\sigma_2\sigma_3\sigma_4}} \!\!\!\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\substack{\mathfrak{1b3a}\\\ss_2\sigma'\sigma_1}}\chi^{\q\k_1\k_2}_{\substack{\mathfrak{acbd}\\\sigma_1\sigma_3\sigma_2\sigma_4}}\mathcal{U}^{\vv{q}\vv{k}_2}_{\substack{\mathfrak{d2c4}\\\sigma_4\sigma\sigma_3\sigma'}},\label{eq:kernel_1_pp}\\
 \begin{split}\label{eq:kernel_2}
-	\mathcal{K}^{(2);\q\k}_{\ph;\mathfrak{1234};\ss'}&=\sum_{\substack{\mathfrak{ab}\\\k_1;\sigma_1}} F^{\q\k\k_1}_{\mathfrak{12ab};\ss_1}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}\\
-	&=-\sum_{\substack{\mathfrak{ab}\\\k_1;\sigma_1}} \frac{\chi^{\q\k\k_1}_{\mathfrak{cdab};\ss_1}}{G^{\k}_{\mathfrak{c1}}G^{\k-\q}_{\mathfrak{2d}}}\,\mathcal{U}^{\vv{qk}_1}_{\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}
+	\mathcal{K}^{(2);\q\k}_{\ph;\mathfrak{1234};\ss'}&=\sum_{\substack{\mathfrak{ab};\k_1\\\sigma_1}} F^{\q\k\k_1}_{\mathfrak{12ab};\ss_1}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}\\
+	&=-\sum_{\substack{\mathfrak{ab};\k_1\\\sigma_1}} \frac{\chi^{\q\k\k_1}_{\mathfrak{cdab};\ss_1}}{G^{\k}_{\mathfrak{c1}}G^{\k-\q}_{\mathfrak{2d}}}\,\mathcal{U}^{\vv{qk}_1}_{\mathfrak{ba34};\sigma_1\sigma'}-\mathcal{K}^{(1);\q}_{\ph;\mathfrak{1234};\ss'}
+\end{split}\\
+\begin{split}\label{eq:kernel_2_pp}
+	\mathcal{K}^{(2);\q\k}_{\pp;\mathfrak{1234};\ss'}&=\frac12\!\!\!\sum_{\substack{\mathfrak{ab};\k_1\\\sigma_1\sigma_2\sigma_3\sigma_4}} \!\!\!F^{\q\k\k_1}_{\substack{\pp;\mathfrak{1a3b}\\\sigma\sigma_1\sigma'\sigma_2}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\substack{\mathfrak{b2a4}\\\sigma_2\sigma\sigma_1\sigma'}}-\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}\\
+	&=-\frac12\!\!\!\sum_{\substack{\mathfrak{abcd};\k_1\\\sigma_1\sigma_2\sigma_3\sigma_4}} \frac{\chi^{\q\k\k_1}_{\substack{\pp;\mathfrak{cadb}\\\sigma\sigma_1\sigma'\sigma_2}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{qk}_1}_{\substack{\mathfrak{b2a4}\\\sigma_2\sigma\sigma_1\sigma'}}-\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}
 \end{split}
 \end{align}
 where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to account for double-counting of diagrams and $\mathcal{U}^{\vv{qk}}_{\mathfrak{1234};\ss'}$ is obtained from \eqref{eq:crossing_symmetric_uq} by setting $\vv{k}'=\vv{0}$. Both kernel functions are displayed diagrammatically for the ph-channel in \figref{fig:kernel_functions}.
@@ -404,7 +408,7 @@ where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to acco
   \label{fig:kernel_functions}
 \end{figure}
 The density and magnetic contributions to the kernel functions read
-\begin{subequations}
+\begin{subequations}\label{eq:kernel_functions_dens_magn}
 \begin{align}
 	\mathcal{K}^{(1);\q}_{\dens;\mathfrak{1234}}&=\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\dens;\mathfrak{12ab}} \chi^{\q\k_1\k_2}_{\dens;\mathfrak{badc}} \mathcal{U}^{\vv{qk}_2}_{\dens;\mathfrak{cd34}},\\
 	\mathcal{K}^{(1);\q}_{\magn;\mathfrak{1234}}&=\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\magn;\mathfrak{12ab}} \chi^{\q\k_1\k_2}_{\magn;\mathfrak{badc}} \mathcal{U}^{\vv{qk}_2}_{\magn;\mathfrak{cd34}},\\
@@ -419,17 +423,17 @@ The density and magnetic contributions to the kernel functions read
 \end{align}
 \end{subequations}
 The $\sing/\trip$ combinations can be constructed analogously for the pp-channel (written in pp frequency notation):
-\begin{subequations}
+\begin{subequations}\label{eq:kernel_functions_sing_trip}
 \begin{align}
-	\mathcal{K}^{(1);\q}_{\sing;\mathfrak{1234}}&=\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\sing;\mathfrak{1b3a}} \chi^{\q\k_1\k_2}_{\sing;\mathfrak{acbd}} \mathcal{U}^{\vv{q}\vv{k}_2}_{\sing;\mathfrak{d2c4}},\\
-	\mathcal{K}^{(1);\q}_{\trip;\mathfrak{1234}}&=\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\trip;\mathfrak{1b3a}} \chi^{\q\k_1\k_2}_{\trip;\mathfrak{acbd}} \mathcal{U}^{\vv{q}\vv{k}_2}_{\trip;\mathfrak{d2c4}},\\
+	\mathcal{K}^{(1);\q}_{\sing;\mathfrak{1234}}&=\frac14\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\sing;\mathfrak{1b3a}} \chi^{\q\k_1\k_2}_{\sing;\mathfrak{acbd}} \mathcal{U}^{\vv{q}\vv{k}_2}_{\sing;\mathfrak{d2c4}},\\
+	\mathcal{K}^{(1);\q}_{\trip;\mathfrak{1234}}&=\frac14\sum_{\substack{\mathfrak{abcd}\\\k_1\k_2}} \mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\trip;\mathfrak{1b3a}} \chi^{\q\k_1\k_2}_{\trip;\mathfrak{acbd}} \mathcal{U}^{\vv{q}\vv{k}_2}_{\trip;\mathfrak{d2c4}},\\
 \begin{split}
-	\mathcal{K}^{(2);\q\k}_{\sing;\mathfrak{1234}}&=\sum_{\mathfrak{ab};\k_1} F^{\q\k\k_1}_{\sing;\mathfrak{1a3b}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\sing;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\sing;\mathfrak{1234}}\\
-	&=-\sum_{\mathfrak{abcd};\k_1} \frac{\chi^{\q\k\k_1}_{\sing;\mathfrak{cadb}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{qk}_1}_{\sing;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\sing;\mathfrak{1234}}\qquad\text{and}
+	\mathcal{K}^{(2);\q\k}_{\sing;\mathfrak{1234}}&=\frac12\sum_{\mathfrak{ab};\k_1} F^{\q\k\k_1}_{\sing;\mathfrak{1a3b}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\sing;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\sing;\mathfrak{1234}}\\
+	&=-\frac12\sum_{\mathfrak{abcd};\k_1} \frac{\chi^{\q\k\k_1}_{\sing;\mathfrak{cadb}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{qk}_1}_{\sing;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\sing;\mathfrak{1234}}\qquad\text{and}
 \end{split}\\
 \begin{split}
-	\mathcal{K}^{(2);\q\k}_{\trip;\mathfrak{1234}}&=\sum_{\mathfrak{ab};\k_1} F^{\q\k\k_1}_{\trip;\mathfrak{1a3b}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\trip;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\trip;\mathfrak{1234}}\\
-	&=-\sum_{\mathfrak{abcd};\k_1} \frac{\chi^{\q\k\k_1}_{\trip;\mathfrak{cadb}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{qk}_1}_{\trip;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\trip;\mathfrak{1234}}.
+	\mathcal{K}^{(2);\q\k}_{\trip;\mathfrak{1234}}&=\frac12\sum_{\mathfrak{ab};\k_1} F^{\q\k\k_1}_{\trip;\mathfrak{1a3b}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{qk}_1}_{\trip;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\trip;\mathfrak{1234}}\\
+	&=-\frac12\sum_{\mathfrak{abcd};\k_1} \frac{\chi^{\q\k\k_1}_{\trip;\mathfrak{cadb}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{qk}_1}_{\trip;\mathfrak{b2a4}}-\mathcal{K}^{(1);\q}_{\trip;\mathfrak{1234}}.
 \end{split}
 \end{align}	
 \end{subequations}
@@ -469,11 +473,11 @@ where we used \eqref{eq:phi_conversion_ph_bar_to_ph} to transform the $\phbar$-c
 \begin{equation}
 \begin{alignedat}{3}
 	\Gamma^{\asympt;\q\k\kp}_{\magn;\mathfrak{1234}}&=\;\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}} &&-\frac12\Phi^{\asympt;(\kp-\k)(\kp-\q)\kp}_{\dens;\mathfrak{3214}}&&+\frac12\Phi^{\asympt;(\kp-\k)(\kp-\q)\kp}_{\magn;\mathfrak{3214}}\\
-	&&&-\frac12\Phi_{\sing;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp}&&+\frac12\Phi_{\trip;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp}.
+	&&&-\frac12\Phi_{\sing;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp}&&+\frac12\Phi_{\trip;\mathfrak{1234}}^{\asympt;(\k+\kp-\q)\k\kp},
 \end{alignedat}
 \end{equation}
 \end{subequations}
-The irreducible vertices in (reducibility-) channels $\phbar$ and $\pp$ and $\sing/\trip$ combinations can be constructed analogously.
+where the $\Phi_{\r;\mathfrak{1234}}^{\asympt;\q\k\kp}$ are given by the kernel functions of \eqref{eq:kernel_functions_dens_magn} and \eqref{eq:kernel_functions_sing_trip}. The irreducible vertices in channels $\phbar$ and $\pp$ in $\magn/\dens$ and $\sing/\trip$ combinations can be constructed analogously.
 
 \section{Bethe-Salpeter equation}\label{sec:bethe_salpeter}
 
