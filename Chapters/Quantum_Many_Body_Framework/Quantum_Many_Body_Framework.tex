@@ -134,7 +134,7 @@ The self-energy can be obtained by simply inverting \eqref{eq:dyson_eq},
 \end{align}
 Thus, perturbation theory can be done in two distinct ways: the simpler approach is to determine the Green's function directly, for example, up to order $n$, where the second method is to compute the self-energy up to order $n$ and insert its expression in the Dyson equation \eqref{eq:dyson_eq}. This gives an approximate Green's function containing each order of perturbation theory with only a subset of all possible diagrams. As a result, \eqref{eq:dyson_eq} represents a way to sum up perturbation theory and is actually more relevant from a physical standpoint. Indeed, many methods leverage the usefulness of this approach, for example the dynamical mean-field theory or the dynamical vertex approximation, as we will see later.
 
-Let us add some physical background to the self-energy in the following. $\Sigma$ represents the effects of the interaction on the single electron propagators. The real and imaginary part of the self-energy have significant impact on the physical properties of the system. The real part of the self-energy contributes to an energy shift of the electronic states of the single-particle energy levels $\epsilon(\vv{k})$ due to interactions. In contrast, the imaginary part of the self-energy is related to the decay or lifetime of quasiparticles and introduces a spectral broadening or damping of the electronic states, indicating how long an excitation or quasiparticle persists before interacting with other excitations or scattering events. A larger imaginary part implies a shorter lifetime and stronger interactions. The first order derivative in frequency, $\dpd{\Sigma^{\k}}{\nu}$, contributes to an effective renormalization of the bare electron mass. It also leads to a redistribution of spectral weight in the one-particle spectral function, which provides information about the distribution of energy levels available for excitations. A broader spectral function, whose broadening is controlled by the imaginary part of the self-energy, typically indicates stronger interactions and a more correlated system.
+Let us add some physical background to the self-energy in the following. $\Sigma$ represents the effects of the interaction on the single electron propagators. The real and imaginary part of the self-energy have significant impact on the physical properties of the system. The real part of the self-energy contributes to an energy shift of the electronic states of the single-particle energy levels $\varepsilon(\vv{k})$ due to interactions. In contrast, the imaginary part of the self-energy is related to the decay or lifetime of quasiparticles and introduces a spectral broadening or damping of the electronic states, indicating how long an excitation or quasiparticle persists before interacting with other excitations or scattering events. A larger imaginary part implies a shorter lifetime and stronger interactions. The first order derivative in frequency, $\dpd{\Sigma^{\k}}{\nu}$, contributes to an effective renormalization of the bare electron mass. It also leads to a redistribution of spectral weight in the one-particle spectral function, which provides information about the distribution of energy levels available for excitations. A broader spectral function, whose broadening is controlled by the imaginary part of the self-energy, typically indicates stronger interactions and a more correlated system.
 
 \section{Two-particle Green's functions}
 
@@ -594,6 +594,16 @@ Some remarks for the calculation of the irreducible vertex $\bm\Gamma^{\l\l}$ in
   	\label{fig:frequency_boxes}
 \end{figure}
 The correction terms are taken in the (much) larger frequency range $\mathcal{I}_{\h}=[\mmin, \mmax]$, which is chosen to be of appropriate size such that the equations converge with respect to the size of $\mathcal{I}_{\h}$.
+
+\section{Schwinger-Dyson equation}
+
+To fill the missing gap in our (almost) complete theory of correlated electrons on a lattice, we have to consider the calculation of the self-energy. This can be done by the Schwinger-Dyson equation, which is an equation of motion \cite{rohringer thesis} for the self-energy, which connects the self-energy to the full vertex via\footnote{In its most general form, the self-energy also depends on the particle spin $\sigma$. In the SU(2)-symmetric case however we can omit the spin label, since $\Sigma_{\uparrow}=\Sigma_{\downarrow}=\Sigma$.} \cite{anna galler thesis, ab initio dga}
+\begin{align}
+\begin{split}
+	\Sigma_{\mathfrak{12}}^{\k}&=\Sigma_{\mathfrak{12}}^{\text{HF};\vv{k}}+\Sigma_{\mathfrak{12}}^{\text{conn};\k}\\
+	&=\underbrace{2\sum_{\mathfrak{ab},\vv{k}'}\mathcal{U}^{\vv{q}=\vv{0}}_{\mathfrak{12ab}}n_{\mathfrak{ba}}^{\vv{k}'}-\sum_{\mathfrak{ab},\vv{q}}\mathcal{U}^{\vv{q}}_{\mathfrak{1ba2}}n_{\mathfrak{ba}}^{\vv{k}-\vv{q}}}_{\Sigma_{\mathfrak{12}}^{\text{HF};\vv{k}}}
+\end{split}
+\end{align} 
 
 
 
