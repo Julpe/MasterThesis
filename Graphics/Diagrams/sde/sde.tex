@@ -65,27 +65,27 @@
 \begin{tikzpicture}[baseline=(current bounding box.base)]
 	\begin{feynman}
 		\vertex (a1);
-		\vertex (b1) at ($(a1)+(1,0)$);
-		\vertex (b2) at ($(b1)+(0.5,0.5)$);
-		\vertex (b4) at ($(b1)+(0.5,-0.5)$);
+		\vertex[right=0.75cm of a1] (a2);
+		\vertex (b1) at ($(a2)+(0.5,0.75)$);
 		\vertex[right=1cm of b1] (b3);
-		\vertex (c1) at ($(b3)+(1,1.5)$);
-		\vertex[below=of c1] (c2);
+		\vertex (c2) at ($(b3)+(1,-0.75)$);
+		\vertex[above=of c2] (c1);
 		\vertex[right=of c1] (d1);
 		\vertex[below=of d1] (d2);
 		\vertex[right=of d2] (e1);
+		
+		\node (u) at ($(b1)!0.5!(b3)$) {$\mathcal{U}^{\q\k\kp}$};
+		\draw (u) circle (0.5);
 
-		\node at ($(c1)!0.5!(d2)$) {$F^{\q\k\kp}_{\mathfrak{dc23}}$};	
-		\node at ($(b1)!0.5!(b3)$) {$\Gamma^{0}$};
+		\node at ($(c1)!0.5!(d2)$) {$F^{\q\k\kp}_{\mathfrak{dc23}}$};
 		
 		\diagram* {
-			(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b1),
-			(d2) -- [fermion, gray, edge label'=$\k;\mathfrak{2}$] (e1),
-			(b1) -- (b2) -- (b3) -- (b4) -- (b1),	
+			(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (a2) -- [fermion, gray] (b1),
+			(d2) -- [fermion, gray, edge label'=$\k;\mathfrak{2}$] (e1),	
 			(c1) -- (d1) -- (d2) -- (c2) -- (c1),	
 			(c1) -- [fermion, bend right=30] (b3),
-			(b3) -- [fermion] (c2),
-			(b1) -- [fermion, in=150, out=75] (d1),
+			(b3) -- [fermion, bend right=30] (c2),
+			(b1) -- [fermion, in=140, out=90] (d1),
 		};
 	\end{feynman}
 \end{tikzpicture}
