@@ -494,7 +494,7 @@ In the section above we have specified $\Gamma_{\r;\mathfrak{1234}}^{\q\k\kp}$ a
 \end{split}
 \end{align}
 \end{subequations}
-Here and in the following we will denote the channel reducibility and the corresponding frequency notation only by a single subscript. By combining \eqref{eq:full_vertex_gamma_phi} and \eqref{eq:ladder_phi_gamma}, one can obtain the Bethe-Salpeter equation (BSE) in all three channels \cite{a relativistic equation for bound-state, nambu paper, rohringer thesis maybe},
+By combining \eqref{eq:full_vertex_gamma_phi} and \eqref{eq:ladder_phi_gamma}, one can obtain the Bethe-Salpeter equation (BSE) in all three channels \cite{a relativistic equation for bound-state, nambu paper, rohringer thesis maybe},
 \begin{subequations}\label{eq:bethe_salpeter_vertex_three_channels}
 \begin{align}
 	F_{\mathfrak{1234}}^{\q\k\kp}&=\Gamma_{\ph;\mathfrak{1234}}^{\q\k\kp}-\frac1\beta\sum_{\k_1\k_2;\mathfrak{abcd}} \Gamma_{\ph;\mathfrak{12ba}}^{\q\k\k_1} \chi_{0;\mathfrak{abcd}}^{\q\k_1\k_2} F_{\ph;\mathfrak{dc34}}^{\q\k_2\kp}\\
@@ -508,7 +508,7 @@ where we have expressed the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$ in terms
 \begin{subequations}\label{eq:bethe_salpeter_susc}
 \begin{align}
 	\chi^{\q\k\kp}_{\mathfrak{1234}}&=\chi^{\q\k\kp}_{0;\mathfrak{1234}}-\frac{1}{\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{0;\mathfrak{12ba}} \Gamma^{\q\k_1\k_2}_{\ph;\mathfrak{abcd}} \chi^{\q\k_2\kp}_{\ph;\mathfrak{dc34}}\\
-	&=\chi^{\q\k\kp}_{0;\mathfrak{1234}}-\frac{1}{\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{0;\mathfrak{12ba}} \Gamma^{\q\k_1\k_2}_{\phbar;\mathfrak{abcd}} \chi^{\q\k_2\kp}_{\phbar;\mathfrak{dc34}}\\
+	&=\chi^{\q\k\kp}_{0;\mathfrak{1234}}+\frac{1}{\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{0;\mathfrak{12ba}} \Gamma^{\q\k_1\k_2}_{\phbar;\mathfrak{abcd}} \chi^{\q\k_2\kp}_{\phbar;\mathfrak{dc34}}\\
 	&=\chi^{\q\k\kp}_{0;\mathfrak{1234}}-\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{0;\mathfrak{1c3a}}\Gamma^{\q\k_1\k_2}_{\pp;\mathfrak{abcd}}\left (\chi^{\q\k_2\kp}_{\pp;\mathfrak{d2b4}}+\chi^{\q\k_2\kp}_{0;\mathfrak{d2b4}}\right ).
 \end{align}
 \end{subequations}
@@ -599,8 +599,8 @@ The correction terms are taken in the (much) larger frequency range $\mathcal{I}
 
 To fill the missing gap in our (almost) complete theory of correlated electrons on a lattice, we have to consider the calculation of the self-energy which enters the many-body Green's function through \eqref{eq:dyson_eq}. This is done by the Schwinger-Dyson equation, which is derived as an equation of motion for the self-energy \cite{rohringer thesis} and connects the self-energy to the full vertex via\footnote{In its most general form, the self-energy $\Sigma$ also depends on the particle spin $\sigma$. In the SU(2)-symmetric case however we can omit the spin label, since $\Sigma_{\uparrow}=\Sigma_{\downarrow}=\Sigma$.} \cite{anna galler thesis, ab initio dga}
 \begin{align*}
-	\Sigma_{\mathfrak{12}}^{\k}&=\Sigma_{\mathfrak{12}}^{\text{HF};\vv{k}}+\Sigma_{\mathfrak{12}}^{\text{conn};\k}\\
-	&=\!\underbrace{\sum_{\mathfrak{ab};\vv{k}'}\!\mathcal{U}^{\vv{q}=\vv{0}}_{\mathfrak{12ab}}n_{\mathfrak{ba}}^{\vv{k}'}-\sum_{\mathfrak{ab},\vv{q}}\mathcal{U}^{\vv{q}}_{\mathfrak{1ba2}}n_{\mathfrak{ba}}^{\vv{k}-\vv{q}}}_{\Sigma_{\mathfrak{12}}^{\text{HF};\vv{k}}}\underbrace{-\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\kp}}\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi_{0;\mathfrak{cbed}}^{\q\kp\kp}F_{\mathfrak{de2f}}^{\q\kp\k}G_{\mathfrak{af}}^{\k-\q}}_{\Sigma_{\mathfrak{12}}^{\text{conn};\k}}\numberthis\label{eq:sde},
+	\Sigma_{\mathfrak{12}}^{\k}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}+\Sigma_{\mathfrak{12}}^{\text{conn};\k}\\
+	&=\!\underbrace{2\sum_{\mathfrak{ab};\vv{k}'}\!\mathcal{U}^{\vv{q}=\vv{0}}_{\mathfrak{12ab}}n_{\mathfrak{ba}}^{\vv{k}'}-\sum_{\mathfrak{ab},\vv{q}}\mathcal{U}^{\vv{q}}_{\mathfrak{1ba2}}n_{\mathfrak{ba}}^{\vv{k}-\vv{q}}}_{\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}}\underbrace{-\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\kp}}\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi_{0;\mathfrak{cbed}}^{\q\kp\kp}F_{\mathfrak{de2f}}^{\q\kp\k}G_{\mathfrak{af}}^{\k-\q}}_{\Sigma_{\mathfrak{12}}^{\text{conn};\k}}\numberthis\label{eq:sde},
 \end{align*}
 where the first two sums in \eqref{eq:sde} are coined Hartree- and Fock-terms, respectively, and the third term is the vertex part and only contains connected diagrams. A visual representation of the Schwinger-Dyson equation can be seen in \figref{fig:sde}. 
 \begin{figure}[ht!]
@@ -732,16 +732,15 @@ We can combine these results in \eqref{eq:full_vertex_crossing_symmetric_dga} wh
 Within the approximations introduced above, the connected part of the self-energy (see \eqref{eq:sde} and below) loses the momentum-dependent contribution from the non-local bare interaction $V^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}$ and now reads
 \begin{align}\label{eq:sde_with_phbar}
 \begin{split}
-	\Sigma^{\k}_{\mathfrak{12}}&=\sum_{\mathfrak{ab};\vv{k}'}\!\mathcal{U}^{\vv{q}=\vv{0}}_{\mathfrak{12ab}}n_{\mathfrak{ba}}^{\vv{k}'}-\sum_{\mathfrak{ab},\vv{q}}\mathcal{U}^{\vv{q}}_{\mathfrak{1ba2}}n_{\mathfrak{ba}}^{\vv{k}-\vv{q}} -\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}} F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}\\
-	&\quad -\frac{1}{2\beta}\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\nl;\q\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\nl;\q\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]G_{\mathfrak{af}}^{\k-\q}.
+	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}} -\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\left [\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}} F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}}+\frac12\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\nl;\q\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\nl;\q\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]\right ]G_{\mathfrak{af}}^{\k-\q}.
 \end{split}
 \end{align}
-From the local part of this equation (c.f. last term in the first line of \eqref{eq:sde_with_phbar}) one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
+From the purely local part of this equation (c.f. first term in the brackets of \eqref{eq:sde_with_phbar}) one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
 \begin{align}
-	\Sigma_{\text{loc};U;\mathfrak{12}}^{\k}&=-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\left (\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}+\chi^{\omega\nu'\nu'}_{0;\mathfrak{cbed}}\right ) F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}\\
-	&=\Sigma_{DMFT;\mathfrak{12}}^{\nu}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}.
+	\Sigma_{\ph;U;\mathfrak{12}}^{\k}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\left (\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}+\chi^{\omega\nu'\nu'}_{0;\mathfrak{cbed}}\right ) F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}\\
+	&=\Sigma_{DMFT;\mathfrak{12}}^{\nu}+\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q},
 \end{align}
-We can take advantage of the momentum and frequency structure in the SDE above to simplify the numerical calculation of the self-energy. Therefore, we --- in analogy to \cite{ab initio dga} --- define three Hedin vertices
+where $\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}$ is the purely non-local Hartree-Fock term with the contributions from $V^{\vv{q}}_{\mathfrak{1234}}$, see \eqref{eq:sde}. We can take advantage of the momentum and frequency structure in the SDE above to simplify the numerical calculation of the self-energy. Therefore, we --- in analogy to \cite{ab initio dga} --- define three Hedin vertices
 \begin{align}\label{eq:three_leg_vertices_abinitio_dga}
 	\gamma_{\r;\mathfrak{1234}}^{\omega\nu}&=\sum_{\mathfrak{ab;\nu'}}\chi_{0;\mathfrak{12ab}}^{\omega\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu},\\
 	\gamma_{\r;\mathfrak{1234}}^{\q\nu}&=\sum_{\mathfrak{ab;\nu'}}\chi_{0;\mathfrak{12ab}}^{\nl;\q\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu}\qqand\\
@@ -757,7 +756,7 @@ The completely local Hedin vertex can straightforwardly be retrieved from DMFT. 
 where $\vec{\bm\unity}_{\mathfrak{1234}}=\delta_{\mathfrak{14}}\delta_{\mathfrak{23}}$, contrary to $\bm\unity$, which is an identity in grouped indices. Combining these expressions and simplifying it \cite{ab initio dga} yields the $\dga$ self-energy
 \begin{align}\label{eq:sde_abinitio_dga}
 \begin{split}
-	\bm\Sigma_{\text{D}\Gamma\text{A}}^{\k}&=\bm\Sigma_{\text{DMFT}}^{\nu}-\frac1\beta\sum_{\q}\left (\bm U + \bm V^{\vv{q}}-\frac{\tilde{\bm U}}{2}\right )\bm\eta_{\dens}^{\q}\bm G^{\k-\q}\\
+	\bm\Sigma_{\text{D}\Gamma\text{A}}^{\k}&=\bm\Sigma_{\text{DMFT}}^{\nu}+\bm\Sigma_{\text{HF}}^{\nl;\vv{k}}-\frac1\beta\sum_{\q}\left (\bm U + \bm V^{\vv{q}}-\frac{\tilde{\bm U}}{2}\right )\bm\eta_{\dens}^{\q}\bm G^{\k-\q}\\
 	&\qquad+\frac{3}{2\beta}\sum_{\q}\tilde{\bm U}\bm\eta_{\magn}^{q}\bm G^{\k-\q}-\frac1\beta\sum_{\q}\big (\bm V^{\vv{q}}\bm\gamma_{\dens}^{\omega}-\bm U\bm\gamma_{\dens}^{\q}\big )\bm G^{\k-\q}.
 \end{split}
 \end{align}
