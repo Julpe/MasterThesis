@@ -341,7 +341,7 @@ Note that expressions \eqref{eq:chi_dens} and \eqref{eq:chi_magn} are nothing mo
 
 \section{Vertex asymptotics}\label{sec:vertex_asymptotics}
 
-A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. We will see that the vertex - in the high-frequency regime - which originally depended on three independent frequency parameters can be treated as an object with only two frequency dimensions, thus drastically reducing the storage capacity of and ease of calculations including the vertex. But first, let us sketch the basic idea on how to tackle explicit asymptotic behaviour in vertex functions.
+A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. We will see that the vertex - in the high-frequency regime - which originally depended on three independent frequency parameters can be treated as an object with only two frequency dimensions, thus drastically reducing the storage capacity of and ease of calculations requiring the full vertex. But first, let us sketch the basic idea on how to tackle explicit asymptotic behaviour in vertex functions.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=\linewidth]{../../Graphics/vertex_asymptotics_paper.png}
@@ -620,7 +620,46 @@ The $\ph$ and $\phbar$ contributions of the connected part yield separately (in 
 	\Sigma^{\text{conn};\ph;\k}_{\phbar;\mathfrak{12}}&=-\frac{1}{2\beta}\sum_{\substack{\mathfrak{abcdef}\\\q\kp}}\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{a1bc}}\chi^{\q\kp\kp}_{0;\mathfrak{cbed}}\left [F^{(\kp-\k)(\kp-\q)\kp}_{\dens;\mathfrak{2edf}}+3 F^{(\kp-\k)(\kp-\q)\kp}_{\magn;\mathfrak{2edf}}\right ]G_{\mathfrak{af}}^{\k-\q}.
 \end{align}
 \end{subequations}
-The self-energy $\Sigma^{\k}_{\mathfrak{12}}$ does not have to fulfill any crossing-symmetry relation, hence we do not use $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ from \eqref{eq:crossing_symmetric_uq} here but rather the two terms with $\mathcal{U}$ and $\tilde{\mathcal{U}}$ separately. The total self-energy is now the sum of the Hartree-Fock contribution and the $\ph/\phbar$ terms. We want to note that the Schwinger-Dyson equation can be rewritten in terms of three-leg vertices (also commonly called Hedin-vertices) instead of four-point Green's functions, see \cite{hedin, krien boson exchange} to eliminate the need of calculating the full vertex $F$ via an inversion of the irreducible vertex $\Gamma$\footnote{In principle, one could retrieve the full vertex as $\bm F_{\r}^{\q}=\left [(\bm\Gamma_{\r}^{\q})^{-1}-\bm\chi_{0}^{\q}\right ]^{-1}$. However, as shown in Ref. \cite{schäfer nonperturbative}, the (local) irreducible vertex $\Gamma$ contains an infinite set of divergencies, hence inverting it is numerically unstable.}. This comes in favor of the dynamical vertex approximation which benefits from the three-leg vertex description when used with a so-called $\lambda$-correction. This is shown in a later section when the \say{ladder}-$\dga$ and other flavors of the dynamical vertex approximation are tackled. Since we have now assembled all necessary tools to describe the properties of correlated electrons on a lattice, let us introduce the $\dga$'s purely local predecessor: the dynamical mean-field theory (DMFT).
+The self-energy $\Sigma^{\k}_{\mathfrak{12}}$ does not have to fulfill any crossing-symmetry relation, hence we do not use $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ from \eqref{eq:crossing_symmetric_uq} here but rather the two terms with $\mathcal{U}$ and $\tilde{\mathcal{U}}$ separately. The total self-energy is now the sum of the Hartree-Fock contribution and the $\ph/\phbar$ terms. We want to note that the Schwinger-Dyson equation can be rewritten in terms of three-leg vertices (also commonly called Hedin-vertices) instead of four-point Green's functions, see \cite{hedin, krien boson exchange} to eliminate the need of calculating the full vertex $F$ via an inversion of the irreducible vertex $\Gamma$\footnote{In principle, one could retrieve the full vertex as $\bm F_{\r}^{\q}=\left [(\bm\Gamma_{\r}^{\q})^{-1}-\bm\chi_{0}^{\q}\right ]^{-1}$. However, as shown in Ref. \cite{schäfer nonperturbative}, the (local) irreducible vertex $\Gamma$ contains an infinite set of divergencies, hence inverting it is numerically unstable.}. This equivalent formulation is commonly called the Hedin form. In this form, the SDE can be rewritten in terms of suceptibilities. We start by rewriting the full vertex as a combination of susceptibilities
+\begin{align}
+	F^{\q\k\kp}_{\mathfrak{1234};\ss'}=\beta^2\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}-\sum_{\k\kp;\mathfrak{abcd}}\left (\chi_{0;\mathfrak{12ba}}^{\q\k\k}\right )^{-1} \chi_{\mathfrak{abcd};\ss'}^{\q\k\kp} \left (\chi_{0;\mathfrak{dc34}}^{\q\k\k}\right )^{-1}\right ]^{-1}.
+\end{align}
+Here and in the following, we will restrict ourselves to the $\ph$ channel reducibility and frequency notation if not stated otherwise. Next, we define the irreducible vertex as the first-order contribution - which is the bare Coulomb interaction in crossing-symmetric notation, see \eqref{eq:crossing_symmetric_uq} - and the rest,
+\begin{align}
+	\Gamma_{\mathfrak{1234};\ss'} = \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}+\delta\Gamma_{\mathfrak{1234};\ss'}.
+\end{align}
+It is then straightforward to define an auxiliary susceptibility (denoted by the asterisk $^*$)
+\begin{align}
+\begin{split}
+	\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\delta\Gamma_{\mathfrak{1234};\ss'}\right ]^{-1}\\
+	&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\left (\Gamma_{\mathfrak{1234};\ss'}-\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}\right )\right ]^{-1},
+\end{split}
+\end{align}
+with which we can rewrite the generalized susceptibility as
+\begin{align}\label{eq:bse_susceptibilities}
+	\chi_{\mathfrak{1234};\ss'}^{\q\k\kp}=\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}-\sum_{\k_1\k_2;\mathfrak{abcd}}\chi_{\mathfrak{12ba};\ss'}^{*;\q\k\k_1}\, \mathcal{U}^{\vv{qk}_1\vv{k}_2}_{\mathfrak{abcd};\ss'} \chi_{\mathfrak{dc34};\ss'}^{\q\k_2\kp}.
+\end{align}
+Previously, the BSE was formulated as a ladder with $\Gamma_{\mathfrak{1234}}^{\q\k\kp}$ and $\chi_{0;\mathfrak{1234}}^{\q\k\k}$ as building blocks. The rewritten BSE can now be understood as a ladder with $\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}$ and $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ as building blocks. Here, the auxiliary susceptibility can be seen as the irreducible part with respect to the bare Coulomb interaction, contrary to how $\Gamma_{\mathfrak{1234}}^{\q\k\kp}$ is the set of irreducible diagrams with respect to cutting two Green function lines (or a bare susceptibility $\chi_{0;\mathfrak{1234}}^{\q\k\k}$). Hence, this is commonly called interaction-reducibility \cite{krien single boson}. The BSE displayed in terms of susceptibilities can be seen in \figref{fig:bse_susceptibilities}.
+\begin{figure}[ht!]
+	\centering
+  	\includestandalone[width=\textwidth]{../../Graphics/Diagrams/bse_susceptibilities/bse_susceptibilities}
+  	\caption{Interaction-reducible form of the Schwinger-Dyson equation (\ref{eq:bse_susceptibilities}) with susceptibilities.}
+  	\label{fig:bse_susceptibilities}
+\end{figure}
+If one neglects the nonlocal $\phbar$ contribution from the bare Coulomb interaction, one can rewrite the following expression in terms of sums of susceptibilities, where after some algebra,
+\begin{align}
+	\sum_{\kp;\mathfrak{ab}}F_{\mathfrak{12ab};\ss'}^{\q\k\kp}\chi_{0;\mathfrak{ba34}}^{\q\kp\kp}=\beta\sum_{\mathfrak{abcd};\sigma_1}\gamma_{\mathfrak{12ab};\ss'}^{\q\k}\!\left (\unity_{\mathfrak{ba34}}^{\k\kp}-\mathcal{U}^{\vv{q}}_{\mathfrak{badc};\ss_1}\chi^{\q}_{\mathfrak{cd34};\sigma_1\sigma}\right ),
+\end{align}
+where the Fermi-Bose three-leg vertex $\gamma_{\mathfrak{1234};\ss'}^{\q\k}$ is defined as
+\begin{align}
+	\gamma_{\mathfrak{1234};\ss'}^{\q\k} = \beta \sum_{\k_1;\mathfrak{ab}}\left (\chi_{0;\mathfrak{12ab}}^{\q\k\k}\right )^{-1}\chi_{\mathfrak{ba34};\ss'}^{*;\q\k\k_1}.
+\end{align}
+This allows us to rewrite \eqref{eq:sde} as
+\begin{align}
+	\Sigma_{\mathfrak{12};\ss'}^{\k}=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}+\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh};\sigma_1}}\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\left [\gamma_{\mathfrak{cbed};\ss'}^{\q\k}\big (\unity_{\mathfrak{de2h}}^{\k\kp}-\mathcal{U}^{\vv{q}}_{\mathfrak{defg};\ss_1}\chi_{\mathfrak{gf2h};\sigma_1\sigma}^{\q}\big)\right ]G_{\mathfrak{ah}}^{\k-\q}
+\end{align}
+
+Since we have now assembled all necessary tools to describe the properties of correlated electrons on a lattice, let us introduce the $\dga$'s purely local predecessor: the dynamical mean-field theory (DMFT).
 
 \section{Dynamical mean-field theory}\label{sec:dmft}
 
@@ -693,11 +732,11 @@ In principle, it would be straightforward to retrieve the full vertex via $\bm F
 	\bm\Gamma_{\magn}^{\q}&=\frac{\bm F_{\magn}^{\omega}}{\bm\unity+\bm\chi_{0}^{\omega}\bm F_{\magn}^{\omega}},
 \end{align}
 \end{subequations}
-where $\bm\unity$ is an identity matrix in grouped index space. After some algebra, the full vertex in the density and magnetic spin combination read
+where $\bm\unity$ is an identity matrix in grouped index space. After some algebra, the full vertex in the density and magnetic spin combinations reads
 \begin{subequations}
 \begin{align}
 \begin{split}
-	\bm F_{\dens}^{\q}&=\left [\bm F_{\dens}^{\omega}+2\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\dens}^{\omega}-2\bm\chi_{0}^{\q}\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]^{-1}
+	\bm F_{\dens}^{\q}&=\big [\bm F_{\dens}^{\omega}+2\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\big ]\!\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\dens}^{\omega}-2\bm\chi_{0}^{\q}\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]^{-1}
 \end{split}\;\quad\text{and}\quad\\
 	\bm F_{\magn}^{\q}&=\bm F_{\magn}^{\omega}\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\magn}^{\omega}\right ]^{-1}.
 \end{align}
@@ -786,12 +825,12 @@ where $\Sigma^{\k}_{\text{dc};\mathfrak{12}}$, which is merely a double-counting
 \end{align}
 With the definition of the three-leg vertex from \eqref{eq:vrg}, we can write the upper equations as
 \begin{align}
-	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\substack{\q\nu';\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 \tilde{\mathcal{U}}_{\mathfrak{a1bc}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu'}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\mathcal{U}^{\vv{q}}_{\dens;\mathfrak{defg}}\chi^{\q}_{\dens;\mathfrak{gf2h}}\right )\nonumber\\
-	&\qquad\qquad\qquad\qquad\qquad-\frac32 \tilde{\mathcal{U}}_{\mathfrak{a1bc}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu'}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\mathcal{U}^{\vv{q}}_{\magn;\mathfrak{defg}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}}\nonumber\\
+	\Sigma^{\k}_{\dga;\mathfrak{12}}&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 \tilde{\mathcal{U}}_{\mathfrak{a1bc}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\mathcal{U}^{\vv{q}}_{\dens;\mathfrak{defg}}\chi^{\q}_{\dens;\mathfrak{gf2h}}\right )\nonumber\\
+	&\qquad\qquad\qquad\qquad\qquad-\frac32 \tilde{\mathcal{U}}_{\mathfrak{a1bc}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\mathcal{U}^{\vv{q}}_{\magn;\mathfrak{defg}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}}\nonumber\\
 \begin{split}
-	&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\substack{\q\nu';\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (U_{\mathfrak{a1bc}} + V^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 U_{\mathfrak{acb1}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu'}\times\\
-	&\qquad\qquad\qquad\qquad\qquad\times\Big (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\delta^{\nu'\nu} \left (2U_{\mathfrak{defg}}+2V^{\vv{q}}_{\mathfrak{defg}}-U_{\mathfrak{dgfe}}\right )\chi^{\q}_{\dens;\mathfrak{gf2h}}\Big )\\
-	&\qquad\qquad\qquad\qquad\qquad-\frac32 U_{\mathfrak{acb1}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu'}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}+\delta^{\nu'\nu} U_{\mathfrak{dgfe}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}},
+	&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (U_{\mathfrak{a1bc}} + V^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 U_{\mathfrak{acb1}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu}\times\\
+	&\qquad\qquad\qquad\qquad\qquad\times\Big (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\left (2U_{\mathfrak{defg}}+2V^{\vv{q}}_{\mathfrak{defg}}-U_{\mathfrak{dgfe}}\right )\chi^{\q}_{\dens;\mathfrak{gf2h}}\Big )\\
+	&\qquad\qquad\qquad\qquad\qquad-\frac32 U_{\mathfrak{acb1}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}+U_{\mathfrak{dgfe}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}},
 \end{split}
 \end{align}
 where $\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}$ is now only the Hartree-term, since the Fock-term contribution exactly cancels with a term arising from the $\phbar$ contribution of $\Sigma^{\k}_{\mathfrak{12}}$ in the three-leg formulation.
@@ -811,7 +850,7 @@ Since the $\lambda$-correction is currently not possible for multi-band systems,
 \end{figure}
 The steps to acquire a converged $\dga$ routine with an appropriate self-energy and vertex functions are as follows:
 \begin{enumerate}
-	\item First, a lot of preprocessing has to be done before the actual $\dga$ equations can be iterated self-consistently. At first, it requires the calculation of the bandstructure $\varepsilon^{\vv{k}}_{\mathfrak{12}}$ and the (non-)local interaction $U^{\vv{q}}_{\mathfrak{1234}}$ with DFT and/or cRPA. Using the momentum-dependent bandstructure and the local interaction obtained, we start a DMFT calculation with the impurity solver of choice. After the DMFT calculations are converged, the necessary local one- and two-particle quantities, such as the local self-energy and certain local vertex functions, are extracted. All of these quantities serve as the input for the following $\dga$ calculation.
+	\item First, a lot of preprocessing has to be done before the actual $\dga$ equations can be iterated self-consistently. At first, it requires the calculation of the bandstructure $\varepsilon^{\vv{k}}_{\mathfrak{12}}$ and the (non-)local interaction $\mathcal{U}^{\vv{q}}_{\mathfrak{1234}}$ with DFT and cRPA, respectively. Using the momentum-dependent bandstructure and the local interaction obtained, we start a DMFT calculation with the impurity solver of choice. After the DMFT calculations are converged, the necessary local one- and two-particle quantities, such as the local self-energy and certain local vertex functions, are extracted. All of these quantities serve as the input for the following $\dga$ calculation.
 	\item The first step in the sc-$\dga$ routine is the calculation of the one-particle Green's function via the Dyson equation (\ref{eq:dyson_eq}). This is done with the local self-energy from DMFT in the first iteration and then with the non-local self-energy calculated from the non-local SDE of the previous iteration.
 	\item The next step is to update the chemical potential from the newly acquired Green’s function, since the eigenenergies of the particles are subject to change and the underlying Fermi-Dirac distribution needs to be adapted accordingly.
 	\item We then proceed with the calculation of the necessary (non-local) Hedin vertices, see \eqref{eq:three_leg_vertices_abinitio_dga}. Due to the large matrices involved in the determination of $\eta^{\q\nu}_{\dens/\magn;\mathfrak{1234}}$, it is hence the numerically most expensive step of the whole $\dga$ cycle.

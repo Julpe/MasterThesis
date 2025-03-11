@@ -39,13 +39,13 @@
 	%\node (center) at ($(start.center)+(-2.5,-6)$) {};  
 	%\draw[line width=7mm, draw=black!30, ->] (center) arc[start angle=150, end angle=-150, radius=2.5cm];
     
-    \node (t1) at ($(start.center)+(0,-0.2)$) {Retrieve $\varepsilon_{\mathfrak{12}}^{\textbf{k}}, \mathcal{U}^{\textbf{q}}_{\mathfrak{1234}}$};
-    \node (t2) at ($(dmft.center)+(0,-0.2)$) {\begin{tabular}{c}Extract $\Sigma_{\text{DMFT};\mathfrak{12}}^{\nu}$ \\ and $G_{\ph/\pp;\mathfrak{1234};\sigma\sigma'}^{\omega\nu\nu'}$ from DMFT\end{tabular}};
+    \node (t1) at ($(start.center)+(0,-0.2)$) {Retrieve $\varepsilon_{\mathfrak{12}}^{\textbf{k}}$ and $\mathcal{U}^{\textbf{q}}_{\mathfrak{1234}}$};
+    \node (t2) at ($(dmft.center)+(0,-0.2)$) {\begin{tabular}{c}Extract $\Sigma_{\text{DMFT};\mathfrak{12}}^{\nu}$ \\ and $G_{\ph;\dens/\magn;\mathfrak{1234}}^{\omega\nu\nu'}$ from DMFT\end{tabular}};
     \node (t3) at ($(dyson.center)+(0,-0.2)$) {\begin{tabular}{c}Calculate $G^{\k}_{\mathfrak{12}}$ via \eqref{eq:dyson_eq}\\ and update $\mu$\end{tabular}};
-    \node (t4) at ($(bse.center)+(0,-0.2)$) {\begin{tabular}{c}Determine $\gamma^{\omega\nu}_{\mathfrak{1234}}, \gamma^{\q\nu}_{\mathfrak{1234}}$ and $\eta^{\q\nu}_{\mathfrak{1234}}$ \\ via \eqref{eq:three_leg_vertices_abinitio_dga}\end{tabular}};
+    \node (t4) at ($(bse.center)+(0,-0.2)$) {\begin{tabular}{c}Determine \\ $\chi^{\q}_{\dens/\magn;\mathfrak{1234}}$ and $\gamma_{\dens/\magn;\mathfrak{1234}}^{\q\nu}$\end{tabular}};
     \node (t5) at ($(sde.center)+(0,-0.2)$) {Calculate $\Sigma^{\k}_{\text{D}\Gamma\text{A};\mathfrak{12}}$ via \eqref{eq:sde_abinitio_dga}};
     
-    \node (startheader) [header] at ($(start)+(0,0.85)$) {\scshape DFT or cRPA};
+    \node (startheader) [header] at ($(start)+(0,0.85)$) {\scshape DFT and cRPA};
     \node (dmftheader) [header] at ($(dmft)+(0,0.85)$) {\scshape DMFT};
     \node (dysonheader) [header] at ($(dyson)+(0,0.85)$) {\scshape Dyson eq.};
     \node (bseheader) [header] at ($(bse)+(0,0.85)$) {\scshape Bethe-Salpeter eq.};

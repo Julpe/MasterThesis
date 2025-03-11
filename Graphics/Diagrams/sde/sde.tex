@@ -18,16 +18,16 @@
 	\node{$\Sigma^{\k}=$};
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.base)]
-	\begin{feynman}[small]
+	\begin{feynman}
 		\vertex (a);
-		\vertex[right=of a] (b);
-		\vertex[right=of b] (c);
-		\vertex[above=of b] (b1);
+		\vertex[right=1.25cm of a] (b);
+		\vertex[right=1.25cm of b] (c);
+		\vertex[above=1.25cm of b] (b1);
 		
 		\vertex (u) at ($(b1)!0.5!(b)$);
 		\node[right=0.1em of u] {$\mathcal{U}^{\textbf{q}=0}_{\mathfrak{1234}}$};
 		
-		\def\r{0.3}
+		\def\r{0.5}
 		
 		\path (b1)--++(90:\r) coordinate (A);
 		\draw[fermion, arrow size=1pt] (A) circle(\r);		
@@ -39,17 +39,17 @@
 	\end{feynman}
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node {$+$};
+    \node {$-$};
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.base)]
-	\begin{feynman}[small]
+	\begin{feynman}
 		\vertex (a);
-		\vertex[right=of a] (b);
+		\vertex[right=1.25cm of a] (b);
 		\vertex[right=of b] (c);
-		\vertex[right=of c] (d);
+		\vertex[right=1.25cm of c] (d);
 		\vertex (u) at ($(b)!0.5!(c)$);
 		
-		\node[above=0.45cm of u] {$\mathcal{U}^{\textbf{q}}_{\mathfrak{1432}}$};
+		\node[above=0.65cm of u] {$\mathcal{U}^{\textbf{q}}_{\mathfrak{1432}}$};
 		
 		\diagram* {
 			(a) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (b),
@@ -59,33 +59,61 @@
 		};
 	\end{feynman}
 \end{tikzpicture}
+%\begin{tikzpicture}[baseline=(current bounding box.center)]
+%    \node {$+$};
+%\end{tikzpicture}
+%\begin{tikzpicture}[baseline=(current bounding box.base)]
+%	\begin{feynman}
+%		\vertex (a1);
+%		\vertex[right=0.75cm of a1] (a2);
+%		\vertex (b1) at ($(a2)+(0.5,0.75)$);
+%		\vertex[right=of b1] (b3);
+%		\vertex (c2) at ($(b3)+(1,-0.75)$);
+%		\vertex[above=of c2] (c1);
+%		\vertex[right=of c1] (d1);
+%		\vertex[below=of d1] (d2);
+%		\vertex[right=of d2] (e1);
+%		
+%		%\node (u) at ($(b1)!0.5!(b3)$) {$\mathcal{U}^{\textbf{qkk}'}$};
+%		%\draw (u) circle (0.5);
+%
+%		\node at ($(c1)!0.5!(d2)$) {$F^{\q\k\kp}_{\mathfrak{de2f}}$};
+%		
+%		\diagram* {
+%			(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (a2) -- [fermion, gray] (b1),
+%			(d2) -- [fermion, gray, edge label'=$\k;\mathfrak{2}$] (e1),	
+%			(c1) -- (d1) -- (d2) -- (c2) -- (c1),	
+%			(c1) -- [fermion, bend right=30] (b3),
+%			(b3) -- [fermion, bend right=30] (c2),
+%			(b1) -- [fermion, in=140, out=90] (d1),
+%			(b1) -- [photon, edge label'=$\mathcal{U}^{\textbf{q}}_{\mathfrak{a1bc}}$] (b3)
+%		};
+%	\end{feynman}
+%\end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node {$+$};
+    \node {$-$};
 \end{tikzpicture}
 \begin{tikzpicture}[baseline=(current bounding box.base)]
 	\begin{feynman}
 		\vertex (a1);
-		\vertex[right=0.75cm of a1] (a2);
-		\vertex (b1) at ($(a2)+(0.5,0.75)$);
-		\vertex[right=1cm of b1] (b3);
-		\vertex (c2) at ($(b3)+(1,-0.75)$);
-		\vertex[above=of c2] (c1);
-		\vertex[right=of c1] (d1);
-		\vertex[below=of d1] (d2);
-		\vertex[right=of d2] (e1);
+		\vertex[right=1.25cm of a1] (a2);
+		\vertex[right=2cm of a2] (a3);
+		\vertex[right=of a3] (a4);
+		\vertex[right=1.25cm of a4] (a5);
 		
-		\node (u) at ($(b1)!0.5!(b3)$) {$\mathcal{U}^{\textbf{qkk}'}$};
-		\draw (u) circle (0.5);
+		\vertex[above=of a2] (b2);
+		\vertex[right=2cm of b2] (b3);
+		\vertex[right=of b3] (b4);
 
-		\node at ($(c1)!0.5!(d2)$) {$F^{\q\k\kp}_{\mathfrak{dc23}}$};
+		\node at ($(a3)!0.5!(b4)$) {$F^{\q\kp\k}_{\mathfrak{de2f}}$};
+		%\node at ($(a2)!0.5!(b3)$) {$\chi^{\q\kp\kp}_{0;\mathfrak{cbed}}$};
 		
 		\diagram* {
-			(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (a2) -- [fermion, gray] (b1),
-			(d2) -- [fermion, gray, edge label'=$\k;\mathfrak{2}$] (e1),	
-			(c1) -- (d1) -- (d2) -- (c2) -- (c1),	
-			(c1) -- [fermion, bend right=30] (b3),
-			(b3) -- [fermion, bend right=30] (c2),
-			(b1) -- [fermion, in=140, out=90] (d1),
+			(a1) -- [fermion, gray, edge label'=$\k;\mathfrak{1}$] (a2) -- [fermion] (a3) -- (a4) -- [fermion, gray, edge label'=$\k;\mathfrak{2}$] (a5),
+			(a3) -- (a4) -- (b4) -- (b3) -- (a3),
+			(b3) -- [fermion] (b2),
+			(a2) -- [photon, edge label=$\mathcal{U}^{\textbf{q}}_{\mathfrak{a1bc}}$] (b2),
+			(b2) -- [fermion, bend left=45] (b4),
 		};
 	\end{feynman}
 \end{tikzpicture}
