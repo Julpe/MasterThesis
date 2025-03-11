@@ -357,22 +357,22 @@ The simplest quantity to describe in terms of their asymptotics is the fully irr
 \end{align}
 where $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ is the non-local Coulomb interaction, written in crossing-symmetric notation
 \begin{align}\label{eq:crossing_symmetric_uq}
-	 \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}=\frac{1}{\beta^2}\Big[\underbrace{U_{\mathfrak{1234}}+V^{\vv{q}}_{\mathfrak{1234}}}_{\mathcal{U}^{\vv{q}}_{\mathfrak{1234}}}-\delta_{\ss'}\big (\underbrace{U_{\mathfrak{2314}}+V^{\vv{k}'-\vv{k}}_{\mathfrak{2314}}}_{\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}}\big )\Big],
+	 \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}=\underbrace{U_{\mathfrak{1234}}+V^{\vv{q}}_{\mathfrak{1234}}}_{\mathcal{U}^{\vv{q}}_{\mathfrak{1234}}}-\delta_{\ss'}\big (\underbrace{U_{\mathfrak{2314}}+V^{\vv{k}'-\vv{k}}_{\mathfrak{2314}}}_{\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}}\big ),
 \end{align}
 containing the purely local interaction $U$ and the purely non-local interaction $V$. \eqref{eq:crossing_symmetric_uq} is diagrammatically displayed in \figref{fig:bare_vertex_crossing_symmetric}.
 \begin{figure}[ht!]
 	\centering
 	\includestandalone[scale=1]{../../Graphics/Diagrams/bare_vertex_crossing_symmetric/bare_vertex_crossing_symmetric}
-	\caption{Crossing-symmetric interaction, modulo a factor $\frac{1}{\beta^2}$, see \eqref{eq:crossing_symmetric_uq}.}
+	\caption{Crossing-symmetric interaction, see \eqref{eq:crossing_symmetric_uq}.}
 	\label{fig:bare_vertex_crossing_symmetric}
 \end{figure}
 Constructing $\dens,\magn,\sing$ and $\trip$ combinations of \eqref{eq:crossing_symmetric_uq} is useful for future calculations,
 \begin{subequations}
 \begin{align}
-	\mathcal{U}^{\vv{qkk}'}_{\dens;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [2\,\mathcal{U}^{\vv{q}}_{\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}\right ],\\
-	\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}}&=-\frac{1}{\beta^2}\,\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}},\\
-	\mathcal{U}^{\vv{qkk}'}_{\sing;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}+\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}\right ]\qqand\\
-	\mathcal{U}^{\vv{qkk}'}_{\trip;\mathfrak{1234}}&=\frac{1}{\beta^2}\left [\,\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}-\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}\right ].
+	\mathcal{U}^{\vv{qkk}'}_{\dens;\mathfrak{1234}}&=2\,\mathcal{U}^{\vv{q}}_{\mathfrak{1234}} - \tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}},\\
+	\mathcal{U}^{\vv{qkk}'}_{\magn;\mathfrak{1234}}&=-\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}},\\
+	\mathcal{U}^{\vv{qkk}'}_{\sing;\mathfrak{1234}}&=\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}+\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}\qqand\\
+	\mathcal{U}^{\vv{qkk}'}_{\trip;\mathfrak{1234}}&=\mathcal{U}^{\vv{k}+\vv{k}'-\vv{q}}_{\mathfrak{1234}}-\tilde{\mathcal{U}}^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}.
 \end{align}
 \end{subequations}
 Next, we begin examining the diagrams contributing to $\Phi_{\r}$. A smart choice introduced in Ref. \cite{high-freq asympt} is to classify these diagrams in each channel further into three categories:
@@ -654,9 +654,11 @@ Here, $\mathcal{G}^{\nu}_{0;\mathfrak{12}}$ denotes the local and non-interactin
 \section{Dynamical vertex approximation}
 
 DMFT --- as a local framework --- is very capable of describing strong quasiparticle renormalization and the Mott-Hubbard metal-to-insulator transition in heavy fermion systems and transition metal oxides accurately. Its capabilities extend way beyond that, where successful descriptions of (anti-)ferromagnetic structure effects including metamagnetism, influence on ferromagnetic properties through the lattice and Hund's coupling, scattering at spins or impurities and many more have been reported \cite{held dmft}. As wide as the range of DMFT's capabilities extends, it still comes with a major drawback: the exclusion of non-local correlations. Numerous scientific phenomena, including the formation of valence bonds, pseudogaps, and $d$-wave superconductivity, as well as (para-)magnons, quantum critical behavior, and generally the critical behavior in the proximity of phase transitions, are caused by such non-local correlations.
-
-There are two main routes to extend DMFT beyond the local scope to also include non-local correlations \cite{rohringer two particle} (i) cluster extensions and (ii) diagrammatic extensions. Cluster extensions make use of a small cluster of impurities that are embedded in a bath of non-interacting conduction electrons. Non-local interaction effects within this cluster are then taken into account, making it possible to capture short-range fluctuations. Diagrammatic extensions on the other hand extend DMFT by explicitly adding non-local diagrammatic contributions. The dynamical vertex approximation falls into the latter one and will be in the main focus of this thesis, more specifically the self-consistent \say{ladder} variant \cite{josef sc dga}. For other flavors of $\dga$, we refer the reader to Refs. \cite{del re, valli nanorings, schäfer multimethod, kat.tos.held 2009}, which are all excellent reads. For a first introduction to the \say{standard} description of the dynamical vertex approximation, we refer the reader to Ref. \cite{kat.tos.held 2007}. We will extend the existing description by including the purely non-local Coulomb interaction to the irreducible vertex and follow the derivation outlined in Ref. \cite{ab initio dga} closely. 
-
+\\\\
+There are two main routes to extend DMFT beyond the local scope to also include non-local correlations \cite{rohringer two particle} (i) cluster extensions and (ii) diagrammatic extensions. Cluster extensions make use of a small cluster of impurities that are embedded in a bath of non-interacting conduction electrons. Non-local interaction effects within this cluster are then taken into account, making it possible to capture short-range fluctuations. Diagrammatic extensions on the other hand extend DMFT by explicitly adding non-local diagrammatic contributions. The dynamical vertex approximation falls into the latter one and will be in the main focus of this thesis, more specifically the self-consistent \say{ladder} variant \cite{josef sc dga}. For other flavors of $\dga$, we refer the reader to Refs. \cite{del re, valli nanorings, schäfer multimethod, kat.tos.held 2009}, which are all excellent reads. For a first introduction to the \say{standard} description of the dynamical vertex approximation, we refer the reader to Ref. \cite{kat.tos.held 2007}. 
+\\\\
+Here, we will extend the original description by including the purely non-local Coulomb interaction to the irreducible vertex and follow the derivation outlined in Ref. \cite{ab initio dga} closely. For completeness, we will also derive the set of equations analogously to \cite{paul worm phd} for the case of non-local interactions. For brevity, we will govern those two separate derivation branches each their own section. The reason we include both derivations in this thesis is simple: Previously, we have written down two distinct ways to treat explicit vertex asymptotics. The first one, where explicit Kernel-functions are used, see \secref{sec:vertex_asymptotics}, works well if one explicitly employs the full vertex $F$ in the equations, as \cite{ab initio dga} does. However, the second derivation, where we do not need the full vertex in the equations explicitly, benefits when treating vertex asymptotics with the \say{U-range} approach, see \secref{sec:vertex_asymptotics PART 2}, since the numerical implementation of these asymptotics are more resourceful and one does not need local quantities on a very large frequency grid, i.e., it is easier to increase the size of the asymptotic range compared to the Kernel-function approach.
+\\\\
 The $\dga$ uses a converged DMFT solution, thus including all local diagrams. It then solves the Schwinger-Dyson equation (\ref{eq:sde}) using an approximated (full) vertex. We will show the \say{ladder}-approach, which reduces the numerical complexity by assuming locality of the $\pp$-(ir-)reducible diagrams\footnote{This is not a priori justified, however, results of the full (parquet) $\dga$ equations yield a negligible contribution of the particle-particle channel to the full vertex $F$ in the presence of strong spin fluctuations close to the antiferromagnetic phase transition in two dimensions \cite{kat.tos.held 2008}. It is therefore reasonable to neglect the non-locality of the particle-particle channel diagrams. For superconducting properties on the other hand, these non-local diagrams are quite essential.}. For the following, we assume that we already have an existing converged DMFT solution at hand, containing all local diagrams. The quantities we require for the execution of the dynamical vertex approximation are the DMFT self-energy, the local two-particle Green's function and the local irreducible vertex in the particle-hole channel\footnote{For the asymptotics of the vertex functions as described in \secref{sec:vertex_asymptotics}, we also require the local two-particle Green's function in the $\pp$-channel.}.
 
 At the heart of $\dga$ is the irreducible vertex in the particle-hole channel\footnote{From now on, if not explicitly specified otherwise, we will always assume the frequency notation and channel reducibility to be particle-hole like.}, which we extend by the purely non-local Coulomb interaction,
@@ -665,12 +667,12 @@ At the heart of $\dga$ is the irreducible vertex in the particle-hole channel\fo
 \end{align}
 where $\mathcal{V}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ is given by the crossing-symmetric expression (similar to \eqref{eq:crossing_symmetric_uq})
 \begin{align}
-	\mathcal{V}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}=\frac{1}{\beta^2}\left [V^{\vv{q}}_{\mathfrak{1234}}-\delta_{\ss'}V^{\vv{k}'-\vv{k}}_{\mathfrak{1432}}\right ].
+	\mathcal{V}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}=V^{\vv{q}}_{\mathfrak{1234}}-\delta_{\ss'}V^{\vv{k}'-\vv{k}}_{\mathfrak{1432}}.
 \end{align}
 This vertex can now be seen as containing all local irreducible diagrams plus the non-locality of the first order, providing a natural extension to this framework. This means that we have now included the first-order term --- which is also the major contributor to the irreducible vertex --- fully momentum-dependent. We will, similar to Ref. \cite{ab initio dga}, exclude from now on the transversal particle-hole contribution to the non-local irreducible vertex in \eqref{eq:non_local_gamma_abinitio_dga}, similar to the GW approach \cite{GW tomczak}, which will reduce the complexity of the $\dga$ equations considerably, since two out of three momentum indices vanish; the only leftover one from now on is the transfer momentum $\vv{q}$. This yields for the irreducible vertex in $\ph$-channel for the $\dens/\magn$ spin combinations
 \begin{subequations}\label{eq:gamma_dens_magn_dga}
 \begin{align}
-	\Gamma^{\q\nu\nu'}_{\dens;\mathfrak{1234}}&=\Gamma^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}+\frac{2}{\beta^2} V^{\vv{q}}_{\mathfrak{1234}}\qqand\\
+	\Gamma^{\q\nu\nu'}_{\dens;\mathfrak{1234}}&=\Gamma^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}+2 V^{\vv{q}}_{\mathfrak{1234}}\qqand\\
 	\Gamma^{\q\nu\nu'}_{\magn;\mathfrak{1234}}&=\Gamma^{\omega\nu\nu'}_{\magn;\mathfrak{1234}}.\label{eq:gamma_magn_dga}
 \end{align}
 \end{subequations}
@@ -680,14 +682,14 @@ From this, the Bethe-Salpeter equation in the $\ph$-channel of \eqref{eq:bethe_s
 \end{align}
 where
 \begin{align}
-	\chi_{0;\mathfrak{abcd}}^{\q\nu\nu'}=\sum_{\vv{kk}'}\chi_{0;\mathfrak{abcd}}^{\q\k\kp}=-\beta\sum_{\vv{kk}'}G^{\k}_{\mathfrak{ad}}G^{\kp-\q}_{\mathfrak{cb}}.
+	\chi_{0;\mathfrak{1234}}^{\q\nu\nu'}=\sum_{\vv{kk}'}\chi_{0;\mathfrak{1234}}^{\q\k\kp}=-\beta\sum_{\vv{kk}'}G^{\k}_{\mathfrak{14}}G^{\kp-\q}_{\mathfrak{32}}.
 \end{align}
-From now on we will sometimes work with grouped indices, as described at the end of \ref{sec:bethe_salpeter}, to simplify the following derivation of the $\dga$ equations. Notice that the grouped indices are now $\{ n_1,n_2,\nu \}$ and $\{ n_3,n_4,\nu' \}$, respectively, and do not include any momenta anymore. We will denote quantities written in grouped indices as bold quantities, similar to before. We can now see that the numerical implementation of the $\dga$ equations is easier, since the vertex matrices decrease in size from $(N_{\vv{k}}\cdot N_{\nu} \cdot N_{\text{bands}}^2)\times(N_{\vv{k}}\cdot N_{\nu} \cdot N_{\text{bands}}^2) \to (N_{\nu} \cdot N_{\text{bands}}^2)\times(N_{\nu} \cdot N_{\text{bands}}^2)$, which reduces the storage capacity by $N_{\vv{k}}^2$ and the number of operations by $N_{\vv{k}}^2$ for matrix multiplication and $N_{\vv{k}}^3$ for matrix inversion compared to the full parquet approach.
+From now on we will sometimes work with grouped indices, as described at the end of \secref{sec:bethe_salpeter}, to simplify the following derivation of the $\dga$ equations. Notice that the grouped indices are now $\{ n_1,n_2,\nu \}$ and $\{ n_3,n_4,\nu' \}$, respectively, and do not include any momenta anymore. We will denote quantities written in grouped indices as bold quantities, similar to before. We can now see that the numerical implementation of the $\dga$ equations is easier, since the vertex matrices decrease in size from $(N_{\vv{k}}\cdot N_{\nu} \cdot N_{\text{bands}}^2)\times(N_{\vv{k}}\cdot N_{\nu} \cdot N_{\text{bands}}^2) \to (N_{\nu} \cdot N_{\text{bands}}^2)\times(N_{\nu} \cdot N_{\text{bands}}^2)$, which reduces the storage capacity by $N_{\vv{k}}^2$ and the number of operations by $N_{\vv{k}}^2$ for matrix multiplication and $N_{\vv{k}}^3$ for matrix inversion compared to the full parquet approach.
 
-In principle, it would be straightforward to retrieve the full vertex via $\bm F_{\r}^{\q}=\left [(\bm\Gamma_{\r}^{\q})^{-1}-\bm\chi_{0}^{\q}\right ]^{-1}$ from \eqref{eq:bse_matrix}. This poses numerical problems, as already stated at the end of \secref{sec:schwinger_dyson}. Thus, we aim to rewrite the inversion of the irreducible vertex $\bm\Gamma$ using the local variant of \eqref{eq:bethe_salpeter_vertex_three_channels} and \eqref{eq:gamma_dens_magn_dga},
+In principle, it would be straightforward to retrieve the full vertex via $\bm F_{\r}^{\q}=\left [(\bm\Gamma_{\r}^{\q})^{-1}-\bm\chi_{0}^{\q}\right ]^{-1}$ from \eqref{eq:bse_matrix}. This poses numerical problems, as already stated at the end of \secref{sec:schwinger_dyson}. Thus, we rewrite the inversion of the irreducible vertex $\bm\Gamma$ using the local variant of \eqref{eq:bethe_salpeter_vertex_three_channels} and \eqref{eq:gamma_dens_magn_dga},
 \begin{subequations}
 \begin{align}
-	\bm\Gamma_{\dens}^{\q}&=\frac{\bm F_{\dens}^{\omega}}{\bm\unity+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}}+\frac{2}{\beta^2}\bm V^{\vv{q}}\qqand\\
+	\bm\Gamma_{\dens}^{\q}&=\frac{\bm F_{\dens}^{\omega}}{\bm\unity+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}}+2\bm V^{\vv{q}}\qqand\\
 	\bm\Gamma_{\magn}^{\q}&=\frac{\bm F_{\magn}^{\omega}}{\bm\unity+\bm\chi_{0}^{\omega}\bm F_{\magn}^{\omega}},
 \end{align}
 \end{subequations}
@@ -695,7 +697,7 @@ where $\bm\unity$ is an identity matrix in grouped index space. After some algeb
 \begin{subequations}
 \begin{align}
 \begin{split}
-	\bm F_{\dens}^{\q}&=\left [\bm F_{\dens}^{\omega}+\frac{2}{\beta}\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\dens}^{\omega}-\frac{2}{\beta}\bm\chi_{0}^{\q}\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]^{-1}
+	\bm F_{\dens}^{\q}&=\left [\bm F_{\dens}^{\omega}+2\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\dens}^{\omega}-2\bm\chi_{0}^{\q}\bm V^{\vv{q}}\left (1+\bm\chi_{0}^{\omega}\bm F_{\dens}^{\omega}\right )\right ]^{-1}
 \end{split}\;\quad\text{and}\quad\\
 	\bm F_{\magn}^{\q}&=\bm F_{\magn}^{\omega}\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\magn}^{\omega}\right ]^{-1}.
 \end{align}
@@ -706,13 +708,13 @@ Here, the purely non-local susceptibility $\bm\chi_{0}^{\nl;\q}$ is given by
 \end{align}
 Rewriting the full vertex this way avoids the aforementioned numerical difficulties that lie in the inversion of the irreducible vertex $\bm\Gamma$, however we still have to deal with the inclusion of the transversal particle-hole channel, since the above equations were generated though the BSE (\ref{eq:bethe_salpeter_vertex_three_channels}) in the $\ph$-channel only. The BSE only carries over the swapping symmetry of the two-particle Green's function to the (ir-)reducible vertices $\bm\Gamma$ and $\bm\Phi$. The crossing symmetry of the full vertex can be restored by explicitly adding diagrams that belong to the transversal particle-hole channel. We therefore modify the parquet-decomposition in \eqref{eq:parquet_decomposition} in the following way
 \begin{align}\label{eq:full_vertex_crossing_symmetric_dga}
-	F^{\q\k\kp}_{\dens;\mathfrak{1234}}&=F^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}+\frac{2}{\beta^2}V_{\mathfrak{1234}}^{\vv{q}}+\left (\Phi^{\q\nu\nu'}_{\dens;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}\right )+\left (\Phi^{\q\k\kp}_{\dens;\phbar;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\dens;\phbar;\mathfrak{1234}}\right )\qqand\\
+	F^{\q\k\kp}_{\dens;\mathfrak{1234}}&=F^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}+2 V_{\mathfrak{1234}}^{\vv{q}}+\left (\Phi^{\q\nu\nu'}_{\dens;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}\right )+\left (\Phi^{\q\k\kp}_{\dens;\phbar;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\dens;\phbar;\mathfrak{1234}}\right )\qqand\\
 	F^{\q\k\kp}_{\magn;\mathfrak{1234}}&=F^{\omega\nu\nu'}_{\r;\mathfrak{1234}}+\left (\Phi^{\q\nu\nu'}_{\magn;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\magn;\mathfrak{1234}}\right )+\left (\Phi^{\q\k\kp}_{\magn;\phbar;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\magn;\phbar;\mathfrak{1234}}\right ).
 \end{align}
 Here, all diagrams in the $\pp$-channel and all fully irreducible diagrams (except the bare interaction $V^{\vv{q}}_{r;\mathfrak{1234}}$) are local. We furthermore find via the local and non-local BSE,
 \begin{subequations}
 \begin{align}
-	\left (\Phi^{\q\nu\nu'}_{\dens;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}\right )&=F_{\dens;\mathfrak{1234}}^{\nl;\q\nu\nu'}-\frac{2}{\beta^2}V^{\vv{q}}_{\mathfrak{1234}}\qqand\\
+	\left (\Phi^{\q\nu\nu'}_{\dens;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}\right )&=F_{\dens;\mathfrak{1234}}^{\nl;\q\nu\nu'}-2 V^{\vv{q}}_{\mathfrak{1234}}\qqand\\
 	\left (\Phi^{\q\nu\nu'}_{\magn;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\magn;\mathfrak{1234}}\right )&=F_{\magn;\mathfrak{1234}}^{\nl;\q\nu\nu'},
 \end{align}
 \end{subequations}
@@ -736,35 +738,63 @@ We can combine these results in \eqref{eq:full_vertex_crossing_symmetric_dga} wh
 \end{subequations}
 Within the approximations introduced above, the connected part of the self-energy (see \eqref{eq:sde} and below) loses the momentum-dependent contribution from the non-local bare interaction $V^{\vv{k}'-\vv{k}}_{\mathfrak{1234}}$ and now reads
 \begin{align}\label{eq:sde_with_phbar}
-\begin{split}
-	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}} -\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\left [\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}} F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}}+\frac12\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\nl;\q\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\nl;\q\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]\right ]G_{\mathfrak{af}}^{\k-\q}.
-\end{split}
+	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}} -\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\left [\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}} F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}}-\frac12\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\nl;\q\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\nl;\q\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]\right ]G_{\mathfrak{af}}^{\k-\q}.
 \end{align}
-From the purely local part of this equation (c.f. first term in the brackets of \eqref{eq:sde_with_phbar}) one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
+It is now time to split up the derivation in two paths, one devoted to the steps outlined in \cite{ab initio dga}, coined \say{Approach 1}, and one devoted to the steps outlined in \cite{paul worm phd}, coined \say{Approach 2}.
+
+\subsection{Approach 1}
+
+From the purely local part of \eqref{eq:sde_with_phbar}, which is contained in the first term in the brackets, one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
 \begin{align}
 	\Sigma_{\ph;U;\mathfrak{12}}^{\k}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\left (\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}+\chi^{\omega\nu'\nu'}_{0;\mathfrak{cbed}}\right ) F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}\\
 	&=\Sigma_{DMFT;\mathfrak{12}}^{\nu}+\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q},
 \end{align}
 where $\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}$ is the purely non-local Hartree-Fock term with the contributions from $V^{\vv{q}}_{\mathfrak{1234}}$ but not $U_{\mathfrak{1234}}$, see \eqref{eq:sde}. We can take advantage of the momentum and frequency structure in the SDE above to simplify the numerical calculation of the self-energy. Therefore, we --- in analogy to \cite{ab initio dga} --- define three Hedin vertices in $\r\in\{\dens,\magn\}$ spin combinations,
 \begin{align}\label{eq:three_leg_vertices_abinitio_dga}
-	\gamma_{\r;\mathfrak{1234}}^{\omega\nu}&=\sum_{\mathfrak{ab;\nu'}}\chi_{0;\mathfrak{12ab}}^{\omega\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu},\\
-	\gamma_{\r;\mathfrak{1234}}^{\q\nu}&=\sum_{\mathfrak{ab;\nu'}}\chi_{0;\mathfrak{12ab}}^{\nl;\q\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu}\qqand\\
-	\eta_{\r;\mathfrak{1234}}^{\q\nu}&=\sum_{\mathfrak{ab;\nu'}}\left [\chi_{0;\mathfrak{12ab}}^{\q\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\q\nu'\nu}-\chi_{0;\mathfrak{12ab}}^{\omega\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu}\right ].
+	\zeta_{\r;\mathfrak{1234}}^{\omega\nu}&=\sum_{\mathfrak{ab;\nu'}}\chi_{0;\mathfrak{12ab}}^{\omega\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu},\\
+	\zeta_{\r;\mathfrak{1234}}^{\q\nu}&=\sum_{\mathfrak{ab;\nu'}}\chi_{0;\mathfrak{12ab}}^{\nl;\q\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu}\qqand\\
+	\xi_{\r;\mathfrak{1234}}^{\q\nu}&=\sum_{\mathfrak{ab;\nu'}}\left [\chi_{0;\mathfrak{12ab}}^{\q\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\q\nu'\nu}-\chi_{0;\mathfrak{12ab}}^{\omega\nu'\nu'}F_{\r;\mathfrak{ba34}}^{\omega\nu'\nu}\right ].
 \end{align}
-The completely local Hedin vertex can straightforwardly be retrieved from DMFT. The vertex $\eta_{\mathfrak{1234}}^{\q\nu}$ in spin combinations $\dens/\magn$ can be calculated efficiently with a matrix inversion
+The completely local Hedin vertex can straightforwardly be retrieved from DMFT. The vertex $\xi_{\mathfrak{1234}}^{\q\nu}$ in spin combinations $\dens/\magn$ can be calculated efficiently with a matrix inversion
 \begin{subequations}
 \begin{align}
-	\bm\eta_{\dens}^{\q}&=\left (\vec{\bm\unity}+\bm\gamma_{\dens}^{\omega}\right )\left (\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\dens}^{\omega}-\frac{2}{\beta^2}\bm\chi_{0}^{\q}\bm V^{\vv{q}}\left (\vec{\bm\unity}+\bm\gamma_{\dens}^{\omega}\right )\right ]^{-1}-\bm\unity\right )\qqand\\
-	\bm\eta_{\magn}^{\q}&=\left (\vec{\bm\unity}+\bm\gamma_{\magn}^{\omega}\right )\left (\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\magn}^{\omega}\right ]^{-1}-\bm\unity\right ),
+	\bm\xi_{\dens}^{\q}&=\left (\vec{\bm\unity}+\bm\zeta_{\dens}^{\omega}\right )\left (\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\dens}^{\omega}-2\bm\chi_{0}^{\q}\bm V^{\vv{q}}\left (\vec{\bm\unity}+\bm\zeta_{\dens}^{\omega}\right )\right ]^{-1}-\bm\unity\right )\qqand\\
+	\bm\xi_{\magn}^{\q}&=\left (\vec{\bm\unity}+\bm\zeta_{\magn}^{\omega}\right )\left (\left [\bm\unity-\bm\chi_{0}^{\nl;\q}\bm F_{\magn}^{\omega}\right ]^{-1}-\bm\unity\right ),
 \end{align}
 \end{subequations}
-where $\vec{\bm\unity}_{\mathfrak{1234}}=\delta_{\mathfrak{14}}\delta_{\mathfrak{23}}$, contrary to $\bm\unity$, which is an identity in grouped indices, i.e., $\bm\unity_{\mathfrak{1234}}=\delta_{\mathfrak{13}}\delta_{\mathfrak{24}}\delta_{\nu\nu'}$. Combining these expressions and simplifying it \cite{ab initio dga} yields the $\dga$ self-energy
+where $\vec{\bm\unity}_{\mathfrak{1234}}=\delta_{\mathfrak{14}}\delta_{\mathfrak{23}}$, contrary to $\bm\unity$, which is given by $\bm\unity_{\mathfrak{1234}}^{\nu\nu'}=\delta_{\mathfrak{14}}\delta_{\mathfrak{23}}\delta_{\nu\nu'}$. Combining these expressions and simplifying it \cite{ab initio dga} yields the $\dga$ self-energy
 \begin{align}\label{eq:sde_abinitio_dga}
 \begin{split}
-	\bm\Sigma_{\text{D}\Gamma\text{A}}^{\k}&=\bm\Sigma_{\text{DMFT}}^{\nu}+\bm\Sigma_{\text{HF}}^{\nl;\vv{k}}-\frac1\beta\sum_{\q}\left (\bm U + \bm V^{\vv{q}}-\frac{\tilde{\bm U}}{2}\right )\bm\eta_{\dens}^{\q}\bm G^{\k-\q}\\
-	&\qquad+\frac{3}{2\beta}\sum_{\q}\tilde{\bm U}\bm\eta_{\magn}^{q}\bm G^{\k-\q}-\frac1\beta\sum_{\q}\big (\bm V^{\vv{q}}\bm\gamma_{\dens}^{\omega}-\bm U\bm\gamma_{\dens}^{\q}\big )\bm G^{\k-\q}.
+	\bm\Sigma_{\text{D}\Gamma\text{A}}^{\k}&=\bm\Sigma_{\text{DMFT}}^{\nu}+\bm\Sigma_{\text{HF}}^{\nl;\vv{k}}-\frac1\beta\sum_{\q}\left (\bm U + \bm V^{\vv{q}}-\frac{\tilde{\bm U}}{2}\right )\bm\xi_{\dens}^{\q}\bm G^{\k-\q}\\
+	&\qquad+\frac{3}{2\beta}\sum_{\q}\tilde{\bm U}\bm\xi_{\magn}^{q}\bm G^{\k-\q}-\frac1\beta\sum_{\q}\big (\bm V^{\vv{q}}\bm\zeta_{\dens}^{\omega}-\bm U\bm\zeta_{\dens}^{\q}\big )\bm G^{\k-\q}.
 \end{split}
 \end{align}
+
+\subsection{Approach 2}
+
+For an alternative formulation using the three-leg vertices already derived in \secref{sec:schwinger_dyson}, we have to rewrite \eqref{eq:sde_with_phbar} with the full ladder vertices $F^{\q\nu\nu'}_{\dens/\magn;\mathfrak{1234}}$,
+\begin{align}
+	F^{\nl;\q\nu'\nu}_{\dens/\magn;\mathfrak{1234}}=F^{\q\nu'\nu}_{\dens/\magn;\mathfrak{1234}}-F^{\omega\nu'\nu}_{\dens/\magn;\mathfrak{1234}},
+\end{align}
+such that
+\begin{align}
+	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}} -\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\left [\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}} F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}}-\frac12\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\q\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]\right ]G_{\mathfrak{af}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}},
+\end{align}
+where $\Sigma^{\k}_{\text{dc};\mathfrak{12}}$, which is merely a double-counting correction, is given by
+\begin{align}
+	\Sigma^{\k}_{\text{dc};\mathfrak{12}} = \frac{1}{2\beta}\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\omega\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]G_{\mathfrak{af}}^{\k-\q}.
+\end{align}
+With the definition of the three-leg vertex from \eqref{eq:vrg}, we can write the upper equations as
+\begin{align}
+	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\substack{\q\nu';\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 \tilde{\mathcal{U}}_{\mathfrak{a1bc}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu'}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\mathcal{U}^{\vv{q}}_{\dens;\mathfrak{defg}}\chi^{\q}_{\dens;\mathfrak{gf2h}}\right )\nonumber\\
+	&\qquad\qquad\qquad\qquad\qquad-\frac32 \tilde{\mathcal{U}}_{\mathfrak{a1bc}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu'}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\mathcal{U}^{\vv{q}}_{\magn;\mathfrak{defg}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}}\nonumber\\
+\begin{split}
+	&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\substack{\q\nu';\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (U_{\mathfrak{a1bc}} + V^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 U_{\mathfrak{acb1}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu'}\times\\
+	&\qquad\qquad\qquad\qquad\qquad\times\Big (\unity_{\mathfrak{de2h}}^{\nu'\nu}-\delta^{\nu'\nu} \left (2U_{\mathfrak{defg}}+2V^{\vv{q}}_{\mathfrak{defg}}-U_{\mathfrak{dgfe}}\right )\chi^{\q}_{\dens;\mathfrak{gf2h}}\Big )\\
+	&\qquad\qquad\qquad\qquad\qquad-\frac32 U_{\mathfrak{acb1}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu'}\!\left (\unity_{\mathfrak{de2h}}^{\nu'\nu}+\delta^{\nu'\nu} U_{\mathfrak{dgfe}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}},
+\end{split}
+\end{align}
+where $\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}$ is now only the Hartree-term, since the Fock-term contribution exactly cancels with a term arising from the $\phbar$ contribution of $\Sigma^{\k}_{\mathfrak{12}}$ in the three-leg formulation.
 
 \section{Self-consistent dynamical vertex approximation}
 
