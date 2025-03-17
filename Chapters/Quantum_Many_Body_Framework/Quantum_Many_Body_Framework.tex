@@ -439,7 +439,7 @@ Here and in the following, we will restrict ourselves to the $\ph$ channel reduc
 \end{align}
 It is then straightforward to define an auxiliary susceptibility (denoted by the asterisk $^*$)
 \begin{align}
-\begin{split}
+\begin{split}\label{eq:chi_aux}
 	\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\delta\Gamma_{\mathfrak{1234};\ss'}\right ]^{-1}\\
 	&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\left (\Gamma_{\mathfrak{1234};\ss'}-\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}\right )\right ]^{-1},
 \end{split}
@@ -482,7 +482,7 @@ For numerical calculations of the equations in the above sections one is always 
 
 A full treatment of frequency and momentum dependence of multi-orbital vertex functions severely restricts the speed and memory consumption of numerical calculations. A step towards reducing the computational cost of numerical implementations of equations involving vertex functions, such as the Bethe-Salpeter equations, see \secref{sec:bethe_salpeter}, or the Schwinger-Dyson equation, see \secref{sec:schwinger_dyson}, thus requires an efficient treatment of the vertex for high Matsubara frequencies. As noted above, we will describe two treatments of vertex asymptotics in the following.
 
-\subsection{Kernel-function approach}\label{sec:vertex_asymptotics_kernel}
+\subsection{Kernel-function asymptotics}\label{sec:vertex_asymptotics_kernel}
 
 Shortly, we will see, that the full vertex in the high-frequency regime, which generally depends on three independent frequency parameters, can be approximated well as an object with only two frequency dimensions, thus drastically reducing the storage capacity required, while also reducing the computational cost after assembling these objects. Let us start with a sketch of the basic idea of how to take advantage of certain frequency structures when handling explicit vertex asymptotics.
 \begin{figure}[ht!]
@@ -541,7 +541,7 @@ serves as a valid expression for the high-frequency regime of $\Phi_{\r}$ and be
 \end{split}\\
 \begin{split}\label{eq:kernel_2_pp}
 	\mathcal{K}^{(2);\q\k}_{\pp;\mathfrak{1234};\ss'}&=\frac12\!\!\!\sum_{\substack{\mathfrak{ab};\k_1\\\sigma_1\sigma_2\sigma_3\sigma_4}} \!\!\!F^{\q\k\k_1}_{\substack{\pp;\mathfrak{1a3b}\\\sigma\sigma_1\sigma'\sigma_2}}\,\chi^{\q\k_1\k_1}_{0;\mathfrak{baab}}\,\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\substack{\mathfrak{b2a4}\\\sigma_2\sigma\sigma_1\sigma'}}-\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}\\
-	&=-\frac12\!\!\!\sum_{\substack{\mathfrak{abcd};\k_1\\\sigma_1\sigma_2\sigma_3\sigma_4}} \frac{\chi^{\q\k\k_1}_{\substack{\pp;\mathfrak{cadb}\\\sigma\sigma_1\sigma'\sigma_2}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\substack{\mathfrak{b2a4}\\\sigma_2\sigma\sigma_1\sigma'}}-\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}
+	&=-\frac12\!\!\!\sum_{\substack{\mathfrak{abcd};\k_1\\\sigma_1\sigma_2\sigma_3\sigma_4}}\!\!\! \frac{\chi^{\q\k\k_1}_{\substack{\pp;\mathfrak{cadb}\\\sigma\sigma_1\sigma'\sigma_2}}}{G^{\k}_{\mathfrak{1c}}G^{-\q}_{\mathfrak{3d}}}\,\mathcal{U}^{\vv{q}(-\vv{k}_1)}_{\substack{\mathfrak{b2a4}\\\sigma_2\sigma\sigma_1\sigma'}}-\mathcal{K}^{(1);\q}_{\pp;\mathfrak{1234};\ss'}
 \end{split}
 \end{align}
 where the subtraction of $\mathcal{K}^{(1)}$ in the kernel-2 function is to account for double-counting of diagrams and $\mathcal{U}^{\vv{qk}'}_{\mathfrak{1234};\ss'}$ is obtained from \eqref{eq:crossing_symmetric_uq} by setting $\vv{k}=\vv{0}$. Both kernel functions are displayed diagrammatically for the ph-channel in \figref{fig:kernel_functions}.
@@ -625,13 +625,52 @@ where we used \eqref{eq:phi_conversion_ph_bar_to_ph} to transform the $\phbar$-c
 \end{subequations}
 where the $\Phi_{\r;\mathfrak{1234}}^{\asympt;\q\k\kp}$ are given by the kernel functions of \eqref{eq:kernel_functions_dens_magn} and \eqref{eq:kernel_functions_sing_trip}. The irreducible vertices in channels $\phbar$ and $\pp$ in $\magn/\dens$ and $\sing/\trip$ combinations can be constructed analogously. 
 
-\subsection{U-range and RPA-esque approach}\label{sec:vertex_asymptotics_urange}
+\subsection{\text{$U$-range} asymptotics}\label{sec:vertex_asymptotics_urange}
 
-TODO, and read through
+Aside from the kernel-function formalism introduced above, there also exist many other asymptotic schemes for vertex functions. The second one we would like to cover in this thesis is the \say{$U$-range} approach, where the irreducible vertex $\Gamma_{\mathfrak{1234};\ss'}^{\q\k\kp}$ is padded with the bare non-local Coulomb interaction $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$, see \eqref{eq:crossing_symmetric_uq}, in the high-frequency regime. This in turn means that there is no complicated frequency structure for the asymptotic region. We denote some equations that are neccessary to employ these types of asymptotics and follow Ref. \cite{motoharu asympt} with the addition of multi-orbital notation. First, we will split up the frequencies into a \say{core} and an \say{asymptotic} region and denote quantities that exist in those frequency regimes with an additional sub- or superscript $\in\{\core, \asympt\}$. Generally speaking, we require $n_{\asympt}\ge n_{\core}$, where $n$ is the number of fermionic Matsubara frequencies. Furthermore, if a quantity is written as $(A^{\asympt})_\core$ it means that the asymptotic value of $A$ is cut to the core frequency region. Additionally, the size change and matrix inverse do \textit{not} commute, i.e., $A^{-1}_{\core}\equiv (A^{\core})^{-1}\neq (A^{-1})_{\core}$. This only commutes if the matrix $A$ is block-diagonal.
+
+The advantages of this method are not only the simpler way of treating asymptotics, as no complicated kernel-functions are needed, but also considers the ease of extending $n_{\asympt}$ without too much computational effort. As we will see shortly, we only need to solve the $n_{\asympt}$-size of the local inverse BSE once and the rest of the equations can be performed within $n_{\core}$. This allows us to increase $n_{\asympt}$ to very large sizes without sacrificing too much computational time and memory. Fortunately, as will be seen later in \secref{sec:dga}, this only needs to be done once at the beginning of the routine of the dynamical vertex approximation, since the local irreducible vertex is constant throughout the $\dga$ algorithm. Only the bare bubble susceptibility $\chi_{0;\mathfrak{1234}}^{\q\k}$ has to be known additionally, however, due to the simple frequency dependence of this quantity, it is easily available for $n_{\asympt}$ Matsubara frequencies.
+
+We begin by extracting the local irreducible vertex $\Gamma_{\mathfrak{1234},\ss'}^{\omega\nu\nu'}$ from the generalized susceptibility and the bare bubble susceptibility obtained from the impurity solver in the core region,
+\begin{align}
+	\Gamma_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}=\left (\chi_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}\right )^{-1}-\left (\chi_{0;\mathfrak{1234}}^{\core;\omega\nu\nu'}\right )^{-1}.
+\end{align}
+In order to incorporate the asymptotic bare (and local) Coulomb interaction $\mathcal{U}_{\mathfrak{1234};\ss'}^{\asympt}$ into the local irreducible vertex, we need to solve the $n_{\asympt}$-size BSE,
+\begin{align}
+	\delta\Gamma_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}+\mathcal{U}_{\mathfrak{1234};\ss'}^{\asympt}=\left (\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}\right )^{-1}-\left (\chi_{0;\mathfrak{1234}}^{\asympt;\omega\nu\nu'}\right )^{-1},
+\end{align}
+where $\delta\Gamma_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}$ is the irreducible vertex minus the bare Coulomb interaction. Additionally, $\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}$ must equal the generalized susceptibility obtained from the impurity solver in the $n_{\core}$ region. Since we do not know how the generalized susceptibility behaves outside the core frequency region at this stage, this approach does not look promising. However, since we have fixed the irreducible vertex to the bare Coulomb interaction for high frequencies, we can obtain the local (corrected) irreducible vertex with the help of an intermediary susceptibility, where
+\begin{align}
+	\left (\tilde\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}\right )^{-1} = \left (\chi_{0;\mathfrak{1234}}^{\asympt;\omega\nu\nu'}\right )^{-1}+\mathcal{U}_{\mathfrak{1234};\ss'}^{\asympt}.
+\end{align}
+From the above two equations we can formulate the BSE as
+\begin{align}
+	\delta\Gamma_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}=\left (\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}\right )^{-1}_{\core}-\left (\tilde\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}\right )^{-1}_{\core},
+\end{align}
+where after some rewriting and algebra \cite{motoharu asympt}
+\begin{align}
+	\Gamma_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}+\mathcal{U}_{\mathfrak{1234};\ss'}^{\core}=\left (\chi_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}\right )^{-1}-\left [\left (\tilde\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}\right )_{\core}\right ]^{-1}.
+\end{align}
+We now have rewritten the irreducible vertex in terms of quantities that are already available from the impurity solver, such as $\chi_{\mathfrak{1234};\ss'}^{\core;\omega\nu\nu'}$, and the intermediate susceptibility, which is easily retrieved from the $n_{\asympt}$-range bare bubble susceptibility and the bare Coulomb interaction. This can be seen as an asymptotic correction to the $n_{\core}$-size BSE. Due to the frequency structure of $\tilde\chi_{\mathfrak{1234};\ss'}^{\asympt;\omega\nu\nu'}$, this does not require a lot of computational effort or memory and hence is a very resourceful approach.
+\\\\
+The extension to non-local asymptotics is straightforward and can be derived in a few steps, where we will only outline the most important results. For a more in-depth discussion, we refer the reader to Ref. \cite{motoharu asympt}. At the beginning, we define
+\begin{align}
+	\Gamma_{\mathfrak{1234};\ss'}^{X;\omega\nu\nu'}&=\left (\chi_{\mathfrak{1234};\ss'}^{X;\omega\nu\nu'}\right )^{-1}-\left (\chi_{0;\mathfrak{1234}}^{X;\omega\nu\nu'}\right )^{-1} \qqand\\
+	\left (\chi_{\mathfrak{1234};\ss'}^{*;X;\omega\nu\nu'}\right )^{-1}&=\left (\chi_{\mathfrak{1234};\ss'}^{X;\omega\nu\nu'}\right )^{-1}-\mathcal{U}_{\mathfrak{1234};\ss'}^{X},
+\end{align}
+where $X\in\{\core,\asympt\}$ and $\chi_{\mathfrak{1234};\ss'}^{*;X;\omega\nu\nu'}$ is the same auxiliary susceptibility as already seen in \eqref{eq:chi_aux}. Both of these equations have to be satisfied for each frequency range $n_{X}$. From the lower equation we obtain
+\begin{align}
+	\chi_{\mathfrak{1234};\ss'}^{*;X;\q\k\kp}=\chi_{\mathfrak{1234};\ss'}^{X;\q\k\kp}+\!\! \sum_{\substack{\k_1\k_2;\mathfrak{abcd}\\\sigma_1\sigma_2}}\!\! \frac{\chi_{\mathfrak{12ba};\ss_1}^{X;\q\k\k_1} \mathcal{U}^{X;\vv{qk}_1\vv{k}_2}_{\mathfrak{abcd};\sigma_1\sigma_2} \chi_{\mathfrak{dc34};\sigma_2\sigma'}^{X;\q\k_2\kp}}{\unity - \mathcal{U}^{X;\vv{qk}_1\vv{k}_2}_{\mathfrak{12ab};\ss_1}\chi^{X;\q\k_2\k_1}_{\mathfrak{ba34};\sigma_1\sigma'}}.
+\end{align}
+From this one obtains an expression for the generalized physical susceptibility \cite{motoharu asympt}
+\begin{align}
+	\chi_{\mathfrak{1234};\ss'}^{\core;\q}=\sum_{\k\kp}\chi_{\mathfrak{1234};\ss'}^{\core;\q\k\kp}=\sum_{\k\kp}\left [\left (\chi_{\mathfrak{1234};\ss'}^{*;\core;\q\k\kp}+\chi_{0;\mathfrak{1234};\ss'}^{\asympt;\q\k\kp}-\chi_{0;\mathfrak{1234};\ss'}^{\core;\q\k\kp}\right )^{-1}+\mathcal{U}_{\mathfrak{1234};\ss'}^{\core;\vv{qkk}'}\right ]^{-1}.
+\end{align}
+This is especially useful, since the generalized physical susceptibility enters the SDE (\ref{eq:sde_vrg}) with the three-leg vertices of \eqref{eq:vrg}. Hence, this scheme proves to be powerful \cite{paul worm phd, motoharu asympt} for this explicit form of the equation of motion of $\Sigma_{\mathfrak{12}}^{\k}$. Lastly, it can be shown \cite{pertinent effects}, that for the three-leg vertex $\gamma_{\dens/\magn;\mathfrak{1234}}^{\q\k}\overset{\nu\to\infty}{\longrightarrow}\unity_{\mathfrak{1234}}$.
 
 \subsection{High-frequency Bethe-Salpeter equation with vertex asymptotics}
 
-Sometimes it is convenient to separate low- and high-frequency components of a quantity to simplify calculations. Some DMFT solvers \cite{parragh} employ such a frequency separation to calculate the self-energy: a high-frequency asymptotic expansion derived from the spectral function's lowest moments is incorporated in the numerical solution of the Dyson equation at low frequencies. Inspired by this idea, we can proceed similarly for the irreducible vertex $\Gamma$, working with the framework of the Bethe-Salpeter equation instead of the Dyson equation. By explicitly using the SU(2)-symmetric combinations $\dens, \magn$ --- in which the BSE for the ph-channel becomes diagonal\footnote{The same can be done for the $\sing, \trip$ combinations in the $\pp$-channel, however only the $\ph$-channel will be shown.} --- we aim to reduce the computational effort by using a high-frequency expansion of the vertex functions. Following \cite{kunes asympt, hummel DA, efficient BSE}, the vertex in the low-frequency regime can be obtained by the regular BSE, where an additional high-frequency correction term is added. In the spirit of the end of last section, the BSE of \eqref{eq:bethe_salpeter_susc} can be written as a matrix equation (in grouped indices $\text{nm}$) for channels $\dens, \magn$ in the following fashion
+Sometimes it is convenient to separate low- and high-frequency components of a quantity to simplify calculations. Some DMFT solvers \cite{parragh} employ such a frequency separation to calculate the self-energy: a high-frequency asymptotic expansion derived from the spectral function's lowest moments is incorporated in the numerical solution of the Dyson equation at low frequencies. Inspired by this idea, we can proceed similarly for the irreducible vertex $\Gamma$, working with the framework of the Bethe-Salpeter equation instead of the Dyson equation. By explicitly using the SU(2)-symmetric combinations $\dens, \magn$ --- in which the BSE for the ph-channel becomes diagonal\footnote{The same can be done for the $\sing, \trip$ combinations in the $\pp$-channel, however only the $\ph$-channel will be shown.} --- we are able to reduce the computational effort by using a high-frequency expansion of the vertex functions. Following \cite{kunes asympt, hummel DA, efficient BSE}, the vertex in the low-frequency regime can be obtained by the regular BSE, where an additional high-frequency correction term is added. In the spirit of the end of \secref{sec:bethe_salpeter}, the BSE of \eqref{eq:bethe_salpeter_susc} can be written as a matrix equation (in grouped indices $\text{nm}$) for spin combinations $\dens, \magn$ in the following fashion
 \begin{align}\label{eq:bse_matrix}
 	\bm{\chi}^{\q}=\bm{\chi}_{0}^{\q}-\frac{1}{\beta^2} \bm{\chi}_{0}^{\q}\bm{\Gamma}^{\q}\bm{\chi}^{\q}.
 \end{align}
@@ -665,7 +704,7 @@ The last term in the sum of \eqref{eq:gamma_ll_with_correction} can be thought o
 \begin{align}
 	\bm\Gamma^{\l\l}=\beta^2\left[\left (\bm\chi^{\l\l}\right )^{-1}-\left (\bm\chi_{0}^{\l\l}\right )^{-1}\right ].
 \end{align}
-The correction term can be obtained at a significantly lower cost compared to the full vertex --- since for the high-frequency regimes of $\bm\Gamma$ we use either (i) kernel-1 and kernel-2 functions, which depend on one or two momentum and frequency dimensions less than the full vertex (or the generalized susceptibility), see \secref{sec:vertex_asymptotics_kernel} or (ii) the even more resourceful \say{U-range} approach of \secref{sec:vertex_asymptotics_urange} --- and is therefore easily available for much larger asymptotic frequency ranges. Other sets of equations for $\bm\Gamma^{\l\l}$\footnote{One can already use \eqref{eq:gamma_ll_with_correction_but_generalized_susc} instead of \eqref{eq:gamma_ll_with_correction}, cf. \say{Method 2} in Ref. \cite{efficient bse}.} can be acquired easily by manipulating the original BSE (\ref{eq:bse_matrix}). These methods would require the calculation of the full vertex for a large frequency range\footnote{Retrieving the vertex functions in a high-frequency regime is \textit{per se} not difficult; they can be obtained for arbitrary frequency ranges from the impurity solver of choice. However, the computing time increases drastically the larger the frequency box and thus this method is not preferred over the one mentioned above.}, which is more storage-heavy than the use of kernel-1 and kernel-2 functions or a padding of the bare Coulomb interaction. Thus, the approach outlined in this thesis is more efficient and is going to be a more practical one to use for multi-orbital calculations.
+The correction term can be obtained at a significantly lower cost compared to the full vertex --- since for the high-frequency regimes of $\bm\Gamma$ we use either (i) kernel-1 and kernel-2 functions, which depend on one or two momentum and frequency dimensions less than the full vertex (or the generalized susceptibility), see \secref{sec:vertex_asymptotics_kernel} or (ii) the even more resourceful \say{$U$-range} approach of \secref{sec:vertex_asymptotics_urange} --- and is therefore easily available for much larger asymptotic frequency ranges. Other sets of equations for $\bm\Gamma^{\l\l}$\footnote{One can already use \eqref{eq:gamma_ll_with_correction_but_generalized_susc} instead of \eqref{eq:gamma_ll_with_correction}, cf. \say{Method 2} in Ref. \cite{efficient bse}.} can be acquired easily by manipulating the original BSE (\ref{eq:bse_matrix}). These methods would require the calculation of the full vertex for a large frequency range\footnote{Retrieving the vertex functions in a high-frequency regime is \textit{per se} not difficult; they can be obtained for arbitrary frequency ranges from the impurity solver of choice. However, the computing time increases drastically the larger the frequency box and thus this method is not preferred over the one mentioned above.}, which is more storage-heavy than the use of kernel-1 and kernel-2 functions or a padding of the bare Coulomb interaction. Thus, the approach outlined in this thesis is more efficient and is going to be a more practical one to use for multi-orbital calculations.
 %Some remarks for the calculation of the irreducible vertex $\bm\Gamma^{\l\l}$ in the low-frequency region $\mathcal{I}_{\l}=[\nmin,\nmax]$: Ref. \cite{efficient bse} suggests to consider frequency ranges for $\nu,\nu'$ where the main structures of $\bm\chi$ are centered, see also Ref. \cite{local corr at the two-particle level}. This means, that for the $\ph$-channel we have $\nmax+1=-\nmin-2m$, where $m$ denotes the index of the bosonic Matsubara frequency $\omega_{m}=\frac{2m\pi}{\beta}$. An illustration of the \say{core} and \say{asymptotic} frequency region is depicted in \figref{fig:frequency_boxes} below.
 %\begin{figure}[ht!]
 %	\centering
@@ -706,13 +745,13 @@ Here, $\hat d^{\dagger}_{\mathfrak{a}}$ ($\hat d_{\mathfrak{a}}$) creates (annih
 \end{subequations}
 Here, $\mathcal{G}^{\nu}_{0;\mathfrak{12}}$ denotes the local and non-interacting propagator of the impurity. The numerically challenging part is the computation of the AIM's Green's function in \eqref{eq:aim_gf} for which a number of different solvers are available, see the beginning of \secref{sec:dmft}.
 
-\section{Dynamical vertex approximation}
+\section{Dynamical vertex approximation}\label{sec:dga}
 
 DMFT --- as a local framework --- is very capable of describing strong quasiparticle renormalization and the Mott-Hubbard metal-to-insulator transition in heavy fermion systems and transition metal oxides accurately. Its capabilities extend way beyond that, where successful descriptions of (anti-)ferromagnetic structure effects including metamagnetism, influence on ferromagnetic properties through the lattice and Hund's coupling, scattering at spins or impurities and many more have been reported \cite{held dmft}. As wide as the range of DMFT's capabilities extends, it still comes with a major drawback: the exclusion of non-local correlations. Numerous scientific phenomena, including the formation of valence bonds, pseudogaps, and $d$-wave superconductivity, as well as (para-)magnons, quantum critical behavior, and generally the critical behavior in the proximity of phase transitions, are caused by such non-local correlations.
 \\\\
 There are two main routes to extend DMFT beyond the local scope to also include non-local correlations \cite{rohringer two particle} (i) cluster extensions and (ii) diagrammatic extensions. Cluster extensions make use of a small cluster of impurities that are embedded in a bath of non-interacting conduction electrons. Non-local interaction effects within this cluster are then taken into account, making it possible to capture short-range fluctuations. Diagrammatic extensions on the other hand extend DMFT by explicitly adding non-local diagrammatic contributions. The dynamical vertex approximation falls into the latter one and will be in the main focus of this thesis, more specifically the self-consistent \say{ladder} variant \cite{josef sc dga}. For other flavors of $\dga$, we refer the reader to Refs. \cite{del re, valli nanorings, schäfer multimethod, kat.tos.held 2009}, which are all excellent reads. For a first introduction to the \say{standard} description of the dynamical vertex approximation, we refer the reader to Ref. \cite{kat.tos.held 2007}. 
 \\\\
-Here, we will extend the original description by including the purely non-local Coulomb interaction to the irreducible vertex and follow the derivation outlined in Ref. \cite{ab initio dga} closely. For completeness, we will also derive the set of equations analogously to \cite{paul worm phd} for the case of non-local interactions. For brevity, we will govern those two separate derivation branches each their own section. The reason we include both derivations in this thesis is simple: Previously, we have written down two distinct ways to treat explicit vertex asymptotics. The first one, where explicit kernel-functions are used, see \secref{sec:vertex_asymptotics_kernel}, works well if one explicitly employs the full vertex $F$ in the equations, as \cite{ab initio dga} does. However, the second derivation, where we do not need the full vertex in the equations explicitly, benefits when treating vertex asymptotics with the \say{U-range} approach, see \secref{sec:vertex_asymptotics_urange}, since the numerical implementation of these asymptotics are more resourceful and one does not need local quantities on a very large frequency grid, i.e., it is easier to increase the size of the asymptotic range compared to the kernel-function approach.
+Here, we will extend the original description by including the purely non-local Coulomb interaction to the irreducible vertex and follow the derivation outlined in Ref. \cite{ab initio dga} closely. For completeness, we will also derive the set of equations analogously to \cite{paul worm phd} for the case of non-local interactions. For brevity, we will govern those two separate derivation branches each their own section. The reason we include both derivations in this thesis is simple: Previously, we have written down two distinct ways to treat explicit vertex asymptotics. The first one, where explicit kernel-functions are used, see \secref{sec:vertex_asymptotics_kernel}, works well if one explicitly employs the full vertex $F$ in the equations, as \cite{ab initio dga} does. However, the second derivation, where we do not need the full vertex in the equations explicitly, benefits when treating vertex asymptotics with the \say{$U$-range} approach, see \secref{sec:vertex_asymptotics_urange}, since the numerical implementation of these asymptotics are more resourceful and one does not need local quantities on a very large frequency grid, i.e., it is easier to increase the size of the asymptotic range compared to the kernel-function approach.
 \\\\
 The $\dga$ uses a converged DMFT solution, thus including all local diagrams. It then solves the Schwinger-Dyson equation (\ref{eq:sde}) using an approximated (full) vertex. We will show the \say{ladder}-approach, which reduces the numerical complexity by assuming locality of the $\pp$-(ir-)reducible diagrams\footnote{This is not a priori justified, however, results of the full (parquet) $\dga$ equations yield a negligible contribution of the particle-particle channel to the full vertex $F$ in the presence of strong spin fluctuations close to the antiferromagnetic phase transition in two dimensions \cite{kat.tos.held 2008}. It is therefore reasonable to neglect the non-locality of the particle-particle channel diagrams. For superconducting properties on the other hand, these non-local diagrams are often essential.}. For the following, we assume that we already have an existing converged DMFT solution at hand, containing all local diagrams. The quantities we require for the execution of the dynamical vertex approximation are the DMFT self-energy, the local two-particle Green's function and the local irreducible vertex in the particle-hole channel\footnote{For the asymptotics of the vertex functions as described in \secref{sec:vertex_asymptotics_kernel}, we also require the local two-particle Green's function in the $\pp$-channel.}.
 
@@ -748,7 +787,7 @@ In principle, it would be straightforward to retrieve the full vertex via $\bm F
 	\bm\Gamma_{\magn}^{\q}&=\frac{\bm F_{\magn}^{\omega}}{\bm\unity+\bm\chi_{0}^{\omega}\bm F_{\magn}^{\omega}},
 \end{align}
 \end{subequations}
-where $\bm\unity$ is an identity matrix in grouped index space. After some algebra, the full vertex in the density and magnetic spin combinations reads
+where $\bm\unity$ is an identity matrix in grouped index space. After some algebra, the full vertex in the density and magnetic spin combinations reads1
 \begin{subequations}
 \begin{align}
 \begin{split}
@@ -796,10 +835,8 @@ Within the approximations introduced above, the connected part of the self-energ
 	\Sigma^{\k}_{\mathfrak{12}}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}} -\frac1\beta\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\left [\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}} F^{\q\nu'\nu}_{\dens;\mathfrak{de2f}}-\frac12\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}\left [F^{\nl;\q\nu'\nu}_{\dens;\mathfrak{de2f}}+3 F^{\nl;\q\nu'\nu}_{\magn;\mathfrak{de2f}}\right ]\right ]G_{\mathfrak{af}}^{\k-\q}.
 \end{align}
 It is now time to split up the derivation in two paths, one devoted to the steps outlined in \cite{ab initio dga}, coined \say{Approach 1}, and one devoted to the steps outlined in \cite{paul worm phd}, coined \say{Approach 2}.
-
-\subsection{Approach 1}
-
-From the purely local part of \eqref{eq:sde_with_phbar}, which is contained in the first term in the brackets, one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
+\\\\
+\textbf{Approach 1} --- From the purely local part of \eqref{eq:sde_with_phbar}, which is contained in the first term in the brackets, one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
 \begin{align}
 	\Sigma_{\ph;U;\mathfrak{12}}^{\k}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\left (\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}+\chi^{\omega\nu'\nu'}_{0;\mathfrak{cbed}}\right ) F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}\\
 	&=\Sigma_{DMFT;\mathfrak{12}}^{\nu}+\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q},
@@ -824,10 +861,8 @@ where $\vec{\bm\unity}_{\mathfrak{1234}}=\delta_{\mathfrak{14}}\delta_{\mathfrak
 	&\qquad+\frac{3}{2\beta}\sum_{\q}\tilde{\bm U}\bm\xi_{\magn}^{q}\bm G^{\k-\q}-\frac1\beta\sum_{\q}\big (\bm V^{\vv{q}}\bm\zeta_{\dens}^{\omega}-\bm U\bm\zeta_{\dens}^{\q}\big )\bm G^{\k-\q}.
 \end{split}
 \end{align}
-
-\subsection{Approach 2}
-
-For an alternative formulation using the three-leg vertices already derived in \secref{sec:schwinger_dyson}, see \eqref{eq:vrg}, we have to rewrite \eqref{eq:sde_with_phbar} with the full ladder vertices $F^{\q\nu\nu'}_{\dens/\magn;\mathfrak{1234}}$,
+\\\\
+\textbf{Approach 2} --- For an alternative formulation using the three-leg vertices already derived in \secref{sec:schwinger_dyson}, see \eqref{eq:vrg}, we have to rewrite \eqref{eq:sde_with_phbar} with the full ladder vertices $F^{\q\nu\nu'}_{\dens/\magn;\mathfrak{1234}}$,
 \begin{align}
 	F^{\nl;\q\nu'\nu}_{\dens/\magn;\mathfrak{1234}}=F^{\q\nu'\nu}_{\dens/\magn;\mathfrak{1234}}-F^{\omega\nu'\nu}_{\dens/\magn;\mathfrak{1234}},
 \end{align}
@@ -841,14 +876,15 @@ where $\Sigma^{\k}_{\text{dc};\mathfrak{12}}$, which is merely a double-counting
 \end{align}
 With the definition of the three-leg vertex from \eqref{eq:vrg}, we can write the upper equations as
 \begin{align}
-	\Sigma^{\k}_{\dga;\mathfrak{12}}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}-\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 \tilde{\mathcal{U}}_{\mathfrak{a1bc}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}-\mathcal{U}^{\vv{q}}_{\dens;\mathfrak{defg}}\chi^{\q}_{\dens;\mathfrak{gf2h}}\right )\nonumber\\
+	\Sigma^{\k}_{\dga;\mathfrak{12}}&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\bigg (\mathcal{U}^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 \tilde{\mathcal{U}}_{\mathfrak{a1bc}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}-\mathcal{U}^{\vv{q}}_{\dens;\mathfrak{defg}}\chi^{\q}_{\dens;\mathfrak{gf2h}}\right )\nonumber\\
 	&\qquad\qquad\qquad\qquad\qquad-\frac32 \tilde{\mathcal{U}}_{\mathfrak{a1bc}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}-\mathcal{U}^{\vv{q}}_{\magn;\mathfrak{defg}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}}\nonumber\\
 \begin{split}
-	&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}-\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\!\bigg (U_{\mathfrak{a1bc}} + V^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 U_{\mathfrak{acb1}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu}\times\\
+	&=\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}-\sum_{\substack{\q;\mathfrak{abcd}\\\mathfrak{efgh}}}\Bigg [\bigg (U_{\mathfrak{a1bc}} + V^{\vv{q}}_{\mathfrak{a1bc}} -\frac12 U_{\mathfrak{acb1}} \bigg )\,\gamma_{\dens;\mathfrak{cbed}}^{\q\nu}\times\\
 	&\qquad\qquad\qquad\qquad\qquad\times\Big (\unity_{\mathfrak{de2h}}-\left (2U_{\mathfrak{defg}}+2V^{\vv{q}}_{\mathfrak{defg}}-U_{\mathfrak{dgfe}}\right )\chi^{\q}_{\dens;\mathfrak{gf2h}}\Big )\\
-	&\qquad\qquad\qquad\qquad\qquad-\frac32 U_{\mathfrak{acb1}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}+U_{\mathfrak{dgfe}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}}.
+	&\qquad\qquad\qquad\qquad\qquad-\frac32 U_{\mathfrak{acb1}}\gamma_{\magn;\mathfrak{cbed}}^{\q\nu}\!\left (\unity_{\mathfrak{de2h}}+U_{\mathfrak{dgfe}}\chi^{\q}_{\magn;\mathfrak{gf2h}}\right )\!\!\Bigg]G_{\mathfrak{ah}}^{\k-\q} - \Sigma^{\k}_{\text{dc};\mathfrak{12}},
 \end{split}
 \end{align}
+where $\Sigma_{\text{H};\mathfrak{12}}^{\vv{k}}$ only denotes the Hartree-contribution, since the Fock term cancels in the process of rewriting the SDE with \eqref{eq:vrg}.
 
 \section{Self-consistent dynamical vertex approximation}
 
