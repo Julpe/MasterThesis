@@ -912,20 +912,46 @@ To connect the aforementioned one- and two-particle vertex functions to somethin
 
 \section{Eliashberg equation}
 
-After a successful converged ladder-$\dga$ routine, we have the most important non-local one- and two-particle quantities available. Starting from this, we can further study superconductivity with the so-called Eliashberg equations, an extensive diagrammatic framework based upon particle-particle interactions, which lead to the formation of Cooper pairs \cite{eliashberg, other eliashberg paper, putz Dipl A, jan berges Dipl A}. 
-Due to the coupling of electrons, we introduce --- apart from the \say{regular} one-particle Green's function --- two \textit{anomalous} Green's functions
+After a successful converged ladder-$\dga$ routine, we have the most important non-local one- and two-particle quantities available. Starting from this, we can further study superconductivity with the so-called Eliashberg equations \cite{eliashberg original paper}, an extensive diagrammatic framework based upon particle-particle interactions that lead to the formation of Cooper pairs. 
+Due to the coupling of electrons, we introduce, apart from the regular one-particle Green's function of \eqref{eq:one_p_green_expectation_val}, two \textit{anomalous} Green's functions \cite{interorbital singlet pairing}
 \begin{subequations}
 \begin{align}
-	G_{\mathfrak{12}}^{\vv{k}}&=-\mean{\mathcal{T}\left [\hat{c}_{\k;\mathfrak{1}}\hat{c}^{\dagger}_{\k;\mathfrak{2}}\right ]},\\
-	F_{\mathfrak{12}}^{\vv{k}}&=-\mean{\mathcal{T}\left [\hat{c}_{\k;\mathfrak{1}}\hat{c}_{-\k;\mathfrak{2}}\right ]} \qqand\\
-	F_{\mathfrak{12}}^{\vv{k};\dagger}&=-\mean{\mathcal{T}\left [\hat{c}^{\dagger}_{-\k;\mathfrak{1}}\hat{c}^{\dagger}_{\k;\mathfrak{2}}\right ]}.
+	F_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{c}_{\k;\mathfrak{1}}\hat{c}_{-\k;\mathfrak{2}}\right ]} \qqand\\
+	F_{\mathfrak{12}}^{\k;\dagger}&=-\mean{\mathcal{T}\left [\hat{c}^{\dagger}_{-\k;\mathfrak{2}}\hat{c}^{\dagger}_{\k;\mathfrak{1}}\right ]}.
 \end{align}
 \end{subequations}
-Here, $F_{\mathfrak{12}}^{\vv{k}(;\dagger)}$ denote the anomalous Green's functions, which are not to be confused with the full vertex $F^{\q\k\kp}_{\mathfrak{1234}}$. The anomalous Green's functions are rather unusual contractions of either two electrons or two holes, contrary to the regular Green's function. These contractions will vanish in the normal state, however they are of finite value in the superconducting phase.
-
-Starting from the Nambu formalism, where a two-component spinor is introduced, 
-Starting from the Bethe-Salpeter equation in the particle-particle channel (\ref{eq:bethe_salpeter_susc_pp}), we can 
-
+Here, $F_{\mathfrak{12}}^{\k(;\dagger)}$ denote the anomalous Green's functions, which are not to be confused with the full vertex $F^{\q\k\kp}_{\mathfrak{1234}}$. The anomalous Green's functions are rather unusual contractions of either two electrons or two holes, contrary to the regular Green's function, which is a contraction of an electron and a hole. These two contractions will vanish in the normal state, however they are of finite value in the superconducting phase. At this point is is helpful to switch to the Nambu formalism, where the basis is spanned by the spinors
+\begin{align}
+	\hat\psi_{\mathfrak{1}}^{\k}=\left (\hat{c}_{\k;\mathfrak{1};\uparrow}, \hat{c}_{\k;\mathfrak{1};\downarrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\uparrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\downarrow}\right )^{\mathrm{T}}.
+\end{align}
+In this basis, the anomalous Green's functions are (block-)off-diagonal entries of the (generalized) Gro'kov single-particle propagator
+\begin{align}
+\begin{split}
+	\hat{\bm G}_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{\psi}_{\mathfrak{1}}^{\k}\hat{\psi}_{\mathfrak{2}}^{\k}\right ]}\\
+	&=\begin{pmatrix}
+		\bm G_{\mathfrak{12}}^{\k} & -\bm F_{\mathfrak{12}}^{\k}	\\
+		-\overline{\bm F}_{\mathfrak{12}}^{\k} & \overline{\bm G}_{\mathfrak{12}}^{\k}
+	\end{pmatrix},
+\end{split}
+\end{align}
+where $\bm G$ and $\bm F$ are $2n \times 2n$ matrices in spin-orbital space, where $n$ denotes the number of bands. The diagonal entries of the Gro'kov single-particle propagator are the regular single-particle ($\bm G_{\mathfrak{12}}^{\k}$) and single-hole ($\overline{\bm G}_{\mathfrak{12}}^{\k}$) propagators. After a Fourier transformation to Matsubara frequencies, the generalized Dyson equation can be written as follows:
+\begin{align}
+	\hat{\bm G}_{\mathfrak{12}}^{\k} = \hat{\bm G}_{0;\mathfrak{12}}^{\k} + \sum_{\mathfrak{ab}}\hat{\bm G}_{0;\mathfrak{1a}}^{\k}\hat{\bm\Sigma}_{\mathfrak{ab}}^{\k}\hat{\bm G}_{\mathfrak{b2}}^{\k},
+\end{align}
+where
+\begin{align}
+	\hat{\bm G}_{0;\mathfrak{12}}^{\k}=\begin{pmatrix}
+		\bm G_{0;\mathfrak{12}}^{\k} & 0 \\ 0 & \bm G_{0;\mathfrak{12}}^{\k}
+	\end{pmatrix}
+\end{align}
+is the non-interacting generalized propagator and
+\begin{align}
+	\hat{\bm\Sigma}_{\mathfrak{12}}^{\k}=\begin{pmatrix}
+		\bm\Sigma_{\mathfrak{12}}^{\k} & \bm\Delta_{\mathfrak{12}}^{\k} \\ 
+		\overline{\bm\Delta}_{\mathfrak{12}}^{\k} & \overline{\bm\Sigma}_{\mathfrak{12}}^{\k}
+	\end{pmatrix}
+\end{align}
+denotes the generalized self-energy, where the diagonal entries $\bm\Sigma_{\mathfrak{12}}^{\k}$ and $\overline{\bm\Sigma}_{\mathfrak{12}}^{\k}$ are the single-particle and single-hole self-energies, respectively and the off-diagonal \textit{pairing} function $\bm\Delta_{\mathfrak{12}}^{\k}$ is coined the superconducting \textit{gap function}.
 
 
 
