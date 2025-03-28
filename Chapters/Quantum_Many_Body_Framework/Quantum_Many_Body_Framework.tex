@@ -431,17 +431,17 @@ The $\ph$ and $\phbar$ contributions of the connected part yield separately (in 
 \end{subequations}
 The self-energy $\Sigma^{\k}_{\mathfrak{12}}$ does not have to fulfill any crossing-symmetry relation, hence we do not use $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ from \eqref{eq:crossing_symmetric_uq} here but rather the two terms with $\mathcal{U}$ and $\tilde{\mathcal{U}}$ separately. The total self-energy is now the sum of the Hartree-Fock contribution and the $\ph/\phbar$ terms. We want to note that the Schwinger-Dyson equation can be rewritten in terms of three-leg vertices (also commonly called Hedin-vertices) instead of four-point Green's functions, see \cite{hedin, krien boson exchange} to eliminate the need of calculating the full vertex $F$ via an inversion of the irreducible vertex $\Gamma$\footnote{In principle, one could retrieve the full vertex as $\bm F_{\r}^{\q}=\left [(\bm\Gamma_{\r}^{\q})^{-1}-\bm\chi_{0}^{\q}\right ]^{-1}$. However, as shown in Ref. \cite{schäfer nonperturbative}, the (local) irreducible vertex $\Gamma$ contains an infinite set of divergencies, hence inverting it is numerically unstable.}. This equivalent formulation is commonly called the Hedin form. In this form, the SDE can be rewritten in terms of suceptibilities. We start by rewriting the full vertex as a combination of susceptibilities
 \begin{align}
-	F^{\q\k\kp}_{\mathfrak{1234};\ss'}=\beta^2\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}-\sum_{\k\kp;\mathfrak{abcd}}\left (\chi_{0;\mathfrak{12ba}}^{\q\k\k}\right )^{-1} \chi_{\mathfrak{abcd};\ss'}^{\q\k\kp} \left (\chi_{0;\mathfrak{dc34}}^{\q\kp\kp}\right )^{-1}\right ]^{-1}.
+	F^{\q\k\kp}_{\mathfrak{1234};\ss'}=\beta^2\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\kp}\right )^{-1}-\sum_{\k_1\k_2;\mathfrak{abcd}}\left (\chi_{0;\mathfrak{12ba}}^{\q\k\k_1}\right )^{-1} \chi_{\mathfrak{abcd};\ss'}^{\q\k_1\k_2} \left (\chi_{0;\mathfrak{dc34}}^{\q\k_2\kp}\right )^{-1}\right ]^{-1}.
 \end{align}
 Here and in the following, we will restrict ourselves to the $\ph$ channel reducibility and frequency notation if not stated otherwise. Next, we define the irreducible vertex as the first-order contribution - which is the bare Coulomb interaction in crossing-symmetric notation, see \eqref{eq:crossing_symmetric_uq} - and the rest,
 \begin{align}
-	\Gamma_{\mathfrak{1234};\ss'} = \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}+\delta\Gamma_{\mathfrak{1234};\ss'}.
+	\Gamma_{\mathfrak{1234};\ss'}^{\q\k\kp} = \mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}+\delta\Gamma_{\mathfrak{1234};\ss'}^{\q\k\kp}.
 \end{align}
 It is then straightforward to define an auxiliary susceptibility (denoted by the asterisk $^*$)
 \begin{align}
 \begin{split}\label{eq:chi_aux}
-	\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\delta\Gamma_{\mathfrak{1234};\ss'}\right ]^{-1}\\
-	&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\left (\Gamma_{\mathfrak{1234};\ss'}-\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}\right )\right ]^{-1},
+	\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\delta\Gamma_{\mathfrak{1234};\ss'}^{\q\k\kp}\right ]^{-1}\\
+	&=\left [\left (\chi_{0;\mathfrak{1234}}^{\q\k\k}\right )^{-1}+\frac{1}{\beta^2}\left (\Gamma_{\mathfrak{1234};\ss'}^{\q\k\kp}-\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}\right )\right ]^{-1},
 \end{split}
 \end{align}
 with which we can rewrite the generalized susceptibility as
@@ -917,43 +917,76 @@ Due to the coupling of electrons, we introduce, apart from the regular one-parti
 \begin{subequations}
 \begin{align}
 	F_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{c}_{\k;\mathfrak{1}}\hat{c}_{-\k;\mathfrak{2}}\right ]} \qqand\\
-	F_{\mathfrak{12}}^{\k;\dagger}&=-\mean{\mathcal{T}\left [\hat{c}^{\dagger}_{-\k;\mathfrak{2}}\hat{c}^{\dagger}_{\k;\mathfrak{1}}\right ]}.
+	\overline{F}_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{c}^{\dagger}_{\k;\mathfrak{1}}\hat{c}^{\dagger}_{-\k;\mathfrak{2}}\right ]}.
 \end{align}
 \end{subequations}
-Here, $F_{\mathfrak{12}}^{\k(;\dagger)}$ denote the anomalous Green's functions, which are not to be confused with the full vertex $F^{\q\k\kp}_{\mathfrak{1234}}$. The anomalous Green's functions are rather unusual contractions of either two electrons or two holes, contrary to the regular Green's function, which is a contraction of an electron and a hole. These two contractions will vanish in the normal state, however they are of finite value in the superconducting phase. At this point is is helpful to switch to the Nambu formalism, where the basis is spanned by the spinors
+Here, $F_{\mathfrak{12}}^{\k}$ and $\overline{F}_{\mathfrak{12}}^{\k}$ denote the anomalous Green's functions, which are not to be confused with the full vertex $F^{\q\k\kp}_{\mathfrak{1234}}$. The anomalous Green's functions are rather unusual contractions of either two electrons or two holes, contrary to the regular Green's function, which is a contraction of an electron and a hole. These two contractions will vanish in the normal state, however they are of finite value in the superconducting phase. At this point is is helpful to switch to the Nambu formalism \cite{nambu}, where the basis is spanned by the spinors
 \begin{align}
-	\hat\psi_{\mathfrak{1}}^{\k}=\left (\hat{c}_{\k;\mathfrak{1};\uparrow}, \hat{c}_{\k;\mathfrak{1};\downarrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\uparrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\downarrow}\right )^{\mathrm{T}}.
+	\hat\psi_{\mathfrak{1}}^{\k}=\left (\hat{c}_{\k;\mathfrak{1};\uparrow}, \hat{c}_{\k;\mathfrak{1};\downarrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\uparrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\downarrow}\right )^{\text{T}}.
 \end{align}
 In this basis, the anomalous Green's functions are (block-)off-diagonal entries of the (generalized) Gro'kov single-particle propagator
 \begin{align}
 \begin{split}
-	\hat{\bm G}_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{\psi}_{\mathfrak{1}}^{\k}\hat{\psi}_{\mathfrak{2}}^{\k}\right ]}\\
+	\hat{\bm G}_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{\psi}_{\mathfrak{1}}^{\k}\hat{\psi}_{\mathfrak{2}}^{\k;\dagger}\right ]}\\
 	&=\begin{pmatrix}
-		\bm G_{\mathfrak{12}}^{\k} & -\bm F_{\mathfrak{12}}^{\k}	\\
-		-\overline{\bm F}_{\mathfrak{12}}^{\k} & \overline{\bm G}_{\mathfrak{12}}^{\k}
+		G_{\mathfrak{12}}^{\k} & -F_{\mathfrak{12}}^{\k}	\\
+		-\overline{F}_{\mathfrak{12}}^{\k} & \overline{G}_{\mathfrak{12}}^{\k}
 	\end{pmatrix},
 \end{split}
 \end{align}
-where $\bm G$ and $\bm F$ are $2n \times 2n$ matrices in spin-orbital space, where $n$ denotes the number of bands. The diagonal entries of the Gro'kov single-particle propagator are the regular single-particle ($\bm G_{\mathfrak{12}}^{\k}$) and single-hole ($\overline{\bm G}_{\mathfrak{12}}^{\k}$) propagators. After a Fourier transformation to Matsubara frequencies, the generalized Dyson equation can be written as follows:
+where $G_{\mathfrak{12}}^{\k}$ and $F_{\mathfrak{12}}^{\k}$ are $2n \times 2n$ matrices in spin-orbital space, where $n$ denotes the number of bands. The diagonal entries of the Gro'kov single-particle propagator are the regular single-particle ($ G_{\mathfrak{12}}^{\k}$) and single-hole ($\overline{G}_{\mathfrak{12}}^{\k}=-G_{\mathfrak{12}}^{-\k}$) propagators. After a Fourier transform to Matsubara frequencies, the generalized Dyson equation can be written as follows:
 \begin{align}
 	\hat{\bm G}_{\mathfrak{12}}^{\k} = \hat{\bm G}_{0;\mathfrak{12}}^{\k} + \sum_{\mathfrak{ab}}\hat{\bm G}_{0;\mathfrak{1a}}^{\k}\hat{\bm\Sigma}_{\mathfrak{ab}}^{\k}\hat{\bm G}_{\mathfrak{b2}}^{\k},
 \end{align}
 where
 \begin{align}
 	\hat{\bm G}_{0;\mathfrak{12}}^{\k}=\begin{pmatrix}
-		\bm G_{0;\mathfrak{12}}^{\k} & 0 \\ 0 & \bm G_{0;\mathfrak{12}}^{\k}
+		G_{0;\mathfrak{12}}^{\k} & 0 \\ 0 & G_{0;\mathfrak{12}}^{\k}
 	\end{pmatrix}
 \end{align}
 is the non-interacting generalized propagator and
 \begin{align}
 	\hat{\bm\Sigma}_{\mathfrak{12}}^{\k}=\begin{pmatrix}
-		\bm\Sigma_{\mathfrak{12}}^{\k} & \bm\Delta_{\mathfrak{12}}^{\k} \\ 
-		\overline{\bm\Delta}_{\mathfrak{12}}^{\k} & \overline{\bm\Sigma}_{\mathfrak{12}}^{\k}
+		\Sigma_{\mathfrak{12}}^{\k} & \Delta_{\mathfrak{12}}^{\k} \\ 
+		\overline{\Delta}_{\mathfrak{12}}^{\k} & \overline{\Sigma}_{\mathfrak{12}}^{\k}
 	\end{pmatrix}
 \end{align}
-denotes the generalized self-energy, where the diagonal entries $\bm\Sigma_{\mathfrak{12}}^{\k}$ and $\overline{\bm\Sigma}_{\mathfrak{12}}^{\k}$ are the single-particle and single-hole self-energies, respectively and the off-diagonal \textit{pairing} function $\bm\Delta_{\mathfrak{12}}^{\k}$ is coined the superconducting \textit{gap function}.
+denotes the generalized self-energy, where the diagonal entries $\Sigma_{\mathfrak{12}}^{\k}$ and $\overline{\Sigma}_{\mathfrak{12}}^{\k}$ are the single-particle and single-hole self-energies, respectively and the off-diagonal \textit{pairing} function $\Delta_{\mathfrak{12}}^{\k}$ is coined the superconducting \textit{gap function}. The gap function is directly connected to the anomalous propagators and therefore can capture the relevant Cooper-pairing nature of the electrons in the superconducting phase and is directly connected to the symmetry of the superconducting gap (either singlet or triplet pairing). While $\Delta_{\mathfrak{12}}^{\k}$ is non-zero only in the superconducting phase, it is nevertheless possible to obtain a solution directly from the normal state: The phase transition from the normal to the superconducting state is characterized by a divergence in the respective particle-particle susceptibility, which results in an eigenvalue problem also known as linearized Eliashberg equation. We will start with the BSE written in terms of singlet and triplet susceptibilities in the particle-particle channel, see \eqref{eq:bethe_salpeter_susc_pp},
+\begin{align}
+\chi^{\q\k\kp}_{\sing/\trip;\mathfrak{1234}}=\chi^{\q\k\kp}_{\sing/\trip;0;\mathfrak{1234}}-\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{\sing/\trip;0;\mathfrak{1c3a}}\Gamma^{\q\k_1\k_2}_{\sing/\trip;\mathfrak{abcd}}\left (\chi^{\q\k_2\kp}_{\sing/\trip;\mathfrak{d2b4}}+\chi^{\q\k_2\kp}_{\sing/\trip;0;\mathfrak{d2b4}}\right ),
+\end{align}
+where the bare bubble susceptibility in the singlet and triplet channel is given by
+\begin{align}
+	\chi^{\q\k\kp}_{\sing/\trip;0;\mathfrak{1234}}=\mp\chi^{\q\k\kp}_{0;\mathfrak{1234}}.
+\end{align}
+From \eqref{eq:bethe_salpeter_susc_pp} we can formulate the linearized Eliashberg equation as
+\begin{align}\label{eq:linearized_eliashberg}
+	\lambda_{\sing/\trip}\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{a1b2}}\chi^{\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{dbca}}\Delta_{\sing/\trip;\mathfrak{cd}}^{\k_2},
+\end{align}
+yielding an eigenvalue problem with $\lambda_{\sing/\trip}$ as the corresponding eigenvalue. $\Delta_{\sing/\trip;\mathfrak{12}}^{\k}$, as already mentioned above, is the superconducting gap function that transitions smoothly into the anomalous self-energy below the critical temperature $T_\mathrm{c}$. A divergence of $\chi^{\q\k\kp}_{\sing/\trip;\mathfrak{1234}}$ is associated with the largest eigenvalue of $-\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{a1b2}}\chi^{\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{dbca}}$ becoming unity. In other words: When the temperature is lowered, the superconducting instability takes place at $T_\mathrm{c}$, where $\lambda_{\sing/\trip}\to 1$\footnote{One way to find $T_\mathrm{c}$ numerically is via the evolution of $\lambda_{\sing/\trip}$: One often calculates the superconducting eigenvalue for a few (low) temperature regimes and extrapolates it to the region of $\lambda_{\sing/\trip}\to 1$.}. \eqref{eq:linearized_eliashberg} is diagrammatically depicted for the case $\q=0$ in \figref{fig:linearized_eliashberg}. Choosing this single point of vanishing transfer momentum simplifies the problem, as Cooper pairs form at zero total energy, making the equation effectively static in many cases (c.f. Migdal-Eliashberg theory). Finite $\q$ can indicate competing (pair-)density wave states, i.e., charge density waves or spin density waves \cite{yoshida pair density wave}.
 
+Due to Pauli's principle requiring $\Delta$ to be antisymmetric under the exchange of two particles, the combined symmetry operation of (i) spin flip ($\hat S; \sigma\to\overline{\sigma}$), (ii) parity ($\hat P; \k\to-\k$), (iii) orbital exchange ($\hat O; n_1 \leftrightarrow n_2$) and (iv) time reversal ($\hat T; \nu\to-\nu$) has to yield
+\begin{align}
+	\hat S\hat P\hat O\hat T \Delta_{\mathfrak{12}}^{\k} = -\Delta_{\mathfrak{21}}^{-\k}.
+\end{align}
+The individual (anti-)symmetric behavior of each of the above listed symmetry operations uniquely determines the pairing type (singlet/triplet). This of course limits the resulting symmetries of the linearized Eliashberg equations, which is important to check when solving them numerically. 
 
+If the largest eigenvalues of $\bm M = -\bm\Gamma\bm\chi$ are non-degenerate, one can solve the linearized Eliashberg equation through a power iteration. For a converged solution, one specifies a starting eigenvalue $\lambda_0$ and normalized gap function $\bm\Delta_0$ and then iterates through the following equations self-consistently:
+\begin{subequations}
+\begin{align}
+	\bm\Delta_{n} &= \bm M\bm\Delta_{n-1},\\
+	\bm\Delta_{n} &= \frac{\bm\Delta_{n}}{||\bm\Delta_{n}||}\qqand\\
+	\lambda_{n} &= \bm\Delta_{n}^{\dagger}\bm M\bm\Delta_{n},
+\end{align}
+\end{subequations}
+where $n$ denotes the iteration number. This in theory is not difficult, the computationally demanding part is the retrieval of the irreducible vertex in the particle-particle channel. Following the derivation outlined in the supplemental material of \cite{motoharu why tc is so low} and generalizing the equations to multi-orbital indices yields for the full vertex in ladder-$\dga$ for $\r\in\{\dens/\magn\}$ spin combinations
+\begin{align}
+\begin{split}
+	F^{\q\nu\nu'}_{\r;\mathfrak{1234}}&=\beta^2\Big [\left (\chi_{0;\mathfrak{1234}}^{\q\nu\nu'}\right )^{-1}-\!\!\sum_{\nu_1\nu_2;\mathfrak{abcd}}\!\!\left (\chi_{0;\mathfrak{12ba}}^{\q\nu\nu_1}\right )^{-1} \chi_{\r;\mathfrak{abcd}}^{*;\q\nu_1\nu_2} \left (\chi_{0;\mathfrak{dc34}}^{\q\nu_2\nu'}\right )^{-1}\Big ]\\
+	&\qquad\qquad + \sum_{\substack{\mathfrak{abcd}\\\mathfrak{efgh}}} \gamma^{\q\nu}_{\r;\mathfrak{12ab}} \mathcal{U}^{\vv{q}}_{r;\mathfrak{badc}}\left (\unity_{\mathfrak{cdgh}}-\mathcal{U}^{\vv{q}}_{\r;\mathfrak{cdef}}\chi^{\q}_{\r;\mathfrak{fegh}}\right )\gamma^{\q\nu'}_{\r;\mathfrak{hg34}}, 
+\end{split}
+\end{align}
+with the auxiliary susceptibility $\chi_{\r;\mathfrak{1234}}^{*;\q\nu\nu'}$ of \eqref{eq:chi_aux} and the three-leg vertex $\gamma^{\q\nu}_{\r;\mathfrak{1234}}$ of \eqref{eq:vrg}.
 
 
 
