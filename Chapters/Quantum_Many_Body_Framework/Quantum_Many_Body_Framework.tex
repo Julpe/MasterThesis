@@ -4,7 +4,7 @@
 
 \chapter{Quantum many-body framework}
 
-This chapter is dedicated to introducing the necessary tools needed to perform realistic material calculations using DMFT or $\dga$. We start with the most central objects - the Green's functions - and subsequently assemble a complete framework which enables us to calculate a number of physical properties, e.g. the susceptibility, optical conductivity, superconductivity, pseudogap formation and more, that stem from the correlated interplay between electrons or holes. 
+This chapter is dedicated to introducing the necessary tools needed to perform realistic material calculations using dynamical mean-field theory (DMFT) or the dynamical vertex approximation $\dga$. We start with the most central objects - the Green's functions - and subsequently assemble a complete framework which enables us to calculate a number of physical properties, e.g. the susceptibility, optical conductivity, superconductivity, pseudogap formation and more, that stem from the correlated interplay between electrons or holes. 
 
 \section{One-particle Green's functions}
 
@@ -913,14 +913,16 @@ To connect the aforementioned one- and two-particle vertex functions to somethin
 \section{Eliashberg equation}
 
 After a successful converged ladder-$\dga$ routine, we have the most important non-local one- and two-particle quantities available. Starting from this, we can further study superconductivity with the so-called Eliashberg equations \cite{eliashberg original paper}, an extensive diagrammatic framework based upon particle-particle interactions that lead to the formation of Cooper pairs. 
-Due to the coupling of electrons, we introduce, apart from the regular one-particle Green's function of \eqref{eq:one_p_green_expectation_val}, two \textit{anomalous} Green's functions \cite{interorbital singlet pairing}
+Due to the coupling of electrons, we introduce, additionally to the one-particle Green's function of \eqref{eq:one_p_green_expectation_val}, two \textit{anomalous} Green's functions \cite{interorbital singlet pairing}
 \begin{subequations}
 \begin{align}
 	F_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{c}_{\k;\mathfrak{1}}\hat{c}_{-\k;\mathfrak{2}}\right ]} \qqand\\
 	\overline{F}_{\mathfrak{12}}^{\k}&=-\mean{\mathcal{T}\left [\hat{c}^{\dagger}_{\k;\mathfrak{1}}\hat{c}^{\dagger}_{-\k;\mathfrak{2}}\right ]}.
 \end{align}
 \end{subequations}
-Here, $F_{\mathfrak{12}}^{\k}$ and $\overline{F}_{\mathfrak{12}}^{\k}$ denote the anomalous Green's functions, which are not to be confused with the full vertex $F^{\q\k\kp}_{\mathfrak{1234}}$. The anomalous Green's functions are rather unusual contractions of either two electrons or two holes, contrary to the regular Green's function, which is a contraction of an electron and a hole. These two contractions will vanish in the normal state, however they are of finite value in the superconducting phase. At this point is is helpful to switch to the Nambu formalism \cite{nambu}, where the basis is spanned by the spinors
+Here, $F_{\mathfrak{12}}^{\k}$ and $\overline{F}_{\mathfrak{12}}^{\k}$ are not to be confused with the full vertex $F^{\q\k\kp}_{\mathfrak{1234}}$. The anomalous Green's functions are rather unusual contractions of either two electrons or two holes, contrary to the regular Green's function, which is a contraction of an electron and a hole. These two contractions will vanish in the normal state, however they are of finite value in the superconducting phase. 
+
+At this point is is helpful to switch to the Nambu formalism \cite{nambu}, where the basis is spanned by the spinors
 \begin{align}
 	\hat\psi_{\mathfrak{1}}^{\k}=\left (\hat{c}_{\k;\mathfrak{1};\uparrow}, \hat{c}_{\k;\mathfrak{1};\downarrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\uparrow},\hat{c}^{\dagger}_{-\k;\mathfrak{1};\downarrow}\right )^{\text{T}}.
 \end{align}
@@ -935,7 +937,7 @@ In this basis, the anomalous Green's functions are (block-)off-diagonal entries 
 \end{split}
 \end{align}
 where $G_{\mathfrak{12}}^{\k}$ and $F_{\mathfrak{12}}^{\k}$ are $2n \times 2n$ matrices in spin-orbital space, where $n$ denotes the number of bands. The diagonal entries of the Gro'kov single-particle propagator are the regular single-particle ($ G_{\mathfrak{12}}^{\k}$) and single-hole ($\overline{G}_{\mathfrak{12}}^{\k}=-G_{\mathfrak{12}}^{-\k}$) propagators. After a Fourier transform to Matsubara frequencies, the generalized Dyson equation can be written as follows:
-\begin{align}
+\begin{align}\label{eq:grokov_dyson}
 	\hat{\bm G}_{\mathfrak{12}}^{\k} = \hat{\bm G}_{0;\mathfrak{12}}^{\k} + \sum_{\mathfrak{ab}}\hat{\bm G}_{0;\mathfrak{1a}}^{\k}\hat{\bm\Sigma}_{\mathfrak{ab}}^{\k}\hat{\bm G}_{\mathfrak{b2}}^{\k},
 \end{align}
 where
@@ -951,7 +953,7 @@ is the non-interacting generalized propagator and
 		\overline{\Delta}_{\mathfrak{12}}^{\k} & \overline{\Sigma}_{\mathfrak{12}}^{\k}
 	\end{pmatrix}
 \end{align}
-denotes the generalized self-energy, where the diagonal entries $\Sigma_{\mathfrak{12}}^{\k}$ and $\overline{\Sigma}_{\mathfrak{12}}^{\k}$ are the single-particle and single-hole self-energies, respectively and the off-diagonal \textit{pairing} function $\Delta_{\mathfrak{12}}^{\k}$ is coined the superconducting \textit{gap function}. The gap function is directly connected to the anomalous propagators and therefore can capture the relevant Cooper-pairing nature of the electrons in the superconducting phase and is directly connected to the symmetry of the superconducting gap (either singlet or triplet pairing). While $\Delta_{\mathfrak{12}}^{\k}$ is non-zero only in the superconducting phase, it is nevertheless possible to obtain a solution directly from the normal state: The phase transition from the normal to the superconducting state is characterized by a divergence in the respective particle-particle susceptibility, which results in an eigenvalue problem also known as linearized Eliashberg equation. We will start with the BSE written in terms of singlet and triplet susceptibilities in the particle-particle channel, see \eqref{eq:bethe_salpeter_susc_pp},
+denotes the generalized self-energy, where the diagonal entries $\Sigma_{\mathfrak{12}}^{\k}$ and $\overline{\Sigma}_{\mathfrak{12}}^{\k}$ are the single-particle and single-hole self-energies, respectively and the off-diagonal \textit{pairing} function $\Delta_{\mathfrak{12}}^{\k}$ is coined the superconducting \textit{gap function}. $\Delta_{\mathfrak{12}}^{\k}$ is directly connected to the anomalous propagators and therefore can capture the relevant Cooper-pairing nature of the electrons in the superconducting phase. While the gap function is non-zero only in the superconducting phase, it is nevertheless possible to obtain a solution directly from the normal state: The phase transition from the normal to the superconducting state is characterized by a divergence in the respective particle-particle susceptibility, which results in an eigenvalue problem also known as the Eliashberg equation. We will start with the BSE written in terms of singlet and triplet susceptibilities in the particle-particle channel, see \eqref{eq:bethe_salpeter_susc_pp},
 \begin{align}
 \chi^{\q\k\kp}_{\sing/\trip;\mathfrak{1234}}=\chi^{\q\k\kp}_{\sing/\trip;0;\mathfrak{1234}}-\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\chi^{\q\k\k_1}_{\sing/\trip;0;\mathfrak{1c3a}}\Gamma^{\q\k_1\k_2}_{\sing/\trip;\mathfrak{abcd}}\left (\chi^{\q\k_2\kp}_{\sing/\trip;\mathfrak{d2b4}}+\chi^{\q\k_2\kp}_{\sing/\trip;0;\mathfrak{d2b4}}\right ),
 \end{align}
@@ -959,34 +961,52 @@ where the bare bubble susceptibility in the singlet and triplet channel is given
 \begin{align}
 	\chi^{\q\k\kp}_{\sing/\trip;0;\mathfrak{1234}}=\mp\chi^{\q\k\kp}_{0;\mathfrak{1234}}.
 \end{align}
-From \eqref{eq:bethe_salpeter_susc_pp} we can formulate the linearized Eliashberg equation as
-\begin{align}\label{eq:linearized_eliashberg}
-	\lambda_{\sing/\trip}\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{a1b2}}\chi^{\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{dbca}}\Delta_{\sing/\trip;\mathfrak{cd}}^{\k_2},
+When describing the superconducting state, one usually employs quantities written in the Nambu basis, i.e., we are now using the generalized Gro'kov single-particle propagator in the equation for the susceptibility, not the regular Green's function \cite{Nambu paper, Putzer DA}. We will denote these Green's functions by an additional superscript, $G^{\text{sc};\k}_{\mathfrak{12}}$, and call them \textit{superconducting} Green's functions. The corresponding Eliashberg equation can then be written as
+\begin{align}\label{eq:full_eliashberg}
+	\lambda_{\sing/\trip}\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{1b2a}}\chi^{\text{sc};\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{abcd}}\Delta_{\sing/\trip;\mathfrak{cd}}^{\k_2},
 \end{align}
-yielding an eigenvalue problem with $\lambda_{\sing/\trip}$ as the corresponding eigenvalue. $\Delta_{\sing/\trip;\mathfrak{12}}^{\k}$, as already mentioned above, is the superconducting gap function that transitions smoothly into the anomalous self-energy below the critical temperature $T_\mathrm{c}$. A divergence of $\chi^{\q\k\kp}_{\sing/\trip;\mathfrak{1234}}$ is associated with the largest eigenvalue of $-\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{a1b2}}\chi^{\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{dbca}}$ becoming unity. In other words: When the temperature is lowered, the superconducting instability takes place at $T_\mathrm{c}$, where $\lambda_{\sing/\trip}\to 1$\footnote{One way to find $T_\mathrm{c}$ numerically is via the evolution of $\lambda_{\sing/\trip}$: One often calculates the superconducting eigenvalue for a few (low) temperature regimes and extrapolates it to the region of $\lambda_{\sing/\trip}\to 1$.}. \eqref{eq:linearized_eliashberg} is diagrammatically depicted for the case $\q=0$ in \figref{fig:linearized_eliashberg}. Choosing this single point of vanishing transfer momentum simplifies the problem, as Cooper pairs form at zero total energy, making the equation effectively static in many cases (c.f. Migdal-Eliashberg theory). Finite $\q$ can indicate competing (pair-)density wave states, i.e., charge density waves or spin density waves \cite{yoshida pair density wave}.
-
-Due to Pauli's principle requiring $\Delta$ to be antisymmetric under the exchange of two particles, the combined symmetry operation of (i) spin flip ($\hat S; \sigma\to\overline{\sigma}$), (ii) parity ($\hat P; \k\to-\k$), (iii) orbital exchange ($\hat O; n_1 \leftrightarrow n_2$) and (iv) time reversal ($\hat T; \nu\to-\nu$) has to yield
+yielding an eigenvalue problem with $\lambda_{\sing/\trip}$ as the corresponding eigenvalue. Here, the bare bubble susceptibility $\chi^{\text{sc};\q\k\kp}_{0;\mathfrak{1234}}$ is now built from the superconducting Green's function $G^{\text{sc};\k}_{\mathfrak{12}}$ which contains the anomalous self-energy in the following form
+\begin{align}
+	G^{\text{sc};\k}_{\mathfrak{12}}=\frac{i\nu\delta_{\mathfrak{12}}+\varepsilon^{\vv{k}}_{\mathfrak{12}}+\Sigma^{\k}_{\mathfrak{12}}}{(i\nu\delta_{\mathfrak{12}}+\varepsilon^{\vv{k}}_{\mathfrak{12}}+\Sigma^{\k}_{\mathfrak{12}})(i\nu\delta_{\mathfrak{12}}-\varepsilon^{\vv{k}}_{\mathfrak{12}}-\Sigma^{\k}_{\mathfrak{12}})-|\Delta_{\mathfrak{12}}^{\k}|^2},
+\end{align}
+which results from the generalized Dyson equation of \eqref{eq:grokov_dyson}\footnote{$\Delta_{\sing/\trip;\mathfrak{12}}^{\k}$, as already mentioned above, is the superconducting gap function that transitions smoothly into the anomalous self-energy below the critical temperature $T_\mathrm{c}$.}. A divergence of $\chi^{\q\k\kp}_{\sing/\trip;\mathfrak{1234}}$ is associated with the largest eigenvalue of $-\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{a1b2}}\chi^{\text{sc};\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{dbca}}$ becoming unity. In other words: When the temperature is lowered, the superconducting instability takes place at $T_\mathrm{c}$, where $\lambda_{\sing/\trip}\to 1$\footnote{One way to find $T_\mathrm{c}$ numerically is via the evolution of $\lambda_{\sing/\trip}$: One often calculates the superconducting eigenvalue for a few (low) temperature regimes and extrapolates it to the region of $\lambda_{\sing/\trip}\to 1$.}. This is the full Eliashberg equation, which is a non-linear implicit equation for the superconducting gap function $\Delta_{\mathfrak{12}}^{\k}$. To solve this equation numerically, one often linearizes the Eliashberg equation and neglects the gap function in the denominator of the superconducting Green's function. This is then commonly coined the \textit{linearized} Eliashberg equation and reads,
+\begin{align}\label{eq:linearized_eliashberg}
+	\lambda_{\sing/\trip}\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2\beta^2}\sum_{\k_1\k_2;\mathfrak{abcd}}\Gamma^{\q\k\k_1}_{\sing/\trip;\mathfrak{1b2a}}\chi^{\q\k_1\k_2}_{\sing/\trip;0;\mathfrak{abcd}}\Delta_{\sing/\trip;\mathfrak{cd}}^{\k_2},
+\end{align}
+where the superconducting Green's function transitions to the regular Green's function for a vanishing $\Delta_{\mathfrak{12}}^{\k}$. \eqref{eq:linearized_eliashberg} is diagrammatically depicted for the case $\q=0$ in \figref{fig:linearized_eliashberg}. Choosing this single point of vanishing transfer momentum simplifies the problem, as Cooper pairs form at zero total energy, making the equation effectively static in many cases (c.f. Migdal-Eliashberg theory). Finite $\q$ can indicate competing (pair-)density wave states, i.e., charge density waves or spin density waves \cite{yoshida pair density wave}.
+\begin{figure}[ht!]
+	\centering
+  	\includestandalone[scale=1]{../../Graphics/Diagrams/linearized_eliashberg/linearized_eliashberg}
+  	\caption{Linearized Eliashberg equation for vanishing transfer frequency $\q=0$, see \eqref{eq:linearized_eliashberg}.}
+  	\label{fig:linearized_eliashberg}
+\end{figure}
+Due to Pauli's principle requiring $\Delta$ to be antisymmetric under the exchange of two particles, the combined symmetry operation of (i) spin flip ($\hat S; \sigma\to\overline{\sigma}$), (ii) parity ($\hat P; \vv{k}\to-\vv{k}$), (iii) orbital exchange ($\hat O; n_1 \leftrightarrow n_2$) and (iv) time reversal ($\hat T; \nu\to-\nu$) has to yield
 \begin{align}
 	\hat S\hat P\hat O\hat T \Delta_{\mathfrak{12}}^{\k} = -\Delta_{\mathfrak{21}}^{-\k}.
 \end{align}
-The individual (anti-)symmetric behavior of each of the above listed symmetry operations uniquely determines the pairing type (singlet/triplet). This of course limits the resulting symmetries of the linearized Eliashberg equations, which is important to check when solving them numerically. 
+The individual (anti-)symmetric behavior after applying each of the above listed symmetry operations individually uniquely determines the pairing type (singlet/triplet) of the Cooper pairs. This of course limits the solutions of the linearized Eliashberg equations to a small subset, which is important to be aware of when solving them numerically. To be more precise, the corresponding gap function for singlet pairing fulfills $\Delta^{\k}_{\mathfrak{12}}=\Delta^{-\k}_{\mathfrak{21}}$ and the corresponding gap function for triplet pairing fulfills $\Delta^{\k}_{\mathfrak{12}}=-\Delta_{\mathfrak{21}}^{-\k}$.
 
 If the largest eigenvalues of $\bm M = -\bm\Gamma\bm\chi$ are non-degenerate, one can solve the linearized Eliashberg equation through a power iteration. For a converged solution, one specifies a starting eigenvalue $\lambda_0$ and normalized gap function $\bm\Delta_0$ and then iterates through the following equations self-consistently:
 \begin{subequations}
 \begin{align}
 	\bm\Delta_{n} &= \bm M\bm\Delta_{n-1},\\
 	\bm\Delta_{n} &= \frac{\bm\Delta_{n}}{||\bm\Delta_{n}||}\qqand\\
-	\lambda_{n} &= \bm\Delta_{n}^{\dagger}\bm M\bm\Delta_{n},
+	\lambda_{n} &= \bm\Delta_{n}^{\dagger}\bm M\bm\Delta_{n},	
 \end{align}
 \end{subequations}
-where $n$ denotes the iteration number. This in theory is not difficult, the computationally demanding part is the retrieval of the irreducible vertex in the particle-particle channel. Following the derivation outlined in the supplemental material of \cite{motoharu why tc is so low} and generalizing the equations to multi-orbital indices yields for the full vertex in ladder-$\dga$ for $\r\in\{\dens/\magn\}$ spin combinations
+where $n$ denotes the iteration number. This in theory is not difficult, the computationally demanding part of solving the linearized Eliashberg equation is the calculation of the irreducible vertex in the particle-particle channel. Following the derivation outlined in the supplemental material of \cite{motoharu why tc is so low} and generalizing the equations to account for multiple orbitals yields for the full vertex in ladder-$\dga$ for $\r\in\{\dens/\magn\}$ spin combinations
 \begin{align}
 \begin{split}
 	F^{\q\nu\nu'}_{\r;\mathfrak{1234}}&=\beta^2\Big [\left (\chi_{0;\mathfrak{1234}}^{\q\nu\nu'}\right )^{-1}-\!\!\sum_{\nu_1\nu_2;\mathfrak{abcd}}\!\!\left (\chi_{0;\mathfrak{12ba}}^{\q\nu\nu_1}\right )^{-1} \chi_{\r;\mathfrak{abcd}}^{*;\q\nu_1\nu_2} \left (\chi_{0;\mathfrak{dc34}}^{\q\nu_2\nu'}\right )^{-1}\Big ]\\
 	&\qquad\qquad + \sum_{\substack{\mathfrak{abcd}\\\mathfrak{efgh}}} \gamma^{\q\nu}_{\r;\mathfrak{12ab}} \mathcal{U}^{\vv{q}}_{r;\mathfrak{badc}}\left (\unity_{\mathfrak{cdgh}}-\mathcal{U}^{\vv{q}}_{\r;\mathfrak{cdef}}\chi^{\q}_{\r;\mathfrak{fegh}}\right )\gamma^{\q\nu'}_{\r;\mathfrak{hg34}}, 
 \end{split}
 \end{align}
-with the auxiliary susceptibility $\chi_{\r;\mathfrak{1234}}^{*;\q\nu\nu'}$ of \eqref{eq:chi_aux} and the three-leg vertex $\gamma^{\q\nu}_{\r;\mathfrak{1234}}$ of \eqref{eq:vrg}.
+with the auxiliary susceptibility $\chi_{\r;\mathfrak{1234}}^{*;\q\nu\nu'}$ of \eqref{eq:chi_aux} and the three-leg vertex $\gamma^{\q\nu}_{\r;\mathfrak{1234}}$ of \eqref{eq:vrg}. We can extract the irreducible vertex in the $\pp$ channel from the full vertex minus all reducible $\pp$ diagrams. This yields for both the singlet and triplet channel
+\begin{align}
+	\Gamma_{\sing;\mathfrak{1234}}^{(\q=0)\k\kp}&=\frac 12 \left [F_{\dens;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}-3F_{\magn;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}\right ]-F_{\mathfrak{1234};\uparrow\downarrow}^{(\nu-\nu')\nu'(-\nu)}-\Phi_{\pp;\mathfrak{1234}}^{(\omega=0)\nu\nu'}\qqand\\
+	\Gamma_{\trip;\mathfrak{1234}}^{(\q=0)\k\kp}&=\frac 12 \left [F_{\dens;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}+F_{\magn;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}\right ]-F_{\mathfrak{1234};\uparrow\downarrow}^{(\nu-\nu')\nu'(-\nu)}-\Phi_{\pp;\mathfrak{1234}}^{(\omega=0)\nu\nu'}.
+\end{align}
+This concludes our comprehensive overview of the basics of modern condensed matter field theory. Since we are also interested in the application of some of the equations we have derived or stated in this chapter, we will in the following present code that is able to obtain a self-consistent ladder-$\dga$ solution with a determination of the critical temperature $T_{\text{c}}$.
 
 
 
