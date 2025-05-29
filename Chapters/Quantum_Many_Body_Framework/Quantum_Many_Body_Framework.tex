@@ -824,8 +824,8 @@ We can express the difference of the transversal particle-hole diagrams of \eqre
 	\left (\Phi^{\q\k\kp}_{\magn;\phbar;\mathfrak{1234}}-\Phi^{\omega\nu\nu'}_{\magn;\phbar;\mathfrak{1234}}\right )&=-\frac12 F_{\magn;\mathfrak{3214}}^{\nl;(\kp-\k)(\nu'-\omega)\nu'}+\frac12 F_{\magn;\mathfrak{3214}}^{\nl;(\kp-\k)(\nu'-\omega)\nu'}.
 \end{align}
 \end{subequations}
-We can combine these results in \eqref{eq:full_vertex_crossing_symmetric_dga} which now states
-\begin{subequations}
+We can combine the results of \eqref{eq:full_vertex_crossing_symmetric_dga} which now states
+\begin{subequations}\label{eq:full_vertex_ladder_dga_crossing_symmetric}
 \begin{align}
 	F^{\q\k\kp}_{\dens;\mathfrak{1234}}&=F^{\omega\nu\nu'}_{\dens;\mathfrak{1234}}\,+F^{\nl;\q\nu\nu'}_{\dens;\mathfrak{1234}}-\frac12 F_{\dens;\mathfrak{3214}}^{\nl;(\kp-\k)(\nu'-\omega)\nu'}-\frac32 F_{\magn;\mathfrak{3214}}^{\nl;(\kp-\k)(\nu'-\omega)\nu'}\qqand\\
 	F^{\q\k\kp}_{\magn;\mathfrak{1234}}&=F^{\omega\nu\nu'}_{\magn;\mathfrak{1234}}+F^{\nl;\q\nu\nu'}_{\magn;\mathfrak{1234}}-\frac12 F_{\dens;\mathfrak{3214}}^{\nl;(\kp-\k)(\nu'-\omega)\nu'}+\frac12 F_{\magn;\mathfrak{3214}}^{\nl;(\kp-\k)(\nu'-\omega)\nu'}.
@@ -997,22 +997,113 @@ If the largest eigenvalues of $\bm M = -\bm\Gamma\bm\chi$ are non-degenerate, on
 \end{align}
 \end{subequations}
 where $n$ denotes the iteration number. Solving this set of equations is not difficult, the computationally demanding part of solving the linearized Eliashberg equation is the calculation of the irreducible vertex in the particle-particle channel. Following the derivation outlined in the supplemental material of \cite{motoharu why tc is so low} and generalizing the equations to account for multiple orbitals yields for the full vertex in ladder-$\dga$ for $\r\in\{\dens/\magn\}$ spin combinations
-\begin{align}
+\begin{align}\label{eq:full_vertex_ladder_dga_non_crossing_symmetric}
 \begin{split}
 	F^{\q\nu\nu'}_{\r;\mathfrak{1234}}&=\beta^2\Big [\left (\chi_{0;\mathfrak{1234}}^{\q\nu\nu'}\right )^{-1}-\!\!\sum_{\nu_1\nu_2;\mathfrak{abcd}}\!\!\left (\chi_{0;\mathfrak{12ba}}^{\q\nu\nu_1}\right )^{-1} \chi_{\r;\mathfrak{abcd}}^{*;\q\nu_1\nu_2} \left (\chi_{0;\mathfrak{dc34}}^{\q\nu_2\nu'}\right )^{-1}\Big ]\\
 	&\qquad\qquad + \sum_{\substack{\mathfrak{abcd}\\\mathfrak{efgh}}} \gamma^{\q\nu}_{\r;\mathfrak{12ab}} \mathcal{U}^{\vv{q}}_{r;\mathfrak{badc}}\left (\unity_{\mathfrak{cdgh}}-\mathcal{U}^{\vv{q}}_{\r;\mathfrak{cdef}}\chi^{\q}_{\r;\mathfrak{fegh}}\right )\gamma^{\q\nu'}_{\r;\mathfrak{hg34}}, 
 \end{split}
 \end{align}
-with the auxiliary susceptibility $\chi_{\r;\mathfrak{1234}}^{*;\q\nu\nu'}$ of \eqref{eq:chi_aux} and the three-leg vertex $\gamma^{\q\nu}_{\r;\mathfrak{1234}}$ of \eqref{eq:vrg}. We can extract the irreducible vertex in the $\pp$ channel from the full vertex minus all reducible $\pp$ diagrams. This yields for both the singlet and triplet channel
+with the auxiliary susceptibility $\chi_{\r;\mathfrak{1234}}^{*;\q\nu\nu'}$ of \eqref{eq:chi_aux} and the three-leg vertex $\gamma^{\q\nu}_{\r;\mathfrak{1234}}$ of \eqref{eq:vrg}. In the following section, we will present a short derivation of the particle-particle pairing vertex for the case of $\q=0$ within the framework of ladder-$\dga$. 
+
+\subsection{Derivation of the pairing vertex $\Gamma_{\pp}$ within ladder-$\dga$}
+
+The vertex of \eqref{eq:full_vertex_ladder_dga_non_crossing_symmetric} does not fulfill any crossing-symmetry relation, since it has been created from the BSE in the particle-hole channel only. It therefore solely possesses the particle-swapping symmetry \cite{ab initio dga}. To restore the crossing symmetry, we plug this vertex into \eqref{eq:full_vertex_ladder_dga_crossing_symmetric} and obtain for the $\uparrow\downarrow$-component \cite{ab initio dga, rohringer thesis}
+\begin{align}
+	F^{\dga;\q\k\kp}_{\mathfrak{1234};\uparrow\downarrow}&=\frac12\left (F_{\dens;\mathfrak{1234}}^{\q\nu\nu'}-F_{\magn;\mathfrak{1234}}^{\q\nu\nu'}\right )-F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}-\frac12\left (F_{\dens;\mathfrak{1234}}^{\omega\nu\nu'}-F_{\magn;\mathfrak{1234}}^{\omega\nu\nu'}\right ).
+\end{align}
+The $F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}$-term arises from the $\ph\to\phbar$ transformation to restore crossing symmetry and hence introduces an orbital permutation as well as frequency shifts. This is an equation only written down for the $\uparrow\downarrow$-component of the full vertex. Luckily, one can obtain the $\overline{\uparrow\downarrow}$-component via a crossing symmetry relation of the $\uparrow\downarrow$-component in the following way:
+\begin{align}
+	F^{\q\k\kp}_{\mathfrak{1234};\overline{\uparrow\downarrow}}=-F^{(\k-\kp)\k(\k-\q)}_{\mathfrak{1432};\uparrow\downarrow}.
+\end{align}
+One therefore recovers for the $\overline{\uparrow\downarrow}$-component
+\begin{align}
+\begin{split}
+	F^{\dga;\q\k\kp}_{\mathfrak{1234};\overline{\uparrow\downarrow}}&=-\frac12\left (F_{\dens;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}-F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}\right )+F_{\magn;\mathfrak{1234}}^{\q\nu\nu'}\\
+	&\qquad+\frac12\left (F_{\dens;\mathfrak{1432}}^{(\nu-\nu')\nu(\nu-\omega)}-F_{\magn;\mathfrak{1432}}^{(\nu-\nu')\nu(\nu-\omega)}\right ).
+\end{split}
+\end{align}
+This yields for the full vertices in $\ph$-notation for both the singlet ($\uparrow\downarrow-\,\overline{\uparrow\downarrow}$)
+\begin{align}
+\begin{split}
+	F_{\sing;\mathfrak{1234}}^{\dga;\q\k\kp}&=\frac12\left (F_{\dens;\mathfrak{1234}}^{\q\nu\nu'}-3F_{\magn;\mathfrak{1234}}^{\q\nu\nu'}\right )-\frac12\left (F_{\dens;\mathfrak{1234}}^{\omega\nu\nu'}-F_{\magn;\mathfrak{1234}}^{\omega\nu\nu'}\right )\\
+	&\qquad+\frac12\left (F_{\dens;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}-3F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}\right )-\frac12\left (F_{\dens;\mathfrak{1432}}^{(\nu-\nu')\nu(\nu-\omega)}-F_{\magn;\mathfrak{1432}}^{(\nu-\nu')\nu(\nu-\omega)}\right )
+\end{split}
+\end{align}
+and triplet ($\uparrow\downarrow+\,\overline{\uparrow\downarrow}$) spin combination
+\begin{align}
+\begin{split}
+	F_{\trip;\mathfrak{1234}}^{\dga;\q\k\kp}&=\frac12\left (F_{\dens;\mathfrak{1234}}^{\q\nu\nu'}+F_{\magn;\mathfrak{1234}}^{\q\nu\nu'}\right )-\frac12\left (F_{\dens;\mathfrak{1234}}^{\omega\nu\nu'}-F_{\magn;\mathfrak{1234}}^{\omega\nu\nu'}\right )\\
+	&\qquad-\frac12\left (F_{\dens;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}+F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(\nu-\omega)}\right )+\frac12\left (F_{\dens;\mathfrak{1432}}^{(\nu-\nu')\nu(\nu-\omega)}-F_{\magn;\mathfrak{1432}}^{(\nu-\nu')\nu(\nu-\omega)}\right ).
+\end{split}
+\end{align}
+We now want to evaluate this expression for $\q_{\pp}=0$ by setting $\q_{\ph}=\k_{\pp}+\kp_{\pp}, \k_{\ph}=\k_{\pp}$ and $\kp_{\ph}=\kp_{\pp}$\footnote{The frequency notation for the particle-particle channel used in this thesis has been written down in \eqref{eq:pp_freq}.}. Inserting these frequencies and momenta yields for the singlet channel
+\begin{align}\label{eq:ladder_f_sing}
+\begin{split}
+	F_{\sing;\mathfrak{1234}}^{\dga;(\q_{\pp}=0)\k\kp}&=\frac12\left (F_{\dens;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}-3F_{\magn;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}\right )-\frac12\left (F_{\dens;\mathfrak{1234}}^{(\nu+\nu')\nu\nu'}-F_{\magn;\mathfrak{1234}}^{(\nu+\nu')\nu\nu'}\right )\\
+	&\qquad+\frac12\left (F_{\dens;\mathfrak{1432}}^{(\k-\kp)\nu(-\nu')}-3F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(-\nu')}\right )-\frac12\left (F_{\dens;\mathfrak{1234}}^{(\nu-\nu')\nu(-\nu')}-F_{\magn;\mathfrak{1234}}^{(\nu-\nu')\nu(-\nu')}\right )\\
+	&=\underbrace{\frac12\left (F_{\dens;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}-3F_{\magn;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}\right )-F_{\mathfrak{1234};\uparrow\downarrow}^{(\nu+\nu')\nu\nu'}}_{\textstyle\tilde{F}_{\sing;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}}+ \underbrace{\left (\kp\rightarrow -\kp\;\&\; \mathfrak{1234}\rightarrow\mathfrak{1432}\right )}_{\textstyle\tilde{F}_{\sing;\mathfrak{1432}}^{\dga;(\q=0)\k(-\kp)}}.
+\end{split}
+\end{align}
+For the triplet channel we analogously find
+\begin{align}\label{eq:ladder_f_trip}
+\begin{split}
+	F_{\trip;\mathfrak{1234}}^{\dga;(\q_{\pp}=0)\k\kp}&=\frac12\left (F_{\dens;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}+F_{\magn;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}\right )-\frac12\left (F_{\dens;\mathfrak{1234}}^{(\nu+\nu')\nu\nu'}-F_{\magn;\mathfrak{1234}}^{(\nu+\nu')\nu\nu'}\right )\\
+	&\qquad-\frac12\left (F_{\dens;\mathfrak{1432}}^{(\k-\kp)\nu(-\nu')}+F_{\magn;\mathfrak{1432}}^{(\k-\kp)\nu(-\nu')}\right )+\frac12\left (F_{\dens;\mathfrak{1234}}^{(\nu-\nu')\nu(-\nu')}-F_{\magn;\mathfrak{1234}}^{(\nu-\nu')\nu(-\nu')}\right )\\
+	&=\underbrace{\frac12\left (F_{\dens;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}+F_{\magn;\mathfrak{1234}}^{(\k+\kp)\nu\nu'}\right )-F_{\mathfrak{1234};\uparrow\downarrow}^{(\nu+\nu')\nu\nu'}}_{\textstyle\tilde{F}_{\trip;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}}-\underbrace{\left (\kp\rightarrow -\kp\;\&\; \mathfrak{1234}\rightarrow\mathfrak{1432}\right )}_{\textstyle\tilde{F}_{\trip;\mathfrak{1432}}^{\dga;(\q=0)\k(-\kp)}}.
+\end{split}
+\end{align}
+We can construct the pairing vertex in either singlet or triplet channel by subtracting the purely \textit{local} particle-particle reducible diagrams. We only need to consider the local diagrams here, since neglecting the momentum dependence of particle-particle reducible diagrams is a key approximation in ladder-$\dga$. This yields
+\begin{align}
+	\Gamma_{\sing/\trip;\mathfrak{1234}}^{(\q=0)\k\kp}=F_{\sing/\trip;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}-\phi_{\sing/\trip;\mathfrak{1234}}^{(\omega=0)\nu\nu'}.
+\end{align}
+The local reducible diagrams can be subtracted straightforwardly from $\tilde{F}_{\sing/\trip;\mathfrak{1234}}^{\dga;(\q_{\pp}=0)\k(\pm\kp)}$ in the following fashion
+\begin{align}\label{eq:pairing_vertex_full_formula}
+\begin{split}
+	\Gamma_{\sing/\trip;\mathfrak{1234}}^{(\q=0)\k\kp}&=\tilde{F}_{\sing/\trip;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}\pm \tilde{F}_{\sing/\trip;\mathfrak{1432}}^{\dga;(\q=0)\k(-\kp)}-\phi_{\sing/\trip;\mathfrak{1234}}^{(\omega=0)\nu\nu'}\\
+	&=\tilde{F}_{\sing/\trip;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}\pm \tilde{F}_{\sing/\trip;\mathfrak{1432}}^{\dga;(\q=0)\k(-\kp)}-\left (\phi_{\pp;\mathfrak{1234};\uparrow\downarrow}^{(\omega=0)\nu\nu'}\mp \phi_{\pp;\mathfrak{1234};\overline{\uparrow\downarrow}}^{(\omega=0)\nu\nu'}\right )\\
+	&=\tilde{F}_{\sing/\trip;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}\pm \tilde{F}_{\sing/\trip;\mathfrak{1432}}^{\dga;(\q=0)\k(-\kp)}-\left (\phi_{\pp;\mathfrak{1234};\uparrow\downarrow}^{(\omega=0)\nu\nu'}\pm \phi_{\pp;\mathfrak{1432};\uparrow\downarrow}^{(\omega=0)\nu(-\nu')}\right )\\
+	&=\underbrace{\tilde{F}_{\sing/\trip;\mathfrak{1234}}^{\dga;(\q=0)\k\kp}-\phi_{\pp;\mathfrak{1234};\uparrow\downarrow}^{(\omega=0)\nu\nu'}}_{\textstyle\tilde{\Gamma}_{\sing/\trip;\mathfrak{1234}}^{(\q=0)\k\kp}}\pm \underbrace{\left (\tilde{F}_{\sing/\trip;\mathfrak{1432}}^{\dga;(\q=0)\k(-\kp)}- \phi_{\pp;\mathfrak{1432};\uparrow\downarrow}^{(\omega=0)\nu(-\nu')}\right )}_{\textstyle\tilde{\Gamma}_{\sing/\trip;\mathfrak{1432}}^{(\q=0)\k(-\kp)}}\\
+	&=\tilde{\Gamma}_{\sing/\trip;\mathfrak{1234}}^{(\q=0)\k\kp}\pm \left (\kp\rightarrow -\kp\;\&\; \mathfrak{1234}\rightarrow\mathfrak{1432}\right ).
+\end{split}
+\end{align}
+
+\subsection{Symmetry of the gap function}
+
+We can show that the gap function inherits the correct symmetry upon using the symmetrized vertices of \eqref{eq:pairing_vertex_full_formula}. Recall that the multi-orbital Eliashberg equation for the case $\q=0$ is given by 
+\begin{align}
+	\lambda_{\sing/\trip}\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2}\sum_{\kp;\mathfrak{abcd}}\!\!\Gamma^{(\q=0)\k\kp}_{\sing/\trip;\mathfrak{1b2a}}\chi^{(\q=0)\kp}_{\sing/\trip;0;\mathfrak{acbd}}\Delta_{\sing/\trip;\mathfrak{dc}}^{\kp}
+\end{align}
+for $\q=0$ and the singlet and triplet gap functions fulfill $\Delta_{\sing;\mathfrak{12}}^{\k}=\Delta_{\sing;\mathfrak{21}}^{-\k}$ and $\Delta_{\trip;\mathfrak{12}}^{\k}=-\Delta_{\trip;\mathfrak{21}}^{-\k}$, respectively. We can write $\Gamma$ in the symmetrized form with the irreducible vertices $\tilde{\Gamma}$ from \eqref{eq:pairing_vertex_full_formula} above, i.e.,
+\begin{align}\label{eq:symmetrization_pairing_vertex}
+	\Gamma^{(\q=0)\k\kp}_{\sing/\trip;\mathfrak{1234}} = \tilde{\Gamma}^{(\q=0)\k\kp}_{\sing/\trip;\mathfrak{1234}}\pm \tilde{\Gamma}^{(\q=0)\k(-\kp)}_{\sing/\trip;\mathfrak{1432}},
+\end{align}
+where $\tilde{\Gamma}^{(\q=0)\k\kp}_{\sing/\trip;\mathfrak{1234}}$ contains both the non-local and local contribution to the irreducible vertex. To confirm that this combination enforces the correct symmetry of the gap function, we need to show that
 \begin{subequations}
 \begin{align}
-	\Gamma_{\sing;\mathfrak{1234}}^{(\q=0)\k\kp}&=\frac 12 \left [F_{\dens;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}-3F_{\magn;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}\right ]-F_{\mathfrak{1234};\uparrow\downarrow}^{(\nu-\nu')\nu'(-\nu)}-\Phi_{\pp;\mathfrak{1234}}^{(\omega=0)\nu\nu'}\qqand\\
-	\Gamma_{\trip;\mathfrak{1234}}^{(\q=0)\k\kp}&=\frac 12 \left [F_{\dens;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}+F_{\magn;\mathfrak{1234}}^{(\k-\kp)\nu'(-\nu)}\right ]-F_{\mathfrak{1234};\uparrow\downarrow}^{(\nu-\nu')\nu'(-\nu)}-\Phi_{\pp;\mathfrak{1234}}^{(\omega=0)\nu\nu'}.
+	\Delta_{\sing;\mathfrak{12}}^{\k}-\Delta_{\sing;\mathfrak{21}}^{-\k}&=0\qqand\\
+	\Delta_{\trip;\mathfrak{12}}^{\k}+\Delta_{\trip;\mathfrak{21}}^{-\k}&=0.
 \end{align}
 \end{subequations}
-This concludes our comprehensive overview of the basics of modern condensed matter field theory. Since we are also interested in the application of some of the equations we have derived or stated in this chapter, we will in the following present code that is able to obtain a self-consistent ladder-$\dga$ solution with a determination of the critical temperature $T_{\text{c}}$.
-
-
+This expression for $\q=0$ then reads for both the singlet and triplet channels
+\begin{subequations}
+\begin{align}
+	\Delta_{\sing;\mathfrak{12}}^{\k}-\Delta_{\sing;\mathfrak{21}}^{-\k}&\propto\!\!\sum_{\kp;\mathfrak{abcd}}\!\! \left [\Gamma^{(\q=0)\k\kp}_{\sing;\mathfrak{1b2a}}-\Gamma^{(\q=0)(-\k)\kp}_{\sing;\mathfrak{2b1a}}\right ]\chi^{(\q=0)\kp}_{\sing;0;\mathfrak{acbd}}\Delta_{\sing;\mathfrak{dc}}^{\kp}\label{eq:symmetrization_delta_first_formula_singlet}\qqand\\
+	\Delta_{\trip;\mathfrak{12}}^{\k}+\Delta_{\trip;\mathfrak{21}}^{-\k}&\propto\!\!\sum_{\kp;\mathfrak{abcd}}\!\! \left [\Gamma^{(\q=0)\k\kp}_{\trip;\mathfrak{1b2a}}+\Gamma^{(\q=0)(-\k)\kp}_{\trip;\mathfrak{2b1a}}\right ]\chi^{(\q=0)\kp}_{\trip;0;\mathfrak{acbd}}\Delta_{\trip;\mathfrak{dc}}^{\kp}\label{eq:symmetrization_delta_first_formula_triplet}.
+\end{align}
+\end{subequations}
+The full non-local ladder vertices of \eqref{eq:ladder_f_sing} and \eqref{eq:ladder_f_trip} fulfill the swapping symmetry, which is passed along to the pairing vertex $\Gamma^{(\q=0)\k\kp}_{\sing/\trip;\mathfrak{1234}}$ and reads in $\pp$-notation for $\q=0$
+\begin{align}\label{eq:swapping_symmetry_gamma}
+	\Gamma^{(\q=0)\k\kp}_{\sing/\trip;\mathfrak{1234}}=\Gamma^{(\q=0)(-\k)(-\kp)}_{\sing/\trip;\mathfrak{3412}}\overset{\text{(\ref{eq:symmetrization_pairing_vertex})}}{=}\pm \Gamma^{(\q=0)(-\k)\kp}_{\sing/\trip;\mathfrak{3214}}.
+\end{align}
+Applying \eqref{eq:swapping_symmetry_gamma} to \eqref{eq:symmetrization_delta_first_formula_singlet} then yields for the singlet channel
+\begin{align}
+	\Delta_{\sing;\mathfrak{12}}^{\k}-\Delta_{\sing;\mathfrak{21}}^{-\k}&\propto\!\!\sum_{\kp;\mathfrak{abcd}}\!\! \left [\Gamma^{(\q=0)\k\kp}_{\sing;\mathfrak{1b2a}}-\Gamma^{(\q=0)\k\kp}_{\sing;\mathfrak{1b2a}}\right ]\chi^{(\q=0)\kp}_{\sing;0;\mathfrak{acbd}}\Delta_{\sing;\mathfrak{dc}}^{\kp}=0
+\end{align}
+and analogously for the triplet channel, see \eqref{eq:symmetrization_delta_first_formula_triplet},
+\begin{align}
+	\Delta_{\trip;\mathfrak{12}}^{\k}+\Delta_{\trip;\mathfrak{21}}^{-\k}&\propto\!\!\sum_{\kp;\mathfrak{abcd}}\!\! \left [\Gamma^{(\q=0)\k\kp}_{\trip;\mathfrak{1b2a}}-\Gamma^{(\q=0)\k\kp}_{\trip;\mathfrak{1b2a}}\right ]\chi^{(\q=0)\kp}_{\trip;0;\mathfrak{acbd}}\Delta_{\trip;\mathfrak{dc}}^{\kp}=0,
+\end{align}
+confirming that the symmetrization in \eqref{eq:symmetrization_pairing_vertex} leads to the correct symmetry of the gap function.
 
 
 
