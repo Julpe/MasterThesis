@@ -8,8 +8,10 @@
 
 In the realm of solid state physics, the many-body Schrödinger equation plays a crucial role in understanding the behavior of electrons in crystalline materials. This equation provides a fundamental framework for describing the quantum mechanical interactions between multiple electrons within a solid. The Schrödinger Hamiltonian for a system consisting of $N_{\text{el}}$ electrons and $N_{\text{ion}}$ atomic cores --- in its full beauty --- reads
 \begin{align}\label{eq:hamiltonian_full}
-        \mathcal{H}&=-\frac{\hbar^2}{2M}\sum_{i}^{N_{\text{ion}}}\nabla^2_{\vv{R}_i}-\frac{\hbar^2}{2m}\sum_{i}^{N_{\text{el}}}\nabla^2_{\vv{r}_i}+\frac{1}{2}\sum_{i\neq j}^{N_{\text{ion}}}\frac{Z_i Z_j e^2}{|\vv{R}_i-\vv{R}_j|}+\nonumber\\
+\begin{split}
+        \mathcal{H}&=-\frac{\hbar^2}{2M}\sum_{i}^{N_{\text{ion}}}\nabla^2_{\vv{R}_i}-\frac{\hbar^2}{2m}\sum_{i}^{N_{\text{el}}}\nabla^2_{\vv{r}_i}+\frac{1}{2}\sum_{i\neq j}^{N_{\text{ion}}}\frac{Z_i Z_j e^2}{|\vv{R}_i-\vv{R}_j|}+\\
         &\qquad\qquad+\frac{1}{2}\sum_{i\neq j}^{N_{\text{el}}}\frac{e^2}{|\vv{r}_i-\vv{r}_j|}-\sum_i^{N_{\text{el}}}\sum_j^{N_{\text{ion}}}\frac{Z_j e^2}{|\vv{r}_i-\vv{R}_j|}+\mathcal{V}_R,  
+\end{split}
 \end{align}
 where $\vv{r}_i$ ($\vv{R}_i$) are the positions of the electrons (ions), $m$ ($M$) their respective masses and $Z_i$ the atomic number of the cores from which the crystal is constructed. The Hamiltonian above can be described in a very simple manner: the first two terms describe the kinetic energy of the ions and electrons, whereas the third and fourth terms denote the mutual Coulomb interaction between all ions and electrons. The second to last term corresponds to the coupling between the ions and electrons and finally $\mathcal{V}_R$ expresses any relativistic effects\footnote{e.g., spin-orbit coupling, relativistic mass correction, anomalous magnetic moments, relativistic Doppler shifts, Zitterbewegung, etc. An instructive example are the relativistic effects that take place in mercury: The binding orbitals of mercury are Lorentz-contracted due to the high speed of the electrons inside these orbitals. This results in a reduction in bonding strength, where ultimately mercury is forming a liquid at room temperatures. In most real solids however, relativistic effects are always negligible and this term will not play a significant role in the majority of calculations.}. The \say{only} thing left to do is solve the Schrödinger equation using the Hamiltonian of \eqref{eq:hamiltonian_full}
 \begin{align}
@@ -88,10 +90,12 @@ Applying a minimization procedure to the spread of Wannier functions results in 
 Now we have acquired enough tools to describe the \say{standard model} of strongly correlated electron systems. The development of this model dates back to more than a century. As already discussed at the end of \secref{sec:dft}, for elements with partially filled $d$ or $f$ orbitals, a mean-field description, as is the basis for DFT calculations, is not enough to successfully describe microscopic and macroscopic phenomena due to strong electronic correlation. On the other hand, a treatment beyond mean-field of the Born-Oppenheimer Hamiltonian of \eqref{eq:hamiltonian_born_oppenheimer} is currently not possible. Hence, the method of choice is the introduction of a mathematically simpler, but conceptually still very relevant model Hamiltonian, which successfully captures the physical essence of condensed matter. As a result, the Hamiltonian - named for J. Hubbard - was developed.
 
 As a starting point we choose the Hamiltonian of \eqref{eq:hamiltonian_born_oppenheimer} in second quantization
-\begin{align*}\label{eq:hamiltonian_born_oppenheimer_second_quantization}
+\begin{align}\label{eq:hamiltonian_born_oppenheimer_second_quantization}
+\begin{split}
 	\mathcal{H}&=\sum_{\sigma}\integral{}{}{^3r}\hat{\psi}^{\dagger}_{\sigma}(\vv{r})\left [-\frac{\hbar^2}{2m}\nabla^2_{\vv{r}}+\mathcal{V}(\vv{r})\right ]\hat{\psi}_{\sigma}(\vv{r})\\
-	 &\qquad\qquad+\frac 12 \sum_{\sigma\sigma'}\integral{}{}{^3r}\integral{}{}{^3r'}\hat{\psi}^{\dagger}_{\sigma}(\vv{r})\hat{\psi}^{\dagger}_{\sigma'}(\vv{r}')\frac{e^2}{|\vv{r}-\vv{r}'|}\hat{\psi}_{\sigma'}(\vv{r}')\hat{\psi}_{\sigma}(\vv{r}),\numberthis
-\end{align*}
+	 &\qquad\qquad+\frac 12 \sum_{\sigma\sigma'}\integral{}{}{^3r}\integral{}{}{^3r'}\hat{\psi}^{\dagger}_{\sigma}(\vv{r})\hat{\psi}^{\dagger}_{\sigma'}(\vv{r}')\frac{e^2}{|\vv{r}-\vv{r}'|}\hat{\psi}_{\sigma'}(\vv{r}')\hat{\psi}_{\sigma}(\vv{r}),
+\end{split}
+\end{align}
 where $\hat{\psi}^{(\dagger)}_{\sigma}(\vv{r})$ are field operators that annihilate (create) an electron with spin $\sigma$ at position $\vv{r}$. We can expand these field operators in terms of maximally localized Wannier functions introduced in \secref{sec:maximally_localized_wannier_functions}, yielding
 \begin{align}\label{eq:field_operator_as_wannier}
 	\hat{\psi}^{(\dagger)}_{\sigma}(\vv{r})=\sum_{\vv{R},m}w^{(*)}_{m\vv{R}}\hat c^{(\dagger)}_{\vv{R}m\sigma},
@@ -111,10 +115,12 @@ where $ll'mm'$ denote different Wannier orbitals, while $\vv{R}_i$ corresponds t
 	\label{fig:two_orbitals_two_sites_hopping}
 \end{figure}
 For brevity, the hopping matrix $t_{mm'}(\vv{R},\vv{R}')$ and Coulomb interaction $U_{lmm'l'}(\vv{R}_1,\vv{R}_2,\vv{R}_3,\vv{R}_4)$ are given by
+\begin{subequations}
 \begin{align}
 	t_{mm'}(\vv{R},\vv{R}')&=-\integral{}{}{^3r}w^*_{m\vv{R}}(\vv{r})\left [-\frac{\hbar^2}{2m}\nabla^2_{\vv{r}}+\mathcal{V}(\vv{r})\right ]w_{m'\vv{R}'}\quad\text{and}\\
 	U_{lmm'l'}(\vv{R}_1,\vv{R}_2,\vv{R}_3,\vv{R}_4)&=\integral{}{}{^3r}\integral{}{}{^3r'}w^*_{l\vv{R}_1}(\vv{r})w^*_{m'\vv{R}_3}(\vv{r}')\frac{e^2}{|\vv{r}-\vv{r}'|}w_{l'\vv{R}_4}(\vv{r}')w_{m\vv{R}_2}(\vv{r}).\label{eq:wannier_interaction_real_space}
 \end{align}
+\end{subequations}
 While for \eqref{eq:general_hubbard_hamiltonian} we have already restricted ourselves to a subspace of orbitals, it is still too complex to be solved exactly in the general case. The complexity can be further reduced by either placing further assumptions and restrictions or by using symmetries of the Hamiltonian, which are present in the hopping and interaction terms. Note, that \eqref{eq:wannier_interaction_real_space} overestimates the repulsive Coulomb interaction since screening effects from electrons outside the orbital subspace are not considered. One way to partly overcome this issue is proposed in the constrained Random Phase Approximation (cRPA). For details on how cRPA works, we refer the reader to \cite{crpa reference from somewhere}. 
 
 \subsection{Fourier transform of the Coulomb term}
@@ -140,10 +146,12 @@ where the Fourier transforms of the creation and annihilation operators are give
 	\hat c^{(\dagger)}_{\vv{k}l\sigma}=\sum_{\vv{R}}e^{(-)i\vv{kR}}\hat c^{(\dagger)}_{\vv{R}l\sigma}.
 \end{align}
 One potential simplification to consider here is is neglecting orbital overlap of neighboring sites, pairing up the operators at sites $\vv{0}$ and $\vv{R}$. This eliminates the $\vv{k}$-point dependence of the Coulomb operator and thus
+\begin{subequations}
 \begin{align}
 	U_{lmm'l'}&\equiv U_{lmm'l'}(\vv{0},\vv{0},\vv{0}),\quad\text{and}\\
 	V^{\vv{q}}_{lmm'l'}&\equiv\sum_{\vv{R}\neq\vv{0}}e^{i\vv{qR}}U_{lmm'l'}(\vv{R},\vv{R},\vv{0}),
 \end{align}
+\end{subequations}
 corresponding to a purely local interaction $U_{lmm'l'}$ and a purely non-local interaction $V^{\vv{q}}_{lmm'l'}$. In this case the exchange symmetry of the incoming and outgoing electron reduces to $U_{lmm'l'}=U_{mll'm'}$ and $V^{\vv{q}}_{lmm'l'}=V^{-\vv{q}}_{mll'm'}$.
 
 
@@ -183,17 +191,21 @@ Under the assumptions (i)-(iii) $U_{lmm'l'}(\vv{R}_1,\vv{R}_2,\vv{R}_3,\vv{R}_4)
 	\label{fig:kanamori_parameters_effects}
 \end{figure}
 These quantities are given by
+\begin{subequations}
 \begin{align}
 	U=U_{llll}&=\integral{}{}{^3r}\integral{}{}{^3r'}|w_l(\vv{r})|^2\mathcal{V}_c(\vv{r}-\vv{r}')|w_l(\vv{r}')|^2,\\
 	U'=U_{llmm}&=\integral{}{}{^3r}\integral{}{}{^3r'}|w_l(\vv{r})|^2\mathcal{V}_c(\vv{r}-\vv{r}')|w_m(\vv{r}')|^2\quad\text{and}\\
 	J=U_{lmml}&=\integral{}{}{^3r}\integral{}{}{^3r'} w^*_l(\vv{r})w^*_m(\vv{r}')\mathcal{V}_c(\vv{r}-\vv{r}') w_l(\vv{r}')w_m(\vv{r}),
 \end{align}
+\end{subequations}
 where $\mathcal{V}_c(\vv{r}-\vv{r}')$ is the screened Coulomb interaction term. For cubic symmetry - due to constraint (ii) - there are only two independent quantities in the interaction, resulting in $U'=U-2J$. With the help of these three parameters we can simplify the Hamiltonian of \eqref{eq:general_hubbard_hamiltonian} and for the general case the so-called Kanamori-Hamiltonian \cite{kanamori, georges hund coupling} reads
-\begin{align*}
+\begin{align}
+\begin{split}
 	\mathcal{H}_{\text{Kanamori}}&=-\sum_{\substack{\vv{R}\vv{R}'\\ mm',\sigma}}t_{mm'}(\vv{R},\vv{R}')\hat c^{\dagger}_{\vv{R}m\sigma}\hat c_{\vv{R}'m'\sigma}\\
 	&\qquad +U\sum_{\vv{R},l} \hat n_{\vv{R}l\uparrow}\hat n_{\vv{R}l\downarrow}+\sum_{\substack{\vv{R},l\neq m\\\sigma\sigma'}}(U'-J\delta_{\sigma\sigma'}) \hat n_{\vv{R}l\sigma} \hat n_{\vv{R}m\sigma'}\\
-	&\qquad -J\sum_{\vv{R},l\neq m}\hat c^\dagger_{\vv{R}l\uparrow}\hat c_{\vv{R}l\downarrow}\hat c^\dagger_{\vv{R}m\downarrow}\hat c_{\vv{R}m\uparrow}+J\sum_{\vv{R},l\neq m}\hat c^\dagger_{\vv{R}l\uparrow}\hat c^\dagger_{\vv{R}l\downarrow}\hat c_{\vv{R}m\downarrow}\hat c_{\vv{R}m\uparrow}\numberthis,
-\end{align*}
+	&\qquad -J\sum_{\vv{R},l\neq m}\hat c^\dagger_{\vv{R}l\uparrow}\hat c_{\vv{R}l\downarrow}\hat c^\dagger_{\vv{R}m\downarrow}\hat c_{\vv{R}m\uparrow}+J\sum_{\vv{R},l\neq m}\hat c^\dagger_{\vv{R}l\uparrow}\hat c^\dagger_{\vv{R}l\downarrow}\hat c_{\vv{R}m\downarrow}\hat c_{\vv{R}m\uparrow},
+\end{split}
+\end{align}
 where $\hat n_{l\sigma}$ is the number operator ($\hat c^\dagger_{l\sigma}\hat c_{l\sigma}$) that counts the number of electrons in orbital $l$ with spin $\sigma$. The Kanamori Hamiltonian is a widely used model for strongly correlated systems and it can capture a lot of physics despite its rather crude approximations. Today, the Kanamori Hamiltonian is mostly used not only to describe spin and orbital order, including magnetically ordered phases in materials with partially filled $d$ or $f$ shells, but also to capture a variety of Mott-insulating states, where strong on-site electron repulsion causes electron localization.
 
 \section{The single-band Hubbard Hamiltonian}
