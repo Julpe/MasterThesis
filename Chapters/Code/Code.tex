@@ -1,90 +1,70 @@
 \documentclass[../../main.tex]{subfiles}
 
-\usepackage[dvipsnames]{xcolor} % for additional colours
-\usepackage{listings} % for the code snippets
-\usepackage{inconsolata} % new monospace font
-\usepackage{upquote} % render quotation marks correctly
-
-\newcommand\YAMLcolonstyle{\color{red}\mdseries}
-\newcommand\YAMLkeystyle{\color{black}\bfseries}
-\newcommand\YAMLvaluestyle{\color{blue}\mdseries}
-
-\makeatletter
-
-\newcommand\language@yaml{yaml}
-
-\expandafter\expandafter\expandafter\lstdefinelanguage
-\expandafter{\language@yaml}
-{
-  keywords={True,False,null,y,n},
-  keywordstyle=\color{darkgray}\mdseries\small,
-  basicstyle=\YAMLkeystyle\ttfamily\mdseries\small,
-  sensitive=false,
-  comment=[l]{\#},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{ForestGreen}\ttfamily\small,
-  stringstyle=\YAMLvaluestyle\ttfamily\mdseries\small,
-  moredelim=[l][\color{orange}]{\&},
-  moredelim=[l][\color{magenta}]{*},
-  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},
-  morestring=[b]',
-  morestring=[b]",
-  literate =    {>}{{\textcolor{red}\textgreater}}1
-                {|}{{\textcolor{red}\textbar}}1
-                {\ -\ }{{\mdseries\ -\ }}3,                
-  lineskip=-2pt,
-}
-
-% switch to key style at EOL
-\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
-\makeatother
-
 \begin{document}
+\sloppy
 
 \chapter{The code}
 
-The main part of this thesis is the implementation of a self-consistent ladder-$\dga$ calculation in a very accessible\footnote{Accessible here means, that we provide a very easy-to-understand API (application programming interface), where only a short training period and quick set-up is needed to get the code up and running.} way. In this chapter, we present the implementation of the computational framework developed to achieve a fully converged self-energy though the self-consistency algorithm of the ladder-$\dga$ equations and a subsequent calculation of the superconducting eigenvalue for both singlet and triplet electron pairing. The code is written in \texttt{Python} and relies mainly on \texttt{NumPy} for numerical calculations, ensuring efficient execution through vectorized operations and optimized linear algebra routines. Additionally, symmetries inherent to the problem have been carefully exploited to further reduce computational costs and improve performance. 
+The main part of this thesis is the implementation of a self-consistent ladder-$\dga$ calculation with an emphasis on usability and minimal setup effort. The code is designed to be both accessible and performant, targeting fast execution through efficient parallelization and extensive memory optimizations. It is written in \texttt{Python} and relies mainly on \texttt{NumPy} for numerical computations, making use of vectorized operations and optimized linear algebra routines. In addition, the code carefully exploits symmetries inherent to the physical problem to further reduce computational cost and memory usage. In this chapter, we present the implementation of the computational framework developed to achieve a fully converged self-energy through the self-consistency algorithm of the ladder-$\dga$ equations and a subsequent calculation of the superconducting eigenvalues and gap functions for both singlet and triplet electron pairing. 
 \\\\
-The code is designed to efficiently compute vertex functions, such as one-particle Green's function, irreducible and full vertices, three-leg vertices, the electron self-energy and many more, while maintaining flexibility for extensions and modifications. Building upon the underlying theoretical foundations which were established already in the previous chapters, this numerical implementation aims to translate the formal expressions into a working algorithm. Special attention has been given to structuring the code in a modular and efficient manner, ensuring that it can be used not only for the ladder-$\dga$ equations, but also for other algorithms that require multi-point vertex functions within the Matsubara frequency framework in condensed matter physics.
+The code is designed to efficiently compute vertex functions, such as the one-particle Green's function, irreducible and full vertices, three-leg vertices, the electron self-energy and many more, while maintaining flexibility for extensions and modifications. Building upon the underlying theoretical foundations which were established already in the previous chapters, this numerical implementation aims to translate the formal expressions into a working algorithm. Special attention has been given to structuring the code in a modular and efficient manner, ensuring that it can be used not only for the ladder-$\dga$ equations, but also for other algorithms that require multi-point vertex functions within the Matsubara frequency framework in condensed matter physics.
 \\\\
 The package will be provided under the MIT license, making it freely available for use, modification, and distribution. This permissive license promotes collaboration and allows academics and developers to make changes on the code without placing restrictions. By publishing the implementation open-source, we hope to encourage accessibility, reproducibility, and community development.
 \\\\
-We start with an overview of the overall structure and design choices of the code, followed by a detailed discussion of its core components and algorithms. We then describe the typical workflow for using the code, including input handling, computational steps and output generation. Finally, we discuss validation methods and potential improvements for future work.
+In this chapter, we start with an overview of the overall structure and design choices of the code, followed by a detailed discussion of its core components and algorithms. We then describe the typical workflow for using the code, including input handling, computational steps and output generation. Finally, we discuss validation methods and potential improvements for future work.
 
 \section{Structure and design choices}
 
-Please note that there already exist two toolboxes that allow the calculation of vertex functions through ladder-$\dga$: (i) \texttt{Abinitio$\dga$} \cite{abinitio dga, anna galler thesis, abinitio dga project}, which is a one-shot multi-orbital calculation of the $\dga$ self-energy and (ii) \texttt{DGApy} \cite{dgapy}, which is the one-band version of it, where additional quantities are calculated, such as the superconducting eigenvalues and real-valued Green's functions. The former is written in \texttt{Fortran}, whereas the latter has been developed in \texttt{Python}.
+Please note that there already exist two programs that allow the calculation of vertex functions and the self-energy through ladder-$\dga$: (i) \texttt{Abinitio$\dga$} \cite{Galler2019, Galler2018, Galler2017}, which is a one-shot multi-orbital calculation of the $\dga$ self-energy and (ii) \texttt{DGApy} \cite{Worm2023}, which is the one-band version of it, where additional quantities are calculated, such as the superconducting eigenvalues and real-valued Green's functions. The former is written in \texttt{Fortran}, whereas the latter has been developed in \texttt{Python}.
 The purpose of the code developed in the course of this thesis is to provide the functionality of \texttt{Abinitio$\dga$}, while being easily accessible and quick to set-up, similar to \texttt{DGApy}. Therefore, we decided to write the program in \texttt{Python}. A main advantage of this programming language is its low entry-barrier and the easy set-up and code-execution. In theory, all that is needed is a \texttt{Python} environment with the necessary packages\footnote{For a detailed list of requirements including package versions, see the file \texttt{requirements.txt} in the source code directory.}, DMFT input files and the configuration file.
 
-As already mentioned, there already exists a \texttt{Python} package, called \texttt{DGApy} \cite{dgapy}, written by Paul Worm, which is capable of performing a single-band $\lambda$-corrected one-shot ladder-$\dga$ calculation. The code in this thesis will, however, be concerned with the multi-orbital implementation of the algorithm, additionally employing a self-consistency loop contrary to the $\lambda$-correction and will be capable of handling non-local Coulomb interactions. So far, \texttt{DGApy} has successfully been used in several instances, for example in Refs. \cite{simone unconventional, paul spin fluc}, to only mention a few. Since it is already widely used among researchers, the transition from \texttt{DGApy} to this code should be as simple as possible, hence the configuration file and some internal modules are designed very similar.
+As already mentioned, there already exists a \texttt{Python} package, called \texttt{DGApy} \cite{Worm2023}, written by Paul Worm, which is capable of performing a single-band $\lambda$-corrected one-shot ladder-$\dga$ calculation. The code in this thesis will, however, be concerned with the multi-orbital implementation of the algorithm, additionally employing a self-consistency loop contrary to the $\lambda$-correction and will be capable of handling non-local Coulomb interactions. So far, \texttt{DGApy} has successfully been used in several instances, for example in Refs. \cite{DiCataldo2024, Worm2024}, to only mention a few. Since it is already widely used among researchers, the transition from \texttt{DGApy} to this code should be as simple as possible, hence the configuration file and some internal modules are designed very similar.
 
-To lower the computation time, we employ the use of the \texttt{mpi4py} library in \texttt{Python}, which allows us to execute the program inside of a process-pool, where it is very easy to slice and pass/gather objects to/from other processes. This --- in theory --- should result in an $n$-times faster execution of parallelizable code, where $n$ is the number of available MPI processes. However, this exact speed-up is not always realistic, since there is always some communication overhead that has to be accounted for. When the explicit non-local execution of the $\dga$-equations starts, the \texttt{MpiDistributor}-class is set-up. This class allows for an easy scattering and gathering of objects along the $\vv{q}$-dimension to and from other processes. By specifying the number of $\vv{q}$-points of the objects, the \texttt{MpiDistributor} automatically knows which $\vv{q}$-slice belongs to which sub-process. This slicing along the $\vv{q}$-dimension is only possible because of the explicit diagonal structure of the BSE (\ref{eq:bethe_salpeter_vertex_three_channels}) and the SDE (\ref{eq:sde_vrg}). 
-\\\\
-Up until the calculation of the self-energy through the Schwinger-Dyson equation we solely work with quantities in the irreducible Brillouin zone, where each process only takes a subset of irreducible $\vv{q}$-points for the calculation. This considerably reduces memory effort, since we now only have to split a fraction of $\vv{q}$-points of the full $\vv{q}$-grid to the processes. For example, the irreducible Brillouin zone for a $16\times16\times1$-grid are 45 out of 256 elements for a square lattice. This means that we now only have to scatter 45 unique $\vv{q}$-points to all processes. The code provides a very easy handling of the momentum grids through the \texttt{brillouin\char`_zone} module, which is kept very similar to the one already existing in \texttt{DGApy}.
-\\\\
+\subsection{Parallelization via MPI}
+
+To lower the computation time, we employ the use of the \texttt{mpi4py} library in \texttt{Python}, which enables distributed computing across multiple processes in a straightforward and Pythonic manner. This allows the program to run inside a process pool, where objects can easily be sliced and passed to or gathered from other processes. While an ideal speed-up factor of $n$ for $n$ processes is theoretically possible, in practice, communication overhead and memory transfer costs typically limit the effective gain. Nevertheless, for large-scale computations involving high-dimensional vertex functions or large frequency boxes, this parallelization leads to significant reductions in runtime.
+
+The central class handling parallelization is the \texttt{MpiDistributor}, which is initialized at the point where the explicitly non-local parts of the ladder-$\dga$ algorithm begin. This class abstracts the communication logic and provides a consistent interface for scattering and gathering objects across processes. The current implementation slices the data along the transferred momentum $\vv{q}$, which is possible due to the block-diagonal structure of most equations up to the Schwinger-Dyson equation (\ref{eq:sde_vrg}). Each MPI process is responsible for a specific set of $\vv{q}$-points, allowing for highly parallel and independent evaluation of vertex contractions.
+
+Internally, the slicing is guided by knowledge of the irreducible Brillouin zone, and the distributor automatically determines the mapping from global $\vv{q}$-grid indices to process-local ones. This separation of concerns between parallelization logic and physics routines enhances maintainability and flexibility of the code. Further MPI optimizations, such as asynchronous communications or load balancing across uneven grid sizes, could be explored in future versions. 
+
+\subsection{Memory reduction through symmetry}
+
+The memory demands of a full ladder-$\dga$ calculation can be substantial, especially for multi-orbital models and large frequency ranges. To mitigate this, the code incorporates several symmetry-based optimizations that significantly reduce the memory footprint and enable efficient scaling to larger systems.
+
+First, the calculation of non-local quantities is performed exclusively within the irreducible Brillouin zone. Thanks to the crystal symmetries of common lattice structures (e.g., square or quasi-1D lattices), only a small subset of the full momentum grid needs to be explicitly computed. The code determines this set via symmetry operations specified in the \texttt{brillouin\char`_zone} module, which ensures compatibility with arbitrary lattice symmetries defined in the configuration. For instance, on a $16\times16\times1$ grid, only 45 out of 256 $\vv{q}$-points are needed for a square lattice, which directly reduces both computational and memory load by more than a factor of five and even higher for larger grid sizes.
+
 To further save memory, we keep most of the objects in half of their bosonic Matsubara frequency range: Due to the symmetry $F^{\omega\nu\nu'}_{\mathfrak{1234}}=(F^{(-\omega)(-\nu)(-\nu')}_{\mathfrak{4321}})^{*}=(F^{(-\omega)\nu\nu'}_{\mathfrak{4321}})^{*}$\footnote{The transformation from $-\nu, -\nu'$ to $\nu,\nu'$ is possible due to the symmetrized nature of the two-particle Green's function and the inherited vertex functions.}, we can restrict the objects to their positive bosonic Matsubara frequency region only. This saves half of the memory and thus a very large amount for the biggest objects, such as the auxiliary susceptibility or the full vertex.
-\\\\
-We tried to keep a very object-oriented approach when developing the toolbox for the program, contrary to \texttt{DGApy}. Hence instead of directly working with \texttt{NumPy} arrays, we work with \texttt{(Local)FourPoint}, \texttt{(Local)Interaction}, \texttt{SelfEnergy}, \texttt{GreensFunction} and \texttt{GapFunction} classes. The reason being that in \texttt{Python}, it is very easy to overload operators, i.e. with so-called \say{\texttt{dunder}} methods, hence we implemented the most common operators \say{\texttt{+/-/@/$\sim$}}\footnote{Corresponding to addition, subtraction, multiplication and inversion.}, alongside multiplication and division with numbers, for these objects to help make the implementation of equations easier. This might not be a obvious improvement at first, however the underlying structure allows a very simple high-level handling of these objects, where most of the logic is performed in the background and only has to be coded once. We will discuss the explicit implementation of these \texttt{dunder} methods later.
+
+These symmetry-based reductions are implemented in a transparent way for the user: the internal representation is compressed, but the high-level API provides access to the full data. This allows for both memory efficiency and usability, enabling the user to work with large systems that would otherwise be intractable on a single machine.
+
+\subsection{Object-oriented API}
+
+We tried to keep a very object-oriented approach when developing the toolbox for the program, as opposed to both \texttt{DGApy} and \texttt{AbinitioDGA}. Hence instead of directly working with \texttt{NumPy} arrays, we work with \texttt{(Local)FourPoint}, \texttt{(Local)Interaction}, \texttt{SelfEnergy}, \texttt{GreensFunction} and \texttt{GapFunction} classes. The reason being that in \texttt{Python}, it is very easy to overload operators, i.e. with so-called \say{\texttt{dunder}} methods, hence we implemented the most common operators \say{\texttt{+/-/@/$\sim$}}\footnote{Corresponding to addition, subtraction, multiplication and inversion.}, alongside multiplication and division with numbers, for these objects to help make the implementation of equations easier. This might not be an obvious improvement at first, however the underlying structure allows a very simple high-level handling of these objects, where most of the logic is performed in the background and only has to be coded once. We will discuss the explicit implementation of these \texttt{dunder} methods later.
 \\\\
 Compared to \texttt{DGApy}, we stripped down the module responsible for the Matsubara frequency handling, since most of the features now can be called directly from the objects themselves. Instead of calling a method from the \texttt{matsubara\char`_frequencies} module to cut an objects' frequency range, it is now a method on the object itself, e.g., \texttt{object.cut\char`_niv(10)}. Most of these methods are only implemented once in a base class which all subtypes inherit from. These base classes already cover most of the objects' functionality, where the subclass only implements features unique to this object type.
 \\\\
 All modules should be very self-explanatory, their names already provide a good description of what the module does and what its responsibilities are. For any details, we refer the reader to the documentation of the code inside the repository.
 \\\\
-One benefit of the object-oriented approach is the now easy implementation of various equations. For example, writing an arbitrary equation with arbitrary (non-local) vertex functions $A,B$ and $C$ like
+One benefit of the object-oriented approach is the now easy implementation of various equations. For example, writing an arbitrary equation with arbitrary (non-local) vertex functions $A,B,C$ and $D$ like
 \begin{align}
-	D^{\q\nu\nu'}_{\mathfrak{1234}}=\frac{1}{2\beta}A^{\q\nu\nu'}_{\mathfrak{12ab}}B^{\omega\nu}_{\mathfrak{badc}}C^{\q\nu\nu'}_{\mathfrak{cd34}}
+	D^{\q\nu\nu'}_{\mathfrak{1234}}=\frac{1}{2\beta} \sum_{\nu_1;\mathfrak{ab}} A^{\q\nu\nu_1}_{\mathfrak{12ab}}\left (B^{\omega\nu_1}_{\mathfrak{ba34}}+C^{\omega\nu_1\nu'}_{\mathfrak{ba34}}\right )
 \end{align}
-can be done with a call of \texttt{D = 1 / (2 * beta) * A.matmul(B.matmul(C))} or the \texttt{dunder} method for matrix multiplications \say{\texttt{@}}, i.e., \texttt{D = 1 / (2 * beta) * A @ B @ C}, where the index contraction, frequency handling and summation will be done in the background. This eases readability in the code and reduces redundancy. Furthermore, it allows for very straightforward optimization of contractions and multiplications through this architecture. Furthermore, inverting a vertex function is also very easy now, all that needs to be called is the \texttt{obj.invert()} function (or with a \say{\sim} prefix, i.e. \texttt{\sim obj}) on any object and the code performs the inversion in the background using \texttt{NumPy}'s vectorization and \texttt{SciPy}'s memory-optimized inversion by converting the object to compound indices. Furthermore, other operations, such as addition/subtraction in the form of \texttt{A.add(B)}/\texttt{A.sub(B)} or just simply \texttt{A\pm B} are possible and automatically handle different amounts of frequency dimensions etc. for you. There are a bunch of other convenience methods available, where we would like to refer the interested reader to the code and its documentation for more details.
+can be done with a call of \texttt{D = 1 / (2 * beta) * A.matmul(B.add(C))} or the \texttt{dunder} methods for matrix multiplication \say{\texttt{@}} and addition \say{\texttt{+}}, i.e., \texttt{D = 1 / (2 * beta) * A @ (B + C)}, where the index contraction, frequency handling and summation will be done in the background. This eases readability in the code and reduces redundancy. Furthermore, it allows for very straightforward optimization of contractions and multiplications through this architecture. Furthermore, inverting a vertex function is also very easy now, all that needs to be called is the \texttt{obj.invert()} function (or with a \say{\sim} prefix, i.e. \texttt{\sim obj}) on any object and the code performs the inversion in the background using \texttt{NumPy}'s vectorization and \texttt{SciPy}'s memory-optimized inversion by converting the object to compound indices. Furthermore, other operations, such as addition/subtraction in the form of \texttt{A.add(B)}/\texttt{A.sub(B)} or just simply \texttt{A\pm B} are possible and automatically handle different amounts of frequency dimensions etc. for you. There are a bunch of other convenience methods available, where we would like to refer the interested reader to the code and its documentation for more details.
 
 
 \subsection{Setup and execution}
 
-The code is very easy to set-up as it is available as an installable \texttt{Python} package, called \texttt{scdga}. After installing the necessary packages denoted in the \texttt{requirements.txt} file to the \texttt{Python} environment, one simply has to run \say{\texttt{pip install -e .}} from the repository directory in the terminal to install the package in editable mode. This allows the user to now access any module and class inside the \texttt{scdga} package. The main entry point to the program is the file \texttt{dga\char`_main.py} file, which can be started with either \say{\texttt{python~dga\char`_main.py}} for single-core execution (mostly used for testing purposes) or \mbox{\say{\texttt{mpiexec -np <n\char`_proc>~dga\char`_main.py}}} for multi-core processing. There are two additional command line parameters available to append to the execution:
+The code is very easy to set-up as it is available as an installable \texttt{Python} package, called \texttt{scdga}. After installing the necessary packages denoted in the \texttt{requirements.txt} file to the \texttt{Python} environment, one simply has to run \say{\texttt{pip install -e .}} from the repository directory in the terminal to install the package in editable mode. This allows the user to now access any module and class inside the \texttt{scdga} package. The main entry point to the program is the file \texttt{dga\char`_main.py} file, which can be started with either \say{\texttt{python~dga\char`_main.py}} for single-core execution (mostly used for testing purposes) or \mbox{\say{\texttt{mpiexec -np <n\char`_proc>~python~dga\char`_main.py}}} for multi-core processing. There are two additional command line parameters available to append to the execution:
 \begin{itemize}
 \item\say{\texttt{-p}}: With \say{\texttt{-p <path>}} you can specify the path to the configuration file, which contains all run-specific parameters. This is useful if one wants to store multiple configuration files in different directories. If this parameter is not set, the path defaults to the location of the repository directory.
 \item\say{\texttt{-c}}: With \say{\texttt{-c <config name>}} you can specify the name of the configuration file you want to load. This defaults to \texttt{dga\char`_config.yaml}.
 \end{itemize}
-We rely on extensive logging, hence every important step in the calculation is logged to the output. If it is started from a terminal, the logging will be done to the standard output. If the code is executed on a slurm-based cluster, you will find the logs in the job output file. The reason we employ a lot of logging is the ease of finding errors that occurred in a calculation after execution.
+As an example, the following shell command runs the code using 8 MPI processes and loads the configuration file \texttt{my\char`_config.yaml} from the path \texttt{/configs/}:
+
+\mbox{\say{\texttt{mpiexec -np 8 python dga\char`_main.py -p /configs/ -c my\char`_config.yaml}}}.
+
+Additionally, we feature extensive logging: every important step in the calculation will be logged. If it is started from a terminal, the logging will be done to the standard output. If the code is executed on a slurm-based cluster, you will find the logs in the job output file. The reason we employ a lot of logging is the ease of finding errors that might occur during a calculation.
 
 \subsection{Configuration}
 
@@ -95,109 +75,120 @@ The first block of the configuration is concerned with the number of Matsubara f
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 box_sizes:
-  niw_core: 50  # int
-  niv_core: 30  # int
-  niv_shell: 20 # int
+  niw_core: 50  # int, default: -1
+  niv_core: 30  # int, default: -1
+  niv_shell: 20 # int, default:  0
 \end{lstlisting}
 \end{minipage}
-It is possible to specify the core frequency region for both the bosonic and fermionic Matsubara frequencies and asymptotic region for the fermionic Matsubara frequencies. The core frequency region is where the BSE and SDE are being solved and the shell region denotes the size of the appended \say{$U$-range} for the calculation of the vertex asymptotics described in \secref{sec:vertex_asymptotics_urange}. It is possible to set any core frequency is to \say{-1}, which means that the number of Matsubara frequencies from the DMFT calculation will be taken.
+The \say{core} region defines the frequency box used for explicitly solving the Bethe-Salpeter and Schwinger-Dyson equations, while the \say{shell} region sets the size of the asymptotic tails needed for vertex reconstruction through the method described in \secref{sec:vertex_asymptotics_urange}. It is possible to set the core frequencies to \say{-1}, which means that the number of Matsubara frequencies from the DMFT calculation will be taken.
 \\\\
-The next section is concerned with the Hamiltonian of the system, which currently is a little bit complex, since we wanted to adapt the existing configuration file from \texttt{DGApy} and added new features:
+The next section is concerned with the Hamiltonian of the system, which currently is a little bit complex, since we wanted to adapt the existing configuration file from \texttt{DGApy} and added new features. It defines the lattice symmetries, the momentum grid sizes and the kinetic and interaction part of the Hamiltonian:
 
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 lattice:
-  symmetries: "two_dimensional_square" # string
-  type: "from_wannierHK"               # string
-  hr_input: "/path/to/file"            # string | list[float]
-  interaction_type: "local_from_dmft"  # string
-  interaction_input: "/path/to/file"   # string | list[float]
-  nk: [16, 16, 1]                      # list[int]
-  nq: [16, 16, 1]                      # list[int]
+  symmetries: "two_dimensional_square"
+                           (*@\hspace{-0.3em}@*) # string, default: "two_dimensional_square"
+  type: "from_wannier90"    # string, default: "from_wannier90"
+  hr_input: "/path/to/file" # string | list[float], default: None
+  interaction_type: "local_from_dmft"
+                           (*@\hspace{-0.3em}@*) # string, default: "local_from_dmft"
+  interaction_input: "/path/to/file"
+                           (*@\hspace{-0.3em}@*) # string | list[float], default: None
+  nk: [16, 16, 1]           # list[int], default: [16, 16, 1]
+  nq: [16, 16, 1]           # list[int], default: [16, 16, 1]
 \end{lstlisting}
 \end{minipage}
-Here, we have a bunch of settings available that can be combined in different ways. First, we can define the lattice symmetry, where one has to enter a set of predefined symmetry sets. It is possible to extend the symmetries the code supports by adding the corresponding symmetry operations and symmetry sets in the code. The available symmetry sets are \texttt{two\char`_dimensional\char`_square}, \texttt{quasi\char`_one\char`_dimensional\char`_square}, \texttt{simultaneous\char`_x\char`_y\char`_inversion} and \texttt{quasi\char`_two\char`_dimensional\char`_square\char`_symmetries}. Next is the type of input to the kinetic part of the Hamiltonian we require. It can either be \texttt{from\char`_wannier90}, \texttt{from\char`_wannierHK} or \texttt{t\char`_tp\char`_tpp} (only for single-band input). The first input type is used if the subsequent field \texttt{hr\char`_input} references to a file, where the hopping elements are written in real space, whereas \texttt{from\char`_wannierHK} is used if the Hamiltonian in Fourier space is available as a file\footnote{Note that for the former, it is possible to use arbitrary $\vv{k}$-grid sizes, since the Fourier transform will be performed in the code, whereas for the latter one the correct grid size has to be entered.}. The last option is only used for single-band input, where the band distribution is that of a $t, t'$ and $t''$ hopping model only. If this type is specified, then a list of float values in \texttt{hr\char`_input} is expected.
+Here, we have a bunch of settings available that can be combined in different ways. First, we can define the lattice symmetry, where one has to enter a set of predefined symmetry sets. It is possible to extend the symmetries the code supports by adding the corresponding symmetry operations and symmetry sets in the code. The available symmetry sets are \texttt{two\char`_dimensional\char`_square}, \texttt{quasi\char`_one\char`_dimensional\char`_square}, \texttt{simultaneous\char`_x\char`_y\char`_inversion} and \texttt{quasi\char`_two\char`_dimensional\char`_square\char`_symmetries}. Next is the type of input to the kinetic part of the Hamiltonian we require. It can either be \texttt{from\char`_wannier90}, \texttt{from\char`_wannierHK} or \texttt{t\char`_tp\char`_tpp} (only for single-band input). The first input type is used if the subsequent field \texttt{hr\char`_input} references to a file, where the hopping elements are written in real space, whereas \texttt{from\char`_wannierHK} is used if the Hamiltonian in Fourier space is available as a file\footnote{Note that for the former, it is possible to use arbitrary $\vv{k}$-grid sizes, since the Fourier transform will be performed in the code, whereas for the latter one the correct grid size has to be entered.}. The last option is only used for single-band input, where the band distribution is that of a $t, t'$ and $t''$ hopping model only. If this type is specified, then a list of three float values in \texttt{hr\char`_input} is expected.
 
 Since this code is capable of performing multi-orbital calculations with non-local interactions, we require the definition of a interaction type and an input. The available interaction types are \texttt{local\char`_from\char`_dmft}, \texttt{kanamori\char`_from\char`_dmft}, \texttt{kanamori} and \texttt{custom}. If \texttt{local\char`_from\char`_dmft} is specified, we expect a single-band input, where the interaction strength is taken from DMFT. Similar to that, the \texttt{kanamori\char`_from\char`_dmft} option takes the interaction values from DMFT and constructs the correct interaction matrix with the Kanamori-specific entries. In both cases, the field \texttt{interaction\char`_input} will not be read. If \texttt{kanamori} is specified, then we expect a list of four values in \texttt{interaction\char`_input}, which contains the number of orbitals as the first entry and then $U$, $J$ and $V$ as the next three entries. One can enter whole numbers for the number of bands and floating point values for the interaction strengths. Lastly, if one specifies \texttt{custom} as the interaction type, we then expect a path to a file, which is structured similarly to a real-space Hamiltonian file but with four orbital entries instead of just two. It is possible to include non-local interactions there. Furthermore, it is possible to set the sizes of both the $\vv{k}$- and $\vv{q}$-grid in the fields \texttt{nk} and \texttt{nq}, respectively. It is possible to not set \texttt{nq}, where \texttt{nk} will be used for the $\vv{q}$-grid. Note, that the execution of the Eliashberg equation is only possible if both the $\vv{k}$- and the $\vv{q}$-grid are of the same size.
 \\\\
-The next configuration section is concerned with the self-consistency calculation:
+The next configuration section is concerned with the self-consistency calculation and defines the convergence behavior and mixing strategy of the self-consistency loop:
 
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 self_consistency:
-  max_iter: 20                      # int
-  save_iter: True                   # bool
-  epsilon: 1e-6                     # float
-  mixing: 0.3                       # float
-  mixing_strategy: "pulay"          # string
-  mixing_history_length: 2          # int
-  previous_sc_path: "path/to/files" # string
+  max_iter: 20                      # int, default: 20
+  save_iter: True                   # bool, default: True
+  epsilon: 1e-6                     # float, default: 1e-4
+  mixing: 0.3                       # float, default: 0.2
+  mixing_strategy: "pulay"          # string, default: "linear"
+  mixing_history_length: 2          # int, default: 3
+  previous_sc_path: "path/to/files" # string, default: "./"
 \end{lstlisting}
 \end{minipage}
 The field \texttt{max\char`_iter} is to set an upper boundary on the number of iterations during the self-consistency cycle. If the self-energy does not converge within \texttt{max\char`_iter} iterations, the iteration will stop. When setting \texttt{save\char`_iter} to \texttt{True}, the code will save the non-local $\dga$ self-energy for each iteration. The next parameter, \texttt{epsilon}, is set to determine the absolute value difference allowed for the last two calculated sigmas to be considered converged. The convergence will be tested on a predefined set of $\vv{k}$-points and frequencies $\nu$. Next, we can specify the \texttt{mixing} parameter that will be used in the mixing scheme and is a floating point number between $(0,1]$. We can furthermore specify the mixing scheme in the next parameter, called \texttt{mixing\char`_strategy}. Here, we can choose from either \texttt{linear} or \texttt{pulay} mixing, where if \texttt{pulay} is specified, it takes \texttt{mixing\char`_history\char`_length} number of previous self-energy results to construct a prediction. If the number of iterations is less than the history length, we will use linear mixing for these iterations and switch to Pulay mixing afterwards. The last parameter, \texttt{previous\char`_sc\char`_path} allows us to specify the path to a previous self-consistency iteration folder, which might not have been converged or which needs to be converged further or with different parameters. The program then takes the last iterations of the already performed calculation and uses these as a starting point for the next calculation. If the number of iterations from the previous calculation is equal or larger than \texttt{mixing\char`_history\char`_length} and \texttt{pulay} is specified, then Pulay mixing will be applied, otherwise we mix linearly.
 \\\\
-Since this code is faster and offers better parallelization than \texttt{DGApy}, we implemented two $\lambda$-correction schemes which only work for single-band cases and can be set with the following short section:
+Given the improved speed and scalability of this code compared to \texttt{DGApy}, we have also implemented two $\lambda$-correction schemes which only work for single-band cases and can be configured with the following short section:
 
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 lambda_correction:
-  perform_lambda_correction: True # bool
-  type: "spch"                    # string
+  perform_lambda_correction: True # bool, default: False
+  type: "spch"                    # string, default: "spch"
 \end{lstlisting}
 \end{minipage}
 Here, setting \texttt{perform\char`_lambda\char`_correction} to \texttt{True} will perform a $\lambda$-correction if the input is a single-band model. Otherwise, an error is raised and the code exits. Notice that if one wants a one-shot lambda-corrected self-energy and calculation of the Eliashberg equation, then \texttt{max\char`_iter} and \texttt{mixing} in the \texttt{self\char`_consistency} section need to be set to \say{1}. The other parameter is the type of $\lambda$-correction which will be performed. Setting this to \texttt{spch} will renormalize both the density and magnetic susceptibilities, whereas setting it to \texttt{sp} will only renormalize the magnetic susceptibility.
 \\\\
-The next section is a very important one, since it is concerned with the location of the DMFT input files:
+The next section is a very important one, since it is concerned with the location of the DMFT files and mainly defines their location and file names:
 
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 dmft_input:
-  type: "w2dyn"                # string
-  input_path: "/path/to/files" # string           
-  fname_1p: "filename"         # string
-  fname_2p: "filename"         # string
-  do_sym_v_vp: True            # bool
+  type: "w2dyn"                # string, default: "w2dyn"
+  input_path: "/path/to/files" # string, default: "./"
+  fname_1p: "filename"         # string, default: "1p-data.hdf5"
+  fname_2p: "filename"         # string, default: "g4iw_sym.hdf5"
+  do_sym_v_vp: True            # bool, default: True
 \end{lstlisting}
 \end{minipage}
 Currently, the \texttt{type} argument only supports \texttt{w2dyn} as input type, but this could be extended in the future to also support input files from other sources with other file structures. Next, \texttt{input\char`_path} needs to be set to the folder that contains the output data from \texttt{w2dynamics}. We require two files, one containing one-particle quantities (such as the DMFT Green's function and self-energy) and one containing two-particle quantities (such as the two-particle Green's function); their filenames can be set in \texttt{fname\char`_1p} and \texttt{fname\char`_1p}, respectively. Notice that \texttt{w2dynamics} outputs a large \texttt{Vertex.hdf5}-file, where we have to extract the relevant worm components beforehand. This can be done with the script \texttt{symmetrize.py}, which is also part of the repository. This will automatically extract all relevant worm components of the two-particle Green's function and writes it to a separate file containing the density and magnetic contributions. Lastly, we have the option to symmetrize the two-particle Green's function in $\nu$ and $\nu'$ before processing them further. This might be necessary sometimes to ensure numerical symmetry of the vertex functions.
 \\\\
-The second to last configuration section we will cover here is the output section which, as the name already suggests, covers the program's output settings: 
+The second to last configuration section we will cover here is the output section which, as the name already suggests, covers the program's output settings, such as the output path and plotting instructions: 
  
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 output:
-  output_path: "/path"             # string
-  do_plotting: True                # bool
-  plotting_subfolder_name: "Plots" # string
-  save_quantities: True            # bool
+  output_path: "/path"             # string, default: "./"
+  do_plotting: True                # bool, default: "True"
+  plotting_subfolder_name: "Plots" # string, default: "Plots"
+  save_quantities: True            # bool, default: True
 \end{lstlisting}
 \end{minipage}
-We are able to choose the path where the output of the program is saved to. If this field is chosen empty, the output will be put into a subfolder inside the DMFT input folder. If we specify \texttt{do\char`_plotting}, then we plot a selective set of quantities and save them to the subfolder specified in \texttt{plotting\char`_subfolder\char`_name}. We then have the possibility to additionally save almost all quantities that are calculated during the main program as \texttt{numpy} files, except for the pairing vertex and the full ladder-$\dga$ vertex. These are separately handled in the Eliashberg section, since they are only calculated if you want to perform the calculation of the superconducting eigenvalue and gap function.
+We are able to choose the path where the output of the program is saved to. If this field is chosen empty, the output will be put into a sub-folder inside the DMFT input folder. If we specify \texttt{do\char`_plotting}, then we plot a selective set of quantities and save them to the sub-folder specified in \texttt{plotting\char`_subfolder\char`_name}. We then have the possibility to additionally save almost all quantities that are calculated during the main program as \texttt{numpy} files, except for the pairing vertex and the full ladder-$\dga$ vertex. These are separately handled in the Eliashberg section, since they are only calculated if you want to perform the calculation of the superconducting eigenvalue and gap function.
 \\\\
-Finally, the last configuration section is concerned with the Eliashberg equation:
+Finally, the last configuration section is concerned with the Eliashberg equation and is configuring the eigenvalue and gap function-finding through a Lanczos method:
 
 \begin{minipage}{\textwidth}%
 \begin{lstlisting}[language=yaml]
 eliashberg:
-  perform_eliashberg: True     # bool
-  save_pairing_vertex: False   # bool
-  save_fq: False               # bool
-  n_eig: 2                     # int
-  epsilon: 1e-9                # float
-  symmetry: "random"           # string  
-  include_local_part: True     # bool
-  subfolder_name: "Eliashberg" # string
+  perform_eliashberg: True     # bool, default: False
+  save_pairing_vertex: False   # bool, default: False
+  save_fq: False               # bool, default: False
+  n_eig: 2                     # int, default: 2
+  epsilon: 1e-9                # float, default: 1e-6
+  symmetry: "random"           # string, default: "random"
+  include_local_part: True     # bool, default: True
+  subfolder_name: "Eliashberg" # string, default: "Eliashberg"
 \end{lstlisting}
 \end{minipage}
-Here, the first setting is to let the program know if you want to perform the Eliashberg equation to obtain the superconducting singlet and triplet eigenvalues and gap functions, respectively. If this setting is set to \say{False}, then the program will exit after the self-energy has been calculated. The next two settings allow to save the pairing vertex $\Gamma^{(\q=0)\k\kp}$ and the full ladder vertex $F^{\q\nu\nu'}$ to a file. These are set to \say{False} per default, as these objects can be quite large, especially the full vertex, which can reach up to hundreds of gigabytes. Both will be saved for the irreducible Brillouin zone only to save memory. The following three settings, \texttt{n\char`_eig}, \texttt{epsilon} and \texttt{symmetry} are concerned with the power iteration that is performed to solve the Eliashberg equation. Here, it is possible to specify the number of eigenvalues and eigenvectors one wants to calculate in \texttt{n\char`_eig}. Notice, that we will always calculate \texttt{n\char`_eig}+1 eigenvalues. This is due to the fact that we calculate the single largest eigenvalue with a regular Lanczos method and then calculate the \texttt{n\char`_eig} eigenvalues that are closest to one. \texttt{epsilon} is the setting that determines the target precision of the power iteration which is performed and \texttt{symmetry} determines the starting vector. There are a couple of options available for \texttt{symmetry} that may help speeding up the power iteration convergence if you know the pairing symmetry of the gap function a priori: \texttt{random}, \texttt{p-wave-x}, \texttt{p-wave-y} and \texttt{d-wave}. In almost all cases it should suffice to pick a random starting vector for the power iteration. 
+Here, the first setting is to let the program know if you want to perform the Eliashberg equation to obtain the superconducting singlet and triplet eigenvalues and gap functions, respectively. If this setting is set to \say{False}, then the program will exit after the self-energy has been calculated. The next two settings allow to save the pairing vertex $\Gamma^{(\q=0)\k\kp}$ and the full ladder vertex $F^{\q\nu\nu'}$ to a file. These are set to \say{False} per default, as these objects can be quite large, especially the full vertex, which can reach up to hundreds of gigabytes. Both will be saved for the irreducible Brillouin zone only to save memory. The following three settings, \texttt{n\char`_eig}, \texttt{epsilon} and \texttt{symmetry} are concerned with the power iteration that is performed to solve the Eliashberg equation. Here, it is possible to specify the number of eigenvalues and eigenvectors one wants to calculate in \texttt{n\char`_eig}. Notice, that we will always calculate \texttt{n\char`_eig}+1 eigenvalues. This is due to the fact that first we calculate the single largest eigenvalue with a Lanczos method and then calculate the \texttt{n\char`_eig} eigenvalues that are closest to one using shift-invert mode. Most of the time, however, the eigenvalues of both calculations are equal. \texttt{epsilon} is the setting that determines the target precision of the power iteration which is performed and \texttt{symmetry} determines the starting vector. There are a couple of options available for \texttt{symmetry} that may help speeding up the power iteration convergence if one knows the pairing symmetry of the gap function a priori: \texttt{random}, \texttt{p-wave-x}, \texttt{p-wave-y} and \texttt{d-wave}. In almost all cases it should suffice to pick a random starting vector for the power iteration. 
 
-Since in principle one also needs the local full and reducible vertices for the pairing vertex, setting \texttt{include\char`_local\char`_part} to \say{False} omits the local contributions. These can be omitted if one expects d-wave symmetry of the gap function, where the local vertex functions do not contribute to the eigenvalue and gap function. Not calculating the local part allows for a slightly larger frequency box and a better estimation of the eigenvalue and gap function. 
+In principle one also needs the \textit{purely local} full and reducible vertices for the pairing vertex, however these can be omitted if one expects d-wave symmetry of the gap function, where the local vertex functions do not contribute to the eigenvalue and gap function due to symmetry. Setting \texttt{include\char`_local\char`_part} to \say{False} does exactly that. Not calculating the local part allows for a slightly larger frequency box and a better estimation of the eigenvalue and gap function for d-wave symmetry cases.
 
-The last setting is the subfolder name, where the Eliashberg output will be saved to.
+The last setting is the sub-folder name where the Eliashberg output will be saved to.
  
 \subsection{Input files}
 
-After the vertex calculation has been performed with \texttt{w2dynamics} \cite{w2dyn}, we have to extract a couple of key quantities, such as the local self-energy, Green's function, interaction and two-particle Green's functions from the output files of \texttt{w2dyn}. There is a script located in the repository, called \texttt{symmetrize.py}, which allows for the straightforward extraction of the two-particle Green's function from the vertex file of \texttt{w2dyn}. A simple execution of this script yields a new file, where the density and magnetic components of $G^{\omega\nu\nu'}_{r;\mathfrak{1234}}$ are written to. This is handy, since the vertex file from \texttt{w2dyn} is usually very large and it can be deleted after the symmetrization process. Then one is left with the \texttt{1p\char`-data.hdf5} and \texttt{g4iw\char`_sym.hdf5} files, which contain the one-particle and two-particle (symmetrized) quantities. These are, next to a file containing the real-space (e.g., \texttt{wannier\char`_hr.dat}) or Fourier-space (e.g., \texttt{wannier.hk}) Hamiltonian, the only input files needed for the execution of the $\dga$ algorithm. Notice that all the file names are not fixed and can be specified in the \texttt{dga\char`_config.yaml} file.
+After the vertex calculation has been performed with \texttt{w2dynamics} \cite{Wallerberger2019}, we have to extract a couple of key quantities, such as the local self-energy, Green's function, interaction and two-particle Green's functions from the output files of \texttt{w2dyn}. There is a script located in the repository, called \texttt{symmetrize.py}, which allows for the straightforward extraction of the two-particle Green's function from the vertex file of \texttt{w2dyn}. A simple execution of this script yields a new file, where the density and magnetic components of $G^{\omega\nu\nu'}_{r;\mathfrak{1234}}$ are written to. This is handy, since the vertex file from \texttt{w2dyn} is usually very large and it can be deleted after the symmetrization process. Then one is left with the \texttt{1p\char`-data.hdf5} and \texttt{g4iw\char`_sym.hdf5} files, which contain the one-particle and two-particle (symmetrized) quantities. These are, next to a file containing the real-space (e.g., \texttt{wannier\char`_hr.dat}) or Fourier-space (e.g., \texttt{wannier.hk}) Hamiltonian, the only input files needed for the execution of the $\dga$ algorithm. Notice that no file name is fixed and they can be specified in the corresponding \texttt{dga\char`_config.yaml} file.
 
+\section{Result validation}
+
+In order to check if the program's output is correct, we created a few simple test cases to validate our results:
+\begin{itemize}
+\item A single-band test, where the code should reproduce the results of \texttt{DGApy}
+\item A two-band test with the same parameter as the case above, where each band is indistinguishable and electrons in one band do not interact with electrons in the other band. The outputs should be equal to the single-band case in two orbital components and zero elsewhere.
+\item A rotation of the previous test-case. When rotating the DMFT input data, i.e. the local one- and two-particle Green's function and the self-energy, and the Hamiltonian in orbital space, we expect the output to produce the same results as the second test case after a orbital rotation in the opposite direction.
+\end{itemize}
 
 \end{document}
