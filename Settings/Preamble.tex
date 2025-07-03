@@ -78,7 +78,7 @@ cross/.default={1pt}}
 %    \vskip 50\p@
 %  }}
 
-\newcommand{\chapterstarstyle}[1]{%
+\newcommand{\chapterstarstyle}[2]{%
 \begin{minipage}[t]{0.3\linewidth}  
 \vspace{0pt}% do not remove
 \begin{tikzpicture}
@@ -87,15 +87,15 @@ outer sep=0pt,
 text width=2.5cm,
 minimum height=2.5cm,
 fill=black,
-font=\color{white}\fontsize{80}{90}\selectfont,
+font=\color{white},
 align=center
-] (num) {};
+] (num) {\includegraphics[width=2.5cm]{Graphics/Diagrams/abstract_diagram/abstract_diagram}};
 \node[
 outer sep=0pt,
 inner sep=0pt,
 anchor=south,
 font=\color{black}\Large\normalfont
-] at ([yshift=3pt]num.north) {\textls[180]{\textsc{Preamble}}};
+] at ([yshift=3pt]num.north) {\textls[180]{#2}};
 \end{tikzpicture}
 \end{minipage}%
 \begin{minipage}[t]{.7\linewidth}%
@@ -106,6 +106,7 @@ font=\color{black}\Large\normalfont
 \end{minipage}%
 }
 
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
 \titleformat%
 {\chapter}[hang]%
 {\bfseries}{%
@@ -173,3 +174,26 @@ font=\color{black}\Large\normalfont
 % switch to key style at EOL
 \lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
 \makeatother
+
+\makeatletter
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{0pt}%
+  \chapterstarstyle{#1}{}%
+  \vspace*{40pt}%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    citecolor=blue,
+    linkcolor=blue,
+    breaklinks=true
+}
+
+% If you want to break on URL numbers
+\setcounter{biburlnumpenalty}{9000}
+% If you want to break on URL lower case letters
+\setcounter{biburllcpenalty}{9000}
+% If you want to break on URL UPPER CASE letters
+\setcounter{biburlucpenalty}{9000}

@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{graphicx, standalone}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{tikz}
+\usepackage{amsmath, amssymb}
+\usepackage{euler}
+\usepackage{fontspec}
+\setmainfont{MinionPro}
+
+\begin{document}
+
+\begin{tikzpicture}[color=white]
+\begin{feynman}[large]
+	\feynmandiagram [horizontal=a to b,every edge/.style={line width=2.5pt}] {
+i1 -- [fermion, arrow size=2.5pt] a -- [fermion, arrow size=2.5pt] i2,
+a -- [photon] b,
+f1 -- [fermion, arrow size=2.5pt] b -- [fermion, arrow size=2.5pt] f2,
+};
+\end{feynman}
+\end{tikzpicture}
+
+\end{document}
