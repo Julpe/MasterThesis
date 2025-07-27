@@ -80,12 +80,12 @@
 	\vertex[right=of f1] (g1);
 	\vertex[below=of g1] (g2);
 
-	\node (content1) at ($(b1)!0.5!(c2)$) {$\chi^{*;\q\k\kp}_{\mathfrak{12ba};\sigma\sigma'}$};	
-	\node (content2) at ($(e1)!0.5!(f2)$) {$\chi^{\q\k\kp}_{\mathfrak{dc34};\sigma\sigma'}$};
+	\node (content1) at ($(b1)!0.5!(c2)$) {$\chi^{*;\q\k\kp}_{\mathfrak{12ba};\sigma\sigma_1}$};	
+	\node (content2) at ($(e1)!0.5!(f2)$) {$\chi^{\q\k\kp}_{\mathfrak{dc34};\sigma_2\sigma'}$};
 	
 	\vertex (u1) at ($(c1)+(0.75,-0.75)$);
 	\vertex (u2) at ($(u1)+(1.5,0)$);
-	\vertex (u) at ($(u1)!0.5!(u2)$) {$\mathcal{U}^{\textbf{qkk}'}_{\mathfrak{abcd};\sigma\sigma'}$};
+	\vertex (u) at ($(u1)!0.5!(u2)$) {$\mathcal{U}^{\textbf{qkk}'}_{\substack{\mathfrak{abcd}\\\sigma_1\sigma_2}}$};
 	\draw (u) circle (0.75);
 	
 	\diagram* {

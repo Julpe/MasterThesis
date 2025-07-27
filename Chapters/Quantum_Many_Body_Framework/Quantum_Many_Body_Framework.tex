@@ -1,7 +1,7 @@
-\providecommand{\main}{../..}
-\documentclass[\main/main.tex]{subfiles}
+\documentclass[../../main.tex]{subfiles}
 
 \begin{document}
+\sloppy
 
 \chapter{Quantum many-body framework}
 
@@ -392,18 +392,18 @@ For a visual representation of the Bethe-Salpeter equation (\ref{eq:bethe_salpet
 \begin{figure}[ht!]
   \centering
   \parbox{\textwidth}{
-    \subfloat{\includestandalone[scale=0.94]{Graphics/Diagrams/bse/bse_separate_ph}}
+    \subfloat{\includestandalone[scale=0.91]{Graphics/Diagrams/bse/bse_separate_ph}}
   }\\[1cm]
   \parbox{\textwidth}{
-    \subfloat{\includestandalone[scale=0.94]{Graphics/Diagrams/bse/bse_separate_ph_bar}}
+    \subfloat{\includestandalone[scale=0.91]{Graphics/Diagrams/bse/bse_separate_ph_bar}}
   }\\[1cm]
   \parbox{\textwidth}{
-    \subfloat{\includestandalone[scale=0.94]{Graphics/Diagrams/bse/bse_separate_pp}}
+    \subfloat{\includestandalone[scale=0.91]{Graphics/Diagrams/bse/bse_separate_pp}}
   }
   \caption{Diagrammatic version of the BSE in all three channels for arbitrary spin components, see \eqref{eq:bethe_salpeter_vertex_three_channels}. The lower legs are exchanged in pp-notation, hence their direction is reversed.}
   \label{fig:bethe_salpeter_diagrammatic}
 \end{figure}
-The BSE of \eqref{eq:bethe_salpeter_vertex_three_channels} needs to be inverted in order to be able to yield the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$. This can be done in a smart way by viewing the multiplications of the vertex functions in the BSE as matrix multiplications written down in grouped indices. This means that for each transfer momentum $\q$, we can generate a matrix from a vertex by grouping the left (right) two orbital indices and fermionic frequencies into a new grouped index $n=\{n_1, n_2, \k\}$ ($m=\{n_3, n_4, \kp\}$), such that \cite{Galler2017} 
+The BSE of \eqref{eq:bethe_salpeter_vertex_three_channels} needs to be inverted in order to be able to yield the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$. This can be done in a smart way by viewing the multiplications of the vertex functions in the BSE as matrix multiplications written down in grouped indices. This means that for each transfer momentum $\q$, we can generate a matrix from a vertex by grouping the left (right) two orbital indices and fermionic frequencies into a new grouped index $n=\{n_1, n_2, \k\}$ ($m=\{n_4, n_3, \kp\}$), such that \cite{Galler2017} 
 \begin{align}
 	\bm{F}^{\q}_{\text{nm}}=F^{\q\k\kp}_{\mathfrak{1234}}.
 \end{align}
@@ -423,7 +423,7 @@ where the first two sums in \eqref{eq:sde} are coined Hartree- and Fock-terms, r
 \begin{figure}[ht!]
 	\centering
   	\includestandalone[scale=1]{Graphics/Diagrams/sde/sde}
-  	\caption{Representation of the Schwinger-Dyson equation (\ref{eq:sde}).}
+  	\caption{Representation of the Schwinger-Dyson equation, see \eqref{eq:sde}.}
   	\label{fig:sde}
 \end{figure}
 The $\ph$ and $\phbar$ contributions of the connected part yield separately (in ph notation)\footnote{With the help of \eqref{eq:phi_ph_bar_dens_magn}} \cite{Galler2017}
@@ -450,7 +450,7 @@ It is then straightforward to define an auxiliary susceptibility (denoted by the
 \end{align}
 with which we can rewrite the generalized susceptibility as
 \begin{align}\label{eq:bse_susceptibilities}
-	\chi_{\mathfrak{1234};\ss'}^{\q\k\kp}=\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}-\sum_{\k_1\k_2;\mathfrak{abcd}}\chi_{\mathfrak{12ba};\ss'}^{*;\q\k\k_1}\, \mathcal{U}^{\vv{qk}_1\vv{k}_2}_{\mathfrak{abcd};\ss'} \chi_{\mathfrak{dc34};\ss'}^{\q\k_2\kp}.
+	\chi_{\mathfrak{1234};\ss'}^{\q\k\kp}=\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}-\sum_{\substack{\k_1\k_2;\mathfrak{abcd}\\\sigma_1\sigma_2}}\chi_{\mathfrak{12ba};\sigma\sigma_1}^{*;\q\k\k_1}\, \mathcal{U}^{\vv{qk}_1\vv{k}_2}_{\mathfrak{abcd};\sigma_1\sigma_2} \chi_{\mathfrak{dc34};\sigma_2\sigma'}^{\q\k_2\kp}.
 \end{align}
 Previously, the BSE was formulated as a ladder with $\Gamma_{\mathfrak{1234}}^{\q\k\kp}$ and $\chi_{0;\mathfrak{1234}}^{\q\k\k}$ as building blocks. The rewritten BSE can now be understood as a ladder with $\chi_{\mathfrak{1234};\ss'}^{*;\q\k\kp}$ and $\mathcal{U}^{\vv{qkk}'}_{\mathfrak{1234};\ss'}$ as building blocks. Here, the auxiliary susceptibility can be seen as the irreducible part with respect to the bare Coulomb interaction, contrary to how $\Gamma_{\mathfrak{1234}}^{\q\k\kp}$ is the set of irreducible diagrams with respect to cutting two Green function lines (or a bare susceptibility $\chi_{0;\mathfrak{1234}}^{\q\k\k}$). Hence, this is commonly called interaction-reducibility \cite{Krien2019a}. The BSE displayed in terms of susceptibilities can be seen in \figref{fig:bse_susceptibilities}.
 \begin{figure}[ht!]
@@ -474,7 +474,7 @@ This allows us to rewrite \eqref{eq:sde} as
 A visual representation of the rewritten SDE can be found in \figref{fig:sde_vrg}. 
 \begin{figure}[ht!]
 	\centering
-  	\includestandalone[scale=1]{Graphics/Diagrams/sde_vrg/sde_vrg}
+  	\includestandalone[width=\textwidth]{Graphics/Diagrams/sde_vrg/sde_vrg}
   	\caption{Interaction-reducible form of the Schwinger-Dyson equation (\ref{eq:sde_vrg}) with three-leg vertices.}
   	\label{fig:sde_vrg}
 \end{figure}
