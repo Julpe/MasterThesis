@@ -10,26 +10,20 @@ cross/.default={1pt}}
 \begin{document}
 
 \begin{tikzpicture}
-    \draw[style=help lines,dashed] (-5,-5) grid[step=2cm] (5,5);
-    \foreach \x in {-2,-1,...,2}{
-        \foreach \y in {-2,-1,...,2}{
+    \draw[style=help lines,dashed] (-3,-5) grid[step=2cm] (5,3);
+    \foreach \x in {-1,0,...,2}{
+        \foreach \y in {-2,-1,...,1}{
             \node[draw,circle,inner sep=5pt] at (2*\x,2*\y) {};
       }
     }
-    % 1st row
-    \draw[{Latex[round]-}, thick] (-4, 3.5) -- (-4, 4.5);
-    \draw[-{Latex[round]}, thick] (0, 3.5) -- (0, 4.5);
-    \draw[-{Latex[round]}, thick] (1.875, 3.5) -- (1.875, 4.5);
-    \draw[{Latex[round]-}, thick] (2.125, 3.5) -- (2.125, 4.5);
     
-    % 2nd row
-    \draw[-{Latex[round]}, thick] (-4, 1.5) -- (-4, 2.5);
+    % 1st row
     \draw[-{Latex[round]}, thick] (-2.125, 1.5) -- (-2.125, 2.5);
     \draw[{Latex[round]-}, thick] (-1.875, 1.5) -- (-1.875, 2.5);
     \draw[{Latex[round]-}, thick] (2, 1.5) -- (2, 2.5);
     \draw[{Latex[round]-}, thick] (4, 1.5) -- (4, 2.5);
     
-    % 3rd row
+    % 2nd row
     \draw[{Latex[round]-}, thick] (-2, -0.5) -- (-2, 0.5);
     \draw[-{Latex[round]}, thick] (-0.125,-0.5) -- (-0.125,0.5);
     \draw[{Latex[round]-}, thick] (0.125,-0.5) -- (0.125,0.5);
@@ -37,15 +31,12 @@ cross/.default={1pt}}
     \draw[{Latex[round]-}, thick] (2.125,-0.5) -- (2.125,0.5);
     \draw[-{Latex[round]}, thick] (4,-0.5) -- (4,0.5);
     
-    % 4th row
-    \draw[-{Latex[round]}, thick] (-4.125,-2.5) -- (-4.125,-1.5);
-    \draw[{Latex[round]-}, thick] (-3.875,-2.5) -- (-3.875,-1.5);
+    % 3rd row
     \draw[-{Latex[round]}, thick] (-2,-2.5) -- (-2,-1.5);
     \draw[{Latex[round]-}, thick] (0,-2.5) -- (0,-1.5);
     \draw[-{Latex[round]}, thick] (4,-2.5) -- (4,-1.5);
     
-    % 5th row
-    \draw[{Latex[round]-}, thick] (-4,-4.5) -- (-4,-3.5);
+    % 4th row
     \draw[{Latex[round]-}, thick] (2,-4.5) -- (2,-3.5);
     \draw[-{Latex[round]}, thick] (4,-4.5) -- (4,-3.5);
     
@@ -56,7 +47,8 @@ cross/.default={1pt}}
     \draw[->, thick] (3.75, 0.25) to [bend left=45] node[midway, left] {$t$} (3.75,1.75);
     
     % interaction U
-    \node at (-3.5, -1.5) {$U$};
+    \node at (0.5, 0.5) {$U$};
+    \draw[dashed, rounded corners] (-0.325,-0.6) rectangle (0.325,0.6);
 \end{tikzpicture}
 
 \end{document}

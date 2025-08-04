@@ -26,6 +26,8 @@
 
 \numberwithin{equation}{chapter}
 
+%\renewbibmacro*{journal}{\printfield{shortjournal}} % shortjournal field instead of full name
+
 \setlength\parindent{0pt}
 \allowdisplaybreaks
 
@@ -194,3 +196,5 @@ font=\color{black}\Large\normalfont
     pdftitle={Multiorbital Dynamical Vertex Approximation},
     pdfauthor={Julian Peil},
 }
+
+\newdateformat{germandateformat}{\THEDAY{. }\monthnamengerman[\THEMONTH], \THEYEAR}
