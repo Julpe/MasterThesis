@@ -3,9 +3,7 @@
 \usepackage{euler}
 
 \usepackage[compat=1.1.0]{tikz-feynman}
-\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
-%default radius will be 1pt. 
-cross/.default={1pt}}
+
 
 \begin{document}
 
@@ -13,7 +11,7 @@ cross/.default={1pt}}
     \draw[style=help lines,dashed] (-3,-5) grid[step=2cm] (5,3);
     \foreach \x in {-1,0,...,2}{
         \foreach \y in {-2,-1,...,1}{
-            \node[draw,circle,inner sep=5pt] at (2*\x,2*\y) {};
+            \node[draw,circle,inner sep=5pt,fill=gray!30] at (2*\x,2*\y) {};
       }
     }
     

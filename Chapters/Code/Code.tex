@@ -200,7 +200,7 @@ In order to check if the program's output is correct, we created a few simple te
 \item Next, we assess the correctness of the multi-orbital implementation. To this end, we constructed a fictitious two-orbital dataset in which both bands are identical and inter-orbital interactions are absent. Using the same parameters as in the previous test, we compare the results for each orbital with those from the single-band case. Aside from statistical noise, we expect the non-local self-energies and Green's functions to closely match. This validation strategy is discussed in \secref{sec:validation_ii}.
 \item Finally, we test the invariance of the results under orbital-space rotations. Starting from the previous test case, we rotate the DMFT input data --- including the local one- and two-particle Green's functions, the DMFT self-energy, the Hamiltonian and the interaction matrix --- in orbital space. After performing the calculation, we apply the inverse rotation to the output and compare the result with the unrotated case. As detailed in \secref{sec:validation_iii}, we expect the two results to coincide within numerical precision.
 \end{enumerate}
-For the single-band input, we used $\beta=12.5$, a filling of $n=0.85$ and tight-binding parameters representative of the Ni-d$_{x^2-y^2}$ orbital in Nd$_{1-\text{x}}$Sr$_{\text{x}}$NiO$_{2}$ and related compounds: $t=1$, $t'=-0.25$ and $t''=0.12$, with an interaction strength of $U=8t$. Analogous parameters were used for the fictitious two-band input, where the total filling was set to $n=1.7$, corresponding to $0.85$ electrons per band. The momentum-space Hamiltonian was constructed to be orbital-diagonal, using identical hopping amplitudes for both bands. All input data were generated using the CT-HYB quantum Monte Carlo solver \texttt{w2dynamics}, run on the Vienna Scientific Cluster.
+For the single-band input, we used $\beta=12.5$, a filling of $n=0.85$ and tight-binding parameters representative of the Ni-d$_{x^2-y^2}$ orbital in Nd$_{1-\text{x}}$Sr$_{\text{x}}$NiO$_{2}$ and related compounds: $t=1$, $t'=-0.25t$ and $t''=0.12t$, with an interaction strength of $U=8t$. Analogous parameters were used for the fictitious two-band input, where the total filling was set to $n=1.7$, corresponding to $0.85$ electrons per band. The momentum-space Hamiltonian was constructed to be orbital-diagonal, using identical hopping amplitudes for both bands. All input data were generated using the CT-HYB quantum Monte Carlo solver \texttt{w2dynamics}, run on the Vienna Scientific Cluster.
 
 \subsection{Comparison to reference code with single-band model}\label{sec:validation_i}
 
@@ -211,18 +211,18 @@ We performed a full one-shot $\dga$ calculation using both \texttt{DGApy} and ou
 
 For this test, we use the fictitious disconnected two-band model introduced earlier. The goal is to verify that the orbitals remain properly separated and are not mixed in unintended ways. To this end, we implemented simple rotation routines in the code, which allow us to rotate the one- and two-particle vertex functions in orbital space. For the one-particle Green's function and self-energy this looks like
 \begin{align}
-	G_{\mathfrak{ab}}^{\k;\vartheta}=\left (S^{\vartheta}_{\mathfrak{1a}}\right )^{\!\dagger} G_{\mathfrak{12}}^{\k}\; S_{\mathfrak{2b}}^{\vartheta},
+	G_{\mathfrak{ab;\sigma}}^{\k;\vartheta}=\left (S^{\vartheta}_{\mathfrak{1a}}\right )^{\!\dagger} G_{\mathfrak{12;\sigma}}^{\k}\; S_{\mathfrak{2b}}^{\vartheta},
 \end{align}
-and similarly for $\Sigma_{\mathfrak{12}}^{\nu}$, whereas for any four-point vertex the rotation is performed like
+and similarly for $\Sigma_{\mathfrak{12};\sigma}^{\k}$, whereas for any four-point vertex the rotation is performed like
 \begin{align}
-	F_{\mathfrak{abcd}}^{\q\k\kp;\vartheta}=\left( S^{\vartheta}_{\mathfrak{1a}}\right)^{\!\dagger} \left (S^{\vartheta}_{\mathfrak{2b}}\right)^{\!\dagger} F_{\mathfrak{1234}}^{\q\k\kp}\; S_{\mathfrak{3c}}^{\vartheta}S_{\mathfrak{4d}}^{\vartheta}.
+	F_{\mathfrak{abcd;\ss'}}^{\q\k\kp;\vartheta}=\left( S^{\vartheta}_{\mathfrak{1a}}\right)^{\!\dagger} \left (S^{\vartheta}_{\mathfrak{2b}}\right)^{\!\dagger} F_{\mathfrak{1234};\ss'}^{\q\k\kp}\; S_{\mathfrak{3c}}^{\vartheta}S_{\mathfrak{4d}}^{\vartheta}.
 \end{align}
-Under the hood, this transforms the underlying creation and annihilation operators of the objects with $S$ being a two-dimensional rotation matrix, which simply looks like
+Here, the indices $\{\mathfrak{i}\}$ are representing orbital indices only. Under the hood, this transforms the underlying creation and annihilation operators of the objects with $S$ being a two-dimensional rotation matrix, which simply looks like
 \begin{align}
 	S_{\mathfrak{12}}^{\vartheta} = \begin{pmatrix}
 	\text{cos}(\vartheta) & \text{sin}(\vartheta)\\-\text{sin}(\vartheta)&\text{cos}(\vartheta)
 	\end{pmatrix}_\mathfrak{12}
 \end{align}
-To perform this test, we applied a rotation by an angle $\vartheta$ to all input quantities from DMFT, including the kinetic part of the Hamiltonian and the interaction terms. The $\dga$ algorithm was then used to compute the self-energy, which we subsequently rotated back by $-\vartheta$. We compared the resulting self-energy to a reference calculation performed without any rotations and found them to agree up to floating-point precision, with $\sum_{\k}|\Sigma_{\text{rotated}}(\k)-\Sigma_{\text{not\;rotated}}(\k)|\lesssim 10^{-4}$. This test was repeated for various values of $\vartheta$ ranging from $-\pi$ to $\pi$, different numbers of Matsubara frequencies $n_\omega$ and $n_\nu$​, and varying $\vv{k}$-grid sizes --- all yielding indistinguishable results.
+To perform this test, we applied a rotation by an angle $\vartheta$ to all input quantities from DMFT, including the kinetic part of the Hamiltonian and the interaction terms. The $\dga$ algorithm was then used to compute the self-energy, which we subsequently rotated back by $-\vartheta$. We compared the resulting self-energy to a reference calculation performed without any rotations and found them to agree up to floating-point precision, with $\sum_{\k}|\Sigma_{\text{rotated}}(\k)-\Sigma_{\text{not\;rotated}}(\k)|\lesssim 10^{-4}$ for $\vartheta=\frac\pi2$ and $\vartheta=\pi$, different numbers of Matsubara frequencies $n_\omega$ and $n_\nu$​, and varying $\vv{k}$-grid sizes --- all yielding indistinguishable results. Other rotation angles, such as $\vartheta=\frac\pi3$, $\vartheta=\frac\pi4$, $\vartheta=\frac\pi6$ or $\vartheta=\frac\pi8$ did not yield comparable results.
 
 \end{document}
