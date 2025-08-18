@@ -33,6 +33,22 @@
 \begin{tikzpicture}[baseline=(current bounding box.base)]
 	\begin{feynman}
     		\vertex (a);
+    		\vertex[right=of a] (b);
+    		
+    		\node[above=-0.2em of a] {$\mathfrak{1}$};
+		\node[above=-0.2em of b] {$\mathfrak{2}$};
+		
+		\diagram* {
+			(a) -- [fermion, edge label'=$\k$] (b)
+		};
+	\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node {$+$};
+\end{tikzpicture}
+\begin{tikzpicture}[baseline=(current bounding box.base)]
+	\begin{feynman}
+    		\vertex (a);
     		\vertex [right=of a] (b);
     		\vertex [right=of b] (c);
     		\vertex [right=of c] (d);

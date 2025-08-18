@@ -405,11 +405,11 @@ For a visual representation of the Bethe-Salpeter equation (\ref{eq:bethe_salpet
 \end{figure}
 The BSE of \eqref{eq:bethe_salpeter_vertex_three_channels} needs to be inverted in order to be able to yield the full vertex $F_{\mathfrak{1234}}^{\q\k\kp}$. This can be done in a smart way by viewing the multiplications of the vertex functions in the BSE as matrix multiplications written down in grouped indices. This means that for each transfer momentum $\q$, we can generate a matrix from a vertex by grouping the left (right) two orbital indices and fermionic frequencies into a new grouped index $n=\{n_1, n_2, \k\}$ ($m=\{n_4, n_3, \kp\}$), such that \cite{Galler2017} 
 \begin{align}
-	\bm{F}^{\q}_{\text{nm}}=F^{\q\k\kp}_{\mathfrak{1234}}.
+	\bm{F}^{\q}_{\dens/\magn;nm}=F^{\q\k\kp}_{\dens/\magn;\mathfrak{1234}}.
 \end{align}
 This allows for a straightforward numerical implementation of vertex products and inversions with respect to these grouped indices. Hence, this yields for the full vertex $\bm{F}^{\q}_{\dens/\magn;\text{nm}}$ obtained from the BSE,
 \begin{align}
-	\bm{F}^{\q}_{\dens/\magn;\text{nm}}=\left (\unity_{\text{nm}} +\frac1\beta \bm{\Gamma}^{\q}_{\dens/\magn;\text{nl}}\bm{\chi}^{\q}_{0;\text{lm}}\right )^{-1}.
+	\bm{F}^{\q}_{\dens/\magn;nm}=\bm{\Gamma}^{\q}_{\dens/\magn;nl}\left (\unity_{lm} +\frac1\beta \bm{\Gamma}^{\q}_{\dens/\magn;lo}\bm{\chi}^{\q}_{0;om}\right )^{-1}.
 \end{align}
 
 \section{Schwinger-Dyson equation}\label{sec:schwinger_dyson}
