@@ -204,7 +204,28 @@ For the single-band input, we used $\beta=12.5$, a filling of $n=0.85$ and tight
 
 \subsection{Comparison to reference code with single-band model}\label{sec:validation_i}
 
-We performed a full one-shot $\dga$ calculation using both \texttt{DGApy} and our new implementation, employing identical input files and parameters. Across all computed quantities, our implementation reproduced the results of the $\dga$ algorithm with floating-point accuracy. This agreement held for both the basic one-shot calculation without $\lambda$-corrections and for cases with $\lambda$-corrections applied --- whether in the spin channel alone or in both spin and charge channels. For instance, the absolute differences in the self-energies between the two implementations did not exceed $\mathcal{O}(10^{-11})$, while the five largest eigenvalues of the pairing vertex in the Eliashberg equation differed by at most $\mathcal{O}(10^{-6})$. This level of agreement was consistently achieved across different $\vv{k}$- and $\vv{q}$-grids and varying numbers of Matsubara frequencies $n_\omega$ and $n_\nu$.
+We performed a full one-shot $\dga$ calculation using both \texttt{DGApy} and our new implementation, employing identical input files and parameters. Across all computed quantities, our implementation reproduced the results of the $\dga$ algorithm with floating-point accuracy. This agreement held for both the basic one-shot calculation without $\lambda$-corrections and for cases with $\lambda$-corrections applied --- whether in the spin channel alone or in both spin and charge channels. 
+
+We discovered a tiny subtlety in the implementation of \texttt{DGApy}. It uses a different double-counting correction, which reads 
+\begin{align}\label{eq:sigma_double_counting_dgapy}
+	\Sigma^{\k}_{\text{dc};\mathfrak{12}} = \frac{1}{\beta}\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\magn;\mathfrak{de2f}}G_{\mathfrak{af}}^{\k-\q},
+\end{align}
+compared to our definition of \eqref{eq:sigma_double_counting}. This does not add a significant difference, but it should be noted nevertheless. We carried out the single-band calculation with \eqref{eq:sigma_double_counting_dgapy} and \eqref{eq:sigma_double_counting} and compared them to the results of \texttt{DGApy} separately, both of which can be seen in \figref{fig:sigma_difference_me_dgapy_dgapy_dc} and \figref{fig:sigma_difference_me_dgapy_correct_dc}, respectively.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/DGApy/sigma_difference_me_dgapy_dgapy_dc}
+	\caption{Difference between the one-band self-energy of \texttt{DGApy} and the current implementation with the double-counting kernel of \eqref{eq:sigma_double_counting_dgapy} for $k_z=0$ and $\nu=0$. The result of \texttt{DGApy} can be seen in the very left column, the result of the current implementation in the second column. The difference between both, i.e. $\Delta\Sigma=\Sigma_{\texttt{DGApy}}-\Sigma$, can be seen in the last column. The rows indicate the real- and imaginary part of all quantities, respectively. This calculation was done with a $\vv{k}$-grid of $64x64x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=20$ without any $\lambda$-correction.}
+	\label{fig:sigma_difference_me_dgapy_dgapy_dc}
+\end{figure}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/DGApy/sigma_difference_me_dgapy_correct_dc}
+	\caption{Analogous to \figref{fig:sigma_difference_me_dgapy_dgapy_dc}, but with the double-counting kernel of \eqref{eq:sigma_double_counting}.}
+	\label{fig:sigma_difference_me_dgapy_correct_dc}
+\end{figure}
+The absolute differences in the self-energies between the two implementations did not exceed $\mathcal{O}(10^{-11})$, and the five largest eigenvalues of the pairing vertex in the Eliashberg equation differed by at most $\mathcal{O}(10^{-6})$ for the double-counting kernel of \eqref{eq:sigma_double_counting_dgapy}. This level of agreement was consistently achieved across different $\vv{k}$- and $\vv{q}$-grids and varying numbers of Matsubara frequencies $n_\omega$ and $n_\nu$.
+
+For the double-counting kernel of \eqref{eq:sigma_double_counting} we found an agreement of $\mathcal{O}(10^{-3})$, where the largest superconducting eigenvalues differed by $\mathcal{O}(10^{-4})$. We are very certain, that the double-counting kernel of \eqref{eq:sigma_double_counting} should be correct for all multi-/single-orbital cases and the usage of \eqref{eq:sigma_double_counting_dgapy} in \texttt{DGApy} is not clear to us.
 
 \subsection{Disconnected two-band model}\label{sec:validation_ii}
 
