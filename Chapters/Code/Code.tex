@@ -3,7 +3,7 @@
 \begin{document}
 \sloppy
 
-\chapter{The code}
+\chapter{The code}\label{ch:the_code}
 
 The main part of this thesis is the implementation of a self-consistent ladder-$\dga$ calculation with an emphasis on usability and minimal setup effort. The code is designed to be both accessible and performant, targeting fast execution through efficient parallelization and extensive memory optimizations. It is written in \texttt{Python} and relies mainly on \texttt{NumPy} for numerical computations, making use of vectorized operations and optimized linear algebra routines. In addition, the code carefully exploits symmetries inherent to the physical problem to further reduce computational cost and memory usage. In this chapter, we present the implementation of the computational framework developed to achieve a fully converged self-energy through the self-consistency algorithm of the ladder-$\dga$ equations and a subsequent calculation of the superconducting eigenvalues and gap functions for both singlet and triplet electron pairing. 
 \\\\
@@ -210,11 +210,11 @@ We discovered a tiny subtlety in the implementation of \texttt{DGApy}. It uses a
 \begin{align}\label{eq:sigma_double_counting_dgapy}
 	\Sigma^{\k}_{\text{dc};\mathfrak{12}} = \frac{1}{\beta}\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\magn;\mathfrak{de2f}}G_{\mathfrak{af}}^{\k-\q},
 \end{align}
-compared to our definition of \eqref{eq:sigma_double_counting}. This does not add a significant difference, but it should be noted nevertheless. We carried out the single-band calculation with \eqref{eq:sigma_double_counting_dgapy} and \eqref{eq:sigma_double_counting} and compared them to the results of \texttt{DGApy} separately, both of which can be seen in \figref{fig:sigma_difference_me_dgapy_dgapy_dc} and \figref{fig:sigma_difference_me_dgapy_correct_dc}, respectively.
+compared to our definition of \eqref{eq:sigma_double_counting}. This does not add a significant difference, but it should be noted nevertheless. We carried out the single-band calculation with \eqref{eq:sigma_double_counting_dgapy} and \eqref{eq:sigma_double_counting} and compared them to the results of \texttt{DGApy} separately, both of which can be seen in \figref{fig:sigma_difference_me_dgapy_dgapy_dc} and \figref{fig:sigma_difference_me_dgapy_correct_dc}, respectively. These calculation were done with a $\vv{k}$-grid of $64x64x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=20$ without any $\lambda$-correction.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=\textwidth]{../../Graphics/Validation/DGApy/sigma_difference_me_dgapy_dgapy_dc}
-	\caption{Difference between the one-band self-energy of \texttt{DGApy} and the current implementation with the double-counting kernel of \eqref{eq:sigma_double_counting_dgapy} for $k_z=0$ and $\nu=0$. The result of \texttt{DGApy} can be seen in the very left column, the result of the current implementation in the second column. The difference between both, i.e. $\Delta\Sigma=\Sigma_{\texttt{DGApy}}-\Sigma$, can be seen in the last column. The rows indicate the real- and imaginary part of all quantities, respectively. This calculation was done with a $\vv{k}$-grid of $64x64x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=20$ without any $\lambda$-correction.}
+	\caption{Difference between the one-band self-energy of \texttt{DGApy} and the current implementation with the double-counting kernel of \eqref{eq:sigma_double_counting_dgapy} for $k_z=0$ and $\nu=0$. The result of \texttt{DGApy} can be seen in the very left column, the result of the current implementation in the second column. The difference between both, i.e. $\Delta\Sigma=\Sigma_{\texttt{DGApy}}-\Sigma$, can be seen in the last column. The rows indicate the real- and imaginary part of all self-energies, respectively.}
 	\label{fig:sigma_difference_me_dgapy_dgapy_dc}
 \end{figure}
 \begin{figure}[ht!]
@@ -227,18 +227,32 @@ The absolute differences in the self-energies between the two implementations di
 
 For the double-counting kernel of \eqref{eq:sigma_double_counting} we found an agreement of $\mathcal{O}(10^{-3})$, where the largest superconducting eigenvalues differed by $\mathcal{O}(10^{-4})$. We are very certain, that the double-counting kernel of \eqref{eq:sigma_double_counting} should be correct for all multi-/single-orbital cases and the usage of \eqref{eq:sigma_double_counting_dgapy} in \texttt{DGApy} is not clear to us.
 
+A comparison between the \textit{local} irreducible vertices for both calculations and both density and magnetic spin combinations can be seen in \figref{fig:gamma_difference_dgapy_dens} and \figref{fig:gamma_difference_dgapy_magn}, respectively.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/DGApy/gamma_difference_dgapy_dens}
+	\caption{Differences (third column) between the real and imaginary part of the \textit{local} irreducible vertex in the density channel calculated with \texttt{DGApy} (first column) and the new program (second column).}
+	\label{fig:gamma_difference_dgapy_dens}
+\end{figure}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/DGApy/gamma_difference_dgapy_magn}
+	\caption{Analogous to \figref{fig:gamma_difference_dgapy_dens} but for the magnetic spin combination.}
+	\label{fig:gamma_difference_dgapy_magn}
+\end{figure}
+
 \subsection{Disconnected two-band model}\label{sec:validation_ii}
 
 Here, we validate the multi-orbital implementation of the code using the fictitious two-band input discussed earlier. The purpose of these tests was to verify that our code treats such a system in the expected way, namely as two independent orbitals with identical physical properties, and that no artifacts are introduced by the handling of multi-orbital input data. Based on this setup, we carried out three consistency checks:
 \newline
 
-The first test consisted of projecting a single orbital out of the disconnected two-band dataset and comparing it to the corresponding orbital of the two-band model. Since both originate from the same underlying data, one expects perfect agreement between the two. Indeed, this is exactly what we observed: both the self-energy and the two-particle vertex functions matched up to numerical precision, with absolute differences vanishing within machine accuracy. This confirmed that our implementation correctly interprets the orbital structure of the disconnected two-band system and does not introduce any discrepancies when restricting attention to a single orbital.
+The first test consisted of projecting a single orbital out of the disconnected two-band dataset and comparing it to the corresponding orbital of the two-band model. Since both originate from the same underlying data, one expects perfect agreement between the two. Indeed, this is exactly what we observed: both the self-energy and the two-particle vertex functions matched up to numerical precision, with absolute differences vanishing within machine accuracy. This confirmed that our implementation correctly interprets the orbital structure of the disconnected two-band system and does not introduce any discrepancies when restricting attention to a single orbital. Since this test case reproduced the exact numerical results as expected, we will not show any data, as it would be of little to no use.
 \newline
 
-As a second test, we carried out the inverse procedure. Starting from the single-band dataset, we artificially embedded it into a disconnected two-band structure and then compared one of the diagonal orbitals from this construction to the original single-band data. Again, this comparison did not involve two independent calculations, but rather served as a stringent internal consistency check on the code's ability to handle single- and multi-band inputs in a uniform manner. As expected, the agreement was again exact up to numerical precision for both the self-energy and the vertex functions, confirming that the code faithfully reproduces the equivalence between the single-band description and its trivial two-band embedding.
+As a second test, we carried out the inverse procedure. Starting from the single-band dataset, we artificially embedded it into a disconnected two-band structure and then compared one of the diagonal orbitals from this construction to the original single-band data. Again, this comparison did not involve two independent calculations, but rather served as a stringent internal consistency check on the code's ability to handle single- and multi-band inputs in a uniform manner. As expected, the agreement was again exact up to numerical precision for both the self-energy and the vertex functions, confirming that the code faithfully reproduces the equivalence between the single-band description and its trivial two-band embedding. Since this test case reproduced the exact numerical results as expected, we will not show any data, as it would be of little to no use.
 \newline
 
-The third test, in contrast, did involve independent input datasets. Here, we used the CT-HYB solver \texttt{w2dynamics} to generate data for both the single-band and the disconnected two-band systems separately and then compared the results. The two datasets agreed very well overall, demonstrating that the expected equivalence between the two cases is also maintained when the input is generated independently. In this comparison, small deviations were visible, however, this behavior is fully consistent with the stochastic nature of the continuous-time quantum Monte Carlo method employed in \texttt{w2dynamics}. Statistical noise is an unavoidable feature of CT-QMC data, and its presence here is therefore not surprising. Importantly, these fluctuations did not obscure the overall agreement between the single- and two-band results.
+The third test, in contrast, did involve independent input datasets. Here, we used the CT-HYB solver \texttt{w2dynamics} to generate data for both the single-band and the disconnected two-band systems separately and then compared the results. The two datasets agreed very well overall, demonstrating that the expected equivalence between the two cases is also maintained when the input is generated independently. In this comparison, small deviations were visible, however, this behavior is fully consistent with the stochastic nature of the continuous-time quantum Monte Carlo method employed in \texttt{w2dynamics}. Statistical noise is an unavoidable feature of CT-QMC data, and its presence here is therefore not surprising. Importantly, these fluctuations did not obscure the overall agreement between the single- and two-band results. A comparison between the single- and two-band self-energies and local irreducible vertices can be seen in \figref{}\cite{TODO}.
 \newline
 
 Taken together, these three tests confirm that our implementation treats disconnected multi-band systems in a consistent and reliable manner. The first two tests established internal consistency within a single dataset by verifying the equivalence of single- and two-band representations derived from the same calculation. The third test then demonstrated that this equivalence is preserved even when comparing truly independent datasets generated by \texttt{w2dynamics}. The results provide strong evidence that our code robustly respects the expected physics of disconnected orbital systems and correctly reproduces the equivalence to independent copies of the single-band model.
@@ -259,6 +273,26 @@ Here, the indices $\{\mathfrak{i}\}$ are representing orbital indices only. Unde
 	\text{cos}(\vartheta) & \text{sin}(\vartheta)\\-\text{sin}(\vartheta)&\text{cos}(\vartheta)
 	\end{pmatrix}_\mathfrak{12}\qqand\qquad \left (S^{\vartheta}_{\mathfrak{12}}\right )^{\!\dagger}=S_{\mathfrak{21}}^{\vartheta}=S_{\mathfrak{12}}^{-\vartheta}.
 \end{align}
-To apply a rotation to higher orbital dimensions, one would also have to construct a higher-dimensional rotation matrix with more than one angle parameter. To perform this test, we applied a rotation by an angle $\vartheta$ to all input quantities from DMFT, including the kinetic part of the Hamiltonian and the interaction terms. The $\dga$ algorithm was then used to compute the non-local self-energy, which we subsequently rotated back by $-\vartheta$. We compared the resulting self-energy to a reference calculation performed without any rotations and found them to agree up to floating-point precision, with $\sum_{\k;\mathfrak{12}}|\Sigma_{\mathfrak{12}}^{\k;\vartheta\neq0}-\Sigma_{\mathfrak{12}}^{\k;\vartheta=0}|=0$ for $\vartheta=\frac\pi2,\pi$ and $\sum_{\k;\mathfrak{12}}|\Sigma_{\mathfrak{12}}^{\k;\vartheta\neq0}-\Sigma_{\mathfrak{12}}^{\k;\vartheta=0}|\lesssim 10^{-3}$ for other values of $\vartheta$. We tried this with different numbers of Matsubara frequencies $n_\omega$ and $n_\nu$​ and varying $\vv{k}$-grid sizes --- all yielding indistinguishable results.
+To apply a rotation to higher orbital dimensions, one would also have to construct a higher-dimensional rotation matrix with more than one angle parameter. To perform this test, we applied a rotation by an angle $\vartheta$ to all input quantities from DMFT, including the kinetic part of the Hamiltonian and the interaction terms. The $\dga$ algorithm was then used to compute the non-local self-energy, which we subsequently rotated back by $-\vartheta$. We compared the resulting self-energy to a reference calculation performed without any rotations and found them to agree up to floating-point precision, with $\sum_{\k;\mathfrak{12}}|\Sigma_{\mathfrak{12}}^{\k;\vartheta\neq0}-\Sigma_{\mathfrak{12}}^{\k;\vartheta=0}|=0$ for $\vartheta=\frac\pi2,\pi$ and $\sum_{\k;\mathfrak{12}}|\Sigma_{\mathfrak{12}}^{\k;\vartheta\neq0}-\Sigma_{\mathfrak{12}}^{\k;\vartheta=0}|\lesssim 10^{-3}$ for other values of $\vartheta$. We tried this with different numbers of Matsubara frequencies $n_\omega$ and $n_\nu$​ and varying $\vv{k}$-grid sizes --- all yielding indistinguishable results. 
+
+Exemplary results of the self-energy and the irreducible vertex $\Gamma_{\dens/\magn}^{\omega=0;\nu\nu'}$ can be seen in \figref{fig:sigma_difference_rotated_pi_3}, \figref{fig:gamma_difference_rotated_pi_3_dens} and \figref{fig:gamma_difference_rotated_pi_3_magn}. This calculation was done for the fictitious two-band model with a $\vv{k}$-grid of $24x24x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=0$. Here, we show the $(\mathfrak{11})$ orbital of the self-energy.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Rotation/sigma_difference_rotated_pi_3}
+	\caption{Differences (third column) between the two-band calculation without a rotation ($\vartheta=0$, first column) and a calculation, where the input data was rotated before the $\dga$ calculation and subsequently rotated back by a factor of $\vartheta=\frac\pi3$ (second column) for both the real and imaginary part of the self-energy (first and second row, respectively). }
+	\label{fig:sigma_difference_rotated_pi_3}
+\end{figure}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Rotation/gamma_difference_rotated_pi_3_dens}
+	\caption{Differences (third column) between the two-band calculation without a rotation ($\vartheta=0$, first column) and a calculation, where the input data was rotated before the $\dga$ calculation and subsequently rotated back by a factor of $\vartheta=\frac\pi3$ (second column) for both the real and imaginary part of the \textit{local} irreducible vertex $\Gamma_{\dens}^{\omega=0;\nu\nu'}$ (first and second row, respectively) in the density spin combination.}
+	\label{fig:gamma_difference_rotated_pi_3_dens}
+\end{figure}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Rotation/gamma_difference_rotated_pi_3_magn}
+	\caption{Analogous to \figref{fig:gamma_difference_rotated_pi_3_dens} but for the magnetic spin combination.}
+	\label{fig:gamma_difference_rotated_pi_3_magn}
+\end{figure}
 
 \end{document}
