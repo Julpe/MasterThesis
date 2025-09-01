@@ -34,7 +34,7 @@ The memory demands of a full ladder-$\dga$ calculation can be substantial, espec
 
 First, the calculation of non-local quantities is performed exclusively within the irreducible Brillouin zone. Thanks to the crystal symmetries of common lattice structures (e.g., square or quasi-1D lattices), only a small subset of the full momentum grid needs to be explicitly computed. The code determines this set via symmetry operations specified in the \texttt{brillouin\char`_zone} module, which ensures compatibility with arbitrary lattice symmetries defined in the configuration. For instance, on a $16\times16\times1$ grid, only 45 out of 256 $\vv{q}$-points are needed for a square lattice, which directly reduces both computational and memory load by more than a factor of five and even higher for larger grid sizes.
 
-To further save memory, we keep most of the objects in half of their bosonic Matsubara frequency range: Due to the symmetry $F^{\omega\nu\nu'}_{\mathfrak{1234}}=(F^{(-\omega)(-\nu)(-\nu')}_{\mathfrak{4321}})^{*}=(F^{(-\omega)\nu\nu'}_{\mathfrak{4321}})^{*}$\footnote{The transformation from $-\nu, -\nu'$ to $\nu,\nu'$ is possible due to the symmetrized nature of the two-particle Green's function and the inherited vertex functions.}, we can restrict the objects to their positive bosonic Matsubara frequency region only. This saves half of the memory and thus a very large amount for the biggest objects, such as the auxiliary susceptibility or the full vertex.
+To further save memory, we keep most of the objects in half of their bosonic Matsubara frequency range: Due to the symmetry $F^{\omega\nu\nu'}_{\mathfrak{1234}}=(F^{(-\omega)(-\nu)(-\nu')}_{\mathfrak{1234}})^{*}=(F^{(-\omega)\nu\nu'}_{\mathfrak{1234}})^{*}$\footnote{The transformation from $-\nu, -\nu'$ to $\nu,\nu'$ is possible due to the symmetrized nature of the two-particle Green's function and the inherited vertex functions.}, we can restrict the objects to their positive bosonic Matsubara frequency region only. This saves half of the memory and thus a very large amount for the biggest objects, such as the auxiliary susceptibility or the full vertex.
 
 These symmetry-based reductions are implemented in a transparent way for the user: the internal representation is compressed, but the high-level API provides access to the full data. This allows for both memory efficiency and usability, enabling the user to work with large systems that would otherwise be intractable on a single machine.
 
@@ -128,7 +128,7 @@ lambda_correction:
   type: "spch"                    # string, default: "spch"
 \end{lstlisting}
 \end{minipage}
-Here, setting \texttt{perform\char`_lambda\char`_correction} to \texttt{True} will perform a $\lambda$-correction if the input is a single-band model. Otherwise, an error is raised and the code exits. Notice that if one wants a one-shot lambda-corrected self-energy and calculation of the Eliashberg equation, then \texttt{max\char`_iter} and \texttt{mixing} in the \texttt{self\char`_consistency} section need to be set to \say{1}. The other parameter is the type of $\lambda$-correction which will be performed. Setting this to \texttt{spch} will renormalize both the density and magnetic susceptibilities, whereas setting it to \texttt{sp} will only renormalize the magnetic susceptibility.
+Here, setting \texttt{perform\char`_lambda\char`_correction} to \texttt{True} will perform a $\lambda$-correction if the input is a single-band model. Otherwise, an error is raised and the code exits. Notice that if one calculates the one-shot lambda-corrected self-energy and Eliashberg equation, the variables \texttt{max\char`_iter} and \texttt{mixing} in the \texttt{self\char`_consistency} section will be set to \say{1} during execution. The other parameter is the type of $\lambda$-correction which will be performed. Setting this to \texttt{spch} will renormalize both the density and magnetic susceptibilities, whereas setting it to \texttt{sp} will only renormalize the magnetic susceptibility.
 \\\\
 The next section is a very important one, since it is concerned with the location of the DMFT files and mainly defines their location and file names:
 
@@ -206,11 +206,15 @@ For the single-band input, we used $\beta=12.5$, a filling of $n=0.85$ and tight
 
 We performed a full one-shot $\dga$ calculation using both \texttt{DGApy} and our new implementation, employing identical input files and parameters. Across all computed quantities, our implementation reproduced the results of the $\dga$ algorithm with floating-point accuracy. This agreement held for both the basic one-shot calculation without $\lambda$-corrections and for cases with $\lambda$-corrections applied --- whether in the spin channel alone or in both spin and charge channels. 
 
-We discovered a tiny subtlety in the implementation of \texttt{DGApy}. It uses a different double-counting correction, which reads 
+We discovered a tiny subtlety in the implementation of \texttt{DGApy}. It uses a different double-counting correction, which reads for the single-band case
 \begin{align}\label{eq:sigma_double_counting_dgapy}
-	\Sigma^{\k}_{\text{dc};\mathfrak{12}} = \frac{1}{\beta}\sum_{\substack{\mathfrak{abcdef}\\\q\nu'}}\tilde{\mathcal{U}}_{\mathfrak{a1bc}}\chi^{\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\magn;\mathfrak{de2f}}G_{\mathfrak{af}}^{\k-\q},
+	\Sigma^{\k}_{\text{dc}} = \frac{1}{\beta}\sum_{\q\nu'}U\chi^{\q\nu'}_{0}F^{\omega\nu'\nu}_{\magn}G^{\k-\q},
 \end{align}
-compared to our definition of \eqref{eq:sigma_double_counting}. This does not add a significant difference, but it should be noted nevertheless. We carried out the single-band calculation with \eqref{eq:sigma_double_counting_dgapy} and \eqref{eq:sigma_double_counting} and compared them to the results of \texttt{DGApy} separately, both of which can be seen in \figref{fig:sigma_difference_me_dgapy_dgapy_dc} and \figref{fig:sigma_difference_me_dgapy_correct_dc}, respectively. These calculation were done with a $\vv{k}$-grid of $64x64x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=20$ without any $\lambda$-correction.
+compared to the expression containing a combination of the full vertex in the density and magnetic channel, see our definition of \eqref{eq:sigma_double_counting}. This does not add a significant numerical difference, but it should be noted nevertheless. The usage of \eqref{eq:sigma_double_counting_dgapy} in \texttt{DGApy} is for the special case of single-band data, where one can show, that
+\begin{align}
+	\sum_{\q\nu'} \chi^{\q\nu'}_{0} \left [F^{\q\nu'\nu}_{\dens} + F^{\q\nu'\nu}_{\magn}\right ]G^{\k-\q} \propto \sum_{\q\nu'}\chi^{\q\nu'}_{0} F^{\q\nu'\nu}_{\uparrow\uparrow} G^{\k-\q}=0
+\end{align}
+if combined with a $\lambda$-correction \cite{Worm2023a}. We carried out the single-band calculation with \eqref{eq:sigma_double_counting_dgapy} and \eqref{eq:sigma_double_counting} and compared them to the results of \texttt{DGApy} separately, both of which can be seen in \figref{fig:sigma_difference_me_dgapy_dgapy_dc} and \figref{fig:sigma_difference_me_dgapy_correct_dc}, respectively. These calculation were done with a $\vv{k}$-grid of $64\times64\times1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=20$ without any $\lambda$-correction.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{../../Graphics/Validation/DGApy/sigma_difference_me_dgapy_dgapy_dc}
@@ -225,7 +229,7 @@ compared to our definition of \eqref{eq:sigma_double_counting}. This does not ad
 \end{figure}
 The absolute differences in the self-energies between the two implementations did not exceed $\mathcal{O}(10^{-11})$, and the five largest eigenvalues of the pairing vertex in the Eliashberg equation differed by at most $\mathcal{O}(10^{-6})$ for the double-counting kernel of \eqref{eq:sigma_double_counting_dgapy}. This level of agreement was consistently achieved across different $\vv{k}$- and $\vv{q}$-grids and varying numbers of Matsubara frequencies $n_\omega$ and $n_\nu$.
 
-For the double-counting kernel of \eqref{eq:sigma_double_counting} we found an agreement of $\mathcal{O}(10^{-3})$, where the largest superconducting eigenvalues differed by $\mathcal{O}(10^{-4})$. We are very certain, that the double-counting kernel of \eqref{eq:sigma_double_counting} should be correct for all multi-/single-orbital cases and the usage of \eqref{eq:sigma_double_counting_dgapy} in \texttt{DGApy} is not clear to us.
+For the double-counting kernel of \eqref{eq:sigma_double_counting} we found an agreement of $\mathcal{O}(10^{-3})$, where the largest superconducting eigenvalues differed by $\mathcal{O}(10^{-4})$.
 
 A comparison between the \textit{local} irreducible vertices for both calculations and both density and magnetic spin combinations can be seen in \figref{fig:gamma_difference_dgapy_dens} and \figref{fig:gamma_difference_dgapy_magn}, respectively.
 \begin{figure}[h!]
@@ -253,28 +257,65 @@ The first test consisted of projecting a single orbital out of the disconnected 
 As a second test, we carried out the inverse procedure. Starting from the single-band dataset, we artificially embedded it into a disconnected two-band structure and then compared the $\dga$ results of one of the diagonal orbitals from this construction to the original single-band data calculated with the program. Again, this comparison did not involve two independent \texttt{w2dynamics} calculations, but rather served as a stringent internal consistency check on the code's ability to handle single- and multi-band inputs in a uniform manner. As expected, the agreement was again exact up to numerical precision for both the self-energy and the vertex functions, confirming that the code faithfully reproduces the equivalence between the single-band description and its trivial two-band embedding. Since this test case reproduced the exact numerical results as expected, we will not show any data similar to above.
 \newline
 
-The third test, in contrast, did involve two independent input datasets. Here, we used \texttt{w2dynamics} to generate data for both the single-band and the disconnected two-band systems separately and then compared the results of the separate $\dga$ calculations. The results of both datasets agreed very well overall, demonstrating that the expected equivalence between the two cases is also maintained when the input is generated independently. In this comparison, small deviations were visible, however, this behavior is fully consistent with the stochastic nature of the continuous-time quantum Monte Carlo method employed in \texttt{w2dynamics}. Statistical noise is an unavoidable feature of CT-QMC data, and its presence here is therefore not surprising. Importantly, these fluctuations did not obscure the overall agreement between the single- and two-band results. A comparison between the single- and two-band self-energies and local irreducible vertices can be seen in \figref{fig:sigma_difference_oneband_twoband}, \figref{fig:gamma_difference_dens_oneband_twoband} and \figref{fig:gamma_difference_magn_oneband_twoband}, respectively. This calculation was done for the fictitious two-band model with a $\vv{k}$-grid of $24x24x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=0$. For the fictitious two-band model, we chose to show the $(\mathfrak{11})$-component of the self-energy and the $(\mathfrak{1111})$-component of the irreducible vertex for the comparison. The other orbital-diagonal entry is --- except for small stochastic noise --- indistinguishable to the first one. 
+The third test, in contrast, did involve two independent input datasets. Here, we used \texttt{w2dynamics} to generate data for both the single-band and the disconnected two-band systems separately and then compared the results of the separate $\dga$ calculations. The results of both datasets agreed very well overall, demonstrating that the expected equivalence between the two cases is also maintained when the input is generated independently. In this comparison, small deviations were visible, however, this behavior is fully consistent with the stochastic nature of the continuous-time quantum Monte Carlo method employed in \texttt{w2dynamics}. Statistical noise is an unavoidable feature of CT-QMC data, and its presence here is therefore not surprising. Importantly, these fluctuations did not obscure the overall agreement between the single- and two-band results. A comparison between the single- and two-band self-energies and local irreducible vertices for lower QMC measurement statistics can be seen in \figref{fig:sigma_difference_oneband_twoband_lower_stat}, \figref{fig:gamma_difference_dens_oneband_twoband_lower_stat} and \figref{fig:gamma_difference_magn_oneband_twoband_lower_stat}, respectively. To briefly illustrate the differences that are coming from the \texttt{w2dynamics} calculations, we also compared those quantities for a four-times increase of the QMC measurement number in \figref{fig:sigma_difference_oneband_twoband_higher_stat}, \figref{fig:gamma_difference_dens_oneband_twoband_higher_stat} and \figref{fig:gamma_difference_magn_oneband_twoband_higher_stat}, respectively. This calculation was done for the fictitious two-band model with a $\vv{k}$-grid of $24\times24\times1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=0$. For the fictitious two-band model, we chose to show the $(\mathfrak{11})$-component of the self-energy and the $(\mathfrak{1111})$-component of the irreducible vertex for the comparison. The other orbital-diagonal entry is --- except for small stochastic noise --- indistinguishable to the first one. 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/sigma_difference_oneband_twoband}
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/sigma_difference_oneband_twoband_lower_stat}
 	\caption{Differences between the one-band self-energy (first column) and the first diagonal component of the self-energy (second column) calculated from the fictitious two-band system. The difference between both can be seen in the last column and the rows indicate the real- and imaginary part of all self-energies, respectively.}
-	\label{fig:sigma_difference_oneband_twoband}
+	\label{fig:sigma_difference_oneband_twoband_lower_stat}
 \end{figure}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/gamma_difference_dens_oneband_twoband}
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/gamma_difference_dens_oneband_twoband_lower_stat}
 	\caption{Differences (last column) between the real and imaginary part of the \textit{local} irreducible vertex in the density channel calculated from the one-band dataset (first column) and the fictitious two-band dataset (second column).}
-	\label{fig:gamma_difference_dens_oneband_twoband}
+	\label{fig:gamma_difference_dens_oneband_twoband_lower_stat}
 \end{figure}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/gamma_difference_magn_oneband_twoband}
-	\caption{Analogous to \figref{fig:gamma_difference_dgapy_dens} but for the magnetic spin combination.}
-	\label{fig:gamma_difference_magn_oneband_twoband}
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/gamma_difference_magn_oneband_twoband_lower_stat}
+	\caption{Analogous to \figref{fig:gamma_difference_dens_oneband_twoband_lower_stat} but for the magnetic spin combination.}
+	\label{fig:gamma_difference_magn_oneband_twoband_lower_stat}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/sigma_difference_oneband_twoband_higher_stat}
+	\caption{Similar to \figref{fig:sigma_difference_oneband_twoband_lower_stat} but with a four-times increase in measurement statistics for the one- and two-particle calculations in \texttt{w2dynamics}.}
+	\label{fig:sigma_difference_oneband_twoband_higher_stat}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/gamma_difference_dens_oneband_twoband_higher_stat}
+	\caption{Similar to \figref{fig:gamma_difference_dens_oneband_twoband_lower_stat} but with a four-times increase in measurement statistics for the one- and two-particle calculations in \texttt{w2dynamics}.}
+	\label{fig:gamma_difference_dens_oneband_twoband_higher_stat}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{../../Graphics/Validation/Oneband_vs_Twoband/gamma_difference_magn_oneband_twoband_higher_stat}
+	\caption{Similar to \figref{fig:gamma_difference_magn_oneband_twoband_lower_stat} but with a four-times increase in measurement statistics for the one- and two-particle calculations in \texttt{w2dynamics}.}
+	\label{fig:gamma_difference_magn_oneband_twoband_higher_stat}
+\end{figure}
+
+Finally, we also compare the frequency dependence of both the one- and two-band self-energy. For this, we plotted the single-band self-energy compared to the first diagonal ($\mathfrak{11}$) component of the fictitious two-band calculation for both lower (\figref{fig:sigma_difference_oneband_twoband_frequency}\subref{subfig:sigma_difference_oneband_twoband_lower_stat_frequency}) and higher (\figref{fig:sigma_difference_oneband_twoband_frequency}\subref{subfig:sigma_difference_oneband_twoband_higher_stat_frequency}) QMC measurement statistics and $\vv{k}=\vv{0}$.
+\begin{figure}[ht!]
+	\centering
+	\begin{subfigure}[b]{.5\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{../Graphics/Validation/Oneband_vs_Twoband/sigma_difference_oneband_twoband_lower_stat_v}
+		\caption{\label{subfig:sigma_difference_oneband_twoband_lower_stat_frequency}}
+	\end{subfigure}\hfill
+	\begin{subfigure}[b]{.5\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{../Graphics/Validation/Oneband_vs_Twoband/sigma_difference_oneband_twoband_higher_stat_v}
+		\caption{\label{subfig:sigma_difference_oneband_twoband_higher_stat_frequency}}
+	\end{subfigure}
+	\caption{Frequency dependence of the real and imaginary part of the self-energy for the single-band and the fictitious two-band dataset. \subref{subfig:sigma_difference_oneband_twoband_lower_stat_frequency} shows the comparison for a lower QMC statistics run, whereas \subref{subfig:sigma_difference_oneband_twoband_higher_stat_frequency} for a four-times higher one. The improved behaviour for large frequencies is not surprising, as the increase of QMC measurements mitigates some stochastic noise.}
+	\label{fig:sigma_difference_oneband_twoband_frequency}
 \end{figure}
 
 Taken together, these three tests confirm that our implementation treats disconnected multi-band systems in a consistent and reliable manner. The first two tests established internal consistency within a single dataset by verifying the equivalence of single- and two-band representations derived from the same calculation. The third test then demonstrated that this equivalence is preserved even when comparing truly independent datasets generated by \texttt{w2dynamics}. The results provide strong evidence that our code robustly respects the expected physics of disconnected orbital systems and correctly reproduces the equivalence to independent copies of the single-band model.
 
+\newpage
 \subsection{Rotated disconnected two-band model}\label{sec:validation_iii}
 
 For this test, we use the fictitious disconnected two-band model introduced earlier and applied rotations in orbital space. The goal is to verify that the orbitals remain properly separated and are not mixed in unintended ways. To this end, we implemented simple rotation routines in the code, which allow us to rotate the one- and two-particle vertex functions in orbital space. For the one-particle Green's function and self-energy this looks like
@@ -293,7 +334,7 @@ Here, the indices $\{\mathfrak{i}\}$ are representing orbital indices only. Unde
 \end{align}
 To apply a rotation to higher orbital dimensions, one would also have to construct a higher-dimensional rotation matrix with more than one angle parameter. To perform this test, we applied a rotation by an angle $\vartheta$ to all input quantities from DMFT, including the kinetic part of the Hamiltonian and the interaction terms. The $\dga$ algorithm was then used to compute the non-local self-energy, which we subsequently rotated back by $-\vartheta$. We compared the resulting self-energy to a reference calculation performed without any rotations and found them to agree up to floating-point precision, with $\sum_{\k;\mathfrak{12}}|\Sigma_{\mathfrak{12}}^{\k;\vartheta\neq0}-\Sigma_{\mathfrak{12}}^{\k;\vartheta=0}|=0$ for $\vartheta=\frac\pi2,\pi$ and $\sum_{\k;\mathfrak{12}}|\Sigma_{\mathfrak{12}}^{\k;\vartheta\neq0}-\Sigma_{\mathfrak{12}}^{\k;\vartheta=0}|\lesssim 10^{-3}$ for other values of $\vartheta$. We tried this with different numbers of Matsubara frequencies $n_\omega$ and $n_\nu$​ and varying $\vv{k}$-grid sizes --- all yielding indistinguishable results. 
 
-Exemplary results of the self-energy and the irreducible vertex $\Gamma_{\dens/\magn}^{\omega=0;\nu\nu'}$ can be seen in \figref{fig:sigma_difference_rotated_pi_3}, \figref{fig:gamma_difference_rotated_pi_3_dens} and \figref{fig:gamma_difference_rotated_pi_3_magn}. This calculation was done for the fictitious two-band model with a $\vv{k}$-grid of $24x24x1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=0$. Here, we show the $(\mathfrak{11})$ orbital of the self-energy and the $(\mathfrak{1111})$ orbital component of the irreducible vertex; the $(\mathfrak{22})$ and $(\mathfrak{2222})$ components of both quantities look very similar.
+Exemplary results of the self-energy and the irreducible vertex $\Gamma_{\dens/\magn}^{\omega=0;\nu\nu'}$ can be seen in \figref{fig:sigma_difference_rotated_pi_3}, \figref{fig:gamma_difference_rotated_pi_3_dens} and \figref{fig:gamma_difference_rotated_pi_3_magn}. This calculation was done for the fictitious two-band model with a $\vv{k}$-grid of $24\times24\times1$, $n_\omega=60$, $n_{\nu;\text{core}}=40$ and $n_{\nu;\text{asympt}}=0$. Here, we show the $(\mathfrak{11})$ orbital of the self-energy and the $(\mathfrak{1111})$ orbital component of the irreducible vertex; the $(\mathfrak{22})$ and $(\mathfrak{2222})$ components of both quantities look very similar.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{../../Graphics/Validation/Rotation/sigma_difference_rotated_pi_3}
