@@ -128,7 +128,7 @@ It is now time to split up the derivation in two paths, one devoted to the steps
 \textbf{Approach 1} --- From the purely local part of \eqref{eq:sde_with_phbar}, which is contained in the first term in the brackets, one can extract the DMFT self-energy, since the $\ph$-channel contribution with the local $U_{\mathfrak{1234}}$ can be rewritten as
 \begin{align}
 	\Sigma_{\ph;U;\mathfrak{12}}^{\k}&=\Sigma_{\text{HF};\mathfrak{12}}^{\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\left (\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}+\chi^{\omega\nu'\nu'}_{0;\mathfrak{cbed}}\right ) F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q}\\
-	&=\Sigma_{DMFT;\mathfrak{12}}^{\nu}+\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q},
+	&=\Sigma_{\text{DMFT};\mathfrak{12}}^{\nu}+\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}-\frac{1}{\beta}\sum_{\q\nu'}U_{\mathfrak{a1bc}}\chi^{\nl;\q\nu'\nu'}_{0;\mathfrak{cbed}}F^{\omega\nu'\nu}_{\dens;\mathfrak{de2f}} G_{\mathfrak{af}}^{\k-\q},
 \end{align}
 where $\Sigma_{\text{HF};\mathfrak{12}}^{\nl;\vv{k}}$ is the purely non-local Hartree-Fock term with the contributions from $V^{\vv{q}}_{\mathfrak{1234}}$ but not $U_{\mathfrak{1234}}$, see \eqref{eq:sde}. We can take advantage of the momentum and frequency structure in the SDE above to simplify the numerical calculation of the self-energy. Therefore, we --- in analogy to Ref.~\cite{Galler2017} --- define three Hedin vertices in $\r\in\{\dens,\magn\}$ spin combinations,
 \begin{align}\label{eq:three_leg_vertices_abinitio_dga}
