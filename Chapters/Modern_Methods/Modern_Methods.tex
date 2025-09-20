@@ -391,7 +391,7 @@ confirming that the symmetrization in \eqref{eq:symmetrization_pairing_vertex} l
 
 To avoid having to deal with two momentum indices for the pairing vertex $\Gamma_{\mathfrak{1234}}^{(\q=0)\k\k'}$ in the calculation, one can perform a Fourier transform to real space. However, this is only of advantage in the ladder approximation of the vertex, since then $\Gamma_{\sing/\trip;\mathfrak{1234}}^{(\q=0)\k\kp}=\Gamma_{\sing/\trip;\mathfrak{1234}}^{\vv{k}-\vv{k}',(\omega=0)\nu\nu'}\pm\Gamma_{\sing/\trip;\mathfrak{1432}}^{\vv{k}+\vv{k}',(\omega=0)\nu(-\nu')}$. The sum over $\k'$ of \eqref{eq:linearized_eliashberg} is essentially a convolution in momentum space, which reduces to a multiplication in Fourier space. We thus take the Fourier transform of \eqref{eq:linearized_eliashberg} in the case of $\q=0$ with respect to $\vv{k}$
 \begin{align}\label{eq:eliashberg_fourier_transform_partial}
-	\lambda_{\sing/\trip}\sum_{\vv{k}}\text{e}^{\text{i}\vv{kx}}\;\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2}\sum_{\vv{k}\kp;\mathfrak{abcd}}\!\!\text{e}^{\text{i}\vv{kx}}\;\left [\Gamma_{\sing/\trip;\mathfrak{1b2a}}^{\vv{k}-\vv{k}',(\omega=0)\nu\nu'}\pm\Gamma_{\sing/\trip;\mathfrak{1a2b}}^{\vv{k}+\vv{k}',(\omega=0)\nu(-\nu')}\right ]\chi^{\kp}_{\sing/\trip;0;\mathfrak{acbd}}\Delta_{\sing/\trip;\mathfrak{dc}}^{\kp},
+	\lambda_{\sing/\trip}\sum_{\vv{k}}\text{e}^{\text{i}\vv{kx}}\;\Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac{1}{2}\sum_{\vv{k}\kp;\mathfrak{abcd}}\!\!\text{e}^{\text{i}\vv{kx}}\;\left [\Gamma_{\sing/\trip;\mathfrak{1b2a}}^{\vv{k}-\vv{k}'(\omega=0)\nu\nu'}\pm\Gamma_{\sing/\trip;\mathfrak{1a2b}}^{\vv{k}+\vv{k}'(\omega=0)\nu(-\nu')}\right ]\chi^{\kp}_{\sing/\trip;0;\mathfrak{acbd}}\Delta_{\sing/\trip;\mathfrak{dc}}^{\kp},
 \end{align}
 where $\vv{x}=(x_1,...,x_D)$ is a real-space vector for systems in $D$ dimensions. If we introduce
 \begin{align}
@@ -399,11 +399,11 @@ where $\vv{x}=(x_1,...,x_D)$ is a real-space vector for systems in $D$ dimension
 \end{align}
 and use the shifts $\vv{k}=\vv{q}+\vv{k}'$ for the left term and $\vv{k}=\vv{q}-\vv{k}'$ for the right term, we can rewrite \eqref{eq:eliashberg_fourier_transform_partial} as
 \begin{align}
-	\lambda_{\sing/\trip}\sum_{\vv{k}}\text{e}^{\text{i}\vv{kx}}\; \Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac12\sum_{\nu'\mathfrak{ab}}\sum_{\vv{q}\vv{k}'}\text{e}^{\text{i}\vv{qx}}\;\left [\Gamma_{\sing/\trip;\mathfrak{1b2a}}^{\vv{q},(\omega=0)\nu\nu'}\text{e}^{\text{i}\vv{k}'\vv{x}}\;\tilde\Delta^{\kp}_{\sing/\trip;\mathfrak{ba}}\pm\Gamma_{\sing/\trip;\mathfrak{1a2b}}^{\vv{q},(\omega=0)\nu(-\nu')}\text{e}^{-\text{i}\vv{k}'\vv{x}}\;\tilde\Delta^{(-\vv{k}')\nu'}_{\sing/\trip;\mathfrak{ba}}\right ].
+	\lambda_{\sing/\trip}\sum_{\vv{k}}\text{e}^{\text{i}\vv{kx}}\; \Delta_{\sing/\trip;\mathfrak{12}}^{\k}=\pm\frac12\sum_{\nu'\mathfrak{ab}}\sum_{\vv{q}\vv{k}'}\text{e}^{\text{i}\vv{qx}}\;\left [\Gamma_{\sing/\trip;\mathfrak{1b2a}}^{\vv{q}(\omega=0)\nu\nu'}\text{e}^{\text{i}\vv{k}'\vv{x}}\;\tilde\Delta^{\kp}_{\sing/\trip;\mathfrak{ba}}\pm\Gamma_{\sing/\trip;\mathfrak{1a2b}}^{\vv{q}(\omega=0)\nu(-\nu')}\text{e}^{-\text{i}\vv{k}'\vv{x}}\;\tilde\Delta^{-\vv{k}'\nu'}_{\sing/\trip;\mathfrak{ba}}\right ].
 \end{align}
 This reads in Fourier-transformed quantities as
 \begin{align}
-	\lambda_{\sing/\trip} \Delta^{\vv{x}\nu}=\pm\frac12\sum_{\nu'\mathfrak{ab}}\left [\Gamma^{\vv{x},(\omega=0)\nu\nu'}_{\sing/\trip;\mathfrak{1b2a}}\pm\Gamma^{-\vv{x},(\omega=0)\nu(-\nu')}_{\sing/\trip;\mathfrak{1a2b}}\right ]\tilde\Delta^{\vv{x}\nu'}_{\sing/\trip;\mathfrak{ba}}.
+	\lambda_{\sing/\trip} \Delta^{\vv{x}\nu}=\pm\frac12\sum_{\nu'\mathfrak{ab}}\left [\Gamma^{\vv{x}(\omega=0)\nu\nu'}_{\sing/\trip;\mathfrak{1b2a}}\tilde\Delta^{\vv{x}\nu'}_{\sing/\trip;\mathfrak{ba}}\pm\Gamma^{-\vv{x}(\omega=0)\nu(-\nu')}_{\sing/\trip;\mathfrak{1a2b}}\tilde\Delta^{-\vv{x}\nu'}_{\sing/\trip;\mathfrak{ba}}\right ].
 \end{align}
 In essence, we have reduced the convolution of \eqref{eq:linearized_eliashberg} in momentum space to a product of the quantities in real space, effectively reducing the object from two momentum dimensions $N_{\vv{k}}\times N_{\vv{k}}$ to a single real-space dimension $N_{\vv{x}}(=N_{\vv{k}})$, reducing the object size by a factor $N_{\vv{k}}$. Numerically, solving the equation now can be done by performing a discrete Fourier transform on the quantities before executing the power iteration to calculate the gap function on the real-space axis. To afterwards obtain the momentum-dependent gap function, one simply applies the inverse transformation to the result.
 
