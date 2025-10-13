@@ -1,0 +1,10 @@
+CmdLine
+{
+    --nowarn 1
+    --nowarn 2
+    --nowarn 3
+    --nowarn 12
+    --nowarn 13
+    --nowarn 24
+    --nowarn 36
+}
