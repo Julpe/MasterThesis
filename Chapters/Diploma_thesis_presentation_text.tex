@@ -1,0 +1,40 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\doublespacing
+
+\section*{SLIDE 1}
+
+Hi everyone,
+My name is Julian and today I will present the main results of my diploma thesis "Multi-orbital dynamical vertex approximation", carried out under the supervision of Prof. Karsten Held, Viktor Christiansson and Eric Jacob at the Institute for Solid State Physics.
+
+\section*{SLIDE 2}
+
+The motivation for this work arises from - but is not limited to - the need to understand unconventional superconductivity --- phenomena like those found in cuprates and nickelates --- which are driven by strong electronic correlations due to the increased locality of partially filled d-shells in transition metals (or transition metal oxides).
+
+While traditional dynamical mean-field theory, or DMFT, has been extremely successful for treating local (to a lattice site) correlations, it does not capture any non-local effects --- per construction --- that are crucial for superconductivity with p- or d-wave pairing. DMFT as a theory becomes exact in infinite dimensions, hence it fails at describing cuprates or nickelates, as those are usually layered systems which can be modeled by a quasi-two-dimensional system. To include these non-local correlations that are mandatory to describe, e.g. phase transitions, diagrammatic extensions of DMFT have been developed --- among them the dynamical vertex approximation (or short $\dga$) is a state-of-the-art method.
+
+Until now, implementations of $\dga$ that handle superconductivity have been restricted to single-band systems, where I refer to a code written by Paul Worm. There is another program available, written by Anna Galler and colleagues, which already performs multi-orbital calculations of the dynamical vertex approximations, however it is not possible to compute any superconducting properties with it or successfully access low-temperature regimes.
+
+A particularly interesting target material is La$_3$Ni$_2$O$_7$, the recently discovered bilayer nickelate, which shows superconductivity under pressure around 14 gigapascals. Unlike the infinite layer nickelates such as NdNiO$_2$, La$_3$Ni$_2$O$_7$ contains two inequivalent Ni sites per unit cell and exhibits the highest known critical temperature among the nickelates. This bilayer structure and the strong inter-layer coupling through the $d_{z^2}$ orbital make it a perfect example of a system that cannot be described by a single-orbital model --- motivating the need for a multi-orbital extension of $\dga$.
+
+The goal of my work was therefore to develop and implement a multi-orbital $\dga$ framework capable of reaching low temperatures with the help of vertex asymptotics and ultimately addressing superconducting instabilities in such materials. While superconductivity is a central focus of the code developed, it is also possible to study many other effects, such as magnetization, charge density waves or pseudogap formation through the calculated susceptibilites, Green's functions or self-energies.
+
+\section*{SLIDE 3}
+
+Let me briefly outline some implementation details. It differs from the single-band implementation by the addition of orbital degrees of freedom. This means that Green's functions and self-energies gain two orbital indices, while two-particle vertex functions gain four orbital indices. This of course increases the memory requirement and computation time by a large factor, since for two-band systems the two-particle quantities are a factor 16 larger. Furthermore, the multiplications needed to perform the $\dga$ algorithm have to include orbital contractions. To overcome some limitations, the code uses MPI parallelization and symmetry reduction to handle very large tensor objects and distribute load to many cores and nodes. The code is called moLDGA and is available on my GitHub under the MIT License.
+
+\section*{SLIDE 4}
+
+To verify correctness and performance, we have performed several benchmark tests. First, we compared the multi-orbital implementation against the established single-band DΓA code of Paul. Our results agreed perfect up to numerical precision.
+
+We also tested various scenarios of decoupled two-band systems, where the two orbitals should behave independently. In this limit, the code correctly reproduces the expected decoupling.
+
+In terms of performance, using improved routines and more efficient parallelization, we were able to reduce the runtime for low-temperature datasets from about 12 hours to roughly 30 minutes.
+
+Looking ahead, several exciting directions remain. The immediate next step is to test the (resource and parameter) limits of the implementation by performing large-scale calculations. One further goal is to benchmark the new code against existing multi-orbital $\dga$ calculations --- for instance, those performed by Galler and coworkers on the testbed material SrVO$_3$ (Strontium Vanadate).
+
+Ultimately, we aim to apply the method to, for example, La$_3$Ni$_2$O$_7$, including its bilayer structure, to explore how interlayer hybridization and orbital-selective correlations influence the pairing symmetry and critical temperature. Such studies can provide valuable insight into the mechanisms driving high-temperature superconductivity in nickelates and related correlated materials. Furthermore, it would be of great interest to calculate phase diagrams with the current code implementation to reproduce/confirm the experimentally established results.
+
+\end{document}
